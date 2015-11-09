@@ -1,8 +1,10 @@
 \documentclass[]{article}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{multicol}
 
 \title{Abstract of ``Generalized Lattice-Boltzmann Equations''}
 \author{Florian Rohm}
-
 \begin{document}
 
 \maketitle
@@ -15,11 +17,41 @@ Notes while reading the paper
 
 Lattice boltzmann equation:
 \[
-N_i (\vec{r}_{*} + \vec{c}_i, t_{*} + 1) = N_i (\vec{r}_{*}, t_{*}) + \sum_j \Lambda_{ij} [N_j(\vec{r}_{*}, t_{*}) - N_j^{\text{eq}} (\vec{r}_{*}, t_{*})]
+N_i (\vec{r}_{*} + \vec{c}_i, t_{*} + 1) = N_i (\vec{r}_{*}, t_{*}) + \sum_j \Lambda_{ij} [N_j(\vec{r}_{*}, t_{*}) - N_j^{\text{eq}} (\vec{r}_{*}, t_{*})] \quad i = 0, \dots, b
 \]
 \begin{enumerate}
   \item Conserved quantity: an eigenvector of $\Lambda$
   \item $N_j^{\text{eq}}$ is a function of conserved quantities
+  \item bold vectors are b dimensional vectors in phase-space
 \end{enumerate}
+
+\paragraph{Alternative representation}
+\label{par:Alternative representation}
+
+\begin{enumerate}
+  \item choose b orthonormal vectors $e_k$ in the $N_i$ space
+  \item choose a collision operator $\hat{\Lambda}$ which is diagonal in this basis
+  \item $\mathcal{T}$ is the transformation to the new basis
+  \item thus, $\boldsymbol{\hat{N}} = \mathcal{T} \boldsymbol{N}$
+\end{enumerate}
+
+\subsection{Chapman-Enskog}
+\label{sub:Chapman-Enskog}
+Introduce a pertubation length $\epsilon^{-1}$.
+Then expand the distribution $\boldsymbol{N}$ around $\boldsymbol{N}^{(0)} = \boldsymbol{N}^{(\text{eq})}$ on two time scales:
+
+\noindent\begin{minipage}{.5\linewidth}
+  \begin{align*}
+    \boldsymbol{N} &= \boldsymbol{N}^{(0)} + \epsilon \boldsymbol{N}^{(1)}+ \epsilon^2 \boldsymbol{N}^{(2)} \\
+    \partial_t &= \epsilon\partial_{t_1} + \epsilon^2\partial_{t_2}
+  \end{align*}
+\end{minipage}
+\noindent\begin{minipage}{.5\linewidth}
+  \begin{align*}
+      \boldsymbol{\hat{N}} &= \boldsymbol{\hat{N}}^{(0)} + \epsilon\boldsymbol{\hat{N}}^{(1)}+ \epsilon^2 \boldsymbol{\hat{N}}^{(2)} \\
+      \partial_\alpha &= \epsilon\partial_{\alpha'}
+  \end{align*}
+\end{minipage}
+
 
 \end{document}
