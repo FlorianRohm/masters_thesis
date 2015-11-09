@@ -17,7 +17,7 @@ Notes while reading the paper
 
 Lattice boltzmann equation:
 \[
-N_i (\vec{r}_{*} + \vec{c}_i, t_{*} + 1) = N_i (\vec{r}_{*}, t_{*}) + \sum_j \Lambda_{ij} [N_j(\vec{r}_{*}, t_{*}) - N_j^{\text{eq}} (\vec{r}_{*}, t_{*})] \quad i = 0, \dots, b
+N_i(\vec{r}_{*} + \vec{c}_i, t_{*} + 1) = N_i (\vec{r}_{*}, t_{*}) + \sum_j \Lambda_{ij} [N_j(\vec{r}_{*}, t_{*}) - N_j^{\text{eq}} (\vec{r}_{*}, t_{*})] \quad i = 0, \dots, b
 \]
 \begin{enumerate}
   \item Conserved quantity: an eigenvector of $\Lambda$
@@ -52,6 +52,14 @@ Then expand the distribution $\boldsymbol{N}$ around $\boldsymbol{N}^{(0)} = \bo
       \partial_\alpha &= \epsilon\partial_{\alpha'}
   \end{align*}
 \end{minipage}
+
+\subsubsection{Taylor Expansion}
+\label{subs:Taylor Expansion}
+Let $N_i = N_i(\vec{r}_{*}, t_{*})$.
+\begin{align*}
+  N_i(\vec{r}_{*} + \vec{c}_i, t_{*} + 1) &= \\
+  N_i + \partial_t N_i &+ c_{i\alpha}\partial_\alpha N_i + \frac{1}{2} [\partial_t\partial_t N_i + 2c_{i\alpha}\partial_t\partial_\alpha N_i + c_{i\alpha}c_{i\beta}\partial_\alpha\partial_\beta N_i] + \mathcal{O}(\partial^3 N_i)
+\end{align*}
 
 
 \end{document}
