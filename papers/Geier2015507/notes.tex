@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\input{../../latex_basics/definitions}
+
+
+\title{Notes concerning the paper}
+\author{Florian Rohm}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\end{abstract}
+
+\section{Definitions}
+\label{sec:Definitions}
+
+Laplace operator:
+\begin{equation}
+  \label{eq:Definition of Laplace}
+  \mathcal{L}[g](\Xi) = \int_{-\infty}^\infty g(\xi) e^{-\Xi \cdot \xi}d\xi
+\end{equation}
+
+Continuous definition of f using the Diraque delta
+\begin{equation}
+  \label{eq:Definition of f xi}
+  f(\xi) = \sum_{i,j} f_{ij}\delta(ic - \xi_1)\delta(jc - \xi_2)
+\end{equation}
+Definition of the Laplace transform of $f$
+\begin{equation}
+  \label{eq:Definition of F}
+  \begin{aligned}
+    F(\Xi_1, \Xi_2) & = \mathcal{L}[f](\Xi) = \int_{-\infty}^\infty f(\xi) e^{-\Xi \cdot \xi}d\xi \\
+     & = \sum_{i,j}f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}
+  \end{aligned}
+\end{equation}
+Definition of the moments of $f$
+\begin{equation}
+  \label{eq:Definition of moments}
+  m_{\alpha\beta} = \sum_{ij} i^\alpha j^\beta f_{ij}
+\end{equation}
+Taylor expansion of $F$
+\begin{equation}
+  \label{eq: taylor of F}
+  \begin{aligned}
+    F(\Xi_1, \Xi_2) & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}
+      {{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta}  \sum_{i,j}f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  \sum_{i,j} i^\alpha j^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  \sum_{i,j} i^\alpha j^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  m_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta
+  \end{aligned}
+\end{equation}
+
+Hence,
+\begin{equation}
+  \label{eq:alternative representation of moments}
+  m_{\alpha\beta} = {(-c)}^{-\alpha-\beta} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0}
+\end{equation}
+and $F(\Xi_1, \Xi_2)$ is the moment generating function of $f(\xi_1, \xi_2)$.
+
+Cumulants are defined as the coefficients of the Taylor-expansion of the logarithm of the moment generating function:
+\begin{equation}
+  \label{eq:Definition of cumulants}
+  c_{\alpha\beta} = {(-c)}^{-\alpha-\beta} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} \ln(F(\Xi_1, \Xi_2))\Bigr|_{\Xi_1=\Xi_2 = 0}
+\end{equation}
+
+\section{Lattice Boltzmann Equation for D2Q9}
+\label{sec:Lattice Boltzmann Equation for D2Q9}
+
+Velocities are given by
+\begin{equation}
+  c_{ij}= \begin{pmatrix}i \\ j\end{pmatrix}, \quad i,j\in \{-1, 0, 1\}
+\end{equation}
+With $c$ defined as the cell width, the lattice Boltzmann equation is given by
+\begin{equation}
+  f_{ij}(t + \Delta t, x + ic\Delta x , y + jc\Delta y) = f^*_{ij}(t,x,y), \quad i,j\in \{-1, 0, 1\}
+\end{equation}
+or equivalently by shifting $x$ and $y$
+\begin{equation}
+  \label{eq:Lattice Boltzmann Equation}
+  f_{ij}(t + \Delta t, x, y) = f^*_{ij}(t,x - ic\Delta x , y - jc\Delta y), \quad i,j\in \{-1, 0, 1\}
+\end{equation}
+where $f_{ij}$ are the pre-collission distributions and $f^*_{ij}$ the post collission distributions.
+
+\section{Asymptotic Analysis}
+\label{sec:Asymptotic Analysis}
+\subsection{Preparation}
+\label{sub:Preparation}
+
+A Taylor expansion of~\eqref{eq:Lattice Boltzmann Equation} in both time and space gives
+\begin{equation*}
+  \sum_{\tau = 0}^\infty \frac{{(\Delta t)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(t, x, y) =
+  \sum_{m,n = 0}^\infty \frac{{(-ic\Delta x)}^m{(-jc\Delta x)}^n} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} f^*_{ij}(t, x, y)
+\end{equation*}
+which is equivalent to
+\begin{equation}
+  \label{eq:Taylor LB1}
+  \sum_{\tau = 0}^\infty \frac{{(\Delta t)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(t, x, y) =
+    \sum_{m,n = 0}^\infty \frac{{\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} i^m j^n f^*_{ij}(t, x, y),
+\end{equation}
+using $\frac{\Delta x} {\Delta{t}} = c$.
+
+Equation~\eqref{eq:Taylor LB1} holds for all $f_{ij}$ and thus also for all linear combinations
+\begin{equation*}
+  \sum_{k}\lambda_k f_{ij},
+\end{equation*}
+especially for those, which yield the moments, $m_{\alpha\beta} $, of $f$:
+\begin{equation*}
+  \sum_{k}\lambda_k f_{ij} = \sum_{i,j}i^\alpha j^\beta f_{ij}.
+\end{equation*}
+Therefore, we rewrite the system of equations for the $f_{ij}$ to a system of equations for the $m_{\alpha\beta}$.
+
+\begin{equation*}
+  \label{eq: Taylor of moments}
+  \begin{aligned}
+      & & \sum_{ij} \sum_{\tau = 0}^\infty \frac{{(\Delta t)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} i^\alpha j^\beta f_{ij} &=
+      \sum_{ij}\sum_{m,n = 0}^\infty \frac{i^m j^n {\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n}i^\alpha j^\beta f^*_{ij}\\
+      &\Leftrightarrow &
+      \sum_{\tau = 0}^\infty \frac{{(\Delta t)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{ij}i^\alpha j^\beta f_{ij} &=
+      \sum_{m,n = 0}^\infty \frac{{\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n}\sum_{ij}i^{(\alpha + m)} j^{(\beta+n)} f^*_{ij}\\
+       &\Leftrightarrow &
+       \sum_{\tau = 0}^\infty \frac{{(\Delta t)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta} &=
+      \sum_{m,n = 0}^\infty \frac{{\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} m^*_{(\alpha + m)(\beta + n)}
+  \end{aligned}
+\end{equation*}
+For the scale analysis, we introduce a dimensionless scaling parameter $\epsilon$.
+Adapting the widely used diffusive scaling, we nondimensionalize the equations with characteristic length and timescales, $L$ and $\iota$
+\begin{equation}
+  \begin{aligned}
+    \Delta x & = L\epsilon \\
+    \Delta t & = \iota\epsilon^2 \\
+    c & = \frac{L}{\iota\epsilon} \\
+    x & \rightarrow \frac{x}{L} \\
+    y & \rightarrow \frac{y}{L} \\
+    t & \rightarrow \frac{t}{\iota}
+  \end{aligned}
+\end{equation}
+
+
+\end{document}
