@@ -91,13 +91,13 @@ where $f_{ij}$ are the pre-collission distributions and $f^*_{ij}$ the post coll
 
 A Taylor expansion of~\eqref{eq:Lattice Boltzmann Equation} in both time and space gives
 \begin{equation*}
-  \sum_{\tau = 0}^\infty \frac{{(\Delta t)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(t, x, y) =
+  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(t, x, y) =
   \sum_{m,n = 0}^\infty \frac{{(-ic\Delta x)}^m{(-jc\Delta x)}^n} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} f^*_{ij}(t, x, y)
 \end{equation*}
 which is equivalent to
 \begin{equation}
   \label{eq:Taylor LB1}
-  \sum_{\tau = 0}^\infty \frac{{(\Delta t)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(t, x, y) =
+  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(t, x, y) =
     \sum_{m,n = 0}^\infty \frac{{\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} i^m j^n f^*_{ij}(t, x, y),
 \end{equation}
 using $\frac{\Delta x} {\Delta{t}} = c$.
@@ -112,31 +112,44 @@ especially for those, which yield the moments, $m_{\alpha\beta} $, of $f$:
 \end{equation*}
 Therefore, we rewrite the system of equations for the $f_{ij}$ to a system of equations for the $m_{\alpha\beta}$.
 
-\begin{equation*}
-  \label{eq: Taylor of moments}
-  \begin{aligned}
-      & & \sum_{ij} \sum_{\tau = 0}^\infty \frac{{(\Delta t)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} i^\alpha j^\beta f_{ij} &=
-      \sum_{ij}\sum_{m,n = 0}^\infty \frac{i^m j^n {\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n}i^\alpha j^\beta f^*_{ij}\\
-      &\Leftrightarrow &
-      \sum_{\tau = 0}^\infty \frac{{(\Delta t)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{ij}i^\alpha j^\beta f_{ij} &=
-      \sum_{m,n = 0}^\infty \frac{{\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n}\sum_{ij}i^{(\alpha + m)} j^{(\beta+n)} f^*_{ij}\\
-       &\Leftrightarrow &
-       \sum_{\tau = 0}^\infty \frac{{(\Delta t)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta} &=
-      \sum_{m,n = 0}^\infty \frac{{\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} m^*_{(\alpha + m)(\beta + n)}
-  \end{aligned}
-\end{equation*}
+\begin{align}
+    \nonumber
+    & & \sum_{ij} \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} i^\alpha j^\beta f_{ij} &=
+    \sum_{ij}\sum_{m,n = 0}^\infty \frac{i^m j^n {\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n}i^\alpha j^\beta f^*_{ij}\\
+    \nonumber
+    &\Leftrightarrow &
+    \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{ij}i^\alpha j^\beta f_{ij} &=
+    \sum_{m,n = 0}^\infty \frac{{\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n}\sum_{ij}i^{(\alpha + m)} j^{(\beta+n)} f^*_{ij}\\
+      \label{eq: Taylor of moments}
+     &\Leftrightarrow &
+     \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta} &=
+    \sum_{m,n = 0}^\infty \frac{{\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} m^*_{(\alpha + m)(\beta + n)}
+\end{align}
 For the scale analysis, we introduce a dimensionless scaling parameter $\epsilon$.
 Adapting the widely used diffusive scaling, we nondimensionalize the equations with characteristic length and timescales, $L$ and $\iota$
 \begin{equation}
+  \label{eq:nondimensionalisation}
   \begin{aligned}
     \Delta x & = L\epsilon \\
     \Delta t & = \iota\epsilon^2 \\
     c & = \frac{L}{\iota\epsilon} \\
-    x & \rightarrow \frac{x}{L} \\
-    y & \rightarrow \frac{y}{L} \\
-    t & \rightarrow \frac{t}{\iota}
+    \{x, y\} & \rightarrow \{\frac{x}{L}, \frac{y}{L}\} \\
+    t & \rightarrow \frac{t}{\iota}.
   \end{aligned}
 \end{equation}
+Additionally, the moments are expanded according to the scale $\epsilon$
+\begin{align}
+    \label{eq:expansion of m}
+    m_{\alpha\beta} & = \sum_{p=1}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)} \\
+    \label{eq:expansion of m*}
+    m^*_{\alpha\beta} & = \sum_{p=1}^{\infty} \epsilon^p m_{\alpha\beta}^{*(p)}.
+\end{align}
+Those are not allowed to depend on $\epsilon$ neither implicitly nor explicitly.
+Inserting~\eqref{eq:nondimensionalisation},~\eqref{eq:expansion of m} and~\eqref{eq:expansion of m*} into~\eqref{eq: Taylor of moments} yields
+\begin{align}
+  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{p=1}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}  &=
+ \sum_{m,n = 0}^\infty \frac{{\Delta t}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} \sum_{p=1}^{\infty} \epsilon^p m_{(\alpha + m)(\beta + n)}^{*(p)}
+\end{align}
 
 
 \end{document}
