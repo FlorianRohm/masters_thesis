@@ -215,29 +215,21 @@ For the first order terms, one has to choose $p=1$ on the left side and one of $
 Going to the second order requires on the left side $\tau=1$ or $p=2$.
 On the right side, we have six possibilities:
 \begin{center}
-  \begin{tabular}{r|c|l}
-    m & n & p' \\
-    \hline
-    0 & 0 & 2 \\
-    0 & 1 & 1 \\
-    0 & 2 & 0 \\
-    1 & 0 & 1 \\
-    1 & 1 & 0 \\
-    2 & 0 & 0
+  \begin{tabular} {r || c | *{2}{c} | *{2}{c} | c}
+    m  & 0 & 1 & 2 & 0 & 0 & 1 \\ \midrule
+    n  & 0 & 0 & 0 & 1 & 2 & 1 \\ \midrule
+    p' & 2 & 1 & 0 & 1 & 0 & 0
   \end{tabular}
 \end{center}
-
+Resulting in
 \begin{equation}
-  \label{eq:first order in epsilon}
+  \label{eq:second order in epsilon}
   \begin{aligned}
-    \frac{\partial}{\partial t} m_{\alpha\beta}^{(0)}
-    + m_{\alpha\beta}^{(2)}
-    & =  m_{\alpha\beta}^{*(2)}
-    - \frac{\partial}{\partial y} m_{\alpha(\beta+1)}^{*(1)}
-    + \frac{\partial^2}{\partial y^2} m_{\alpha(\beta+2)}^{*(0)} \\
-    &\quad - \frac{\partial}{\partial x} m_{(\alpha+1)\beta}^{*(1)}
-    + \frac{\partial^2}{\partial x^2} m_{(\alpha+2)\beta}^{*(0)}
-    + \frac{\partial\partial}{\partial x \partial y} m_{(\alpha+1)(\beta+1)}^{*(0)}
+    \frac{\partial}{\partial t} m_{\alpha\beta}^{(0)} + m_{\alpha\beta}^{(2)}
+    & =  m_{\alpha\beta}^{*(2)} \\
+    &\quad - \frac{\partial}{\partial x} m_{(\alpha+1)\beta}^{*(1)} + \frac{\partial^2}{\partial x^2} m_{(\alpha+2)\beta}^{*(0)} \\
+    &\quad - \frac{\partial}{\partial y} m_{\alpha(\beta+1)}^{*(1)} + \frac{\partial^2}{\partial y^2} m_{\alpha(\beta+2)}^{*(0)} \\
+    &\quad + \frac{\partial\partial}{\partial x \partial y} m_{(\alpha+1)(\beta+1)}^{*(0)}
   \end{aligned}
 \end{equation}
 
@@ -245,23 +237,32 @@ On the right side, we have six possibilities:
 \subsubsection{Third order in $\epsilon$}
 \label{subs:Third order in epsilon}
 
-Left hand side, either $\tau=1$ and $p=1$ or  $\tau=0$ and $p=3$.
+Left hand side, either $\begin{pmatrix}\tau \\ p\end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$ or $\begin{pmatrix}\tau \\ p\end{pmatrix} = \begin{pmatrix} 0 \\ 3 \end{pmatrix}$.\newline
 Right hand side:
 \begin{center}
-  \begin{tabular}{r|c|l}
-    m & n & p' \\
-    \hline
-    0 & 0 & 3 \\
-    0 & 1 & 2 \\
-    0 & 2 & 1 \\
-    0 & 3 & 0 \\
-    1 & 0 & 2 \\
-    1 & 1 & 1 \\
-    1 & 2 & 0 \\
-    2 & 0 & 1 \\
-    2 & 1 & 0 \\
-    3 & 0 & 0
+  \begin{tabular} {r || c | *{3}{c} | *{3}{c} | *{3}{c} }
+    m  & 0 & 1 & 2 & 3 & 0 & 0 & 0 & 1 & 2 & 1 \\ \midrule
+    n  & 0 & 0 & 0 & 0 & 1 & 2 & 3 & 1 & 1 & 2 \\ \midrule
+    p' & 3 & 2 & 1 & 0 & 2 & 1 & 0 & 1 & 0 & 0
   \end{tabular}
 \end{center}
+
+This gives
+\begin{equation}
+  \label{eq:second order in epsilon}
+  \begin{aligned}
+    \frac{\partial}{\partial t} m_{\alpha\beta}^{(1)} + m_{\alpha\beta}^{(3)}
+    & =  m_{\alpha\beta}^{*(3)} \\
+    &\quad - \frac{\partial}{\partial x} m_{(\alpha+1)\beta}^{*(2)} + \frac{\partial^2}{\partial x^2} m_{(\alpha+2)\beta}^{*(1)} - \frac{\partial^3}{\partial x^3} m_{(\alpha+3)\beta}^{*(0)} \\
+    &\quad - \frac{\partial}{\partial y} m_{\alpha(\beta+1)}^{*(2)} + \frac{\partial^2}{\partial y^2} m_{\alpha(\beta+2)}^{*(1)} - \frac{\partial^3}{\partial y^3} m_{\alpha(\beta+3)}^{*(0)} \\
+    &\quad + \frac{\partial\partial}{\partial x \partial y} m_{(\alpha+1)(\beta+1)}^{*(1)} \\
+    &\quad - \frac{\partial^2\partial}{\partial x^2 \partial y} m_{(\alpha+2)(\beta+1)}^{*(0)} - \frac{\partial\partial^2}{\partial x \partial y^2} m_{(\alpha+1)(\beta+2)}^{*(0)}  
+  \end{aligned}
+\end{equation}
+
+
+
+
+
 
 \end{document}
