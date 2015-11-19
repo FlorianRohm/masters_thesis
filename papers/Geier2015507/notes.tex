@@ -66,6 +66,21 @@ Cumulants are defined as the coefficients of the Taylor-expansion of the logarit
   c_{\alpha\beta} = {(-c)}^{-\alpha-\beta} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} \ln(F(\Xi_1, \Xi_2))\Bigr|_{\Xi_1=\Xi_2 = 0}
 \end{equation}
 
+\section{Moments and physical quantities}
+\label{sec:Moments and physical quantities}
+
+The following connections can be made: \todo{deduce somehow?}
+\begin{table}
+
+\end{table}
+
+
+\section{Cumulants from moments}
+\label{sec:Cumulants from moments}
+
+We seek a representation of the cumulants $c_{\alpha\beta}$ in terms of moments, as the later ones are much more easy to compute, cfg.~\eqref{eq:Definition of moments}.
+
+
 \section{Lattice Boltzmann Equation for D2Q9}
 \label{sec:Lattice Boltzmann Equation for D2Q9}
 
@@ -83,6 +98,50 @@ or equivalently by shifting $x$ and $y$
   f_{ij}(t + \Delta t, x, y) = f^*_{ij}(t,x - i\Delta x , y - j\Delta y), \quad i,j\in \{-1, 0, 1\}
 \end{equation}
 where $f_{ij}$ are the pre-collission distributions and $f^*_{ij}$ the post collission distributions.
+
+\subsection{Aliasing of moments}
+\label{sub:Aliasing of moments}
+
+As the D2Q9 only has $9$ independant velocities, the moment-space spanned by those can only host $9$ independant moments.
+In D2Q9, the moments are defined, according to~\eqref{eq:Definition of moments} as
+\begin{equation*}
+  m_{\alpha\beta} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}.
+\end{equation*}
+Hence
+\begin{equation}
+  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^{(\alpha+2k)} j^\beta f_{ij}
+\end{equation}
+for $\alpha\neq 0$ and
+\begin{equation}
+  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^{(\beta+2l)} f_{ij}
+\end{equation}
+for $\beta\neq 0$. According to this, the list of moments is as follows
+
+\begin{table} [h!]
+  \centering
+  \begin{tabular}{c cc ccc cc c}
+    \toprule
+    \multicolumn{9}{c}{independant moments}  \\
+    \cmidrule(lr){1-9} \\
+    $m_{00}$   &   $m_{10}$ & $m_{01}$   &   $m_{11}$ & $m_{20}$ & $m_{02}$   &   $m_{21}$ & $m_{12}$   &   $m_{22}$ \\
+    \bottomrule
+  \end{tabular}
+  \newline
+  \vspace*{.5 cm}
+  \newline
+  \begin{tabular}{ccccc c}
+    \toprule
+    \multicolumn{6}{c}{dependant moments}   \\
+    \cmidrule(lr){1-5}   \\
+    $m_{30}$   & $m_{03}$   & $m_{31}$  & $m_{13}$  & $m_{40}$  & \ldots \\
+    = $m_{10}$ & = $m_{01}$ & = $m_{11}$ & = $m_{11}$ & = $m_{20}$ & \\
+    \bottomrule
+  \end{tabular}
+  \caption{D2Q9 moments}\label{table:D2Q9 moments}
+\end{table}
+
+
+
 
 \section{Asymptotic Analysis}
 \label{sec:Asymptotic Analysis}
@@ -256,7 +315,7 @@ This gives
     &\quad - \frac{\partial}{\partial x} m_{(\alpha+1)\beta}^{*(2)} + \frac{\partial^2}{\partial x^2} m_{(\alpha+2)\beta}^{*(1)} - \frac{\partial^3}{\partial x^3} m_{(\alpha+3)\beta}^{*(0)} \\
     &\quad - \frac{\partial}{\partial y} m_{\alpha(\beta+1)}^{*(2)} + \frac{\partial^2}{\partial y^2} m_{\alpha(\beta+2)}^{*(1)} - \frac{\partial^3}{\partial y^3} m_{\alpha(\beta+3)}^{*(0)} \\
     &\quad + \frac{\partial\partial}{\partial x \partial y} m_{(\alpha+1)(\beta+1)}^{*(1)} \\
-    &\quad - \frac{\partial^2\partial}{\partial x^2 \partial y} m_{(\alpha+2)(\beta+1)}^{*(0)} - \frac{\partial\partial^2}{\partial x \partial y^2} m_{(\alpha+1)(\beta+2)}^{*(0)}  
+    &\quad - \frac{\partial^2\partial}{\partial x^2 \partial y} m_{(\alpha+2)(\beta+1)}^{*(0)} - \frac{\partial\partial^2}{\partial x \partial y^2} m_{(\alpha+1)(\beta+2)}^{*(0)}
   \end{aligned}
 \end{equation}
 
