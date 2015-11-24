@@ -97,13 +97,38 @@ Taylor expansion of $F$
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  m_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta
   \end{aligned}
 \end{equation}
-
+%
 Hence,
 \begin{equation}
   \label{eq:alternative representation of moments}
   m_{\alpha\beta} = {(-c)}^{-\alpha-\beta} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0}
 \end{equation}
 and $F(\Xi_1, \Xi_2)$ is the moment generating function of $f(\xi_1, \xi_2)$.
+
+\subsubsection{Centralized moment generating function}
+\label{subs:Centralized moment generating function}
+
+Taylor expansion of $F_c$
+\begin{equation}
+  \label{eq: taylor of Fc}
+  \begin{aligned}
+    F_c(\Xi_1, \Xi_2) & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F_c(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!}
+      \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} \sum_{i,j}f_{ij} e^{-\Xi_1 (ic+u_1)} e^{-\Xi_2 (jc+u_2)} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \sum_{i,j} {(ic+u_1)}^\alpha {(jc+u_2)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}
+      \sum_{i,j} {\left(i+\frac{u_1}{c}\right)}^\alpha {\left(j+\frac{u_2}{c}\right)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}
+      \sum_{i,j} {\left(i+\frac{u_1}{c}\right)}^\alpha {\left(j+\frac{u_2}{c}\right)}^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  c_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta
+  \end{aligned}
+\end{equation}
+%
+Hence,
+\begin{equation}
+  \label{eq:alternative representation of cumulants}
+  c_{\alpha\beta} = {(-c)}^{-\alpha-\beta} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F_c(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0}
+\end{equation}
 
 
 \subsection{Cumulants}
