@@ -303,13 +303,13 @@ For more convenient reading, the normalized moments $\hat{m}_{\alpha\beta} = \fr
 \section{Lattice Boltzmann Equation for D2Q9}
 \label{sec:Lattice Boltzmann Equation for D2Q9}
 
-Velocities are given by
+With $c$ defined as the cell width, velocities are given by
 \begin{equation}
-  c_{ij}= \begin{pmatrix}i \\ j\end{pmatrix}, \quad i,j\in \{-1, 0, 1\}
+  c_{ij}= c\begin{pmatrix}i \\ j\end{pmatrix}, \quad i,j\in \{-1, 0, 1\}
 \end{equation}
-With $c$ defined as the cell width, the lattice Boltzmann equation is given by
+and the lattice Boltzmann equation is given by
 \begin{equation}
-  f_{ij}(t + \Delta t, x + i\Delta x , y + j\Delta y) = f^*_{ij}(t,x,y), \quad i,j\in \{-1, 0, 1\}
+  f_{ij}(t + \Delta t, x + i \Delta x , y + j \Delta y) = f^*_{ij}(t,x,y), \quad i,j\in \{-1, 0, 1\}
 \end{equation}
 or equivalently by shifting $x$ and $y$
 \begin{equation}
