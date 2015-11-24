@@ -9,6 +9,8 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
+\newpage
 
 \section{Definitions}
 \label{sec:Definitions}
@@ -31,6 +33,18 @@ Definition of the Laplace transform of $f$
      & = \sum_{i,j}f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}.
   \end{aligned}
 \end{equation}
+Definition of the Laplace transform of centralized $f$, where $u=\begin{pmatrix}u_x \\ u_y\end{pmatrix}$ is the macroscopic speed in the point.
+\begin{equation}
+  \label{eq:Definition of centralized F}
+  \begin{aligned}
+    F_c(\Xi_1, \Xi_2) & = \mathcal{L}[f(\cdot - u)](\Xi) = \int_{-\infty}^\infty f(\xi-u) e^{-\Xi \cdot \xi}d\xi \\
+    & = \int_{-\infty}^\infty f(\xi) e^{-\Xi \cdot (\xi+u)}d\xi \\
+    & = \sum_{i,j}f_{ij} e^{-\Xi_1 (ic+u_x)} e^{-\Xi_2 (jc+u_y)} \\
+    & = e^{-\Xi_1 u_x}e^{-\Xi_2 u_y}\sum_{i,j}f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}\\
+    & = e^{-\Xi_1 u_x}e^{-\Xi_2 u_y} \mathcal{L}[f](\Xi).
+  \end{aligned}
+\end{equation}
+
 Definition of the moments of $f$
 \begin{equation}
   \label{eq:Definition of moments}
