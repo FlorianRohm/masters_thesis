@@ -14,18 +14,32 @@
 
 \section{Definitions}
 \label{sec:Definitions}
+In the following, only lattices with even cell spacing $c$ in $x$ and $y$ direction are considered.
 
-Laplace transformation:
-\begin{equation}
-  \label{eq:Definition of Laplace}
-  \mathcal{L}[g](\Xi) = \int_{-\infty}^\infty g(\xi) e^{-\Xi \cdot \xi}d\xi.
-\end{equation}
-Continuous definition of f using the Diraque delta
+\subsection{Particle distribution function}
+\label{sub:Particle distribution function}
+
+Continuous definition of $f$ using the Diraque delta
 \begin{equation}
   \label{eq:Definition of f xi}
   f(\xi) = \sum_{i,j} f_{ij}\delta(ic - \xi_1)\delta(jc - \xi_2).
 \end{equation}
-Definition of the Laplace transform of $f$
+Centralized $f$, where $u=\begin{pmatrix}u_1 \\ u_2\end{pmatrix}$ is the macroscopic speed in the point.
+\begin{equation}
+  \label{eq:Definition of f xi}
+  f_c(\xi) = f(\xi-u) = \sum_{i,j} f_{ij}\delta(ic - (\xi_1-u_1))\delta(jc - (\xi_2-u_2)).
+\end{equation}
+
+\subsection{Laplace Transform}
+\label{sub:Laplace Transform}
+
+Laplace transformation definition:
+\begin{equation}
+  \label{eq:Definition of Laplace}
+  \mathcal{L}[g](\Xi) = \int_{-\infty}^\infty g(\xi) e^{-\Xi \cdot \xi}d\xi.
+\end{equation}
+%
+Formulation of the Laplace transform of $f$
 \begin{equation}
   \label{eq:Definition of F}
   \begin{aligned}
@@ -33,23 +47,44 @@ Definition of the Laplace transform of $f$
      & = \sum_{i,j}f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}.
   \end{aligned}
 \end{equation}
-Definition of the Laplace transform of centralized $f$, where $u=\begin{pmatrix}u_x \\ u_y\end{pmatrix}$ is the macroscopic speed in the point.
+%
+Definition of the Laplace transform of centralized $f$.
 \begin{equation}
   \label{eq:Definition of centralized F}
   \begin{aligned}
-    F_c(\Xi_1, \Xi_2) & = \mathcal{L}[f(\cdot - u)](\Xi) = \int_{-\infty}^\infty f(\xi-u) e^{-\Xi \cdot \xi}d\xi \\
+    F_c(\Xi_1, \Xi_2) & = \mathcal{L}[f_c](\Xi) = \mathcal{L}[f(\cdot - u)](\Xi) \\
+    & = \int_{-\infty}^\infty f(\xi-u) e^{-\Xi \cdot \xi}d\xi \\
     & = \int_{-\infty}^\infty f(\xi) e^{-\Xi \cdot (\xi+u)}d\xi \\
-    & = \sum_{i,j}f_{ij} e^{-\Xi_1 (ic+u_x)} e^{-\Xi_2 (jc+u_y)} \\
-    & = e^{-\Xi_1 u_x}e^{-\Xi_2 u_y}\sum_{i,j}f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}\\
-    & = e^{-\Xi_1 u_x}e^{-\Xi_2 u_y} \mathcal{L}[f](\Xi).
+    & = \sum_{i,j}f_{ij} e^{-\Xi_1 (ic+u_1)} e^{-\Xi_2 (jc+u_2)} \\
+    & = e^{-\Xi_1 u_1}e^{-\Xi_2 u_2}\sum_{i,j}f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}\\
+    & = e^{-\Xi_1 u_1}e^{-\Xi_2 u_2} F(\Xi_1, \Xi_2).
   \end{aligned}
 \end{equation}
+%
+\subsection{Moments}
+\label{sub:Moments}
 
 Definition of the moments of $f$
 \begin{equation}
   \label{eq:Definition of moments}
   m_{\alpha\beta} = \sum_{ij} i^\alpha j^\beta f_{ij}
 \end{equation}
+%
+Definition of the centralized moments of $f$
+\begin{equation}
+  \begin{aligned}
+    \label{eq:Definition of moments}
+    c_{\alpha\beta} & = \sum_{ij} {\left(i-\frac{m_{10}}{m_{00}}\right)}^\alpha {\left(j-\frac{m_{01}}{m_{00}}\right)}^\beta f_{ij} \\
+    & = \sum_{ij} {\left(i-\frac{u_1}{c}\right)}^\alpha {\left(j-\frac{u_2}{c}\right)}^\beta f_{ij}
+  \end{aligned}
+\end{equation}
+
+\subsection{Taylor expansions}
+\label{sub:Taylor expansions}
+
+\subsubsection{Moment generating function}
+\label{subs:Moment generating function}
+
 Taylor expansion of $F$
 \begin{equation}
   \label{eq: taylor of F}
@@ -84,9 +119,11 @@ The following connections can be made: \todo{Look up in Harris}
 
 \end{table}
 
+\section{Transformations}
+\label{sec:Transformations}
 
-\section{Cumulants from moments}
-\label{sec:Cumulants from moments}
+\subsection{Cumulants from moments}
+\label{sub:Cumulants from moments}
 
 We seek a representation of the cumulants $c_{\alpha\beta}$ in terms of moments, as the later ones are much more easy to compute, cfg.~\eqref{eq:Definition of moments}. This link can be established with the chain rule for differentiaton.
 From~\eqref{eq:alternative representation of moments} and~\eqref{eq:Definition of cumulants} follows
@@ -102,8 +139,8 @@ For brevity, the following notations are introduced
   \end{aligned}
 \end{equation*}
 
-\subsection{Cumulants from moments}
-\label{sub:Cumulants from moments}
+\subsubsection{Cumulants from moments}
+\label{subs:Cumulants from moments}
 
 \begin{equation*}
   \begin{aligned}
@@ -218,8 +255,8 @@ The cumulant $c_{01}$ follows from symmetrie and is listed in~\ref{sub:Listing t
   \end{aligned}
 \end{align*}
 
-\subsection{Listing the cumulants from moments}
-\label{sub:Listing the cumulants from moments}
+\subsubsection{Listing the cumulants from moments}
+\label{subs:Listing the cumulants from moments}
 \begin{align}
   c_{00} & = m_{00} \\
   c_{10} & = \frac{m_{10}}{m_{00}} \\
