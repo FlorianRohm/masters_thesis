@@ -148,6 +148,66 @@ The following connections can be made: \todo{Look up in Harris}
 
 \end{table}
 
+\section{Lattice Boltzmann Equation for D2Q9}
+\label{sec:Lattice Boltzmann Equation for D2Q9}
+
+With $c$ defined as the cell width, velocities are given by
+\begin{equation}
+  c_{ij}= c\begin{pmatrix}i \\ j\end{pmatrix}, \quad i,j\in \{-1, 0, 1\}
+\end{equation}
+and the lattice Boltzmann equation is given by
+\begin{equation}
+  f_{ij}(t + \Delta t, x + i \Delta x , y + j \Delta y) = f^*_{ij}(t,x,y), \quad i,j\in \{-1, 0, 1\}
+\end{equation}
+or equivalently by shifting $x$ and $y$
+\begin{equation}
+  \label{eq:Lattice Boltzmann Equation}
+  f_{ij}(t + \Delta t, x, y) = f^*_{ij}(t,x - i\Delta x , y - j\Delta y), \quad i,j\in \{-1, 0, 1\}
+\end{equation}
+where $f_{ij}$ are the pre-collission distributions and $f^*_{ij}$ the post collission distributions.
+
+\subsection{Aliasing of moments}
+\label{sub:Aliasing of moments}
+
+As the D2Q9 only has $9$ independant velocities, the moment-space spanned by those can only host $9$ independant moments.
+In D2Q9, the moments are defined, according to~\eqref{eq:Definition of moments} as
+\begin{equation*}
+  m_{\alpha\beta} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}.
+\end{equation*}
+Hence
+\begin{equation}
+  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^{(\alpha+2k)} j^\beta f_{ij}
+\end{equation}
+for $\alpha\neq 0$ and
+\begin{equation}
+  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^{(\beta+2l)} f_{ij}
+\end{equation}
+for $\beta\neq 0$. According to this, the list of moments is as follows
+
+\begin{table} [h!]
+  \centering
+  \begin{tabular}{c cc ccc cc c}
+    \toprule
+    \multicolumn{9}{c}{independant moments}  \\
+    \cmidrule(lr){1-9} \\
+    $m_{00}$   &   $m_{10}$ & $m_{01}$   &   $m_{11}$ & $m_{20}$ & $m_{02}$   &   $m_{21}$ & $m_{12}$   &   $m_{22}$ \\
+    \bottomrule
+  \end{tabular}
+  \newline
+  \vspace*{.5 cm}
+  \newline
+  \begin{tabular}{ccccc c}
+    \toprule
+    \multicolumn{6}{c}{dependant moments}   \\
+    \cmidrule(lr){1-5}   \\
+    $m_{30}$   & $m_{03}$   & $m_{31}$  & $m_{13}$  & $m_{40}$  & \ldots \\
+    = $m_{10}$ & = $m_{01}$ & = $m_{11}$ & = $m_{11}$ & = $m_{20}$ & \\
+    \bottomrule
+  \end{tabular}
+  \caption{D2Q9 moments}\label{table:D2Q9 moments}
+\end{table}
+
+
 \section{Transformations}
 \label{sec:Transformations}
 
@@ -458,68 +518,6 @@ Inserting the resulting equations for $\kappa_{11}$, $\kappa_{02}$ and $\kappa_{
   \kappa_{12} & = \frac{c_{12}}{m_{00}} \\
   \kappa_{22} & = \frac{c_{22}}{m_{00}} - 2{\left(\frac{c_{11}}{m_{00}}\right)}^2 - \frac{c_{20}}{m_{00}}\frac{c_{02}}{m_{00}}
 \end{align}
-
-\section{Lattice Boltzmann Equation for D2Q9}
-\label{sec:Lattice Boltzmann Equation for D2Q9}
-
-With $c$ defined as the cell width, velocities are given by
-\begin{equation}
-  c_{ij}= c\begin{pmatrix}i \\ j\end{pmatrix}, \quad i,j\in \{-1, 0, 1\}
-\end{equation}
-and the lattice Boltzmann equation is given by
-\begin{equation}
-  f_{ij}(t + \Delta t, x + i \Delta x , y + j \Delta y) = f^*_{ij}(t,x,y), \quad i,j\in \{-1, 0, 1\}
-\end{equation}
-or equivalently by shifting $x$ and $y$
-\begin{equation}
-  \label{eq:Lattice Boltzmann Equation}
-  f_{ij}(t + \Delta t, x, y) = f^*_{ij}(t,x - i\Delta x , y - j\Delta y), \quad i,j\in \{-1, 0, 1\}
-\end{equation}
-where $f_{ij}$ are the pre-collission distributions and $f^*_{ij}$ the post collission distributions.
-
-\subsection{Aliasing of moments}
-\label{sub:Aliasing of moments}
-
-As the D2Q9 only has $9$ independant velocities, the moment-space spanned by those can only host $9$ independant moments.
-In D2Q9, the moments are defined, according to~\eqref{eq:Definition of moments} as
-\begin{equation*}
-  m_{\alpha\beta} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}.
-\end{equation*}
-Hence
-\begin{equation}
-  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^{(\alpha+2k)} j^\beta f_{ij}
-\end{equation}
-for $\alpha\neq 0$ and
-\begin{equation}
-  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^{(\beta+2l)} f_{ij}
-\end{equation}
-for $\beta\neq 0$. According to this, the list of moments is as follows
-
-\begin{table} [h!]
-  \centering
-  \begin{tabular}{c cc ccc cc c}
-    \toprule
-    \multicolumn{9}{c}{independant moments}  \\
-    \cmidrule(lr){1-9} \\
-    $m_{00}$   &   $m_{10}$ & $m_{01}$   &   $m_{11}$ & $m_{20}$ & $m_{02}$   &   $m_{21}$ & $m_{12}$   &   $m_{22}$ \\
-    \bottomrule
-  \end{tabular}
-  \newline
-  \vspace*{.5 cm}
-  \newline
-  \begin{tabular}{ccccc c}
-    \toprule
-    \multicolumn{6}{c}{dependant moments}   \\
-    \cmidrule(lr){1-5}   \\
-    $m_{30}$   & $m_{03}$   & $m_{31}$  & $m_{13}$  & $m_{40}$  & \ldots \\
-    = $m_{10}$ & = $m_{01}$ & = $m_{11}$ & = $m_{11}$ & = $m_{20}$ & \\
-    \bottomrule
-  \end{tabular}
-  \caption{D2Q9 moments}\label{table:D2Q9 moments}
-\end{table}
-
-
-
 
 \section{Asymptotic Analysis}
 \label{sec:Asymptotic Analysis}
