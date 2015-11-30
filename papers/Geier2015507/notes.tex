@@ -440,6 +440,25 @@ The missing central moments follow from permutation and will be listed in the fo
 \end{align}
 As we can se here, cumulants only differ, apart from scaling, from central moments in order higher than $3$.
 
+\subsection{Cumulants from central moments}
+\label{sub:Cumulants from central moments}
+
+For implementing the cumulant LBM, we also need to get cumulants from central moments, as we want to have the collision in the cumulant space. Coming from~\ref{subs:Listing the central moments from cumulants} this is an easy task. The first eight equations in~\eqref{eq:all central moments from cumulants} can be inverted straight forward.
+Inserting the resulting equations for $\kappa_{11}$, $\kappa_{02}$ and $\kappa_{20}$ in the last equation, we get
+
+\begin{align}
+  \label{eq:all cumulants from central moments}
+  \kappa_{00} & = \frac{c_{00}}{m_{00}} \\
+  \kappa_{10} & = \frac{c_{10}}{m_{00}} \\
+  \kappa_{01} & = \frac{c_{01}}{m_{00}} \\
+  \kappa_{20} & = \frac{c_{20}}{m_{00}} \\
+  \kappa_{02} & = \frac{c_{02}}{m_{00}} \\
+  \kappa_{11} & = \frac{c_{11}}{m_{00}} \\
+  \kappa_{21} & = \frac{c_{21}}{m_{00}} \\
+  \kappa_{12} & = \frac{c_{12}}{m_{00}} \\
+  \kappa_{22} & = \frac{c_{22}}{m_{00}} - 2{\left(\frac{c_{11}}{m_{00}}\right)}^2 - \frac{c_{20}}{m_{00}}\frac{c_{02}}{m_{00}}
+\end{align}
+
 \section{Lattice Boltzmann Equation for D2Q9}
 \label{sec:Lattice Boltzmann Equation for D2Q9}
 
