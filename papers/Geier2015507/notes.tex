@@ -519,6 +519,146 @@ Inserting the resulting equations for $\kappa_{11}$, $\kappa_{02}$ and $\kappa_{
   \kappa_{22} & = \frac{c_{22}}{m_{00}} - 2{\left(\frac{c_{11}}{m_{00}}\right)}^2 - \frac{c_{20}}{m_{00}}\frac{c_{02}}{m_{00}}
 \end{align}
 
+\subsection{Fast central moment transformations}
+\label{sub:Fast central moment transformations}
+
+As cumulants of low orders are easily derived from central moments, we seek a fast way to compute them and afterwards get the distribution functions back for streaming.
+
+\subsubsection{Forward transformation}
+\label{subs:Forward transformation}
+
+The forward central moment transformation splits the definition for a two way calculation
+\begin{equation}
+  \begin{aligned}
+    c_{\alpha\beta}
+    & = \sum_{ij} {\left(i-\frac{u_1}{c}\right)}^\alpha {\left(j-\frac{u_2}{c}\right)}^\beta f_{ij} \\
+    & = \sum_{i} {\left(i-\frac{u_1}{c}\right)}^\alpha \underbrace{\sum_{j} {\left(j-\frac{u_2}{c}\right)}^\beta f_{ij}}_{\defines c_{i|\beta}} \\
+    & = \sum_{i} {\left(i-\frac{u_1}{c}\right)}^\alpha c_{i|\beta}
+  \end{aligned}
+\end{equation}
+Thus, by first computing the $c_{i|\beta}$ and then the $c_{\alpha\beta}$ we need $6$ instead of $9$ summations. By chaining this technique in 3D, much more computing power is saved.
+
+\subsubsection{Backward transformation}
+\label{subs:Backward transformation}
+
+For the inverse transformation, we first analyse the $c_{\alpha\beta}$ and $c_{i|\beta}$ terms:
+
+\begin{equation}
+  \begin{aligned}
+    \label{eq:fast forward c_alpha beta expanded}
+    c_{\alpha\beta} & = \sum_{i} {\left(i-\frac{u_1}{c}\right)}^\alpha c_{i|\beta} \\
+    & = {\left(-1-\frac{u_1}{c}\right)}^\alpha c_{-1|\beta} + {\left(-\frac{u_1}{c}\right)}^\alpha c_{0|\beta} + {\left(1-\frac{u_1}{c}\right)}^\alpha c_{1|\beta}
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  \begin{aligned}
+    \label{eq:fast forward c_i pipe beta expanded}
+    c_{i|\beta} & = \sum_{j} {\left(j-\frac{u_2}{c}\right)}^\beta f_{ij} \\
+    & = {\left(-1-\frac{u_2}{c}\right)}^\beta f_{i-1} + {\left(-\frac{u_2}{c}\right)}^\beta f_{i0} + {\left(1-\frac{u_2}{c}\right)}^\beta f_{i1}
+  \end{aligned}
+\end{equation}
+With~\eqref{eq:fast forward c_alpha beta expanded}, we can explicitly write
+\begin{equation}
+  \label{eq:fast forward c_alpha beta matrix}
+  \begin{pmatrix}
+    c_{0\beta} \\
+    c_{1\beta} \\
+    c_{2\beta}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 1 & 1 \\
+    -1-\frac{u_1}{c} & - \frac{u_1}{c} &   1-\frac{u_1}{c} \\
+    {\left(-1-\frac{u_1}{c}\right)}^2 & {\left(\frac{u_1}{c}\right)}^2 &  {\left(1-\frac{u_1}{c}\right)}^2
+  \end{pmatrix}
+  \begin{pmatrix}
+    c_{-1|\beta} \\
+    c_{0|\beta} \\
+    c_{1|\beta}
+  \end{pmatrix}
+\end{equation}
+and with~\eqref{eq:fast forward c_i pipe beta expanded}
+\begin{equation}
+  \label{eq:fast forward c_i pipe beta matrix}
+  \begin{pmatrix}
+    c_{i|0} \\
+    c_{i|1} \\
+    c_{i|2}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 1 & 1 \\
+    -1-\frac{u_2}{c} & - \frac{u_2}{c} &   1-\frac{u_2}{c} \\
+    {\left(-1-\frac{u_2}{c}\right)}^2 & {\left(\frac{u_2}{c}\right)}^2 &  {\left(1-\frac{u_2}{c}\right)}^2
+  \end{pmatrix}
+  \begin{pmatrix}
+    f_{i-1} \\
+    f_{i0} \\
+    f_{i1}
+  \end{pmatrix}
+\end{equation}
+Those systems are now solved via Sage with
+\begin{minted}{python}
+  u, c = var ('u, c')
+  M = Matrix ([
+    [1,1,1],
+    [-1-u/c,-u/c, 1-u/c],
+    [(-1-u/c)^2, (-u/c)^2, (1-u/c)^2]
+    ])
+  I = M.inverse ().simplify_rational ()
+  I
+\end{minted}
+where~\eqref{eq:fast forward c_alpha beta matrix} becomes
+\begin{equation}
+  \begin{pmatrix}
+    c_{-1|\beta} \\
+    c_{0|\beta} \\
+    c_{1|\beta}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    -\frac{1}{2}(\frac{u_1}{c} - \frac{u_1}{c}^2) &
+    -\frac{1}{2}(1 - 2\frac{u_1}{c}) &
+    \frac{1}{2} \\
+    1 - {(\frac{u_1}{c})}^2  &
+    -2\frac{u_1}{c}  &
+    -1 \\
+    \frac{1}{2}(\frac{u_1}{c} + {(\frac{u_1}{c})}^2)  &
+    \frac{1}{2}(1 + 2\frac{u_1}{c})  &
+    \frac{1}{2}
+  \end{pmatrix}
+  \begin{pmatrix}
+    c_{0\beta} \\
+    c_{1\beta} \\
+    c_{2\beta}
+  \end{pmatrix}
+\end{equation}
+and~\eqref{eq:fast forward c_i pipe beta matrix} analogously
+\begin{equation}
+  \begin{pmatrix}
+    f_{i-1} \\
+    f_{i0} \\
+    f_{i1}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    -\frac{1}{2}(\frac{u_2}{c} - \frac{u_2}{c}^2) &
+    -\frac{1}{2}(1 - 2\frac{u_2}{c}) &
+    \frac{1}{2} \\
+    1 - {(\frac{u_2}{c})}^2  &
+    -2\frac{u_2}{c}  &
+    -1 \\
+    \frac{1}{2}(\frac{u_2}{c} + {(\frac{u_2}{c})}^2)  &
+    \frac{1}{2}(1 + 2\frac{u_2}{c})  &
+    \frac{1}{2}
+  \end{pmatrix}
+  \begin{pmatrix}
+      c_{i|0} \\
+      c_{i|1} \\
+      c_{i|2}
+    \end{pmatrix}
+\end{equation}
 \section{Asymptotic Analysis}
 \label{sec:Asymptotic Analysis}
 \subsection{Preparation}
