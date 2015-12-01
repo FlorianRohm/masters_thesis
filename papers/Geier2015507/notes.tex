@@ -26,7 +26,7 @@ Continuous definition of $f$ using the Diraque delta
 \end{equation}
 Centralized $f$, where $u=\begin{pmatrix}u_1 \\ u_2\end{pmatrix}$ is the macroscopic speed in the point.
 \begin{equation}
-  \label{eq:Definition of f xi}
+  \label{eq:Definition of f_c xi}
   f_c(\xi) = f(\xi-u) = \sum_{i,j} f_{ij}\delta(ic - (\xi_1-u_1))\delta(jc - (\xi_2-u_2)).
 \end{equation}
 
@@ -73,7 +73,7 @@ Definition of the moments of $f$
 Definition of the centralized moments of $f$
 \begin{equation}
   \begin{aligned}
-    \label{eq:Definition of moments}
+    \label{eq:Definition of centralized moments}
     c_{\alpha\beta} & = \sum_{ij} {\left(i-\frac{m_{10}}{m_{00}}\right)}^\alpha {\left(j-\frac{m_{01}}{m_{00}}\right)}^\beta f_{ij} \\
     & = \sum_{ij} {\left(i-\frac{u_1}{c}\right)}^\alpha {\left(j-\frac{u_2}{c}\right)}^\beta f_{ij}
   \end{aligned}
@@ -214,7 +214,7 @@ for $\beta\neq 0$. According to this, the list of moments is as follows
 \subsection{Cumulants from moments}
 \label{sub:Cumulants from moments}
 
-We seek a representation of the cumulants $\kappa_{\alpha\beta}$ in terms of moments, as the later ones are much more easy to compute, cfg.~\eqref{eq:Definition of moments}. This link can be established with the chain rule for differentiaton.
+We seek a representation of the cumulants $\kappa_{\alpha\beta}$ in terms of moments, as the later ones are much more easy to compute, cfg.~\eqref{eq:Definition of centralized moments}. This link can be established with the chain rule for differentiaton.
 From~\eqref{eq:alternative representation of moments} and~\eqref{eq:Definition of cumulants} follows
 \begin{equation}
   \kappa_{00} = \ln(F(0,0)) = \ln(m_{00}) = \ln(\rho).
@@ -239,7 +239,7 @@ For brevity, the following notations are introduced
     & = \frac{m_{10}}{m_{00}}
   \end{aligned}
 \end{equation*}
-The cumulant $\kappa_{01}$ follows from symmetrie and is listed in~\ref{sub:Listing the cumulants from moments}
+The cumulant $\kappa_{01}$ follows from symmetrie and is listed in~\ref{subs:Listing the cumulants from moments}
 
 \begin{align*}
   \phantom{\kappa_{00}}
@@ -824,7 +824,7 @@ Right hand side:
 
 This gives
 \begin{equation}
-  \label{eq:second order in epsilon}
+  \label{eq:third order in epsilon}
   \begin{aligned}
     \frac{\partial}{\partial t} m_{\alpha\beta}^{(1)} + m_{\alpha\beta}^{(3)}
     & =  m_{\alpha\beta}^{*(3)} \\
