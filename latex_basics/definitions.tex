@@ -68,17 +68,18 @@ nisi. Nam eget dui.}
 \newcommand{\arsech}{\operatorname{arsech}}
 \newcommand{\arcoth}{\operatorname{arcoth}}
 
-%Zahlenmengen
+% Spaces
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
 \newcommand{\RtoN}{\ensuremath{\R^n}}
 
-
+% at least some define symbol
 \newcommand{\defined}{\mathrel{\mathop:}=}
 \newcommand{\defines}{\mathrel{\mathop=}:}
 
+% miscelaneous operators and helpers
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
 \newcommand{\infimum}{\operatornamewithlimits{inf}}
@@ -90,84 +91,30 @@ nisi. Nam eget dui.}
 \newcommand{\boldepsilon}{\ensuremath{\boldsymbol\varepsilon}}
 \newcommand{\op}{\operatorname}
 
-%Helfer
+% useful features for faster texing
 \newcommand{\dotProd}[2]{\ensuremath{\langle #1,#2\rangle}}
-\newcommand{\inAngles}[1]{\ensuremath{\langle #1\rangle}}
-
-\newcommand{\mathMode}[1]{$ #1 $}
+\newcommand{\inAngles}[1]{\ensuremath{\langle #1 \rangle}}
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\norm}[1]{ \left\Vert~#1 \right\Vert}
 \newcommand{\newlinedouble}{\newline\newline}
 
+% Matrix custom spacing
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep  % chktex 1 chktex 41
+  \let\@ifnextchar\new@ifnextchar  % chktex 1 chktex 21
+  \array{*\c@MaxMatrixCols c}}  % chktex 1
+\makeatother
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                        Definitionen und Sätze                              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
+% Highlight command
 \DeclareDocumentCommand{\highlight}{ O{red} O{20} m }{
 	\colorbox{#1!#2}{$\displaystyle#3$}
 }
 
 
-\newtheorem{mydef}{Definition}[subsection]
-\newtheorem{mysatz}{Satz}[subsection]
-\newtheorem{mylemma}{Lemma}[subsection]
-\newtheorem{mybeispiel}{Beispiel}[subsection]
-\newtheorem{mybemerkung}{Bemerkung}[subsection]
-\newcommand{\myproof}[1]{
-\begin{proof}[Beweis]
-#1
-\end{proof}
-}
-                                                                             %
-\newtheoremstyle{definition}                                                 %
-  {0.3cm}                 %Space above                                       %
-  {0.3cm}                 %Space below                                       %
-  {\normalfont}           %Body font                                         %
-  {}                      %Indent amount                                     %
-  {\normalfont\bfseries}  %Thm head font                                     %
-  {}                      %Punctuation after thm head                        %
-  {\newline}              %Space after thm head                              %
-  {\thmname{#1}\thmnumber{ #2}: \thmnote{ #3}}                               %
-                          %Thm head spec (can be left empty, meaning         %
-                          %`normal')                                         %
-                                                                             %
-\newenvironment{defshaded}{                                                  %
-\def\FrameCommand{\fcolorbox{defframecolor}{defshadecolor}}                  %
-\MakeFramed~{\FrameRestore}}                                                 %
-{\endMakeFramed}                                                             %
-                                                                             %
-\newenvironment{cdef}[1][]{\definecolor{defshadecolor}{RGB}{240,240,240}     % oder 224,255,255?
-\definecolor{defframecolor}{RGB}{240,240,240}                                %
-                                                                             %
-\begin{defshaded}\begin{wdef}[#1]\hspace*{0.15cm}}{\end{wdef}\end{defshaded}}%
-                                                                             %
-    \theoremstyle{definition}                                                %
-	\newtheorem{wdef}{Definition}[subsection]                                           %
-	                                                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                                                                             %
-\newenvironment{satzshaded}{                                                 %
-\def\FrameCommand{\fcolorbox{satzframecolor}{satzshadecolor}}                %
-\MakeFramed~{\FrameRestore}}                                                 %
-{\endMakeFramed}                                                             %
-                                                                             %
-\newenvironment{csatz}[1][]{\definecolor{satzshadecolor}{RGB}{240,240,240}   %
-\definecolor{satzframecolor}{RGB}{240,240,240}                               %
-                                                                             %
-\begin{satzshaded}\begin{satz}[#1]\hspace*{0.15cm}}{\end{satz}\end{satzshaded}}%
-                                                                             %
-    \theoremstyle{definition}                                                %
-	\newtheorem{satz}{Theorem}[subsection]                                               %
-                                                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                        Nummerierung	                            		 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 																			 %
-\numberwithin{equation}{subsection}											 %
-																			 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{equation}{subsection}
