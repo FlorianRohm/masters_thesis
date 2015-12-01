@@ -600,13 +600,13 @@ and with~\eqref{eq:fast forward c_i pipe beta expanded}
 \end{equation}
 Those systems are now solved via Sage with
 \begin{minted}{python}
-  u, c = var ('u, c')
-  M = Matrix ([
+  u, c = var('u, c')
+  M = Matrix([
     [1,1,1],
     [-1-u/c,-u/c, 1-u/c],
     [(-1-u/c)^2, (-u/c)^2, (1-u/c)^2]
     ])
-  I = M.inverse ().simplify_rational ()
+  I = M.inverse().simplify_rational()
   I
 \end{minted}
 where~\eqref{eq:fast forward c_alpha beta matrix} becomes
