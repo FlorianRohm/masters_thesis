@@ -744,6 +744,54 @@ With this work, the two sided Laplace Transform of the Maxwell Distribution read
   \end{aligned}
 \end{equation}
 
+\subsubsection{Equilibrium Distribution for Cumulants}
+\label{subs:Equilibrium Distribution for Cumulants}
+
+Like in the derivation of the cumulants, our equilibrium cumulants need the Taylor series of the logarithm of the Laplace transformed equilibrium distribution. With the speed of sound $c_s$ defined as
+\begin{equation}
+  c_s \defined \sqrt{\frac{k_B T}{m}}
+\end{equation}
+we get
+\begin{equation}
+  \begin{aligned}
+    \ln(F^{eq}(\Xi))
+      & = \ln(\rho) - \Xi_1 u_1 - \Xi_2 u_2 + \frac{1}{4C}\left(\Xi_1^2 + \Xi_2^2 \right) \\
+      & = \ln(\rho) - \Xi_1 u_1 - \Xi_2 u_2 + \frac{k_B T}{2m}\left(\Xi_1^2 + \Xi_2^2 \right) \\
+      & = \ln(\rho) - \Xi_1 u_1 - \Xi_2 u_2 + \frac{c_s^2}{2}\left(\Xi_1^2 + \Xi_2^2 \right)
+  \end{aligned}
+\end{equation}
+
+With~\eqref{eq:Definition of cumulants} follows
+\begin{equation}
+  \label{eq:equilibrium cumulants}
+  \begin{aligned}
+    \kappa_{00}^{eq} & = \ln(\rho) \\
+    \kappa_{10}^{eq} & = - {(-c)}^{-1} u_1 \\
+    \kappa_{01}^{eq} & = - {(-c)}^{-1} u_2 \\
+    \kappa_{11}^{eq} & = 0 \\
+    \kappa_{20}^{eq} & = {(-c)}^{-2} c_s^2  \\
+    \kappa_{02}^{eq} & = {(-c)}^{-2} c_s^2  \\
+    \kappa_{21}^{eq} & = 0 \\
+    \kappa_{12}^{eq} & = 0 \\
+    \kappa_{22}^{eq} & = 0 \\
+  \end{aligned}
+\end{equation}
+and the post collision cumulants $\kappa_{\alpha\beta}^*$
+
+\begin{equation}
+  \label{eq: post equilibrium cumulants}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} + \omega_1 \left( \ln(\rho) - \kappa_{00} \right) \\
+    \kappa_{10}^{*} & = \kappa_{10} + \omega_2 \left( - {(-c)}^{-1} u_1 - \kappa_{10} \right) \\
+    \kappa_{01}^{*} & = \kappa_{01} + \omega_3 \left( - {(-c)}^{-1} u_2 - \kappa_{01} \right) \\
+    \kappa_{11}^{*} & = \kappa_{11} + \omega_4 \left( - \kappa_{11} \right) \\
+    \kappa_{20}^{*} & = \kappa_{20} + \omega_5 \left( {(-c)}^{-2} c_s^2 - \kappa_{20} \right) \\
+    \kappa_{02}^{*} & = \kappa_{02} + \omega_6 \left( {(-c)}^{-2} c_s^2 - \kappa_{02} \right) \\
+    \kappa_{21}^{*} & = \kappa_{21} + \omega_7 \left( - \kappa_{21} \right) \\
+    \kappa_{12}^{*} & = \kappa_{12} + \omega_8 \left( - \kappa_{12} \right) \\
+    \kappa_{22}^{*} & = \kappa_{22} + \omega_9 \left( - \kappa_{22} \right)
+  \end{aligned}
+\end{equation}
 
 \section{Asymptotic Analysis}
 \label{sec:Asymptotic Analysis}
