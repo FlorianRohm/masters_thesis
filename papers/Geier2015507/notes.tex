@@ -659,6 +659,92 @@ and~\eqref{eq:fast forward c_i pipe beta matrix} analogously
       c_{i|2}
     \end{pmatrix}
 \end{equation}
+
+\section{Collision}
+\label{sec:Collision}
+
+\subsection{Maxwell Distribution}
+\label{sub:Maxwell Distribution}
+The Maxwell distribuion in two dimensions reads \todo{cite Succi, p8}
+
+\begin{equation}
+  \label{eq:maxwell distribution raw}
+  f_{m, \rho, u, T}^{\text{maxwell}}(\xi) = \rho \frac{m}{2\pi k_B T} \exp \left( - \frac{m\abs{\xi-u}^2}{2 k_B T}\right)
+\end{equation}
+where
+\begin{center}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    Symbol & Quantity  \\
+    \midrule
+    $\xi$  & Microscopic speed  \\
+    $\rho$ & Macroscopic density     \\
+    $u$    & Macroscopic velocity   \\
+    $T$    & Temperature   \\
+    $k_B$  & Boltzmann constant \\
+    $m$    & Mass of the particles   \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+This distribution gives the probability of finding a particle with a certain speed at some point.
+\subsubsection{Integration of exponential function}
+\label{subs:Integration of exponential function}
+
+Integration is again done via Sage:
+\begin{minted}{python}
+  from sage.symbolic.integration.integral import indefinite_integral
+  from sage.symbolic.integration.integral import definite_integral
+
+  C, u, xi, Xi = var('C, u, xi, Xi')
+  assume(C>0)
+
+  F(xi) = exp (-C*xi^2 + (2*C*u - Xi)*xi)
+
+  definite_integral(F(xi), xi, -infinity, infinity).simplify_rational()
+\end{minted}
+which gives
+\begin{equation}
+  \label{eq:integrate exponential sage}
+  \begin{aligned}
+    \int_{-\infty}^{\infty} \exp \left(-C \xi^2 + (2Cu - \Xi)\cdot\xi \right) d\xi
+    & = \sqrt{\frac{\pi}{C}}\exp \left(Cu^2 - \Xi u + \frac{1}{4} \frac{\Xi^2}{C}\right) \\
+    & = \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu-\Xi)}^2}{4C}\right)
+  \end{aligned}
+\end{equation}
+
+\subsubsection{Laplace Transform}
+\label{subs:Laplace Transform}
+With this work, the two sided Laplace Transform of the Maxwell Distribution reads
+
+\begin{equation}
+  \begin{aligned}
+    F^{eq}(\Xi) & = \mathcal{L}[f^{\text{maxwell}}](\Xi)
+    = \int_{\R^2} \rho \frac{m}{2\pi k_B T} \exp \left( - \frac{m\abs{\xi-u}^2}{2 k_B T}\right) \cdot e^{-\Xi\cdot\xi} d\xi \\
+    & = \rho  \frac{m}{2\pi k_B T} \int_{\R^2}
+      \exp \left( - \underbrace{\frac{m}{2 k_B T}}_{\defines C} \left( \abs{\xi}^2 - 2\xi\cdot u + \abs{u}^2 \right)\right) \cdot e^{-\Xi\cdot\xi} d\xi \\
+    & = \underbrace{\frac{\rho C} {\pi} e^{-C \abs{u}^2}}_{\defines D}
+      \int_{\R^2}
+      \exp \left( - C\abs{\xi}^2 + (2Cu -\Xi)\cdot\xi \right) d\xi \\
+    & =  D
+      \int_{\R} \int_{\R}
+      \exp \left( - C\abs{\xi_1}^2 + (2Cu_1 -\Xi_1)\cdot\xi_1 \right)
+      \exp \left( - C\abs{\xi_2}^2 + (2Cu_2 -\Xi_2)\cdot\xi_2 \right) d\xi_1 d\xi_2 \\
+    & = D
+      \int_{\R}
+      \exp \left( - C\abs{\xi_1}^2 + (2Cu_1 -\Xi_1)\cdot\xi_1 \right) d\xi_1
+      \int_{\R}
+      \exp \left( - C\abs{\xi_2}^2 + (2Cu_2 -\Xi_2)\cdot\xi_2 \right) d\xi_2 \\
+    & = \frac{\rho C} {\pi} e^{-C \abs{u}^2}
+      \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu_1-\Xi_1)}^2}{4C}\right)
+      \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu_2-\Xi_2)}^2}{4C}\right) \\
+    & = \rho
+      \exp \left( \frac{{(2Cu_1-\Xi_1)}^2}{4C} + \frac{{(2Cu_2-\Xi_2)}^2}{4C} -C \abs{u}^2 \right) \\
+    & = \rho
+      \exp \left( -\Xi_1 u_1 - \Xi_2 u_2 + \frac{1}{4C}\left(\Xi_1^2 + \Xi_2^2 \right)\right)
+  \end{aligned}
+\end{equation}
+
+
 \section{Asymptotic Analysis}
 \label{sec:Asymptotic Analysis}
 \subsection{Preparation}
