@@ -29,18 +29,18 @@ import os
 
 ###### Plot settings ############################################################
 
-plotEveryN    = 200         # draw every plotEveryN'th cycle
+plotEveryN    = 10         # draw every plotEveryN'th cycle
 skipFirstN    = 0       # do not process the first skipFirstN cycles
 savePlot      = True      # save velocity norm and x velocity plot
 liveUpdate    = True     # show the process of the simulation (slow)
-saveVTK       = True       # save the vtk files
+saveVTK       = False       # save the vtk files
 prefix        = 'ldc'      # naming prefix for saved files
 outputFolder  = './out'    # folder to save the output to
 workingFolder = os.getcwd()
 
 
 ###### Flow definition #########################################################
-maxIterations = 200000  # Total number of time iterations.
+maxIterations = 1  # Total number of time iterations.
 Re            = 100.0   # Reynolds number.re
 
 # Number of Cells
@@ -117,6 +117,134 @@ iBot    = arange(q)[asarray([ci[1] <  0 for ci in c])]
 def sumPopulations(fin):
     return sum(fin, axis = 0)
 
+def collide(fin, omega, u):
+    print "precollide"
+
+    print amax(fin[0, :, :])
+
+    print amax(fin[1, :, :])
+    print amax(fin[2, :, :])
+    print amax(fin[3, :, :])
+    print amax(fin[4, :, :])
+
+    print amax(fin[5, :, :])
+    print amax(fin[6, :, :])
+    print amax(fin[7, :, :])
+    print amax(fin[8, :, :])
+
+    print "\ncollide"
+    # central moments
+    ux = u[0, :, :]
+    uy = u[1, :, :]
+
+    print "\nvelocities"
+    print amax(ux)
+    print amax(uy)
+
+    # c_{i beta}
+    # c_{-1 beta}
+    c__n1_0 = fin[7, :, :] + fin[4, :, :] + fin[8, :, :] # f-1-1 + f-10 + f-11
+    c__n1_1 = (-1-uy)*fin[7, :, :] - uy*fin[4, :, :] + (1-uy)*fin[8, :, :]
+    c__n1_2 = (-1-uy)*(-1-uy)*fin[7, :, :] + uy*uy*fin[4, :, :] + (1-uy)*(1-uy)*fin[8, :, :]
+
+    # c_{0 beta}
+    c__0_0 = fin[3, :, :] + fin[0, :, :] + fin[1, :, :] # f0-1 + f00 + f01
+    c__0_1 = (-1-uy)*fin[3, :, :] - uy*fin[0, :, :] + (1-uy)*fin[1, :, :]
+    c__0_2 = (-1-uy)*(-1-uy)*fin[3, :, :] + uy*uy*fin[0, :, :] + (1-uy)*(1-uy)*fin[1, :, :]
+
+    # c_{1 beta}
+    c__1_0 = fin[6, :, :] + fin[2, :, :] + fin[5, :, :] # f1-1 + f10 + f11
+    c__1_1 = (-1-uy)*fin[6, :, :] - uy*fin[2, :, :] + (1-uy)*fin[5, :, :]
+    c__1_2 = (-1-uy)*(-1-uy)*fin[6, :, :] + uy*uy*fin[2, :, :] + (1-uy)*(1-uy)*fin[5, :, :]
+
+    # c{alpha beta}
+    # c{alpha 0}
+    c_00 = c__n1_0 + c__0_0 + c__1_0
+    c_10 = (-1-ux)*c__n1_0 - ux*c__0_0 + (1-ux)*c__1_0
+    c_20 = (-1-ux)*(-1-ux)*c__n1_0 + ux*ux*c__0_0 + (1-ux)*(1-ux)*c__1_0
+
+    # c{alpha 1}
+    c_01 = c__n1_1 + c__0_1 + c__1_1
+    c_11 = (-1-ux)*c__n1_1 - ux*c__0_1 + (1-ux)*c__1_1
+    c_21 = (-1-ux)*(-1-ux)*c__n1_1 + ux*ux*c__0_1 + (1-ux)*(1-ux)*c__1_1
+
+    # c{alpha 2}
+    c_02 = c__n1_2 + c__0_2 + c__1_2
+    c_12 = (-1-ux)*c__n1_2 - ux*c__0_2 + (1-ux)*c__1_2
+    c_22 = (-1-ux)*(-1-ux)*c__n1_2 + ux*ux*c__0_2 + (1-ux)*(1-ux)*c__1_2
+
+    # only K22 differs from the central moments
+    K_22 = c_22 - 2*c_11*c_11 - c_20*c_02
+
+    print "\nnormalized cumulants"
+    print amax(c_00)
+    print amax(c_10)
+    print amax(c_01)
+    print amax(c_11)
+    print amax(c_20)
+    print amax(c_02)
+    print amax(c_21)
+    print amax(c_12)
+    print amax(c_22)
+
+    # collision
+    c_00_post = c_00
+    c_10_post = c_10
+    c_01_post = c_01
+
+    c_11_post = (1-omega)*c_11
+
+    c_20_post = 1/3 + 0.5*(1-omega)*(c_20 - c_02)
+    c_02_post = 1/3 - 0.5*(1-omega)*(c_20 - c_02)
+
+    c_21_post = 0
+    c_12_post = 0
+
+    K_22_post = 0
+
+    # Transformation to central moments
+    c_22_post = K_22_post + 2*c_11_post*c_11_post + c_20_post*c_02_post
+
+    # backward transformation
+    c__n1_0_post = -0.5*(ux*(1 - ux))*c_00_post - 0.5*(1-2*ux)*c_10_post + 0.5*c_20_post
+    c__n1_1_post = -0.5*(ux*(1 - ux))*c_01_post - 0.5*(1-2*ux)*c_11_post + 0.5*c_21_post
+    c__n1_2_post = -0.5*(ux*(1 - ux))*c_02_post - 0.5*(1-2*ux)*c_12_post + 0.5*c_22_post
+
+    c__0_0_post = (1-ux*ux)*c_00_post - 2*ux*c_10_post - c_20_post
+    c__0_1_post = (1-ux*ux)*c_01_post - 2*ux*c_11_post - c_21_post
+    c__0_2_post = (1-ux*ux)*c_02_post - 2*ux*c_12_post - c_22_post
+
+    c__1_0_post = 0.5*(ux*(1 - ux))*c_00_post + 0.5*(1+2*ux)*c_10_post + 0.5*c_20_post
+    c__1_1_post = 0.5*(ux*(1 - ux))*c_01_post + 0.5*(1+2*ux)*c_11_post + 0.5*c_21_post
+    c__1_2_post = 0.5*(ux*(1 - ux))*c_02_post + 0.5*(1+2*ux)*c_12_post + 0.5*c_22_post
+
+    # post collision distributions
+    f__n1_n1_post = -0.5*(uy*(1 - uy))*c__n1_0_post - 0.5*(1-2*uy)*c__0_0_post + 0.5*c__1_0_post
+    f__n1_0_post = -0.5*(uy*(1 - uy))*c__n1_1_post - 0.5*(1-2*uy)*c__0_1_post + 0.5*c__1_1_post
+    f__n1_1_post = -0.5*(uy*(1 - uy))*c__n1_2_post - 0.5*(1-2*uy)*c__0_2_post + 0.5*c__1_2_post
+
+    f__0_n1_post = (1-uy*uy)*c__n1_0_post - 2*uy*c__0_0_post - c__1_0_post
+    f__0_0_post = (1-uy*uy)*c__n1_1_post - 2*uy*c__0_1_post - c__1_1_post
+    f__0_1_post = (1-uy*uy)*c__n1_2_post - 2*uy*c__0_2_post - c__1_2_post
+
+    f__1_n1_post = 0.5*(uy*(1 - uy))*c__n1_0_post + 0.5*(1+2*uy)*c__0_0_post + 0.5*c__1_0_post
+    f__1_0_post = 0.5*(uy*(1 - uy))*c__n1_1_post + 0.5*(1+2*uy)*c__0_1_post + 0.5*c__1_1_post
+    f__1_1_post = 0.5*(uy*(1 - uy))*c__n1_2_post + 0.5*(1+2*uy)*c__0_2_post + 0.5*c__1_2_post
+
+    print "\npost collision cumulants"
+    print amax(f__0_0_post)
+
+    print amax(f__1_0_post)
+    print amax(f__0_1_post)
+    print amax(f__n1_0_post)
+    print amax(f__0_n1_post)
+
+    print amax(f__1_1_post)
+    print amax(f__n1_1_post)
+    print amax(f__n1_n1_post)
+    print amax(f__1_n1_post)
+
+    return array([f__0_0_post, f__1_0_post, f__0_1_post, f__n1_0_post, f__0_n1_post,   f__1_1_post, f__n1_1_post, f__n1_n1_post, f__1_n1_post])
 
 # Equilibrium distribution function.
 def equilibrium(rho, u):
@@ -165,18 +293,18 @@ os.chdir(outputFolder)
 
 ###### Main time loop ##########################################################
 for time in range(maxIterations):
-    
+
     # Calculate macroscopic density ...
     rho = sumPopulations(fin)
     # ... and velocity
     u = dot(c.transpose(),  fin.transpose((1, 0, 2)))/rho
     # u = dot(c.transpose(),  fin.transpose((1, 0, 2)))
-    
+
     feq = equilibrium(rho, u)
 
     # Collision step.
-    fpost = fin - omega * (fin - feq)
-    
+    fpost = collide(fin, omega, u)
+
     # Streaming step
     fin[0, :, :] = fpost[0, :, :]
 
@@ -202,12 +330,12 @@ for time in range(maxIterations):
     # complete the left wall treatement wrt Yu 2002
     fin[iBot, 0, :] = - feq[iTop, 0, :] + (feq[iBot, 0, :] + fin[iTop, 0, :])
     # fin[iBot, 0, :] = fin[iTop, 0, :] + 6 * dot(c, u.transpose(1, 0, 2)) c[iBot][0] * rho*t[iBot]
-    
+
     # wall boundary handling
     for i in range(q):
         fin[i, wall] = fin[noslip[i], wall]
 
-    
+
 
 
     # Visualization
