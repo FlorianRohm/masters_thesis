@@ -1071,7 +1071,7 @@ For the first order terms, one has to choose $p=1$ on the left side and one of $
   & = m_{\alpha\beta}^{*(1)}
   \end{aligned}
 \end{equation}
-
+The second line is due to the fact, that the zeroth order terms have to be constant in space and thus all spatial derivatives vanish.
 
 \subsubsection{Second order in \texorpdfstring{$\epsilon$}{epsilon}}
 \label{subs:Second order in epsilon}
@@ -1131,9 +1131,9 @@ This gives
 \subsection{Analysis of the Terms}
 \label{sub:Analysis of the Terms}
 
-\subsubsection{First order}
-\label{subs:First order}
-As the zeroth order terms are constant, we get
+\subsubsection{Collision invariants}
+\label{subs:Collision invariants}
+As the zeroth order terms of the expansion have to be constant in space, we get
 \begin{equation}
   \label{eq:first order analysis}
   \begin{aligned}
@@ -1144,9 +1144,58 @@ As the zeroth order terms are constant, we get
     & = m_{\alpha\beta}^{*(1)}
   \end{aligned}
 \end{equation}
+Thus, all moments are collision invariants at zeroth,~\eqref{eq:zeroth order in epsilon}, and first order,~\eqref{eq:first order analysis}, in $\epsilon$.
 
-And thus, all moments are colission invariants at zeroth,~\eqref{eq:zeroth order in epsilon}, and first order,~\eqref{eq:first order analysis}, in $\epsilon$
+If there are no sources and sinks, the density has to be a collision invariant.
+\begin{equation}
+    \rho  = m_{00} = m_{00}^*
+\end{equation}
+and thus
+\begin{equation}
+    \rho = m_{00}^{(p)} = m_{00}^{*(p)}
+\end{equation}
 
+For the velocities, it's the same:
+\begin{equation}
+  \begin{aligned}
+    u_x & = m_{10} = m_{10}^*
+    u_y & = m_{01} = m_{01}^* \\
+  \end{aligned} \quad \forall p
+\end{equation}
 
+\begin{equation}
+  \begin{aligned}
+    u_x & = m_{10}^{(p)} = m_{10}^{*(p)} \\
+    u_y & = m_{01}^{(p)} = m_{01}^{*(p)}
+  \end{aligned} \quad \forall p
+\end{equation}
+
+\subsubsection{Mass conservation}
+\label{subs:Mass conservation}
+
+We choose $\epsilon^2$, $\alpha=0$, $\beta=0$ and get
+\begin{equation}
+    \begin{aligned}
+      \partial_t m_{00}^{(0)} + m_{00}^{(2)} & =  m_{00}^{*(2)} - \partial_x m_{10}^{*(1)} - \partial_y m_{01}^{*(1)} \\
+      \equivalent \qquad \partial_t m_{00}^{(0)} & =  - \partial_x m_{10}^{*(1)} - \partial_y m_{01}^{*(1)}
+    \end{aligned}
+\end{equation}
+Also, with $\epsilon^1$, $\alpha=1$, $\beta=0$ we get
+\begin{equation}
+  \partial_t m_{00}^{(0)} + m_{00}^{(2)} =  m_{00}^{*(2)} - \partial_x m_{10}^{*(1)} - \partial_y m_{01}^{*(1)}
+\end{equation}
+
+\subsubsection{Momentum equation}
+\label{subs:Momentum equation}
+
+For $\epsilon^3$, $\alpha=1$, $\beta=0$ we get
+
+\begin{equation}
+  \begin{aligned}
+    \frac{\partial}{\partial t} m_{10}^{(1)}
+    & =  m_{10}^{*(3)} - m_{10}^{(3)} - \partial_x m_{20}^{*(2)} - \partial_y m_{11}^{*(2)}  \\
+    &\quad  + \partial_{xx} m_{30}^{*(1)}/2 + \partial_{xy} m_{21}^{*(1)} + \partial_{yy} m_{12}^{*(1)}/2
+  \end{aligned}
+\end{equation}
 
 \end{document}
