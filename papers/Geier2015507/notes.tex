@@ -1064,10 +1064,12 @@ For the first order terms, one has to choose $p=1$ on the left side and one of $
 
 \begin{equation}
   \label{eq:first order in epsilon}
+  \begin{aligned}
   m_{\alpha\beta}^{(1)}
-  = m_{\alpha\beta}^{*(1)}
-  - \frac{\partial}{\partial x} m_{(\alpha+1)\beta}^{*(0)}
-  - \frac{\partial}{\partial y} m_{\alpha(\beta+1)}^{*(0)}
+  & = m_{\alpha\beta}^{*(1)}
+  - \partial_x m_{(\alpha+1)\beta}^{*(0)} - \partial_y m_{\alpha(\beta+1)}^{*(0)} \\
+  & = m_{\alpha\beta}^{*(1)}
+  \end{aligned}
 \end{equation}
 
 
@@ -1087,11 +1089,12 @@ Resulting in
 \begin{equation}
   \label{eq:second order in epsilon}
   \begin{aligned}
-    \frac{\partial}{\partial t} m_{\alpha\beta}^{(0)} + m_{\alpha\beta}^{(2)}
+    \partial_t m_{\alpha\beta}^{(0)} + m_{\alpha\beta}^{(2)}
     & =  m_{\alpha\beta}^{*(2)} \\
-    &\quad - \frac{\partial}{\partial x} m_{(\alpha+1)\beta}^{*(1)} + \frac{\partial^2}{\partial x^2} m_{(\alpha+2)\beta}^{*(0)} \\
-    &\quad - \frac{\partial}{\partial y} m_{\alpha(\beta+1)}^{*(1)} + \frac{\partial^2}{\partial y^2} m_{\alpha(\beta+2)}^{*(0)} \\
-    &\quad + \frac{\partial\partial}{\partial x \partial y} m_{(\alpha+1)(\beta+1)}^{*(0)}
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(1)} + \partial_{xx} m_{(\alpha+2)\beta}^{*(0)}/2 \\
+    &\quad - \partial_y m_{\alpha(\beta+1)}^{*(1)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(0)}/2 \\
+    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(0)}\\
+    & =  m_{\alpha\beta}^{*(2)} - \partial_x m_{(\alpha+1)\beta}^{*(1)} - \partial_y m_{\alpha(\beta+1)}^{*(1)}
   \end{aligned}
 \end{equation}
 
@@ -1115,10 +1118,13 @@ This gives
   \begin{aligned}
     \frac{\partial}{\partial t} m_{\alpha\beta}^{(1)} + m_{\alpha\beta}^{(3)}
     & =  m_{\alpha\beta}^{*(3)} \\
-    &\quad - \frac{\partial}{\partial x} m_{(\alpha+1)\beta}^{*(2)} + \frac{\partial^2}{\partial x^2} m_{(\alpha+2)\beta}^{*(1)} - \frac{\partial^3}{\partial x^3} m_{(\alpha+3)\beta}^{*(0)} \\
-    &\quad - \frac{\partial}{\partial y} m_{\alpha(\beta+1)}^{*(2)} + \frac{\partial^2}{\partial y^2} m_{\alpha(\beta+2)}^{*(1)} - \frac{\partial^3}{\partial y^3} m_{\alpha(\beta+3)}^{*(0)} \\
-    &\quad + \frac{\partial\partial}{\partial x \partial y} m_{(\alpha+1)(\beta+1)}^{*(1)} \\
-    &\quad - \frac{\partial^2\partial}{\partial x^2 \partial y} m_{(\alpha+2)(\beta+1)}^{*(0)} - \frac{\partial\partial^2}{\partial x \partial y^2} m_{(\alpha+1)(\beta+2)}^{*(0)}
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(2)} + \partial_{xx} m_{(\alpha+2)\beta}^{*(1)}/2 - \partial_{xxx} m_{(\alpha+3)\beta}^{*(0)}/6 \\
+    &\quad - \partial_y m_{\alpha(\beta+1)}^{*(2)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(1)}/2 - \partial_{yyy} m_{\alpha(\beta+3)}^{*(0)}/6 \\
+    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(1)} \\
+    &\quad - \partial_{xxy} m_{(\alpha+2)(\beta+1)}^{*(0)}/2 - \partial_{xyy} m_{(\alpha+1)(\beta+2)}^{*(0)}/2 \\
+    & =  m_{\alpha\beta}^{*(3)} \\
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(2)} - \partial_y m_{\alpha(\beta+1)}^{*(2)}  \\
+    &\quad  + \partial_{xx} m_{(\alpha+2)\beta}^{*(1)}/2 + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(1)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(1)}/2
   \end{aligned}
 \end{equation}
 
@@ -1133,8 +1139,8 @@ As the zeroth order terms are constant, we get
   \begin{aligned}
     m_{\alpha\beta}^{(1)}
     & = m_{\alpha\beta}^{*(1)}
-    - \frac{\partial}{\partial x} m_{(\alpha+1)\beta}^{*(0)}
-    - \frac{\partial}{\partial y} m_{\alpha(\beta+1)}^{*(0)} \\
+    - \partial_x m_{(\alpha+1)\beta}^{*(0)}
+    - \partial_y m_{\alpha(\beta+1)}^{*(0)} \\
     & = m_{\alpha\beta}^{*(1)}
   \end{aligned}
 \end{equation}
