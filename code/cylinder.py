@@ -23,6 +23,12 @@
 from numpy import *
 from matplotlib import cm, pyplot
 from VTKWrapper import saveToVTK
+from collide import BGKCollide
+from stream import stream
+from LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
+from boundaryConditions import YuLeft
+from obstacle import obstacleAttack, drag, lift
+
 import os
 
 
@@ -30,7 +36,7 @@ import os
 
 plotEveryN    = 100         # draw every plotEveryN'th cycle
 skipFirstN    = 1000       # do not process the first skipFirstN cycles
-savePlot      = False      # save velocity norm and x velocity plot
+savePlot      = True      # save velocity norm and x velocity plot
 liveUpdate    = True      # show the process of the simulation (slow)
 saveVTK       = False       # save the vtk files
 prefix        = 'cylinder'      # naming prefix for saved files
@@ -91,100 +97,6 @@ velocityZ = zeros((nx, ny, 1))
 axisYPlot = arange(0, ny, dtype='float64')
 axisYNorm = axisYPlot/(ny)
 
-
-###### Lattice Constants #######################################################
-
-# lattice velocities
-c = array([[0, 0], [1, 0], [0, 1], [-1, 0], [0, -1], [1, 1], [-1, 1], [-1, -1], [1, -1]])
-
-# Lattice weights
-t      = 1./36. * ones(q)
-t[1:5] = 1./9.
-t[0]   = 4./9.
-
-# index array for noslip reflection
-# inverts the d2q9 stencil for use in bounceback scenarios
-noslip = [0, 3, 4, 1, 2, 7, 8, 5, 6]
-
-# index arrays for different sides of the d2q9 stencil
-iLeft   = arange(q)[asarray([ci[0] <  0 for ci in c])]
-iCentV  = arange(q)[asarray([ci[0] == 0 for ci in c])]
-iRight  = arange(q)[asarray([ci[0] >  0 for ci in c])]
-iTop    = arange(q)[asarray([ci[1] >  0 for ci in c])]
-iCentH  = arange(q)[asarray([ci[1] == 0 for ci in c])]
-iBot    = arange(q)[asarray([ci[1] <  0 for ci in c])]
-
-
-###### Function Definitions ####################################################
-
-# Helper function for density computation.
-def sumPopulations(fin):
-    return sum(fin, axis = 0)
-
-
-# Equilibrium distribution function.
-def equilibrium(rho, u):
-    cu   = 3.0 * dot(c, u.transpose(1, 0, 2))
-    usqr = 3./2.*(u[0, :, :]**2+u[1, :, :]**2)
-    feq = zeros((q, nx, ny))
-    for i in range(q):
-        feq[i, :, :] = rho*t[i]*(1.+cu[i]+0.5*cu[i]**2-usqr)
-    return feq
-
-
-def clamp(val, minVal, maxVal):
-    return maximum(minVal, minimum(val, maxVal))
-
-
-# returns the boundaries of an obstacle as seen from particle distributions
-def obstacleAttack(obstacle):
-    obstacleBound = zeros((9, nx, ny), dtype=bool)
-    
-    obstacleBound[1, :, :] = logical_xor(obstacle, logical_and(obstacle, roll(obstacle,  1, axis=0)))
-    obstacleBound[2, :, :] = logical_xor(obstacle, logical_and(obstacle, roll(obstacle,  1, axis=1)))
-    obstacleBound[3, :, :] = logical_xor(obstacle, logical_and(obstacle, roll(obstacle, -1, axis=0)))
-    obstacleBound[4, :, :] = logical_xor(obstacle, logical_and(obstacle, roll(obstacle, -1, axis=1)))
-
-    obstacleBound[5, :, :] = logical_xor(obstacle, logical_and(obstacle, roll(roll(obstacle,  1, axis=0),  1, axis=1)))
-    obstacleBound[6, :, :] = logical_xor(obstacle, logical_and(obstacle, roll(roll(obstacle, -1, axis=0),  1, axis=1)))
-    obstacleBound[7, :, :] = logical_xor(obstacle, logical_and(obstacle, roll(roll(obstacle, -1, axis=0), -1, axis=1)))
-    obstacleBound[8, :, :] = logical_xor(obstacle, logical_and(obstacle, roll(roll(obstacle,  1, axis=0), -1, axis=1)))
-    
-    dragBounds = logical_or(obstacleBound[1, :, :],
-                            logical_or(obstacleBound[5, :, :],
-                                       logical_or(obstacleBound[8, :, :],
-                                                  logical_or(obstacleBound[3, :, :],
-                                                             logical_or(obstacleBound[6, :, :], obstacleBound[7, :, :])))))
-    liftBounds = logical_or(obstacleBound[2, :, :],
-                            logical_or(obstacleBound[6, :, :],
-                                       logical_or(obstacleBound[5, :, :],
-                                                  logical_or(obstacleBound[4, :, :],
-                                                             logical_or(obstacleBound[7, :, :], obstacleBound[8, :, :])))))
-    completeBound = logical_or(dragBounds, liftBounds)
-    return (obstacleBound, dragBounds, liftBounds, completeBound)
-
-
-def drag(scaledFin, bound):
-    pos = sumPopulations(scaledFin[1, bound[1, :, :]]) + \
-        sumPopulations(scaledFin[5, bound[5, :, :]]) + \
-        sumPopulations(scaledFin[8, bound[8, :, :]])
-
-    neg = sumPopulations(scaledFin[3, bound[3, :, :]]) + \
-        sumPopulations(scaledFin[6, bound[6, :, :]]) + \
-        sumPopulations(scaledFin[7, bound[7, :, :]])
-
-    return pos-neg
-
-
-def lift(scaledFin, bound):
-    pos = sumPopulations(scaledFin[2, bound[2, :, :]]) + \
-        sumPopulations(scaledFin[6, bound[6, :, :]]) + \
-        sumPopulations(scaledFin[5, bound[5, :, :]])
-    neg = sumPopulations(scaledFin[4, bound[4, :, :]]) + \
-        sumPopulations(scaledFin[7, bound[7, :, :]]) + \
-        sumPopulations(scaledFin[8, bound[8, :, :]])
-    return pos-neg
-
 ###### Setup ##################################################################
 
 # cylindrical obstacle
@@ -222,16 +134,13 @@ for time in range(maxIterations):
     # and walls
     for i in range(q):
         fin[i, boundary] = fin[noslip[i], boundary]
-    
 
     # Right Wall: Produce zero pressure gradient for the outflow
     fin[iLeft, -1, :] = fin[iLeft, -2, :]
-    
-    # Calculate macroscopic density ...
-    rho = sumPopulations(fin)
-    # ... and velocity
-    u = dot(c.transpose(),  fin.transpose((1, 0, 2)))/rho
-    
+
+    # Calculate macroscopic density and velocity
+    (rho, u) = getMacroValues(fin)
+
     # Left wall: compute density from known populations.
     u[:, 0, :] = vel[:, 0, :]
     rho[0, :] = 1./(1.-u[0, 0, :]) * (sumPopulations(fin[iCentV, 0, :])+2.*sumPopulations(fin[iLeft, 0, :]))
@@ -242,21 +151,10 @@ for time in range(maxIterations):
     fin[iRight, 0, :] = feq[iLeft, 0, :] + (feq[iRight, 0, :] - fin[iLeft, 0, :])
 
     # Collision step.
-    fpost = fin - omega * (fin - feq)
+    fpost = BGKCollide(fin, feq, omega)
 
     # Streaming step
-    fin[0, :, :] = fpost[0, :, :]
-
-    fin[1, :, :] = roll(fpost[1, :, :],  1,  axis=0)
-    fin[2, :, :] = roll(fpost[2, :, :],  1,  axis=1)
-    fin[3, :, :] = roll(fpost[3, :, :], -1,  axis=0)
-    fin[4, :, :] = roll(fpost[4, :, :], -1,  axis=1)
-    
-    fin[5, :, :] = roll(roll(fpost[5, :, :],  1,  axis=0),  1,  axis=1)
-    fin[6, :, :] = roll(roll(fpost[6, :, :], -1,  axis=0),  1,  axis=1)
-    fin[7, :, :] = roll(roll(fpost[7, :, :], -1,  axis=0), -1,  axis=1)
-    fin[8, :, :] = roll(roll(fpost[8, :, :],  1,  axis=0), -1,  axis=1)
-
+    fin = stream(fpost)
 
     # Visualization
     if ( (time % plotEveryN == 0) & (liveUpdate | saveVTK | savePlot) & (time > skipFirstN) ):
