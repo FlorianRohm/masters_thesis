@@ -500,6 +500,29 @@ The missing central moments follow from permutation and will be listed in the fo
 \end{align}
 As we can se here, cumulants only differ, apart from scaling, from central moments in order higher than $3$.
 
+\subsubsection{Scaled Cumulants}
+\label{subs:Scaled Cumulants}
+
+As shown in the previous section, the cumulants only appear together with the density. This demands for a normalized verison of the cumulants,
+\begin{equation}
+  K_{\alpha\beta} \defined m_{00}\kappa_{\alpha\beta},
+\end{equation}
+which yields
+\begin{align}
+  \label{eq:all central moments from normalized cumulants}
+  c_{00} & = K_{00} \\
+  c_{10} & = K_{10} \\
+  c_{01} & = K_{01} \\
+  c_{20} & = K_{20} \\
+  c_{02} & = K_{02} \\
+  c_{11} & = K_{11} \\
+  c_{21} & = K_{21} \\
+  c_{12} & = K_{12} \\
+  c_{22} & = K_{22} + 2K_{11}^2 + K_{20}K_{02}
+\end{align}
+which is much more convenient to handle.
+
+
 \subsection{Cumulants from central moments}
 \label{sub:Cumulants from central moments}
 
@@ -517,6 +540,20 @@ Inserting the resulting equations for $\kappa_{11}$, $\kappa_{02}$ and $\kappa_{
   \kappa_{21} & = \frac{c_{21}}{m_{00}} \\
   \kappa_{12} & = \frac{c_{12}}{m_{00}} \\
   \kappa_{22} & = \frac{c_{22}}{m_{00}} - 2{\left(\frac{c_{11}}{m_{00}}\right)}^2 - \frac{c_{20}}{m_{00}}\frac{c_{02}}{m_{00}}
+\end{align}
+%
+or with the normalized cumulants
+\begin{align}
+  \label{eq:all normalized cumulants from central moments}
+  K_{00} & = c_{00} \\
+  K_{10} & = c_{10} \\
+  K_{01} & = c_{01} \\
+  K_{20} & = c_{20} \\
+  K_{02} & = c_{02} \\
+  K_{11} & = c_{11} \\
+  K_{21} & = c_{21} \\
+  K_{12} & = c_{12} \\
+  K_{22} & = c_{22} - 2{c_{11}}^2 - c_{20}c_{02}
 \end{align}
 
 \subsection{Fast central moment transformations}
