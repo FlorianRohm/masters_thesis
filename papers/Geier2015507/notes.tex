@@ -850,9 +850,10 @@ which can be simplified to
       & = \kappa_{20} + \kappa_{02} + \omega_6 \left( 2 {(-c)}^{-2} c_s^2 - \kappa_{20} - \kappa_{02} \right) \\
     \kappa_{21}^{*} & = (1-\omega_7)\kappa_{21} \\
     \kappa_{12}^{*} & = (1-\omega_8)\kappa_{12} \\
-    \kappa_{22}^{*} & = (1-\omega_9)\kappa_{22}
+    \kappa_{22}^{*} & = (1-\omega_9)\kappa_{22},
   \end{aligned}
 \end{equation}
+as the first three cumulants are conserved quantities, compare~\eqref{eq: kappa_00 from moments} and following.
 %
 The recovered post equilibrium values $\kappa_{20}^{*}$ and $\kappa_{02}^{*}$ are with
 \begin{equation}
@@ -894,9 +895,56 @@ To ensure rotational invariance, we have to relate some relaxation parameters, y
   \end{aligned}
 \end{equation}
 
-\subsubsection{Choosing the \texorpdfstring{$\omega_i$}{omega_i}}
+\subsubsection{Choosing the \texorpdfstring{$\omega_i$}{omegai}}
 \label{subs:Choosing the omega_i}
-
+The only apparent relaxation parameter in the asymptotic analysis is $\omega_1$ which plays the role of viscosity like BGK-LBM.\@
+All other terms are save to be set to one \todo{confirmation}.
+The final collision looks like:
+\begin{equation}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & = \left( 2 {(-c)}^{-2} c_s^2 \right) \\
+    \kappa_{21}^{*} & = 0 \\
+    \kappa_{12}^{*} & = 0 \\
+    \kappa_{22}^{*} & = 0
+  \end{aligned}
+\end{equation}
+Which can be simplified by the final remarks, that we set the cell spacing $c=1$ and further insert the D2Q9 sound speed $c_s^2=\frac{1}{3}$.
+\begin{equation}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & =  \frac{2}{3} \\
+    \kappa_{21}^{*} & = 0 \\
+    \kappa_{12}^{*} & = 0 \\
+    \kappa_{22}^{*} & = 0
+  \end{aligned}
+\end{equation}
+or equivalently
+\begin{equation}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{20}^{*} & = \frac{1}{3} + \frac{1}{2}(1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{02}^{*} & = \frac{1}{3} - \frac{1}{2}(1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{21}^{*} & = 0 \\
+    \kappa_{12}^{*} & = 0 \\
+    \kappa_{22}^{*} & = 0
+  \end{aligned}
+\end{equation}
 
 \section{Asymptotic Analysis}
 \label{sec:Asymptotic Analysis}
