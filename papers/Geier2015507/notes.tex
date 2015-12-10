@@ -575,11 +575,7 @@ The forward central moment transformation splits the definition for a two way ca
 \end{equation}
 Thus, by first computing the $c_{i|\beta}$ and then the $c_{\alpha\beta}$ we need $6$ instead of $9$ summations. By chaining this technique in 3D, much more computing power is saved.
 
-\subsubsection{Backward transformation}
-\label{subs:Backward transformation}
-
-For the inverse transformation, we first analyse the $c_{\alpha\beta}$ and $c_{i|\beta}$ terms:
-
+We can further analyze the $c_{\alpha\beta}$ and $c_{i|\beta}$ terms:
 \begin{equation}
   \begin{aligned}
     \label{eq:fast forward c_alpha beta expanded}
@@ -635,7 +631,10 @@ and with~\eqref{eq:fast forward c_i pipe beta expanded}
     f_{i1}
   \end{pmatrix}
 \end{equation}
-Those systems are now solved via Sage with
+
+\subsubsection{Backward transformation}
+\label{subs:Backward transformation}
+To get the backwards direction, the systems~\eqref{eq:fast forward c_alpha beta expanded} and~\eqref{eq:fast forward c_i pipe beta expanded} are now solved via Sage with
 \begin{minted}{python}
   u, c = var('u, c')
   M = Matrix([
