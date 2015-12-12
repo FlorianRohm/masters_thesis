@@ -22,7 +22,6 @@ from auxiliary.collide import BGKCollide, cumulantCollide
 from auxiliary.stream import stream
 from auxiliary.LBMHelpers import getMacroValues,equilibrium
 from auxiliary.visualize import visualize
-# from LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
 
 import os
 
