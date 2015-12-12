@@ -1,4 +1,4 @@
-#from numpy import *
+from numpy import *
 
 def BGKCollide(fin, feq, omega):
     return fin - omega * (fin - feq)
@@ -9,9 +9,9 @@ def cumulantCollide(fin, omega, u):
     ux = u[0, :, :]
     uy = u[1, :, :]
 
-    print "\nvelocities"
-    print amax(ux)
-    print amax(uy)
+    #print "\nvelocities"
+    #print amax(ux)
+    #print amax(uy)
 
     # c_{i beta}
     # c_{-1 beta}
