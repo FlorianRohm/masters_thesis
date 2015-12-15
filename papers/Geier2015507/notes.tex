@@ -1131,6 +1131,33 @@ This gives
 \subsection{Analysis of the Terms}
 \label{sub:Analysis of the Terms}
 
+\subsubsection{Prerequesites}
+\label{subs:Prerequesites}
+Before starting to analyse the terms, we need to set up
+\paragraph{Mass conservation}
+\label{par:Mass conservation}
+The described cumulant method shall not have any sources and sinks and be incompressible. Hence
+\begin{equation}
+    \rho  = m_{00} = m_{00}^*
+\end{equation}
+and thus
+\begin{equation}
+    \rho = m_{00}^{(p)} = m_{00}^{*(p)}
+\end{equation}
+
+Velocity is no conserved quantity in our setting, because forcing terms like gravity can alter it.
+
+\paragraph{Zeroth order moments are constant in space}
+\label{par:Zeroth order moments are constant in space}
+Zeroth order terms are independent of our expansion parameter $\epsilon$ and thus have to be constant in space.
+\begin{equation}
+  \partial_x m_{\alpha\beta}^{(0)} = 0
+\end{equation}
+\begin{equation}
+  \partial_y m_{\alpha\beta}^{(0)} = 0
+\end{equation}
+
+
 \subsubsection{Collision invariants}
 \label{subs:Collision invariants}
 As the zeroth order terms of the expansion have to be constant in space, we get
@@ -1145,30 +1172,6 @@ As the zeroth order terms of the expansion have to be constant in space, we get
   \end{aligned}
 \end{equation}
 Thus, all moments are collision invariants at zeroth,~\eqref{eq:zeroth order in epsilon}, and first order,~\eqref{eq:first order analysis}, in $\epsilon$.
-
-If there are no sources and sinks, the density has to be a collision invariant.
-\begin{equation}
-    \rho  = m_{00} = m_{00}^*
-\end{equation}
-and thus
-\begin{equation}
-    \rho = m_{00}^{(p)} = m_{00}^{*(p)}
-\end{equation}
-
-For the velocities, it's the same:
-\begin{equation}
-  \begin{aligned}
-    u_x & = m_{10} = m_{10}^*
-    u_y & = m_{01} = m_{01}^* \\
-  \end{aligned} \quad \forall p
-\end{equation}
-
-\begin{equation}
-  \begin{aligned}
-    u_x & = m_{10}^{(p)} = m_{10}^{*(p)} \\
-    u_y & = m_{01}^{(p)} = m_{01}^{*(p)}
-  \end{aligned} \quad \forall p
-\end{equation}
 
 \subsubsection{Mass conservation}
 \label{subs:Mass conservation}
