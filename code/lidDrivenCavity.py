@@ -23,13 +23,15 @@
 from numpy import *
 from matplotlib import cm, pyplot
 from VTKWrapper import saveToVTK
+from auxiliary.collide import BGKCollide, cumulantCollide
+from auxiliary.stream import stream
 from ghiaResults import *
 import os
 
 
 ###### Plot settings ############################################################
 
-plotEveryN    = 10         # draw every plotEveryN'th cycle
+plotEveryN    = 1         # draw every plotEveryN'th cycle
 skipFirstN    = 0       # do not process the first skipFirstN cycles
 savePlot      = True      # save velocity norm and x velocity plot
 liveUpdate    = True     # show the process of the simulation (slow)
@@ -40,7 +42,7 @@ workingFolder = os.getcwd()
 
 
 ###### Flow definition #########################################################
-maxIterations = 1  # Total number of time iterations.
+maxIterations = 250  # Total number of time iterations.
 Re            = 100.0   # Reynolds number.re
 
 # Number of Cells
@@ -117,157 +119,6 @@ iBot    = arange(q)[asarray([ci[1] <  0 for ci in c])]
 def sumPopulations(fin):
     return sum(fin, axis = 0)
 
-def collide(fin, omega, u):
-    print "precollide"
-
-    print amax(fin[0, :, :])
-
-    print amax(fin[1, :, :])
-    print amax(fin[2, :, :])
-    print amax(fin[3, :, :])
-    print amax(fin[4, :, :])
-
-    print amax(fin[5, :, :])
-    print amax(fin[6, :, :])
-    print amax(fin[7, :, :])
-    print amax(fin[8, :, :])
-
-    # central moments
-    ux = u[0, :, :]
-    uy = u[1, :, :]
-
-    print "\nvelocities"
-    print amax(ux)
-    print amax(uy)
-
-    # c_{i beta}
-    # c_{-1 beta}
-    cDash_n1_0 =       fin[3, :, :] +                 fin[7, :, :] +               fin[6, :, :]
-    cDash_n1_1 =   -uy*fin[3, :, :] +         (-1-uy)*fin[7, :, :] +        (1-uy)*fin[6, :, :]
-    cDash_n1_2 = uy*uy*fin[3, :, :] + (-1-uy)*(-1-uy)*fin[7, :, :] + (1-uy)*(1-uy)*fin[6, :, :]
-
-    # c_{0 beta}
-    cDash_0_0 =       fin[0, :, :] +                 fin[4, :, :] +               fin[2, :, :]
-    cDash_0_1 =   -uy*fin[0, :, :] +         (-1-uy)*fin[4, :, :] +        (1-uy)*fin[2, :, :]
-    cDash_0_2 = uy*uy*fin[0, :, :] + (-1-uy)*(-1-uy)*fin[4, :, :] + (1-uy)*(1-uy)*fin[2, :, :]
-
-    # c_{1 beta}
-    cDash_1_0 =       fin[1, :, :] +                 fin[8, :, :] +               fin[5, :, :]
-    cDash_1_1 =   -uy*fin[1, :, :] +         (-1-uy)*fin[8, :, :] +        (1-uy)*fin[5, :, :]
-    cDash_1_2 = uy*uy*fin[1, :, :] + (-1-uy)*(-1-uy)*fin[8, :, :] + (1-uy)*(1-uy)*fin[5, :, :]
-
-    # c{alpha beta}
-    # c{alpha 0}
-    c_00 =                 cDash_n1_0 +       cDash_0_0 +               cDash_1_0
-    c_10 =         (-1-ux)*cDash_n1_0 -    ux*cDash_0_0 +        (1-ux)*cDash_1_0
-    c_20 = (-1-ux)*(-1-ux)*cDash_n1_0 + ux*ux*cDash_0_0 + (1-ux)*(1-ux)*cDash_1_0
-
-    # c{alpha 1}
-    c_01 =                 cDash_n1_1 +       cDash_0_1 +               cDash_1_1
-    c_11 =         (-1-ux)*cDash_n1_1 -    ux*cDash_0_1 +        (1-ux)*cDash_1_1
-    c_21 = (-1-ux)*(-1-ux)*cDash_n1_1 + ux*ux*cDash_0_1 + (1-ux)*(1-ux)*cDash_1_1
-
-    # c{alpha 2}
-    c_02 =                 cDash_n1_2 +       cDash_0_2 +               cDash_1_2
-    c_12 =         (-1-ux)*cDash_n1_2 -    ux*cDash_0_2 +        (1-ux)*cDash_1_2
-    c_22 = (-1-ux)*(-1-ux)*cDash_n1_2 + ux*ux*cDash_0_2 + (1-ux)*(1-ux)*cDash_1_2
-
-    # only K22 differs from the central moments
-    K_22 = c_22 - 2*c_11*c_11 - c_20*c_02
-
-    print "\nnormalized cumulants"
-    print amax(c_00)
-    print amax(c_10)
-    print amax(c_01)
-    print amax(c_11)
-    print amax(c_20)
-    print amax(c_02)
-    print amax(c_21)
-    print amax(c_12)
-    print amax(c_22)
-
-    #print "\ncollide"
-    # collision
-    #c_00_post = c_00
-    #c_10_post = c_10
-    #c_01_post = c_01#
-
-    #c_11_post = (1-omega)*c_11
-
-    #c_20_post = 1/3 + 0.5*(1-omega)*(c_20 - c_02)
-    #c_02_post = 1/3 - 0.5*(1-omega)*(c_20 - c_02)
-
-    #c_21_post = 0
-    #c_12_post = 0
-
-    #K_22_post = 0
-
-    # no Collision
-    c_00_post = c_00
-    c_10_post = c_10
-    c_01_post = c_01
-    c_11_post = c_11
-    c_20_post = c_20
-    c_02_post = c_02
-
-    c_21_post = c_21
-    c_12_post = c_12
-
-    K_22_post = K_22
-
-    # Transformation to central moments
-    c_22_post = K_22_post + 2*c_11_post*c_11_post + c_20_post*c_02_post
-
-
-    # backward transformation
-    # cDash_n1_0_post = -0.5*(ux*(1 - ux))*c_00_post - 0.5*(1-2*ux)*c_10_post + 0.5*c_20_post
-    # cDash_0_0_post  =          (1-ux*ux)*c_00_post -         2*ux*c_10_post -     c_20_post
-    # cDash_1_0_post  =  0.5*(ux*(1 + ux))*c_00_post + 0.5*(1+2*ux)*c_10_post + 0.5*c_20_post
-
-    cDash_n1_0_post = -0.5*(ux*(1 - ux))*c_00_post - 0.5*(1-2*ux)*c_10_post + 0.5*c_20_post
-    cDash_0_0_post  =          (1-ux*ux)*c_00_post -         2*ux*c_10_post -     c_20_post
-    cDash_1_0_post  =  0.5*(ux*(1 + ux))*c_00_post + 0.5*(1+2*ux)*c_10_post + 0.5*c_20_post
-
-    cDash_n1_1_post = -0.5*(ux*(1 - ux))*c_01_post - 0.5*(1-2*ux)*c_11_post + 0.5*c_21_post
-    cDash_0_1_post  =          (1-ux*ux)*c_01_post -         2*ux*c_11_post -     c_21_post
-    cDash_1_1_post  =  0.5*(ux*(1 + ux))*c_01_post + 0.5*(1+2*ux)*c_11_post + 0.5*c_21_post
-
-    cDash_n1_2_post = -0.5*(ux*(1 - ux))*c_02_post - 0.5*(1-2*ux)*c_12_post + 0.5*c_22_post
-    cDash_0_2_post  =          (1-ux*ux)*c_02_post -         2*ux*c_12_post -     c_22_post
-    cDash_1_2_post  =  0.5*(ux*(1 + ux))*c_02_post + 0.5*(1+2*ux)*c_12_post + 0.5*c_22_post
-
-    # post collision distributions
-    # f__i_n1_post = -0.5*(uy*(1 - uy))*cDash_i_0_post - 0.5*(1-2*uy)*cDash_i_1_post + 0.5*cDash_i_2_post
-    # f__i_0_post  =        (1 - uy*uy)*cDash_i_0_post -         2*uy*cDash_i_1_post -     cDash_i_2_post
-    # f__i_1_post  = -0.5*(uy*(1 + uy))*cDash_i_0_post + 0.5*(1+2*uy)*cDash_i_1_post + 0.5*cDash_i_2_post
-
-    f__n1_n1_post = -0.5*(uy*(1 - uy))*cDash_n1_0_post - 0.5*(1-2*uy)*cDash_n1_1_post + 0.5*cDash_n1_2_post
-    f__n1_0_post  =        (1 - uy*uy)*cDash_n1_0_post -         2*uy*cDash_n1_1_post -     cDash_n1_2_post
-    f__n1_1_post  = -0.5*(uy*(1 + uy))*cDash_n1_0_post + 0.5*(1+2*uy)*cDash_n1_1_post + 0.5*cDash_n1_2_post
-
-    f__0_n1_post = -0.5*(uy*(1 - uy))*cDash_0_0_post - 0.5*(1-2*uy)*cDash_0_1_post + 0.5*cDash_0_2_post
-    f__0_0_post  =        (1 - uy*uy)*cDash_0_0_post -         2*uy*cDash_0_1_post -     cDash_0_2_post
-    f__0_1_post  = -0.5*(uy*(1 + uy))*cDash_0_0_post + 0.5*(1+2*uy)*cDash_0_1_post + 0.5*cDash_0_2_post
-
-    f__1_n1_post = -0.5*(uy*(1 - uy))*cDash_1_0_post - 0.5*(1-2*uy)*cDash_1_1_post + 0.5*cDash_1_2_post
-    f__1_0_post  =        (1 - uy*uy)*cDash_1_0_post -         2*uy*cDash_1_1_post -     cDash_1_2_post
-    f__1_1_post  = -0.5*(uy*(1 + uy))*cDash_1_0_post + 0.5*(1+2*uy)*cDash_1_1_post + 0.5*cDash_1_2_post
-
-    print "\npost collision distributions"
-    print amax(f__0_0_post)
-
-    print amax(f__1_0_post)
-    print amax(f__0_1_post)
-    print amax(f__n1_0_post)
-    print amax(f__0_n1_post)
-
-    print amax(f__1_1_post)
-    print amax(f__n1_1_post)
-    print amax(f__n1_n1_post)
-    print amax(f__1_n1_post)
-
-    return array([f__0_0_post, f__1_0_post, f__0_1_post, f__n1_0_post, f__0_n1_post,   f__1_1_post, f__n1_1_post, f__n1_n1_post, f__1_n1_post])
-
 # Equilibrium distribution function.
 def equilibrium(rho, u):
     cu   = 3.0 * dot(c, u.transpose(1, 0, 2))
@@ -325,21 +176,10 @@ for time in range(maxIterations):
     feq = equilibrium(rho, u)
 
     # Collision step.
-    fpost = collide(fin, omega, u)
+    fpost = cumulantCollide(fin, omega, u)
 
     # Streaming step
-    fin[0, :, :] = fpost[0, :, :]
-
-    fin[1, 1:nxl,   :]     = fpost[1, 0:nxl-1,  :]
-    fin[2,   :,   0:nyl-1] = fpost[2,   :,    1:nyl]
-    fin[3, 0:nxl-1, :]     = fpost[3, 1:nxl,    :]
-    fin[4,   :,   1:nyl]   = fpost[4,   :,    0:nyl-1]
-
-    fin[5, 1:nxl,   0:nyl-1] = fpost[5, 0:nxl-1, 1:nyl]
-    fin[6, 0:nxl-1, 0:nyl-1] = fpost[6, 1:nxl,   1:nyl]
-    fin[7, 0:nxl-1, 1:nyl]   = fpost[7, 1:nxl,   0:nyl-1]
-    fin[8, 1:nxl,   1:nyl]   = fpost[8, 0:nxl-1, 0:nyl-1]
-
+    fin = stream(fpost)
 
     # impulse ramping
     factor = clamp(time, 100, 100)/100.
