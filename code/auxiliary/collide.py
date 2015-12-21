@@ -9,10 +9,6 @@ def cumulantCollide(fin, omega, u):
     ux = u[0, :, :]
     uy = u[1, :, :]
 
-    #print "\nvelocities"
-    #print amax(ux)
-    #print amax(uy)
-
     # c_{i beta}
     # c_{-1 beta}
     cDash_n1_0 =       fin[3, :, :] +                 fin[7, :, :] +               fin[6, :, :]
