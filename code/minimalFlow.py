@@ -38,7 +38,7 @@ workingFolder = os.getcwd()
 
 
 ###### Flow definition #########################################################
-maxIterations = 200000  # Total number of time iterations.
+maxIterations = 230  # Total number of time iterations.
 Re            = 100.0   # Reynolds number.re
 
 # Number of Cells
