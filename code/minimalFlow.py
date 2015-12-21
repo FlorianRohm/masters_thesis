@@ -108,11 +108,25 @@ for time in range(maxIterations):
     # Calculate macroscopic density and velocity
     (rho, u) = getMacroValues(fin)
 
+    predensity = sum(rho)
+    preVelX = sum(u[0,:,:])
+    preVelY = sum(u[1,:,:])
+
+
     feq = equilibrium(rho, u)
 
     # Collision step.
-    fpost = BGKCollide(fin, feq, omega)
-    # fpost = cumulantCollide(fin, omega, u)
+    # fpost = BGKCollide(fin, feq, omega)
+    fpost = cumulantCollide(fin, omega, u)
+
+    (rho, u) = getMacroValues(fpost)
+
+    deltaRho = sum(rho) - predensity
+    deltaVelX = sum(u[0,:,:]) - preVelX
+    deltaVelY = sum(u[0,:,:]) - preVelY
+    maxRho = amax(rho)
+    minRho = amin(rho)
+    print minRho
 
     # Streaming step
     fin = stream(fpost)
