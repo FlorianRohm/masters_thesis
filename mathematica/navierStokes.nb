@@ -10,16 +10,19 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     22746,        680]
-NotebookOptionsPosition[     22081,        652]
-NotebookOutlinePosition[     22418,        667]
-CellTagsIndexPosition[     22375,        664]
+NotebookDataLength[     22919,        682]
+NotebookOptionsPosition[     22229,        653]
+NotebookOutlinePosition[     22566,        668]
+CellTagsIndexPosition[     22523,        665]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input"],
 
 Cell[CellGroupData[{
+
 Cell["Navier Stokes Calculations", "Section",
  CellChangeTimes->{{3.659339713701664*^9, 3.659339721001143*^9}}],
 
@@ -28,93 +31,91 @@ Cell[CellGroupData[{
 Cell["Listing the variables for lookup", "Subsection",
  CellChangeTimes->{{3.6593397326197147`*^9, 3.659339755143984*^9}}],
 
-Cell[BoxData[{
+Cell[BoxData[
  RowBox[{
-  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
   RowBox[{"(*", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"\[Rho]", "[", 
      RowBox[{"x_", ",", "y_", ",", "t_"}], "]"}], "\[IndentingNewLine]", 
     RowBox[{"p", "[", 
      RowBox[{"x_", ",", "y_", ",", "t_"}], "]"}]}], "\[IndentingNewLine]", 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"v", "[", 
-    RowBox[{"x_", ",", "y_", ",", " ", "t_"}], "]"}], " ", ":=", " ", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"v1", "[", 
-       RowBox[{"x", ",", "y", ",", "t"}], "]"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"v2", "[", 
-       RowBox[{"x", ",", "y", ",", "t"}], "]"}], "}"}]}], "}"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
+   "*)"}], "\[IndentingNewLine]", 
   RowBox[{
    RowBox[{
-    RowBox[{"m", "[", 
-     RowBox[{"x_", ",", "y_", ",", "t_"}], "]"}], ":=", " ", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"m1", "[", 
-        RowBox[{"x", ",", "y", ",", "t"}], "]"}], " ", "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"m2", "[", 
-        RowBox[{"x", ",", "y", ",", "t"}], "]"}], "}"}]}], "}"}]}], ";"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{"m", "[", 
-     RowBox[{"x_", ",", "y_", ",", "t_"}], "]"}], ":=", " ", 
     RowBox[{
-     RowBox[{"\[Rho]", "[", 
-      RowBox[{"x", ",", "y", ",", "t"}], "]"}], " ", 
      RowBox[{"v", "[", 
-      RowBox[{"x", ",", "y", ",", "t"}], "]"}]}]}], 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
+      RowBox[{"x_", ",", "y_", ",", " ", "t_"}], "]"}], " ", ":=", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"v1", "[", 
+         RowBox[{"x", ",", "y", ",", "t"}], "]"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"v2", "[", 
+         RowBox[{"x", ",", "y", ",", "t"}], "]"}], "}"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"f", "[", 
-     RowBox[{"x_", ",", "y_", ",", "t_"}], "]"}], " ", ":=", " ", 
+    RowBox[{
+     RowBox[{"m", "[", 
+      RowBox[{"x_", ",", "y_", ",", "t_"}], "]"}], ":=", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"m1", "[", 
+         RowBox[{"x", ",", "y", ",", "t"}], "]"}], " ", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"m2", "[", 
+         RowBox[{"x", ",", "y", ",", "t"}], "]"}], "}"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"m", "[", 
+      RowBox[{"x_", ",", "y_", ",", "t_"}], "]"}], ":=", " ", 
+     RowBox[{
+      RowBox[{"\[Rho]", "[", 
+       RowBox[{"x", ",", "y", ",", "t"}], "]"}], " ", 
+      RowBox[{"v", "[", 
+       RowBox[{"x", ",", "y", ",", "t"}], "]"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"x_", ",", "y_", ",", "t_"}], "]"}], " ", ":=", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"f1", "[", 
+         RowBox[{"x", ",", "y", ",", "t"}], "]"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"f2", "[", 
+         RowBox[{"x", ",", "y", ",", "t"}], "]"}], "}"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"nablaOtimesV", "[", 
+     RowBox[{"x_", ",", "y_", ",", "t_"}], "]"}], " ", ":=", 
     RowBox[{"{", 
      RowBox[{
       RowBox[{"{", 
-       RowBox[{"f1", "[", 
-        RowBox[{"x", ",", "y", ",", "t"}], "]"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[PartialD]", "x"], 
+         RowBox[{"v1", "[", 
+          RowBox[{"x", ",", "y", ",", "t"}], "]"}]}], ",", " ", 
+        RowBox[{
+         SubscriptBox["\[PartialD]", "x"], 
+         RowBox[{"v2", "[", 
+          RowBox[{"x", ",", "y", ",", "t"}], "]"}]}]}], "}"}], ",", 
       RowBox[{"{", 
-       RowBox[{"f2", "[", 
-        RowBox[{"x", ",", "y", ",", "t"}], "]"}], "}"}]}], "}"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"nablaOtimesV", "[", 
-   RowBox[{"x_", ",", "y_", ",", "t_"}], "]"}], " ", ":=", 
-  RowBox[{"{", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{
-       SubscriptBox["\[PartialD]", "x"], 
-       RowBox[{"v1", "[", 
-        RowBox[{"x", ",", "y", ",", "t"}], "]"}]}], ",", " ", 
-      RowBox[{
-       SubscriptBox["\[PartialD]", "x"], 
-       RowBox[{"v2", "[", 
-        RowBox[{"x", ",", "y", ",", "t"}], "]"}]}]}], "}"}], ",", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{
-       SubscriptBox["\[PartialD]", "y"], 
-       RowBox[{"v1", "[", 
-        RowBox[{"x", ",", "y", ",", "t"}], "]"}]}], ",", " ", 
-      RowBox[{
-       SubscriptBox["\[PartialD]", "y"], 
-       RowBox[{"v2", "[", 
-        RowBox[{"x", ",", "y", ",", "t"}], "]"}]}]}], "}"}]}], 
-   "}"}]}]}], "Input",
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[PartialD]", "y"], 
+         RowBox[{"v1", "[", 
+          RowBox[{"x", ",", "y", ",", "t"}], "]"}]}], ",", " ", 
+        RowBox[{
+         SubscriptBox["\[PartialD]", "y"], 
+         RowBox[{"v2", "[", 
+          RowBox[{"x", ",", "y", ",", "t"}], "]"}]}]}], "}"}]}], 
+     "}"}]}]}]}]], "Input",
  CellChangeTimes->{{3.659339756689863*^9, 3.659339879047615*^9}, {
    3.659339943386115*^9, 3.659339968529057*^9}, {3.659340102136821*^9, 
    3.659340122752096*^9}, {3.659340295464706*^9, 3.659340300605281*^9}, {
@@ -122,7 +123,7 @@ Cell[BoxData[{
    3.659340967309641*^9, 3.659341081400442*^9}, {3.659341144224721*^9, 
    3.659341177363504*^9}, {3.659695773082349*^9, 3.659695773923614*^9}, {
    3.659695843368897*^9, 3.659695845708949*^9}, {3.6596965030973463`*^9, 
-   3.659696577550465*^9}}]
+   3.659696577550465*^9}, {3.6597669383302603`*^9, 3.659766942908923*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -650,8 +651,8 @@ right)+\\mu
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{900, 1049},
-WindowMargins->{{Automatic, -8}, {Automatic, -8}},
+WindowSize->{900, 1028},
+WindowMargins->{{Automatic, -9}, {Automatic, -8}},
 FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
 StyleDefinitions->"Default.nb"
 ]
@@ -666,19 +667,20 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[558, 20, 76, 1, 32, "Input"],
 Cell[CellGroupData[{
-Cell[580, 22, 111, 1, 65, "Section"],
+Cell[659, 25, 111, 1, 65, "Section"],
 Cell[CellGroupData[{
-Cell[716, 27, 122, 1, 45, "Subsection"],
-Cell[841, 30, 3310, 94, 276, "Input"]
+Cell[795, 30, 122, 1, 45, "Subsection"],
+Cell[920, 33, 3379, 92, 254, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4188, 129, 103, 1, 44, "Subsection"],
-Cell[4294, 132, 1252, 31, 77, "Input"],
-Cell[5549, 165, 1440, 38, 55, "Input"],
+Cell[4336, 130, 103, 1, 44, "Subsection"],
+Cell[4442, 133, 1252, 31, 77, "Input"],
+Cell[5697, 166, 1440, 38, 55, "Input"],
 Cell[CellGroupData[{
-Cell[7014, 207, 13287, 395, 480, InheritFromParent],
-Cell[20304, 604, 1737, 43, 568, "Output"]
+Cell[7162, 208, 13287, 395, 480, "Input"],
+Cell[20452, 605, 1737, 43, 554, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]

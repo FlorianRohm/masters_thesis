@@ -1,0 +1,170 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4714,        160]
+NotebookOptionsPosition[      4115,        133]
+NotebookOutlinePosition[      4452,        148]
+CellTagsIndexPosition[      4409,        145]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Cumulants and Moments", "Section",
+ CellChangeTimes->{{3.65971024894009*^9, 3.6597102572973213`*^9}, {
+  3.65971031108927*^9, 3.659710312547435*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Defining the Cumulants", "Subsection",
+ CellChangeTimes->{{3.659710506663208*^9, 3.659710516409958*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Kappa]", "[", 
+    RowBox[{"\[Alpha]_", ",", "\[Beta]_", ",", "max_"}], "]"}], " ", ":=", 
+   " ", 
+   RowBox[{"Sum", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[Epsilon]", "^", "p"}], " ", 
+      RowBox[{"\[Kappa]p", "[", 
+       RowBox[{"\[Alpha]", ",", "\[Beta]", ",", "p"}], "]"}]}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"p", ",", "0", ",", "max"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"m", "[", 
+    RowBox[{"\[Alpha]_", ",", "\[Beta]_", ",", "max_"}], "]"}], " ", ":=", 
+   " ", 
+   RowBox[{"Sum", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\[Epsilon]", "^", "p"}], " ", 
+      RowBox[{"mp", "[", 
+       RowBox[{"\[Alpha]", ",", "\[Beta]", ",", "p"}], "]"}]}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"p", ",", "0", ",", "max"}], "}"}]}], "]"}]}], ";"}]}], "Input",\
+
+ CellChangeTimes->{{3.659710523215424*^9, 3.659710712034816*^9}, {
+  3.6597107445946827`*^9, 3.659710832378538*^9}, {3.659710870651341*^9, 
+  3.6597110081659307`*^9}, {3.6597112430803957`*^9, 3.659711245545978*^9}, {
+  3.659711358853072*^9, 3.659711367410532*^9}, {3.65971147240886*^9, 
+  3.659711502106985*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Coefficient", "[", 
+   RowBox[{
+    RowBox[{"\[Kappa]", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]", ",", " ", "5"}], "]"}], ",", 
+    "\[Epsilon]", ",", "1"}], "]"}], " ", "\[Equal]", " ", 
+  RowBox[{"Coefficient", "[", 
+   RowBox[{
+    RowBox[{"m", "[", 
+     RowBox[{"\[Alpha]", ",", "\[Beta]", ",", "5"}], "]"}], ",", "\[Epsilon]",
+     ",", "1"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.659711583426139*^9, 3.65971163536985*^9}, {
+  3.659711724856872*^9, 3.659711730741041*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[Kappa]p", "[", 
+   RowBox[{"\[Alpha]", ",", "\[Beta]", ",", "1"}], "]"}], "\[Equal]", 
+  RowBox[{"mp", "[", 
+   RowBox[{"\[Alpha]", ",", "\[Beta]", ",", "1"}], "]"}]}]], "Output",
+ CellChangeTimes->{3.6597117320116463`*^9, 3.6597661682796717`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Coefficient", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[Kappa]", "[", 
+      RowBox[{"1", ",", "0", ",", "10"}], "]"}], 
+     RowBox[{"m", "[", 
+      RowBox[{"0", ",", "0", ",", "10"}], "]"}]}], ",", "\[Epsilon]", ",", 
+    "1"}], "]"}], " ", "==", " ", 
+  RowBox[{"Coefficient", "[", 
+   RowBox[{
+    RowBox[{"m", "[", 
+     RowBox[{"1", ",", "0", ",", "10"}], "]"}], ",", "\[Epsilon]", ",", "1"}],
+    "]"}]}]], "Input",
+ CellChangeTimes->{{3.659711825520122*^9, 3.659711916238311*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"mp", "[", 
+     RowBox[{"0", ",", "0", ",", "1"}], "]"}], " ", 
+    RowBox[{"\[Kappa]p", "[", 
+     RowBox[{"1", ",", "0", ",", "0"}], "]"}]}], "+", 
+   RowBox[{
+    RowBox[{"mp", "[", 
+     RowBox[{"0", ",", "0", ",", "0"}], "]"}], " ", 
+    RowBox[{"\[Kappa]p", "[", 
+     RowBox[{"1", ",", "0", ",", "1"}], "]"}]}]}], "\[Equal]", 
+  RowBox[{"mp", "[", 
+   RowBox[{"1", ",", "0", ",", "1"}], "]"}]}]], "Output",
+ CellChangeTimes->{
+  3.659711664753086*^9, {3.659711826580119*^9, 3.6597119168363867`*^9}, 
+   3.659766168372777*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{875, 1049},
+WindowMargins->{{Automatic, -8}, {Automatic, -8}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 155, 2, 65, "Section"],
+Cell[CellGroupData[{
+Cell[760, 28, 110, 1, 45, "Subsection"],
+Cell[873, 31, 1207, 33, 55, "Input"],
+Cell[CellGroupData[{
+Cell[2105, 68, 522, 13, 32, "Input"],
+Cell[2630, 83, 284, 6, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2951, 94, 529, 15, 32, "Input"],
+Cell[3483, 111, 592, 17, 32, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
