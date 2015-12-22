@@ -1283,6 +1283,7 @@ The split equations read
 
 For $\epsilon^2$, $\alpha=1$, $\beta=0$ we get
 \begin{equation}
+  \label{eq: start of momentum equation derivation}
   \begin{aligned}
      \partial_t m_{10}^{(1)} =
     m_{10}^{*(3)} - m_{10}^{(3)}
@@ -1290,16 +1291,72 @@ For $\epsilon^2$, $\alpha=1$, $\beta=0$ we get
     \partial_y \highlight[green]{m_{11}^{*(2)}} + \frac{1}{2}\partial_{xx} m_{30}^{*(1)} + \frac{1}{2} \partial_{yy} m_{12}^{*(1)} + \partial_{xy} m_{21}^{*(1)}
   \end{aligned}
 \end{equation}
-We find the terms $\partial_t m_{10}^{(1)} $ which is the desired time derivative from the momentum equation and $ m_{10}^{*(3)} - m_{10}^{(3)}$ which is the non-conserved term of the $x$-velocity, due to an external force. For all other moments, we need to derive further equations.
-
-$\epsilon^2$, $\alpha=2$, $\beta=0$
+We find the terms $\partial_t m_{10}^{(1)} $ which is the desired time derivative from the momentum equation and
 \begin{equation}
+  m_{10}^{*(3)} - m_{10}^{(3)}\defines F_x^{(3)}
+\end{equation}
+ which is the non-conserved term of the $x$-velocity, due to an external force. For all other moments, we need to derive further equations.
+
+$\epsilon^2$, $\alpha=2$, $\beta=0$:
+\begin{equation}
+  \label{eq: m20* pde}
   m_{20}^{(2)} + \partial_t m_{20}^{(0)} + \partial_y m_{21}^{*(1)} + \partial_x m_{30}^{*(1)} = \highlight{m_{20}^{*(2)}}
 \end{equation}
 
-$\epsilon^2$, $\alpha=1$, $\beta=1$
+$\epsilon^2$, $\alpha=1$, $\beta=1$:
 \begin{equation}
+  \label{eq: m11* pde}
   m_{11}^{(2)} + \partial_t m_{11}^{(0)} + \partial_y m_{12}^{*(1)} + \partial_x m_{21}^{*(1)} = \highlight[green]{m_{11}^{*(2)}}
- \end{equation}
+\end{equation}
+
+Combining~\eqref{eq: start of momentum equation derivation} with~\eqref{eq: m20* pde} and~\eqref{eq: m11* pde} results in
+
+\begin{align}
+  \phantom{\partial_t m_{10}^{(1)}}
+  &\begin{aligned}
+  \nonumber
+    \mathllap{\partial_t m_{10}^{(1)}} & =
+    m_{10}^{*(3)} - m_{10}^{(3)}
+    - \left(\partial_x m_{20}^{(2)} + \partial_t\partial_x m_{20}^{(0)} + \partial_{xy} m_{21}^{*(1)} + \partial_{xx} m_{30}^{*(1)}\right) \\
+    &
+    - \left(\partial_y m_{11}^{(2)} + \partial_t\partial_y m_{11}^{(0)} + \partial_{yy} m_{12}^{*(1)} + \partial_{xy} m_{21}^{*(1)}\right) \\
+    &
+    + \frac{1}{2}\partial_{xx} m_{30}^{*(1)} + \frac{1}{2} \partial_{yy} m_{12}^{*(1)} + \partial_{xy} m_{21}^{*(1)}
+  \end{aligned} \\
+  %
+  &\begin{aligned}
+  \nonumber
+   & =
+    F_x^{(3)}
+    - \left(\partial_x m_{20}^{(2)} + \partial_{xy} m_{21}^{*(1)} + \partial_{xx} m_{30}^{*(1)}\right) \\
+    &
+    - \left(\partial_y m_{11}^{(2)} + \partial_{yy} m_{12}^{*(1)} + \partial_{xy} m_{21}^{*(1)}\right) \\
+    &
+    + \frac{1}{2}\partial_{xx} m_{30}^{*(1)} + \frac{1}{2} \partial_{yy} m_{12}^{*(1)} + \partial_{xy} m_{21}^{*(1)}
+  \end{aligned}\\
+%
+  &\begin{aligned}
+  \nonumber
+   & =
+    F_x^{(3)}
+    - \partial_x m_{20}^{(2)} - \partial_y m_{11}^{(2)}   \\
+    &
+    - \frac{1}{2} \left(\partial_{xx} m_{30}^{*(1)} + \partial_{yy} m_{12}^{*(1)} + 2\partial_{xy} m_{21}^{*(1)}\right)
+  \end{aligned}
+\end{align}
+
+As stated in~\eqref{eq:first order collision invariant}, the first order moments, hence have to be equal to their equilibrium value. Additionally, with the aliasing of moments as stated in table~\ref{table:D2Q9 moments}, we get
+\begin{equation}
+  \begin{aligned}
+  \partial_t m_{10}^{(1)}
+   & =
+    F_x^{(3)}
+    - \partial_x m_{20}^{(2)} - \partial_y m_{11}^{(2)} \\
+    &
+    - \frac{1}{2} \left(\partial_{xx} m_{10}^{eq(1)} + \partial_{yy} m_{12}^{eq(1)} + 2\partial_{xy} m_{21}^{eq(1)}\right)
+  \end{aligned}
+\end{equation}
+From here on, we have to consider our specific collision. To do so, we have to look at the series expansion of the cumulants and relate them to the moments\ldots
+
 
 \end{document}
