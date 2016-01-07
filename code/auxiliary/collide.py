@@ -4,7 +4,7 @@ def BGKCollide(fin, feq, omega):
     return fin - omega * (fin - feq)
 
 
-def cumulantCollide(fin, omega, u):
+def cumulantCollide(fin, omega, u, rho):
     # central moments
     ux = u[0, :, :]
     uy = u[1, :, :]
@@ -42,7 +42,7 @@ def cumulantCollide(fin, omega, u):
     c_22 = (-1-ux)*(-1-ux)*cDash_n1_2 + ux*ux*cDash_0_2 + (1-ux)*(1-ux)*cDash_1_2
 
     # only K22 differs from the central moments
-    K_22 = c_22 - 2*c_11*c_11 - c_20*c_02
+    K_22 = c_22 - 2*c_11*c_11/rho - c_20*c_02/rho
 
     #print "\ncollide"
     # collision
@@ -74,7 +74,7 @@ def cumulantCollide(fin, omega, u):
     # K_22_post = K_22
 
     # Transformation to central moments
-    c_22_post = K_22_post + 2*c_11_post*c_11_post + c_20_post*c_02_post
+    c_22_post = K_22_post + 2*c_11_post*c_11_post/rho + c_20_post*c_02_post/rho
 
 
     # backward transformation
