@@ -383,17 +383,19 @@ are introduced.
   K_{00} & = 1 \label{eq: kappa_00 from moments}\\
   K_{10} & = m_{10} \label{eq: kappa_10 from moments}\\
   K_{01} & = m_{01} \label{eq: kappa_01 from moments}\\
-  K_{11} & = m_{11} - m_{10}m_{01} \\
-  K_{20} & = m_{20} - m_{10}^2 \\
-  K_{02} & = m_{02} - m_{01}^2 \\
-  K_{21} & = m_{21} - 2 m_{20} m_{01}
-            - 2 m_{10} m_{11} - 2 m_{10}^2m_{01} \\
-  K_{12} & = m_{12} - 2 m_{10} m_{02}
-            - 2 m_{11} m_{01} - 2 m_{10}m_{01}^2 \\
+  K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}} \\
+  K_{20} & = m_{20} - \frac{m_{10}^2}{m_{00}} \\
+  K_{02} & = m_{02} - \frac{m_{01}^2}{m_{00}} \\
+  K_{21} & = m_{21} - 2 \frac{m_{20} m_{01}}{m_{00}}
+            - 2 \frac{m_{10} m_{11}}{m_{00}} - 2 \frac{m_{10}^2m_{01}}{m_{00}^2} \\
+  K_{12} & = m_{12} - 2 \frac{m_{10} m_{02}}{m_{00}}
+            - 2 \frac{m_{11} m_{01}}{m_{00}} - 2 \frac{m_{10}m_{01}^2}{m_{00}^2} \\
   K_{22} & = m_{22} \\
-       & \quad - 2 m_{10}m_{12}  - m_{21}m_{01} - m_{21}m_{01} - 2 m_{11}^2 - m_{20}m_{02} \\
-       & \quad +  2m_{10}^2 m_{02} + 8 m_{10}m_{11}m_{01} + 2m_{20}m_{01}^2 \\
-       & \quad - 6 m_{10}^2 m_{01}^2
+       & \quad - 2 \frac{m_{10}m_{12}}{m_{00}} - \frac{m_{21}m_{01}}{m_{00}}
+       - \frac{m_{21}m_{01}}{m_{00}} - 2 \frac{m_{11}^2}{m_{00}} - \frac{m_{20}m_{02}}{m_{00}} \\
+       & \quad + 2 \frac{m_{10}^2 m_{02}}{m_{00}^2} + 8 \frac{m_{10}m_{11}m_{01}}{m_{00}^2}
+       + 2 \frac{m_{20}m_{01}^2}{m_{00}^2} \\
+       & \quad - 6 \frac{m_{10}^2 m_{01}^2}{m_{00}^3}
 \end{align}
 
 \subsection{Central moments from cumulants}
@@ -452,7 +454,7 @@ From there on, we can express
     \mathllap{c_{20}} & = {(-c)}^{-2} \partial_1 (EL_1)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
     & = {(-c)}^{-2} \big( EL_1^2 + E \partial_1^2\ln(F)\big)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
     & = {(-c)}^{-2} \big( 0 + \underbrace{E \bigr|_{\Xi_1=\Xi_2 = 0}}_{=m_{00}}
-    \underbrace{\partial_1^2\ln(F) \bigr|_{\Xi_1=\Xi_2 = 0}}_{={(-c)}^{-2}\kappa_{20}} \big) \\
+    \underbrace{\partial_1^2\ln(F) \bigr|_{\Xi_1=\Xi_2 = 0}}_{={(-c)}^{2}\kappa_{20}} \big) \\
     & = m_{00}\kappa_{20}
   \end{aligned}\\
   %
@@ -483,7 +485,16 @@ From there on, we can express
       E L_2^2 \partial_1^2 \ln(F) + E \partial_1^2 \ln(F) \partial_2^2 \ln(F) + E L_2 \partial_1\partial_2^2 \ln(F) \\
     & \qquad\quad\ \ +
       E L_2 \partial_1^2 \partial_2 \ln(F) + E\partial_1^2\partial_2^2 \ln(F)
-      \big) \\
+      \big) \bigr|_{\Xi_1=\Xi_2 = 0} \\
+    & = {(-c)}^{-4} \big(
+    0 + 0 + 0 \\
+    & \qquad\quad\ \ +
+      0 + 2 E \partial_1\partial_2 \ln(F) \partial_1\partial_2 \ln(F) + 0 \\
+    & \qquad\quad\ \ +
+      0 + E \partial_1^2 \ln(F) \partial_2^2 \ln(F) + 0 \\
+    & \qquad\quad\ \ +
+      0 + E\partial_1^2\partial_2^2 \ln(F)
+      \big) \bigr|_{\Xi_1=\Xi_2 = 0} \\
     & = m_{00}(\kappa_{22} + 2\kappa_{11}^2 + \kappa_{20}\kappa_{02})
   \end{aligned}
 \end{align*}
@@ -520,7 +531,7 @@ As shown in the previous section, the cumulants only appear together with the de
   c_{11} & = K_{11} \\
   c_{21} & = K_{21} \\
   c_{12} & = K_{12} \\
-  c_{22} & = K_{22} + 2K_{11}^2 + K_{20}K_{02}
+  c_{22} & = K_{22} + 2 \frac{K_{11}^2}{m_{00}} + \frac{K_{20}K_{02}}{m_{00}}
 \end{align}
 which is much more convenient to handle.
 
@@ -555,7 +566,7 @@ or with the normalized cumulants
   K_{11} & = c_{11} \\
   K_{21} & = c_{21} \\
   K_{12} & = c_{12} \\
-  K_{22} & = c_{22} - 2{c_{11}}^2 - c_{20}c_{02}
+  K_{22} & = c_{22} - 2 \frac{{c_{11}}^2}{m_{00}} - \frac{c_{20}c_{02}}{m_{00}}
 \end{align}
 
 \subsection{Fast central moment transformations}
