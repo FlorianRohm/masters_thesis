@@ -18,7 +18,7 @@
 from numpy import *
 from matplotlib import pyplot
 from auxiliary.VTKWrapper import saveToVTK
-from auxiliary.collide import BGKCollide, cumulantCollide
+from auxiliary.collide import BGKCollide, cumulantCollide, cumulantCollideAll, centralMomentSRT
 from auxiliary.stream import stream
 from auxiliary.LBMHelpers import getMacroValues,equilibrium
 from auxiliary.visualize import visualize
@@ -27,7 +27,7 @@ import os
 
 ###### Plot settings ############################################################
 
-plotEveryN    = 10         # draw every plotEveryN'th cycle
+plotEveryN    = 1         # draw every plotEveryN'th cycle
 skipFirstN    = 0       # do not process the first skipFirstN cycles
 savePlot      = True      # save velocity norm and x velocity plot
 liveUpdate    = True      # show the process of the simulation (slow)
@@ -119,6 +119,7 @@ for time in range(maxIterations):
     #fpost = BGKCollide(fin, feq, omega)
     #fpost = cumulantCollide(fin, u, rho, omega)
     #fpost = cumulantCollideAll(fin, u, rho, omega, omega, omega, omega)
+    fpost = centralMomentSRT(fin, feq, u, omega)
 
     (rho, u) = getMacroValues(fpost)
 
