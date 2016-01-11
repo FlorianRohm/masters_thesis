@@ -118,6 +118,7 @@ for time in range(maxIterations):
     # Collision step.
     # fpost = BGKCollide(fin, feq, omega)
     fpost = cumulantCollide(fin, omega, u, rho)
+    #fpost = cumulantCollide(fin, u, rho, omega)
 
     (rho, u) = getMacroValues(fpost)
 

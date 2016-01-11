@@ -4,7 +4,7 @@ def BGKCollide(fin, feq, omega):
     return fin - omega * (fin - feq)
 
 
-def cumulantCollide(fin, omega, u, rho):
+def cumulantCollide(fin, u, rho, omega):
     # central moments
     ux = u[0, :, :]
     uy = u[1, :, :]
