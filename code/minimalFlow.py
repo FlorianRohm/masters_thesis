@@ -116,9 +116,9 @@ for time in range(maxIterations):
     feq = equilibrium(rho, u)
 
     # Collision step.
-    # fpost = BGKCollide(fin, feq, omega)
-    fpost = cumulantCollide(fin, omega, u, rho)
+    #fpost = BGKCollide(fin, feq, omega)
     #fpost = cumulantCollide(fin, u, rho, omega)
+    #fpost = cumulantCollideAll(fin, u, rho, omega, omega, omega, omega)
 
     (rho, u) = getMacroValues(fpost)
 
