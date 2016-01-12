@@ -17,7 +17,6 @@
 
 from numpy import *
 from matplotlib import pyplot
-from auxiliary.VTKWrapper import saveToVTK
 from auxiliary.collide import BGKCollide, cumulantCollide, cumulantCollideAll, centralMomentSRT
 from auxiliary.stream import stream
 from auxiliary.LBMHelpers import getMacroValues,equilibrium
@@ -100,7 +99,7 @@ if ( liveUpdate ):
 
 os.chdir(outputFolder)
 
-plottingData = (plotEveryN, skipFirstN, liveUpdate, saveVTK, savePlot, ax, fig, prefix)
+plottingData = (plotEveryN, skipFirstN, liveUpdate, saveVTK, savePlot, ax, fig, grid, prefix)
 
 ###### Main time loop ##########################################################
 for time in range(maxIterations):

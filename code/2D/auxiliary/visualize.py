@@ -1,8 +1,8 @@
 from numpy import *
 from matplotlib import cm, pyplot
+from VTKWrapper import saveToVTK
 
-
-def visualize(u, rho, timestep, plotEveryN, skipFirstN, liveUpdate, saveVTK, savePlot, ax, fig, prefix):
+def visualize(u, rho, timestep, plotEveryN, skipFirstN, liveUpdate, saveVTK, savePlot, ax, fig, grid, prefix):
     # Visualization
     if ( (timestep % plotEveryN == 0) & (liveUpdate | saveVTK | savePlot) & (timestep > skipFirstN) ):
 
