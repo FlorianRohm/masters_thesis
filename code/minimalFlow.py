@@ -117,8 +117,8 @@ for time in range(maxIterations):
 
     # Collision step.
     #fpost = BGKCollide(fin, feq, omega)
-    #fpost = cumulantCollide(fin, u, rho, omega)
-    #fpost = cumulantCollideAll(fin, u, rho, omega, omega, omega, omega)
+    #fpost = cumulantCollide(fin, rho, u, omega)
+    #fpost = cumulantCollideAll(fin, rho, u, omega, omega, omega, omega)
     fpost = centralMomentSRT(fin, feq, u, omega)
 
     (rho, u) = getMacroValues(fpost)
