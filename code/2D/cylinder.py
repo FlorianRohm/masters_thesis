@@ -22,21 +22,21 @@
 
 from numpy import *
 from matplotlib import cm, pyplot
-from VTKWrapper import saveToVTK
-from collide import BGKCollide
-from stream import stream
-from LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
-from boundaryConditions import YuLeft
-from obstacle import obstacleAttack, drag, lift
+from auxiliary.VTKWrapper import saveToVTK
+from auxiliary.collide import BGKCollide
+from auxiliary.stream import stream
+from auxiliary.LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
+from auxiliary.boundaryConditions import YuLeft
+from auxiliary.obstacle import obstacleAttack, drag, lift
 
 import os
 
 
 ###### Plot settings ############################################################
 
-plotEveryN    = 100         # draw every plotEveryN'th cycle
-skipFirstN    = 1000       # do not process the first skipFirstN cycles
-savePlot      = True      # save velocity norm and x velocity plot
+plotEveryN    = 1         # draw every plotEveryN'th cycle
+skipFirstN    = 0       # do not process the first skipFirstN cycles
+savePlot      = False      # save velocity norm and x velocity plot
 liveUpdate    = True      # show the process of the simulation (slow)
 saveVTK       = False       # save the vtk files
 prefix        = 'cylinder'      # naming prefix for saved files
