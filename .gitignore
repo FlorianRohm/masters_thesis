@@ -6,5 +6,5 @@
 *.synctex.gz
 *.out
 *.toc
-/code/out/
+/**/out/
 *.pyc
