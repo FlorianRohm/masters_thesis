@@ -22,7 +22,7 @@ import os
 
 ###### settings ############################################################
 
-saveEveryN    = 10
+saveEveryN    = 1
 skipFirstN    = 0
 prefix        = 'minimal'      # naming prefix for saved files
 outputFolder  = './out'    # folder to save the output to
@@ -30,7 +30,7 @@ workingFolder = os.getcwd()
 
 ###### Flow definitions ####################################################
 
-maxIterations = 500
+maxIterations = 50
 Re            = 100. # Reynolds Number
 
 # Number of Cells
