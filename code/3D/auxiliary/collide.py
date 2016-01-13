@@ -64,7 +64,7 @@ def cumulantCollide(f, rho, u, omega):
     CS_201 = 0.5*(CS_201__p__CS_021 + CS_201__m__CS_021)
     CS_021 = 0.5*(CS_201__p__CS_021 - CS_201__m__CS_021)
 
-    C_111 = (1 - omega5) * C_111
+    CS_111 = (1 - omega5) * C_111
 
 
     CS_220__m__2CS_202__p__CS_022 = (1 - omega6)*(C_220 - 2*C_202 + C_022)
@@ -83,6 +83,6 @@ def cumulantCollide(f, rho, u, omega):
     CS_122 = (1 - omega9 )* C_122
     CS_222 = (1 - omega10 )* C_222
 
-    return distributionFromCumulants(rhoInv, u, C_000, C_001, C_002, C_010, C_011, C_012, C_020, C_021, C_022,
-                                                C_100, C_101, C_102, C_110, C_111, C_112, C_120, C_121, C_122,
-                                                C_200, C_201, C_202, C_210, C_211, C_212, C_220, C_221, C_222)
+    return distributionFromCumulants(rhoInv, u, CS_000, CS_001, CS_002, CS_010, CS_011, CS_012, CS_020, CS_021, CS_022,
+                                                CS_100, CS_101, CS_102, CS_110, CS_111, CS_112, CS_120, CS_121, CS_122,
+                                                CS_200, CS_201, CS_202, CS_210, CS_211, CS_212, CS_220, CS_221, CS_222)
