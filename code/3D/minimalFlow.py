@@ -14,7 +14,7 @@ from numpy import *
 
 from auxiliary.equilibrium import equilibrium
 from auxiliary.getMacroValues import getMacroValues
-from auxiliary.collide import BGKCollide
+from auxiliary.collide import BGKCollide, cumulantCollide
 from auxiliary.stream import stream
 from auxiliary.visualize import visualize
 
@@ -22,7 +22,7 @@ import os
 
 ###### settings ############################################################
 
-saveEveryN    = 1
+saveEveryN    = 10
 skipFirstN    = 0
 prefix        = 'minimal'      # naming prefix for saved files
 outputFolder  = './out'    # folder to save the output to
@@ -85,8 +85,8 @@ for time in range(maxIterations):
     #minRho = amin(rho)
     #print minRho
 
-    fpost = BGKCollide(fin, rho, u, omega)
-    # fpost = cumulantCollide(fin, rho, u, omega)
+    #fpost = BGKCollide(fin, rho, u, omega)
+    fpost = cumulantCollide(fin, rho, u, omega)
 
     fin = stream(fpost)
 
