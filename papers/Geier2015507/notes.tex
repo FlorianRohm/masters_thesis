@@ -180,13 +180,15 @@ In D2Q9, the moments are defined, according to~\eqref{eq:Definition of moments} 
 \end{equation*}
 Hence
 \begin{equation}
-  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^{(\alpha+2k)} j^\beta f_{ij}
+  \label{eq:aliasing of moments 1}
+  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^{(\alpha+2k)} j^\beta f_{ij} \quad \forall k, \forall \alpha \neq 0
 \end{equation}
-for $\alpha\neq 0$ and
+and
 \begin{equation}
-  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^{(\beta+2l)} f_{ij}
+  \label{eq:aliasing of moments 2}
+  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^{(\beta+2l)} f_{ij} \quad \forall l, \forall \beta \neq 0.
 \end{equation}
-for $\beta\neq 0$. According to this, the list of moments is as follows
+According to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}, the list of moments reads
 
 \begin{table} [h!]
   \centering
