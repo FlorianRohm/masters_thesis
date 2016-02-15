@@ -512,9 +512,6 @@ The missing central moments follow from permutation and will be listed in the fo
 
 \begin{align}
   \label{eq:all central moments from cumulants}
-  c_{00} & = m_{00} \\
-  c_{10} & = m_{00}\kappa_{10} \\
-  c_{01} & = m_{00}\kappa_{01} \\
   c_{20} & = m_{00}\kappa_{20} \\
   c_{02} & = m_{00}\kappa_{02} \\
   c_{11} & = m_{00}\kappa_{11} \\
@@ -523,6 +520,10 @@ The missing central moments follow from permutation and will be listed in the fo
   c_{22} & = m_{00}(\kappa_{22} + 2\kappa_{11}^2 + \kappa_{20}\kappa_{02})
 \end{align}
 As we can se here, cumulants only differ from central moments, apart from scaling, in order higher than $3$.
+    c_{00} & = m_{00} \\
+    c_{10} & = 0 \\
+    c_{01} & = 0 \\
+As we can se here, cumulants for non conserved modes only differ from central moments, apart from scaling, in order higher than $3$.
 
 \subsubsection{Scaled Cumulants}
 \label{subs:Scaled Cumulants}
@@ -530,9 +531,6 @@ As we can se here, cumulants only differ from central moments, apart from scalin
 As shown in the previous section, the cumulants only appear together with the density. Hence, we express the cumulants again in the normalized version~\eqref{eq: definition normalized cumulants} which yields
 \begin{align}
   \label{eq:all central moments from normalized cumulants}
-  c_{00} & = m_{00} \\
-  c_{10} & = K_{10} \\
-  c_{01} & = K_{01} \\
   c_{20} & = K_{20} \\
   c_{02} & = K_{02} \\
   c_{11} & = K_{11} \\
@@ -540,20 +538,20 @@ As shown in the previous section, the cumulants only appear together with the de
   c_{12} & = K_{12} \\
   c_{22} & = K_{22} + 2 \frac{K_{11}^2}{m_{00}} + \frac{K_{20}K_{02}}{m_{00}}
 \end{align}
+    c_{00} & = m_{00}\\
+    c_{10} & = 0 \\
+    c_{01} & = 0 \\
 which is much more convenient to handle.
 
 
 \subsection{Cumulants from central moments}
 \label{sub:Cumulants from central moments}
-
-For implementing the cumulant LBM, we also need to get cumulants from central moments, as we want to have the collision in the cumulant space. Coming from~\ref{subs:Listing the central moments from cumulants} this is an easy task. The first eight equations in~\eqref{eq:all central moments from cumulants} can be inverted straight forward.
+For implementing the cumulant LBM, we also need to get cumulants from central moments, as we want to have the collision in the cumulant space. Coming from~\ref{subs:Listing the central moments from cumulants} this is an easy task. We have to distinguish between the different equations in~\eqref{eq:all central moments from cumulants}.
+The first three can not be inverted but have to be computed from the moments $m_{00}$, $m_{10}$ and $m_{01}$ which we need anyway for the central moments. All other but the last equation are inverted straightforward.
 Inserting the resulting equations for $\kappa_{11}$, $\kappa_{02}$ and $\kappa_{20}$ in the last equation, we get
 
 \begin{align}
   \label{eq:all cumulants from central moments}
-  \kappa_{00} & = \frac{c_{00}}{m_{00}} \\
-  \kappa_{10} & = \frac{c_{10}}{m_{00}} \\
-  \kappa_{01} & = \frac{c_{01}}{m_{00}} \\
   \kappa_{20} & = \frac{c_{20}}{m_{00}} \\
   \kappa_{02} & = \frac{c_{02}}{m_{00}} \\
   \kappa_{11} & = \frac{c_{11}}{m_{00}} \\
@@ -561,13 +559,13 @@ Inserting the resulting equations for $\kappa_{11}$, $\kappa_{02}$ and $\kappa_{
   \kappa_{12} & = \frac{c_{12}}{m_{00}} \\
   \kappa_{22} & = \frac{c_{22}}{m_{00}} - 2{\left(\frac{c_{11}}{m_{00}}\right)}^2 - \frac{c_{20}}{m_{00}}\frac{c_{02}}{m_{00}}
 \end{align}
+    \kappa_{00} & = \ln(m_{00})m_{00} \\
+    \kappa_{10} & = \frac{m_{10}}{m_{00}} \\
+    \kappa_{01} & = \frac{m_{01}}{m_{00}} \\
 %
 or with the normalized cumulants
 \begin{align}
   \label{eq:all normalized cumulants from central moments}
-  K_{00} & = c_{00} \\
-  K_{10} & = c_{10} \\
-  K_{01} & = c_{01} \\
   K_{20} & = c_{20} \\
   K_{02} & = c_{02} \\
   K_{11} & = c_{11} \\
@@ -575,6 +573,9 @@ or with the normalized cumulants
   K_{12} & = c_{12} \\
   K_{22} & = c_{22} - 2 \frac{{c_{11}}^2}{m_{00}} - \frac{c_{20}c_{02}}{m_{00}}
 \end{align}
+    K_{00} & = \ln(m_{00})m_{00} \\
+    K_{10} & = m_{10} \\
+    K_{01} & = m_{01} \\
 
 \subsection{Fast central moment transformations}
 \label{sub:Fast central moment transformations}
