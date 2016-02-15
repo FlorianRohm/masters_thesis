@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     28064,        893]
-NotebookOptionsPosition[     27324,        863]
-NotebookOutlinePosition[     27663,        878]
-CellTagsIndexPosition[     27620,        875]
+NotebookDataLength[     29341,        939]
+NotebookOptionsPosition[     28490,        905]
+NotebookOutlinePosition[     28828,        920]
+CellTagsIndexPosition[     28785,        917]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -219,8 +219,17 @@ Cell[BoxData[{
     RowBox[{"{", 
      RowBox[{"i", ",", "j"}], "}"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"F", "[", "\[Xi]", "]"}], ":=", " ", 
-  RowBox[{"Exp", "["}]}]}], "Input",
+  RowBox[{"F", "[", "\[Xi]_", "]"}], ":=", " ", 
+  RowBox[{"Exp", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "C"}], " ", 
+     SuperscriptBox["\[Xi]", "2"]}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"2", "C", " ", "u"}], "-", "\[CapitalXi]"}], ")"}], 
+     "\[Xi]"}]}], "]"}]}]}], "Input",
  CellChangeTimes->{{3.658726852822906*^9, 3.658726937687196*^9}, {
    3.6587284070326643`*^9, 3.658728421774295*^9}, {3.658729427306932*^9, 
    3.658729465725354*^9}, {3.65872957945216*^9, 3.6587295973270597`*^9}, {
@@ -229,7 +238,40 @@ Cell[BoxData[{
    3.6587299974765663`*^9}, {3.658732303570202*^9, 3.658732332949185*^9}, {
    3.6587324703161907`*^9, 3.6587324762183447`*^9}, {3.658761450662113*^9, 
    3.658761474488703*^9}, 3.664543179090152*^9, {3.6645438197565804`*^9, 
-   3.664543889110237*^9}}],
+   3.664543889110237*^9}, {3.664550925044845*^9, 3.664551013718069*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Integrate", "[", 
+  RowBox[{
+   RowBox[{"F", "[", "\[Xi]", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Xi]", ",", 
+     RowBox[{"-", "\[Infinity]"}], ",", "\[Infinity]"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{3.6645510300940323`*^9}],
+
+Cell[BoxData[
+ RowBox[{"ConditionalExpression", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "2"}], " ", "C", " ", "u"}], "+", "\[CapitalXi]"}], 
+         ")"}], "2"], 
+       RowBox[{"4", " ", "C"}]]], " ", 
+     SqrtBox["\[Pi]"]}], 
+    SqrtBox["C"]], ",", 
+   RowBox[{
+    RowBox[{"Re", "[", "C", "]"}], ">", "0"}]}], "]"}]], "Output",
+ CellChangeTimes->{{3.6645510171071053`*^9, 3.664551034054674*^9}}]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -862,7 +904,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{1846, 1028},
-WindowMargins->{{79, Automatic}, {-90, Automatic}},
+WindowMargins->{{69, Automatic}, {Automatic, -8}},
 FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
 StyleDefinitions->"Default.nb"
 ]
@@ -877,23 +919,27 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 7286, 211, 699, "Input"],
+Cell[558, 20, 7571, 220, 702, "Input"],
 Cell[CellGroupData[{
-Cell[7869, 235, 716, 19, 32, "Input"],
-Cell[8588, 256, 4306, 142, 148, "Output"]
+Cell[8154, 244, 269, 8, 32, "Input"],
+Cell[8426, 254, 572, 18, 104, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12931, 403, 746, 19, 32, "Input"],
-Cell[13680, 424, 5979, 190, 95, "Output"]
+Cell[9035, 277, 716, 19, 32, "Input"],
+Cell[9754, 298, 4306, 142, 148, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[19696, 619, 656, 19, 56, "Input"],
-Cell[20355, 640, 932, 28, 72, "Output"]
+Cell[14097, 445, 746, 19, 32, "Input"],
+Cell[14846, 466, 5979, 190, 95, "Output"]
 }, Open  ]],
-Cell[21302, 671, 681, 21, 34, "Input"],
 Cell[CellGroupData[{
-Cell[22008, 696, 2116, 64, 97, "Input"],
-Cell[24127, 762, 3181, 98, 126, "Output"]
+Cell[20862, 661, 656, 19, 56, "Input"],
+Cell[21521, 682, 932, 28, 72, "Output"]
+}, Open  ]],
+Cell[22468, 713, 681, 21, 34, "Input"],
+Cell[CellGroupData[{
+Cell[23174, 738, 2116, 64, 97, "Input"],
+Cell[25293, 804, 3181, 98, 126, "Output"]
 }, Open  ]]
 }
 ]
