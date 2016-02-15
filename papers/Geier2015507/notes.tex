@@ -654,18 +654,8 @@ and with~\eqref{eq:fast forward c_i pipe beta expanded}
 
 \subsubsection{Backward transformation}
 \label{subs:Backward transformation}
-To get the backwards direction, the systems~\eqref{eq:fast forward c_alpha beta expanded} and~\eqref{eq:fast forward c_i pipe beta expanded} are now solved via Sage with
-\begin{minted}{python}
-  u, c = var('u, c')
-  M = Matrix([
-    [1,1,1],
-    [-1-u/c,-u/c, 1-u/c],
-    [(-1-u/c)^2, (-u/c)^2, (1-u/c)^2]
-    ])
-  I = M.inverse().simplify_rational()
-  I
-\end{minted}
-where~\eqref{eq:fast forward c_alpha beta matrix} becomes
+To get the backwards direction, the systems~\eqref{eq:fast forward c_alpha beta expanded}
+and~\eqref{eq:fast forward c_i pipe beta expanded} are now solved  where~\eqref{eq:fast forward c_alpha beta matrix} becomes \todo{incorporate the inverse mathematica code}
 \begin{equation}
   \begin{pmatrix}
     c_{-1|\beta} \\
@@ -743,22 +733,7 @@ where
   \end{tabular}
 \end{center}
 This distribution gives the probability of finding a particle with a certain speed at some point.
-\subsubsection{Integration of exponential function}
-\label{subs:Integration of exponential function}
-
-Integration is again done via Sage:
-\begin{minted}{python}
-  from sage.symbolic.integration.integral import indefinite_integral
-  from sage.symbolic.integration.integral import definite_integral
-
-  C, u, xi, Xi = var('C, u, xi, Xi')
-  assume(C>0)
-
-  F(xi) = exp (-C*xi^2 + (2*C*u - Xi)*xi)
-
-  definite_integral(F(xi), xi, -infinity, infinity).simplify_rational()
-\end{minted}
-which gives
+Integrating this function \todo{incorporate the integration mathematica code} gives
 \begin{equation}
   \label{eq:integrate exponential sage}
   \begin{aligned}
