@@ -151,7 +151,7 @@ The following connections can be made: \todo{Look up in Harris}
 \section{Lattice Boltzmann Equation for D2Q9}
 \label{sec:Lattice Boltzmann Equation for D2Q9}
 
-With $c$ defined as the cell width, velocities are given by
+With $c$ defined as the cell width and heigth, velocities are given by
 \begin{equation}
   c_{ij}= c\begin{pmatrix}i \\ j\end{pmatrix}, \quad i,j\in \{-1, 0, 1\}
 \end{equation}
@@ -165,6 +165,10 @@ or equivalently by shifting $x$ and $y$
   f_{ij}(t + \Delta t, x, y) = f^*_{ij}(t,x - i\Delta x , y - j\Delta y), \quad i,j\in \{-1, 0, 1\}
 \end{equation}
 where $f_{ij}$ are the pre-collission distributions and $f^*_{ij}$ the post collission distributions.
+The relation between $\Delta x$, $\Delta y$ and $\Delta t$ should be
+\begin{equation}
+  \Delta x = \Delta y = c \Delta t
+\end{equation}
 
 \subsection{Aliasing of moments}
 \label{sub:Aliasing of moments}
