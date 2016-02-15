@@ -220,7 +220,7 @@ According to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 
 \subsection{Cumulants from moments}
 \label{sub:Cumulants from moments}
 
-We seek a representation of the cumulants $\kappa_{\alpha\beta}$ in terms of moments, as the later ones are much more easy to compute, cfg.~\eqref{eq:Definition of centralized moments}. This link can be established with the chain rule for differentiaton.
+We seek a representation of the cumulants $\kappa_{\alpha\beta}$ in terms of moments, as the later ones are much more easy to compute, cfg.~\eqref{eq:Definition of moments}. This link can be established with the chain rule for differentiaton.
 From~\eqref{eq:alternative representation of moments} and~\eqref{eq:Definition of cumulants} follows
 \begin{equation}
   \kappa_{00} = \ln(F(0,0)) = \ln(m_{00}) = \ln(\rho).
@@ -354,7 +354,7 @@ The cumulant $\kappa_{01}$ follows from symmetrie and is listed in~\ref{subs:Lis
 \subsubsection{Listing the cumulants from moments}
 \label{subs:Listing the cumulants from moments}
 \begin{align}
-  \kappa_{00} & = m_{00} \\
+  \kappa_{00} & = \ln(m_{00}) \\
   \kappa_{10} & = \frac{m_{10}}{m_{00}} \\
   \kappa_{01} & = \frac{m_{01}}{m_{00}} \\
   \kappa_{11} & = \frac{m_{11}}{m_{00}} - \frac{m_{10}m_{01}}{m_{00}^2} \\
@@ -386,7 +386,7 @@ For more convenient reading, the normalized cumulants
 are introduced.
 
 \begin{align}
-  K_{00} & = 1 \label{eq: kappa_00 from moments}\\
+  K_{00} & = \ln(m_{00})m_{00} \label{eq: kappa_00 from moments}\\
   K_{10} & = m_{10} \label{eq: kappa_10 from moments}\\
   K_{01} & = m_{01} \label{eq: kappa_01 from moments}\\
   K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}} \\
