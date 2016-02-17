@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+${DIR}/auxiliary/codegen/distributionFromCentralMoments.py &
+${DIR}/auxiliary/codegen/centralMomentsFromDistributions.py &
