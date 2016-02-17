@@ -1,6 +1,6 @@
 from numpy import *
 
-from centralMomentsFromDistribution import centralMomentsFromDistributions
+from centralMomentsFromDistributions import centralMomentsFromDistributions
 from normalizedCumulantsFromCentralMoments import normalizedCumulantsFromCentralMoments
 from normalizedCumulantsFromCentralMoments import normalizedCumulantsFromCentralMoments
 from distributionsFromCentralMoments import distributionsFromCentralMoments
