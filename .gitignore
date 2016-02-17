@@ -1,3 +1,7 @@
+# generated results of lbm code
+/**/out/
+
+# latex auxiliary files
 *.aux
 *.fdb_latexmk
 *.fls
@@ -6,6 +10,6 @@
 *.synctex.gz
 *.out
 *.toc
-/**/out/
 *.pyc
 *.pyg
+*.tdo
