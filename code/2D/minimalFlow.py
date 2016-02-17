@@ -21,6 +21,7 @@ from auxiliary.collide import BGKCollide, cumulantCollide, cumulantCollideAll, c
 from auxiliary.stream import stream
 from auxiliary.LBMHelpers import getMacroValues,equilibrium
 from auxiliary.visualize import visualize
+from auxiliary.consistency import checkTransformation
 
 import os
 
@@ -100,6 +101,8 @@ if ( liveUpdate ):
 os.chdir(outputFolder)
 
 plottingData = (plotEveryN, skipFirstN, liveUpdate, saveVTK, savePlot, ax, fig, grid, prefix)
+
+checkTransformation(fin)
 
 ###### Main time loop ##########################################################
 for time in range(maxIterations):
