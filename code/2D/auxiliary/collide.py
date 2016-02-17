@@ -1,9 +1,8 @@
 from numpy import *
-from transforms import *
+from transformations.transforms import *
 
 def BGKCollide(fin, feq, omega):
     return fin - omega * (fin - feq)
-
 
 def cumulantCollide(fin, rho, u, omega):
     (K_00, K_10, K_01, K_11, K_20, K_02, K_21, K_12, K_22) = normalizedCumulantsFromDistributions (rho, u, fin)
@@ -49,10 +48,10 @@ def cumulantCollideAll(fin, rho, u, omega1, omega2, omega3, omega4):
 
 def centralMomentSRT(fin, feq, u, omega):
     # central moments
-    (c_00, c_10, c_01, c_11, c_20, c_02, c_21, c_12, c_22) = centralMomentFromDistribution_Long (u, fin)
+    (c_00, c_10, c_01, c_11, c_20, c_02, c_21, c_12, c_22) = centralMomentsFromDistributions (u, fin)
 
     # transform the equilibrium function
-    (c_00_eq, c_10_eq, c_01_eq, c_11_eq, c_20_eq, c_02_eq, c_21_eq, c_12_eq, c_22_eq) = centralMomentFromDistribution (u, feq)
+    (c_00_eq, c_10_eq, c_01_eq, c_11_eq, c_20_eq, c_02_eq, c_21_eq, c_12_eq, c_22_eq) = centralMomentsFromDistributions (u, feq)
 
     # collision
     c_00_p = c_00 + omega*(c_00_eq - c_00)
