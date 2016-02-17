@@ -11,6 +11,9 @@
 \maketitle
 \tableofcontents
 \newpage
+\listoftodos{}
+\newpage
+
 
 \section{Definitions}
 \label{sec:Definitions}
@@ -143,7 +146,8 @@ Cumulants are defined as the coefficients of the Taylor-expansion of the logarit
 \section{Moments and physical quantities}
 \label{sec:Moments and physical quantities}
 
-The following connections can be made: \todo{Look up in Harris}
+The following connections can be made:
+\todo[inline]{Look up in Harris}
 \begin{table}
 
 \end{table}
@@ -598,7 +602,9 @@ The forward central moment transformation splits the definition for a two way ca
     & = \sum_{i} {\left(i-\frac{u_1}{c}\right)}^\alpha c_{i|\beta}
   \end{aligned}
 \end{equation}
-Thus, by first computing the $c_{i|\beta}$ and then the $c_{\alpha\beta}$ we need $6$ instead of $9$ summations \todo{more saving when calculating all central moments}. By chaining this technique in 3D, much more computing power is saved.
+Thus, by first computing the $c_{i|\beta}$ and then the $c_{\alpha\beta}$ we need $6$ instead of $9$ summations.
+\todo[inline]{more saving when calculating all central moments}
+By chaining this technique in 3D, much more computing power is saved.
 We can further analyze the $c_{\alpha\beta}$ and $c_{i|\beta}$ terms:
 \begin{equation}
   \begin{aligned}
@@ -659,7 +665,8 @@ and with~\eqref{eq:fast forward c_i pipe beta expanded}
 \subsubsection{Backward transformation}
 \label{subs:Backward transformation}
 To get the backwards direction, the systems~\eqref{eq:fast forward c_alpha beta expanded}
-and~\eqref{eq:fast forward c_i pipe beta expanded} are now solved  where~\eqref{eq:fast forward c_alpha beta matrix} becomes \todo{incorporate the inverse mathematica code}
+and~\eqref{eq:fast forward c_i pipe beta expanded} are now solved where~\eqref{eq:fast forward c_alpha beta matrix} becomes
+\todo[inline]{incorporate the inverse mathematica code}
 \begin{equation}
   \begin{pmatrix}
     c_{-1|\beta} \\
@@ -715,8 +722,8 @@ and~\eqref{eq:fast forward c_i pipe beta matrix} analogously
 
 \subsection{Maxwell Distribution}
 \label{sub:Maxwell Distribution}
-The Maxwell distribuion in two dimensions reads \todo{cite Succi, p8}
-
+The Maxwell distribuion in two dimensions reads
+\todo[inline]{cite Succi, p8}
 \begin{equation}
   \label{eq:maxwell distribution raw}
   f_{m, \rho, u, T}^{\text{maxwell}}(\xi) = \rho \frac{m}{2\pi k_B T} \exp \left( - \frac{m\abs{\xi-u}^2}{2 k_B T}\right)
@@ -737,7 +744,8 @@ where
   \end{tabular}
 \end{center}
 This distribution gives the probability of finding a particle with a certain speed at some point.
-Integrating this function \todo{incorporate the integration mathematica code} gives
+Integrating this function
+\todo[inline]{incorporate the integration mathematica code} gives
 \begin{equation}
   \label{eq:integrate exponential sage}
   \begin{aligned}
@@ -896,7 +904,8 @@ To ensure rotational invariance, we have to relate some relaxation parameters, y
 \subsubsection{Choosing the \texorpdfstring{$\omega_i$}{omegai}}
 \label{subs:Choosing the omega_i}
 The only apparent relaxation parameter in the asymptotic analysis is $\omega_1$ which plays the role of viscosity like BGK-LBM.\@
-All other terms are save to be set to one \todo{confirmation}.
+All other terms are save to be set to one.
+\todo[inline]{confirmation}
 The final collision looks like:
 \begin{equation}
   \begin{aligned}
