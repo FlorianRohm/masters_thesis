@@ -27,7 +27,7 @@ import os
 
 ###### Plot settings ############################################################
 
-plotEveryN    = 1         # draw every plotEveryN'th cycle
+plotEveryN    = 5         # draw every plotEveryN'th cycle
 skipFirstN    = 0       # do not process the first skipFirstN cycles
 savePlot      = True      # save velocity norm and x velocity plot
 liveUpdate    = True      # show the process of the simulation (slow)
@@ -114,14 +114,14 @@ for time in range(maxIterations):
     preVelX = sum(u[0,:,:])
     preVelY = sum(u[1,:,:])
 
-
+    print amin(rho)
     feq = equilibrium(rho, u)
 
     # Collision step.
     #fpost = BGKCollide(fin, feq, omega)
-    #fpost = cumulantCollide(fin, rho, u, omega)
+    fpost = cumulantCollide(fin, rho, u, omega)
     #fpost = cumulantCollideAll(fin, rho, u, omega, omega, omega, omega)
-    fpost = centralMomentSRT(fin, feq, u, omega)
+    #fpost = centralMomentSRT(fin, feq, u, omega)
 
     (rho, u) = getMacroValues(fpost)
 
@@ -130,7 +130,7 @@ for time in range(maxIterations):
     deltaVelY = sum(u[0,:,:]) - preVelY
     maxRho = amax(rho)
     minRho = amin(rho)
-    print minRho
+    #print minRho
 
     # Streaming step
     fin = stream(fpost)
