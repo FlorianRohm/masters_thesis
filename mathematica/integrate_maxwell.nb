@@ -1,0 +1,66 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1536,         57]
+NotebookOptionsPosition[      1302,         44]
+NotebookOutlinePosition[      1640,         59]
+CellTagsIndexPosition[      1597,         56]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"F", "[", "\[Xi]_", "]"}], ":=", " ", 
+  RowBox[{"Exp", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "C"}], " ", 
+     SuperscriptBox["\[Xi]", "2"]}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"2", "C", " ", "u"}], "-", "\[CapitalXi]"}], ")"}], 
+     "\[Xi]"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Integrate", "[", 
+  RowBox[{
+   RowBox[{"F", "[", "\[Xi]", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Xi]", ",", 
+     RowBox[{"-", "\[Infinity]"}], ",", "\[Infinity]"}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.665751900082739*^9, 3.665751900316575*^9}, {
+  3.665752230230603*^9, 3.665752283907751*^9}, {3.6657523682919083`*^9, 
+  3.665752399521101*^9}}]
+},
+WindowSize->{1920, 1028},
+WindowMargins->{{-9, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 740, 22, 59, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
