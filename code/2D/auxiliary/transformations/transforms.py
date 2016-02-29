@@ -6,12 +6,11 @@ from centralMomentsFromNormalizedCumulants import centralMomentsFromNormalizedCu
 from distributionsFromCentralMoments import distributionsFromCentralMoments
 
 def normalizedCumulantsFromDistributions(rho, u, fin):
-    (c_00, c_10, c_01, c_11, c_20, c_02, c_21, c_12, c_22) = centralMomentsFromDistributions (u, fin)
+    centralMoments = centralMomentsFromDistributions (u, fin)
 
-    return normalizedCumulantsFromCentralMoments (rho, u, c_00, c_10, c_01, c_11, c_20, c_02, c_21, c_12, c_22)
+    return normalizedCumulantsFromCentralMoments (rho, u, *centralMoments)
 
-def distributionsFromNormalizedCumulants(rho, u, K_00, K_10, K_01, K_11, K_20, K_02, K_21, K_12, K_22):
-    (c_00, c_10, c_01, c_11, c_20, c_02, c_21, c_12, c_22) = \
-    centralMomentsFromNormalizedCumulants (rho, K_00, K_10, K_01, K_11, K_20, K_02, K_21, K_12, K_22)
+def distributionsFromNormalizedCumulants(rho, u, *normalizedCumulants):
+    centralMoments = centralMomentsFromNormalizedCumulants (rho, *normalizedCumulants)
 
-    return distributionsFromCentralMoments (u, c_00, c_10, c_01, c_11, c_20, c_02, c_21, c_12, c_22)
+    return distributionsFromCentralMoments (u, *centralMoments)
