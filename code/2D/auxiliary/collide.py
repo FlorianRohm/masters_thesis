@@ -15,8 +15,8 @@ def cumulantCollide(fin, rho, u, omega):
 
     K_11_p = (1-omega)*K_11
 
-    K_20_p = 1/3 + 0.5*(1-omega)*(K_20 - K_02)
-    K_02_p = 1/3 - 0.5*(1-omega)*(K_20 - K_02)
+    K_20_p = rho/3. + 0.5*(1-omega)*(K_20 - K_02)
+    K_02_p = rho/3. - 0.5*(1-omega)*(K_20 - K_02)
 
     K_21_p = 0
     K_12_p = 0
