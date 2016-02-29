@@ -177,7 +177,7 @@ The relation between $\Delta x$, $\Delta y$ and $\Delta t$ should be
 \subsection{Aliasing of moments}
 \label{sub:Aliasing of moments}
 
-As the D2Q9 only has $9$ independant velocities, the moment-space spanned by those can only host $9$ independant moments.
+As the D2Q9 only has $9$ independent velocities, the moment-space spanned by those can only host $9$ independent moments.
 In D2Q9, the moments are defined, according to~\eqref{eq:Definition of moments} as
 \begin{equation*}
   m_{\alpha\beta} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}.
@@ -198,7 +198,7 @@ According to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 
   \centering
   \begin{tabular}{c cc ccc cc c}
     \toprule
-    \multicolumn{9}{c}{independant moments}  \\
+    \multicolumn{9}{c}{independent moments}  \\
     \cmidrule(lr){1-9} \\
     $m_{00}$   &   $m_{10}$ & $m_{01}$   &   $m_{11}$ & $m_{20}$ & $m_{02}$   &   $m_{21}$ & $m_{12}$   &   $m_{22}$ \\
     \bottomrule
@@ -208,7 +208,7 @@ According to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 
   \newline
   \begin{tabular}{ccccc c}
     \toprule
-    \multicolumn{6}{c}{dependant moments}   \\
+    \multicolumn{6}{c}{dependent moments}   \\
     \cmidrule(lr){1-5}   \\
     $m_{30}$   & $m_{03}$   & $m_{31}$  & $m_{13}$  & $m_{40}$  & \ldots \\
     = $m_{10}$ & = $m_{01}$ & = $m_{11}$ & = $m_{11}$ & = $m_{20}$ & \\
@@ -224,7 +224,7 @@ According to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 
 \subsection{Cumulants from moments}
 \label{sub:Cumulants from moments}
 
-We seek a representation of the cumulants $\kappa_{\alpha\beta}$ in terms of moments, as the later ones are much more easy to compute, cfg.~\eqref{eq:Definition of moments}. This link can be established with the chain rule for differentiaton.
+We seek a representation of the cumulants $\kappa_{\alpha\beta}$ in terms of moments, as the later ones are much more easy to compute, cf.~\eqref{eq:Definition of moments}. This link can be established with the chain rule for differentiaton.
 From~\eqref{eq:alternative representation of moments} and~\eqref{eq:Definition of cumulants} follows
 \begin{equation}
   \kappa_{00} = \ln(F(0,0)) = \ln(m_{00}) = \ln(\rho).
