@@ -1223,15 +1223,15 @@ For convenience, we state the momentum equation of the Navier-Stokes-Equation.
 \label{subp:Incompressible}
 The incompressible momentum equation reads
 \begin{equation}
-  \rho \left(\partial_t \mathbf{v} + \left(\mathbf{v}\cdot\nabla\right)\mathbf{v} \right) = -\nabla p + \mu \Delta \mathbf{v} + \mathbf{f}
+  \partial_t \mathbf{v} + \left(\mathbf{v}\cdot\nabla\right)\mathbf{v} = - \frac{1}{\rho}\nabla p + \nu \Delta \mathbf{v} + \mathbf{f}
 \end{equation}
 or in separate equations
 \begin{equation}
   \begin{aligned}
-    \rho \left(\partial_t v_x + v_x \partial_x v_x + v_y \partial_y v_x  \right)
-    &= - \partial_x p + \mu (\partial_{xx} v_x + \partial_{yy} v_y) + f_x \\
-    \rho \left(\partial_t v_y + v_x \partial_x v_y + v_y \partial_y v_y  \right)
-    &= - \partial_y p + \mu (\partial_{xx} v_x + \partial_{yy} v_y) + f_y
+    \partial_t v_x + v_x \partial_x v_x + v_y \partial_y v_x
+    &= -  \frac{1}{\rho}\partial_x p + \nu (\partial_{xx} v_x + \partial_{yy} v_y) + f_x \\
+    \partial_t v_y + v_x \partial_x v_y + v_y \partial_y v_y
+    &= -  \frac{1}{\rho}\partial_y p + \nu (\partial_{xx} v_x + \partial_{yy} v_y) + f_y
   \end{aligned}
 \end{equation}
 
