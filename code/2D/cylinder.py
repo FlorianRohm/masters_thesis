@@ -23,7 +23,7 @@
 from numpy import *
 from matplotlib import cm, pyplot
 from auxiliary.VTKWrapper import saveToVTK
-from auxiliary.collide import BGKCollide
+from auxiliary.collide import BGKCollide, cumulantCollide
 from auxiliary.stream import stream
 from auxiliary.LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
 from auxiliary.boundaryConditions import YuLeft
@@ -34,23 +34,23 @@ import os
 
 ###### Plot settings ############################################################
 
-plotEveryN    = 1         # draw every plotEveryN'th cycle
+plotEveryN    = 100         # draw every plotEveryN'th cycle
 skipFirstN    = 0       # do not process the first skipFirstN cycles
-savePlot      = False      # save velocity norm and x velocity plot
-liveUpdate    = True      # show the process of the simulation (slow)
+savePlot      = True      # save velocity norm and x velocity plot
+liveUpdate    = False      # show the process of the simulation (slow)
 saveVTK       = False       # save the vtk files
-prefix        = 'cylinder'      # naming prefix for saved files
+prefix        = 'cyl_Re5k'      # naming prefix for saved files
 outputFolder  = './out'    # folder to save the output to
 workingFolder = os.getcwd()
 
 
 ###### Flow definition #########################################################
 maxIterations = 200000  # Total number of time iterations.
-Re            = 100.0   # Reynolds number.re
+Re            = 5000.0   # Reynolds number.re
 
 # Number of Cells
 ny = 100
-nx = int(round(ny/0.18636))
+nx = 300
 
 # Highest index in each direction
 nxl = nx-1
@@ -119,7 +119,7 @@ fpost = feq.copy()  # post collision distributions
 
 
 # interactive mode (execute code while showing figures)
-if ( liveUpdate ):
+if ( liveUpdate | savePlot ):
     pyplot.ion()
     fig, ax = pyplot.subplots(1)
 
@@ -151,7 +151,8 @@ for time in range(maxIterations):
     fin[iRight, 0, :] = feq[iLeft, 0, :] + (feq[iRight, 0, :] - fin[iLeft, 0, :])
 
     # Collision step.
-    fpost = BGKCollide(fin, feq, omega)
+    #fpost = BGKCollide(fin, feq, omega)
+    fpost = cumulantCollide(fin, rho, u, omega)
 
     # Streaming step
     fin = stream(fpost)
