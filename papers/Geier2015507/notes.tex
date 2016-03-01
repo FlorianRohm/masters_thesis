@@ -1239,7 +1239,12 @@ or in separate equations
 \label{subp:Compressible}
 The compressible momentum equation reads in conservative form
 \begin{equation}
-  \partial_t \mathbf{m} + \nabla \cdot (\mathbf{m}\otimes\mathbf{v}) = \nabla \cdot (\mathbb{S} - p \mathbb{I}) + \rho \mathbb(f)
+  \begin{aligned}
+    \partial_t \mathbf{m} + \nabla \cdot (\mathbf{m}\mathbf{v}^T)
+    &= - \nabla p + \nabla \cdot (\mu\mathbb{S}) + \rho \mathbf{f} \\
+    \Leftrightarrow\partial_t \mathbf{m} + (\nabla \cdot \mathbf{m})\mathbf{v} + (\nabla \cdot \mathbf{v})\mathbf{m}
+    &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \mathbb{S}^T \nabla\mu + \rho \mathbf{f}
+  \end{aligned}
 \end{equation}
 where
 \begin{equation}
