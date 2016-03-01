@@ -22,10 +22,11 @@
 
 from numpy import *
 from matplotlib import cm, pyplot
-from VTKWrapper import saveToVTK
+from auxiliary.VTKWrapper import saveToVTK
 from auxiliary.collide import BGKCollide, cumulantCollide
 from auxiliary.stream import stream
-from ghiaResults import *
+from auxiliary.LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
+from auxiliary.ghiaResults import *
 import os
 
 
@@ -33,7 +34,7 @@ import os
 
 plotEveryN    = 1         # draw every plotEveryN'th cycle
 skipFirstN    = 0       # do not process the first skipFirstN cycles
-savePlot      = True      # save velocity norm and x velocity plot
+savePlot      = False      # save velocity norm and x velocity plot
 liveUpdate    = True     # show the process of the simulation (slow)
 saveVTK       = False       # save the vtk files
 prefix        = 'ldc'      # naming prefix for saved files
@@ -42,7 +43,7 @@ workingFolder = os.getcwd()
 
 
 ###### Flow definition #########################################################
-maxIterations = 250  # Total number of time iterations.
+maxIterations = 20000  # Total number of time iterations.
 Re            = 100.0   # Reynolds number.re
 
 # Number of Cells
@@ -90,49 +91,6 @@ axisYNorm = axisYPlot/(ny)
 yghia = getAxis()
 xghia = getRe100()
 
-
-###### Lattice Constants #######################################################
-
-# lattice velocities
-c = array([[0, 0], [1, 0], [0, 1], [-1, 0], [0, -1], [1, 1], [-1, 1], [-1, -1], [1, -1]])
-# Lattice weights
-t      = 1./36. * ones(q)
-t[1:5] = 1./9.
-t[0]   = 4./9.
-
-# index array for noslip reflection
-# inverts the d2q9 stencil for use in bounceback scenarios
-noslip = [0, 3, 4, 1, 2, 7, 8, 5, 6]
-
-# index arrays for different sides of the d2q9 stencil
-iLeft   = arange(q)[asarray([ci[0] <  0 for ci in c])]
-iCentV  = arange(q)[asarray([ci[0] == 0 for ci in c])]
-iRight  = arange(q)[asarray([ci[0] >  0 for ci in c])]
-iTop    = arange(q)[asarray([ci[1] >  0 for ci in c])]
-iCentH  = arange(q)[asarray([ci[1] == 0 for ci in c])]
-iBot    = arange(q)[asarray([ci[1] <  0 for ci in c])]
-
-
-###### Function Definitions ####################################################
-
-# Helper function for density computation.
-def sumPopulations(fin):
-    return sum(fin, axis = 0)
-
-# Equilibrium distribution function.
-def equilibrium(rho, u):
-    cu   = 3.0 * dot(c, u.transpose(1, 0, 2))
-    usqr = 3./2.*(u[0]**2+u[1]**2)
-    feq = zeros((q, nx, ny))
-    for i in range(q):
-        feq[i, :, :] = rho*t[i]*(1.+cu[i]+0.5*cu[i]**2-usqr)
-        # feq[i, :, :] = t[i]*(rho+cu[i]+0.5*cu[i]**2-usqr)
-    return feq
-
-
-def clamp(val, minVal, maxVal):
-    return maximum(minVal, minimum(val, maxVal))
-
 ###### Setup ##################################################################
 
 # set up the walls
@@ -144,13 +102,13 @@ wall    = logical_or(logical_or(leftWall, rightWall), bottomWall)
 
 # initial velocity profile
 #  < -
-#   -
-#  - >
-maxVel                = zeros((2, nx, ny))
-maxVel[0, :,  0 ]     =  uLB
+#    -
+#    -
+vel                = zeros((2, nx, ny))
+vel[0, :,  0 ]     =  uLB
 
 # initial particle distributions
-feq   = equilibrium(1.0, maxVel)
+feq   = equilibrium(1.0, vel)
 fin   = feq.copy()
 fpost = feq.copy()
 
@@ -167,38 +125,27 @@ os.chdir(outputFolder)
 ###### Main time loop ##########################################################
 for time in range(maxIterations):
 
-    # Calculate macroscopic density ...
-    rho = sumPopulations(fin)
-    # ... and velocity
-    u = dot(c.transpose(),  fin.transpose((1, 0, 2)))/rho
-    # u = dot(c.transpose(),  fin.transpose((1, 0, 2)))
+    (rho, u) = getMacroValues(fin)
 
     feq = equilibrium(rho, u)
 
     # Collision step.
-    fpost = cumulantCollide(fin, omega, u)
+    fpost = BGKCollide(fin, feq, omega)
+    #fpost = cumulantCollide(fin, rho, u, omega)
 
     # Streaming step
     fin = stream(fpost)
 
-    # impulse ramping
-    factor = clamp(time, 100, 100)/100.
-    vel = maxVel * factor
     # Left wall: compute density from known populations
     u[:, :, 0] = vel[:, :, 0]
     rho[:, 0] = sumPopulations(fin[iCentV, 0, :])+2.*sumPopulations(fin[iTop, 0, :])
 
-
     # complete the left wall treatement wrt Yu 2002
     fin[iBot, 0, :] = - feq[iTop, 0, :] + (feq[iBot, 0, :] + fin[iTop, 0, :])
-    # fin[iBot, 0, :] = fin[iTop, 0, :] + 6 * dot(c, u.transpose(1, 0, 2)) c[iBot][0] * rho*t[iBot]
 
     # wall boundary handling
     for i in range(q):
         fin[i, wall] = fin[noslip[i], wall]
-
-
-
 
     # Visualization
     if ( (time % plotEveryN == 0) & (liveUpdate | saveVTK | savePlot) & (time > skipFirstN) ):
