@@ -23,8 +23,8 @@
 from numpy import *
 from matplotlib import cm, pyplot
 from auxiliary.VTKWrapper import saveToVTK
-from auxiliary.collide import BGKCollide, cumulantCollide
 from auxiliary.stream import stream
+from auxiliary.collide import BGKCollide, cumulantCollide
 from auxiliary.LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
 from auxiliary.ghiaResults import *
 import os
@@ -32,19 +32,19 @@ import os
 
 ###### Plot settings ############################################################
 
-plotEveryN    = 1         # draw every plotEveryN'th cycle
+plotEveryN    = 100         # draw every plotEveryN'th cycle
 skipFirstN    = 0       # do not process the first skipFirstN cycles
-savePlot      = False      # save velocity norm and x velocity plot
+savePlot      = True      # save velocity norm and x velocity plot
 liveUpdate    = True     # show the process of the simulation (slow)
 saveVTK       = False       # save the vtk files
-prefix        = 'ldc'      # naming prefix for saved files
+prefix        = 'ldc_5k'      # naming prefix for saved files
 outputFolder  = './out'    # folder to save the output to
 workingFolder = os.getcwd()
 
 
 ###### Flow definition #########################################################
-maxIterations = 20000  # Total number of time iterations.
-Re            = 100.0   # Reynolds number.re
+maxIterations = 200000  # Total number of time iterations.
+Re            = 5000.0   # Reynolds number.re
 
 # Number of Cells
 nx = 200
@@ -91,6 +91,7 @@ axisYNorm = axisYPlot/(ny)
 yghia = getAxis()
 xghia = getRe100()
 
+
 ###### Setup ##################################################################
 
 # set up the walls
@@ -102,8 +103,8 @@ wall    = logical_or(logical_or(leftWall, rightWall), bottomWall)
 
 # initial velocity profile
 #  < -
-#    -
-#    -
+#   -
+#  - >
 vel                = zeros((2, nx, ny))
 vel[0, :,  0 ]     =  uLB
 
@@ -115,9 +116,7 @@ fpost = feq.copy()
 # interactive mode (execute code while showing figures)
 if ( liveUpdate | savePlot ):
     pyplot.ion()
-    f = pyplot.figure(figsize=(15, 7.5))
-    subplot1 = pyplot.subplot2grid((2, 4), (0, 0), colspan=2, rowspan=2)
-    subplot2 = pyplot.subplot2grid((2, 4), (0, 2), colspan=2, rowspan=2)
+    fig, ax = pyplot.subplots(1)
 
 os.chdir(outputFolder)
 
@@ -125,16 +124,28 @@ os.chdir(outputFolder)
 ###### Main time loop ##########################################################
 for time in range(maxIterations):
 
+    # Calculate macroscopic density and velocity
     (rho, u) = getMacroValues(fin)
 
     feq = equilibrium(rho, u)
 
     # Collision step.
-    fpost = BGKCollide(fin, feq, omega)
-    #fpost = cumulantCollide(fin, rho, u, omega)
+    #fpost = BGKCollide(fin, feq, omega)
+    fpost = cumulantCollide(fin, rho, u, omega)
 
     # Streaming step
-    fin = stream(fpost)
+    fin[0, :, :] = fpost[0, :, :]
+
+    fin[1, 1:nxl,   :]     = fpost[1, 0:nxl-1,  :]
+    fin[2,   :,   0:nyl-1] = fpost[2,   :,    1:nyl]
+    fin[3, 0:nxl-1, :]     = fpost[3, 1:nxl,    :]
+    fin[4,   :,   1:nyl]   = fpost[4,   :,    0:nyl-1]
+
+    fin[5, 1:nxl,   0:nyl-1] = fpost[5, 0:nxl-1, 1:nyl]
+    fin[6, 0:nxl-1, 0:nyl-1] = fpost[6, 1:nxl,   1:nyl]
+    fin[7, 0:nxl-1, 1:nyl]   = fpost[7, 1:nxl,   0:nyl-1]
+    fin[8, 1:nxl,   1:nyl]   = fpost[8, 0:nxl-1, 0:nyl-1]
+
 
     # Left wall: compute density from known populations
     u[:, :, 0] = vel[:, :, 0]
@@ -142,6 +153,7 @@ for time in range(maxIterations):
 
     # complete the left wall treatement wrt Yu 2002
     fin[iBot, 0, :] = - feq[iTop, 0, :] + (feq[iBot, 0, :] + fin[iTop, 0, :])
+    # fin[iBot, 0, :] = fin[iTop, 0, :] + 6 * dot(c, u.transpose(1, 0, 2)) c[iBot][0] * rho*t[iBot]
 
     # wall boundary handling
     for i in range(q):
@@ -150,15 +162,9 @@ for time in range(maxIterations):
     # Visualization
     if ( (time % plotEveryN == 0) & (liveUpdate | saveVTK | savePlot) & (time > skipFirstN) ):
         if ( liveUpdate | savePlot ):
-            subplot1.clear()
-            subplot2.clear()
-            subplot1.imshow(sqrt(u[0]**2+u[1]**2).transpose(),  cmap=cm.jet, vmin=0., vmax=0.05)
-            subplot1.set_title('velocity norm')
-
-            velNormX = u[0, nx/2, :]/uLB
-            subplot2.plot(velNormX, axisYNorm, label="lbm result")
-            subplot2.plot(xghia, yghia, 'go' , label="ghia et al")
-            subplot2.set_title('x velocity in center column')
+            ax.clear()
+            ax.imshow(sqrt(u[0]**2+u[1]**2).transpose(),  cmap=cm.jet, vmin=0., vmax=0.05)
+            ax.set_title('velocity norm')
 
         if ( liveUpdate ):
             pyplot.draw()
