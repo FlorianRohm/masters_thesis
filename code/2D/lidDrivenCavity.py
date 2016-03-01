@@ -37,14 +37,14 @@ skipFirstN    = 0       # do not process the first skipFirstN cycles
 savePlot      = True      # save velocity norm and x velocity plot
 liveUpdate    = True     # show the process of the simulation (slow)
 saveVTK       = False       # save the vtk files
-prefix        = 'ldc_5k'      # naming prefix for saved files
+prefix        = 'ldc_20k'      # naming prefix for saved files
 outputFolder  = './out'    # folder to save the output to
 workingFolder = os.getcwd()
 
 
 ###### Flow definition #########################################################
 maxIterations = 200000  # Total number of time iterations.
-Re            = 5000.0   # Reynolds number.re
+Re            = 20000.0   # Reynolds number.re
 
 # Number of Cells
 nx = 200
