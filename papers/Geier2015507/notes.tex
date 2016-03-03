@@ -1239,6 +1239,7 @@ or in separate equations
 \label{subp:Compressible}
 The compressible momentum equation reads in conservative form
 \begin{equation}
+  \label{eq:compressible NS}
   \begin{aligned}
     \partial_t \mathbf{m} + \nabla \cdot (\mathbf{m}\mathbf{v}^T)
     &= - \nabla p + \nabla \cdot (\mu\mathbb{S}) + \rho \mathbf{f} \\
@@ -1263,7 +1264,6 @@ with the abused notation of the divergence of a matrix
   \end{pmatrix}
 \end{equation}
 and the Jacobian Matrix of $\mathbf{v}$ denoted as $D\mathbf{v}$.
-In
 The split equations read
 \begin{equation}
   \begin{aligned}
@@ -1320,7 +1320,40 @@ Only the x-direction is stated:
     + m_{00}f_x
   \end{aligned}
 \end{equation}
-
+It should be noted, that the term $\nabla \mu$ will only be relevant, if the viscosity is changing. In ideal gases, $\mu$ is a variable of the temperature only. As our method only treats isothermal phenomena in this setting, we are save to assume $\mu$ to be constant.
+For a general treatment, of compressible flow, this has to be accounted for, as temperature is coupled to pressure and density, thus $\mu$ won't be constant.
+The resulting Navier Stokes equation reads now:
+\begin{equation}
+  \label{eq:compressible NS isotherm}
+  \partial_t \mathbf{m} + (\nabla \cdot \mathbf{m})\mathbf{v} + (\nabla \cdot \mathbf{v})\mathbf{m}
+    &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \rho \mathbf{f}
+\end{equation}
+Just in x-direction:
+\begin{equation}
+  \begin{aligned}
+    & \partial_t \text{m}_x
+    + v_x (\partial_x \text{m}_x + \partial_y \text{m}_y)
+    + \text{m}_x (\partial_x v_x + \partial_y v_y)  \\
+    & =
+     - \partial_x p
+     + \mu \left(\frac{4}{3}\partial_{xx}v_x
+            + \frac{1}{3}\partial_x\partial_x v_y
+            + \partial_{yy} v_x \right)  + \rho f_x
+  \end{aligned}
+\end{equation}
+and finally with moments:
+\begin{equation}
+  \begin{aligned}
+    & \partial_t m_{10}
+    + \frac{m_{10}}{m_{00}} (\partial_x m_{10} + \partial_y m_{01})
+    + m_{10} (\partial_x \frac{m_{10}}{m_{00}} + \partial_y \frac{m_{01}}{m_{00}})  \\
+    & =
+     - \partial_x p
+     + \mu \left(\frac{4}{3}\partial_{xx}\frac{m_{10}}{m_{00}}
+            + \frac{1}{3}\partial_x\partial_x \frac{m_{01}}{m_{00}}
+            + \partial_{yy} \frac{m_{10}}{m_{00}} \right) + m_{00}f_x
+  \end{aligned}
+\end{equation}
 \paragraph{Derivation}
 \label{par:Derivation of momentum equation}
 
@@ -1388,7 +1421,7 @@ Combining~\eqref{eq: start of momentum equation derivation} with~\eqref{eq: m20*
   \end{aligned}
 \end{align}
 
-As stated in~\eqref{eq:first order collision invariant}, the first order moments, hence have to be equal to their equilibrium value. Additionally, with the aliasing of moments as stated in table~\ref{table:D2Q9 moments}, we get
+As stated in~\eqref{eq:first order collision invariant}, the first order moments, have to be equal to their equilibrium value. Additionally, with the aliasing of moments as stated in table~\ref{table:D2Q9 moments}, we get
 \begin{equation}
   \begin{aligned}
   \partial_t m_{10}^{(1)}
