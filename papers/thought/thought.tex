@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+
+%\input{../../latex_basics/definitions}
+
+\begin{document}
+We know:
+\begin{equation}
+  K_{11} = m_{11} - \frac{m_{10}m_{01}}{m_{00}}
+\end{equation}
+We can expand $K$ for expansion parameter $\epsilon$ to get our known series expansion
+\begin{equation}
+  K_{11} = \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+\end{equation}
+If I now want to compute, let's say, $K_{11}^{(2)}$ in terms of expanded moments, I'd say we have to do
+
+\begin{equation}
+  \begin{aligned}
+    K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}}\\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
+         {\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}
+  \end{aligned}
+\end{equation}
+and match the $\epsilon$ coefficient on both sides. This obviously will be not possible, thanks to the sum in the denominator.
+In the paper, he states
+\begin{equation}
+  K_{11}^{(2)}
+  = m_{11}^{(2)} -
+  \frac{m_{10}^{(1)}m_{01}^{(1)}}
+       {m_{00}^{(0)}}
+\end{equation}
+Which obviously has same $\epsilon$ coefficients on both sides, but I can't see, why this is the right way to do it?
+If we just ignore the sum in the denominator, I would suggest the expansion to be
+\begin{equation}
+  K_{11}^{(2)}
+  = m_{11}^{(2)} -
+  \frac{m_{10}^{(1)}m_{01}^{(1)}+m_{10}^{(0)}m_{01}^{(2)}+m_{10}^{(2)}m_{01}^{(0)}}
+       {m_{00}^{(0)}}
+\end{equation}
+Why should I not be allowed to match $*^{(0)}$ and $*^{(2)}$. Sure, they are on different scales, but I suppose they can be combined, anyway.
+In the Geier Paper, it's (G.29) ff.
+
+\section{geometric series}
+\label{sec:geometric series}
+\begin{equation}
+  \begin{aligned}
+    K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}}\\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
+        {\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}\\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
+        {m_{00}^{(0)}}
+        \frac{1}{1 - \sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}}\\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
+        {m_{00}^{(0)}}
+    \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
+  \end{aligned}
+\end{equation}
+Second order terms
+\begin{equation}
+  \begin{aligned}
+    K_{11}^{(2)}
+    &= m_{11}^{(2)} \\
+    &\quad-
+    \frac{
+      m_{10}^{(1)}m_{01}^{(1)}
+    + m_{10}^{(0)}m_{01}^{(2)}
+    + m_{10}^{(2)}m_{01}^{(0)}
+    }{m_{00}^{(0)}}\\
+    &\quad
+    -(m_{10}^{(1)}m_{01}^{(0)} + m_{10}^{(0)}m_{01}^{(1)}) m_{00}^{(1)}\\
+    &\quad
+    - m_{10}^{(0)}m_{01}^{(0)}
+    \left(
+      \underbrace{m_{00}^{(2)}}_{j=1,i=2}
+      - \underbrace{\frac{m_{00}^{(2)2}}{m_{00}^{(0)}}}_{j=2,i=1}
+    \right)\\
+    &= m_{11}^{(2)} \\
+    &\quad-
+    \frac{
+      m_{10}^{(1)}m_{01}^{(1)}
+    + m_{10}^{(0)}m_{01}^{(2)}
+    + m_{10}^{(2)}m_{01}^{(0)}
+    + m_{10}^{(0)}m_{01}^{(0)}m_{00}^{(2)2}
+    }{m_{00}^{(0)}}\\
+    &\quad
+    - m_{00}^{(1)}(m_{10}^{(1)}m_{01}^{(0)} + m_{10}^{(0)}m_{01}^{(1)}) \\
+    &\quad
+    - m_{00}^{(2)}m_{10}^{(0)}m_{01}^{(0)}
+  \end{aligned}
+\end{equation}
+
+\end{document}
