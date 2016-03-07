@@ -1274,6 +1274,40 @@ and consequently
   - \frac{ m_{01}^{(1)2}}{m_{00}^{(0)}}.
 \end{equation}
 
+\subsubsection{\texorpdfstring{$K_{21}$}{K 21} and \texorpdfstring{$K_{12}$}{K 12}}
+\label{subs:K_21}
+As before, we take the defining equation for the normalized cumulant, in this case~\eqref{eq: K_21 from moments}, and plug in all expansions with the geometric series expansion like in~\ref{subs:K_11}.
+\begin{equation}
+  \begin{aligned}
+    \sum_{i=0}^\infty \epsilon^i K_{21}^{(i)}
+    & = m_{21}
+    \\ &\quad
+    - \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{20}^{(i)} m_{01}^{(j)}}{m_{00}^{(0)}}
+      \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
+    \\ &\quad
+     - 2\frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)} m_{11}^{(j)}}{m_{00}^{(0)}}
+      \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
+     \\ &\quad
+     + 2\frac{\sum_{i,j,k=0}^\infty \epsilon^{i+j+k} m_{10}^{(i)} m_{10}^{(j)} m_{01}^{(k)}}{m_{00}^{(0)2}}
+      {\left(
+        \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
+      \right)}^2\\
+   \end{aligned}
+\end{equation}
+Collecting the zeroth order terms, we find again
+\begin{equation}
+  K_{21}^{(0)} = m_{21}^{(0)}.
+\end{equation}
+In contrary to the aforementioned, the first order expansions differ:
+\begin{equation}
+  \begin{aligned}
+    K_{21}^{(1)} & = m_{21}^{(1)}
+    \\ &\quad
+    - \frac{m_{20}^{(0)} m_{01}^{(1)}}{m_{00}^{(0)}}
+    \\ &\quad
+    - 2\frac{m_{10}^{(1)} m_{11}^{(0)}}{m_{00}^{(0)}}.
+  \end{aligned}
+\end{equation}
 
 \section{Prerequisites}
 \label{sec:Prerequisites}
