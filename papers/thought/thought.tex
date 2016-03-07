@@ -25,7 +25,7 @@ If I now want to compute, let's say, $K_{11}^{(2)}$ in terms of expanded moments
          {\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}
   \end{aligned}
 \end{equation}
-and match the $\epsilon$ coefficient on both sides. This obviously will be not possible, thanks to the sum in the denominator.
+and match the $\epsilon$ coefficient on both sides.
 In the paper, he states
 \begin{equation}
   K_{11}^{(2)}
@@ -34,18 +34,7 @@ In the paper, he states
        {m_{00}^{(0)}}
 \end{equation}
 Which obviously has same $\epsilon$ coefficients on both sides, but I can't see, why this is the right way to do it?
-If we just ignore the sum in the denominator, I would suggest the expansion to be
-\begin{equation}
-  K_{11}^{(2)}
-  = m_{11}^{(2)} -
-  \frac{m_{10}^{(1)}m_{01}^{(1)}+m_{10}^{(0)}m_{01}^{(2)}+m_{10}^{(2)}m_{01}^{(0)}}
-       {m_{00}^{(0)}}
-\end{equation}
-Why should I not be allowed to match $*^{(0)}$ and $*^{(2)}$. Sure, they are on different scales, but I suppose they can be combined, anyway.
-In the Geier Paper, it's (G.29) ff.
-
-\section{geometric series}
-\label{sec:geometric series}
+The sum in the denominater can be dealt with a geometric series, like follows
 \begin{equation}
   \begin{aligned}
     K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}}\\
