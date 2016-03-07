@@ -1432,7 +1432,97 @@ As stated in~\eqref{eq:first order collision invariant}, the first order moments
     - \frac{1}{2} \left(\partial_{xx} m_{10}^{eq(1)} + \partial_{yy} m_{12}^{eq(1)} + 2\partial_{xy} m_{21}^{eq(1)}\right)
   \end{aligned}
 \end{equation}
-From here on, we have to consider our specific collision. To do so, we have to look at the series expansion of the cumulants and relate them to the moments\ldots
-
+From here on, we have to consider our specific collision. To do so, we have to look at the series expansion of the cumulants and relate them to the moments. Therefore, we have to expand all terms in~\eqref{eq: K_11 from moments} and following.
+\begin{equation}
+  \begin{aligned}
+    K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}}\\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
+         {\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}
+  \end{aligned}
+\end{equation}
+Now is a good time to fix the frame of reference for this analysis. As we'll see, the analysis will get way more easy when we choose a moving frame of reference which produces
+\begin{equation}
+  \label{eq: frame of reference}
+  \begin{aligned}
+    m_{10}=m_{10}&=0, \\
+    m_{10}^{(p)}=m_{10}^{(p)}&=0 \quad \forall p\geq0.
+  \end{aligned}
+\end{equation}
+Now to analyse the cumulant $K_{11}$. We can get rid of the denominator, using the geometric series, which leads to
+\begin{equation}
+  \begin{aligned}
+    K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}}\\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
+        {\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}\\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
+        {m_{00}^{(0)}}
+        \frac{1}{1 - \sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}}\\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
+        {m_{00}^{(0)}}
+    \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
+  \end{aligned}
+\end{equation}
+For zeroth order terms, we get
+\begin{equation}
+  K_{11}^{(0)} = m_{11}^{(0)} - \frac{m_{01}^{(0)}m_{10}^{(0)}}{m_{00}^{(0)}} = m_{11}^{(0)}
+\end{equation}
+by our choice of the frame of reference,~\eqref{eq: frame of reference}.
+Analogously, for first order terms, we get
+\begin{equation}
+  \begin{aligned}
+    K_{11}^{(1)} & = m_{11}^{(1)} \\
+    &\quad - \frac{m_{01}^{(1)}m_{10}^{(0)}+m_{01}^{(0)}m_{10}^{(1)}}{m_{00}^{(0)}}
+    -\frac{m_{01}^{(0)}m_{10}^{(0)}m_{00}^{(0)}}{m_{00}^{(0)2}}  \\
+    &= m_{11}^{(0)}.
+  \end{aligned}
+\end{equation}
+Thus, the normalized cumulant $K_{11}$ is equal to the corresponding moment at order zero and one.
+For the second order terms, we get
+\begin{equation}
+  \begin{aligned}
+    K_{11}^{(2)}
+    &= m_{11}^{(2)} \\
+    &\quad-
+    \frac{
+      m_{10}^{(1)}m_{01}^{(1)}
+    + m_{10}^{(0)}m_{01}^{(2)}
+    + m_{10}^{(2)}m_{01}^{(0)}
+    }{m_{00}^{(0)}}\underbrace{1}_{j=0}\\
+    &\quad
+    +(m_{10}^{(1)}m_{01}^{(0)} + m_{10}^{(0)}m_{01}^{(1)})\underbrace{ \frac{m_{00}^{(1)}}{m_{00}^{(0)2}}}_{j=1,i=1}\\
+    &\quad
+    + m_{10}^{(0)}m_{01}^{(0)}
+    \left(
+      \underbrace{\frac{m_{00}^{(2)}}{{m_{00}^{(0)2}}}}_{j=1,i=2}
+      - \underbrace{\frac{m_{00}^{(1)2}}{m_{00}^{(0)2}}}_{j=2,i=1}
+    \right)\\
+    &= m_{11}^{(2)} \\
+    &\quad-
+    \frac{
+      m_{10}^{(1)}m_{01}^{(1)}
+    + m_{10}^{(0)}m_{01}^{(2)}
+    + m_{10}^{(2)}m_{01}^{(0)}
+    + m_{10}^{(0)}m_{01}^{(0)}m_{00}^{(1)2}
+    }{m_{00}^{(0)}}\\
+    &\quad
+    + \frac{m_{00}^{(1)}(m_{10}^{(1)}m_{01}^{(0)} + m_{10}^{(0)}m_{01}^{(1)} - m_{10}^{(0)}m_{01}^{(0)}m_{00}^{(1)})}{m_{00}^{(0)2}}  \\
+    &\quad
+    + \frac{m_{00}^{(2)}m_{10}^{(0)}m_{01}^{(0)}}{m_{00}^{(0)2}} \\
+    & = m_{11}^{(2)}
+    - \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
+  \end{aligned}
+\end{equation}
 
 \end{document}
