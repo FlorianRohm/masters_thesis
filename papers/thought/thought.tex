@@ -57,7 +57,7 @@ The sum in the denominater can be dealt with a geometric series, like follows
     \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
   \end{aligned}
 \end{equation}
-Second order terms
+Which leaves the second order terms
 \begin{equation}
   \begin{aligned}
     K_{11}^{(2)}
@@ -67,14 +67,14 @@ Second order terms
       m_{10}^{(1)}m_{01}^{(1)}
     + m_{10}^{(0)}m_{01}^{(2)}
     + m_{10}^{(2)}m_{01}^{(0)}
-    }{m_{00}^{(0)}}\\
+    }{m_{00}^{(0)}}\underbrace{1}_{j=0}\\
     &\quad
-    -(m_{10}^{(1)}m_{01}^{(0)} + m_{10}^{(0)}m_{01}^{(1)}) m_{00}^{(1)}\\
+    +(m_{10}^{(1)}m_{01}^{(0)} + m_{10}^{(0)}m_{01}^{(1)})\underbrace{ \frac{m_{00}^{(1)}}{m_{00}^{(0)2}}}_{j=1,i=1}\\
     &\quad
-    - m_{10}^{(0)}m_{01}^{(0)}
+    + m_{10}^{(0)}m_{01}^{(0)}
     \left(
-      \underbrace{m_{00}^{(2)}}_{j=1,i=2}
-      - \underbrace{\frac{m_{00}^{(2)2}}{m_{00}^{(0)}}}_{j=2,i=1}
+      \underbrace{\frac{m_{00}^{(2)}}{{m_{00}^{(0)2}}}}_{j=1,i=2}
+      - \underbrace{\frac{m_{00}^{(1)2}}{m_{00}^{(0)2}}}_{j=2,i=1}
     \right)\\
     &= m_{11}^{(2)} \\
     &\quad-
@@ -82,13 +82,14 @@ Second order terms
       m_{10}^{(1)}m_{01}^{(1)}
     + m_{10}^{(0)}m_{01}^{(2)}
     + m_{10}^{(2)}m_{01}^{(0)}
-    + m_{10}^{(0)}m_{01}^{(0)}m_{00}^{(2)2}
+    + m_{10}^{(0)}m_{01}^{(0)}m_{00}^{(1)2}
     }{m_{00}^{(0)}}\\
     &\quad
-    - m_{00}^{(1)}(m_{10}^{(1)}m_{01}^{(0)} + m_{10}^{(0)}m_{01}^{(1)}) \\
+    + \frac{m_{00}^{(1)}(m_{10}^{(1)}m_{01}^{(0)} + m_{10}^{(0)}m_{01}^{(1)} - m_{10}^{(0)}m_{01}^{(0)}m_{00}^{(1)})}{m_{00}^{(0)2}}  \\
     &\quad
-    - m_{00}^{(2)}m_{10}^{(0)}m_{01}^{(0)}
+    + \frac{m_{00}^{(2)}m_{10}^{(0)}m_{01}^{(0)}}{m_{00}^{(0)2}}
   \end{aligned}
 \end{equation}
-
+Why should I not be allowed to match $*^{(0)}$ and $*^{(2)}$. Sure, they are on different scales, but I suppose they can be combined, anyway. Do I miss something, or is there additional modelling work to be done to get rid of those terms?
+In the Geier Paper, it's (G.29) ff.
 \end{document}
