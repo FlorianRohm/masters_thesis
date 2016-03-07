@@ -968,10 +968,10 @@ As we want to compute with the normalized cumulants,~\eqref{eq: definition norma
   \end{aligned}
 \end{equation}
 
-\section{Asymptotic Analysis}
-\label{sec:Asymptotic Analysis}
-\subsection{Preparation}
-\label{sub:Preparation}
+\section{Series Expansions}
+\label{sec:Series Expansions}
+\subsection{Expanding the Lattice Boltzmann Equation}
+\label{sub:Expanding the Lattice Boltzmann Equation}
 
 A Taylor expansion of~\eqref{eq:Lattice Boltzmann Equation} in both time and space gives
 \begin{equation*}
@@ -1066,8 +1066,8 @@ Inserting~\eqref{eq:nondimensionalisation},~\eqref{eq:expansion of m} and~\eqref
 \end{align}
 Where in~\eqref{eq:final nondimensionalised expansion series}, the summation indices are changed to be unique for better recognition.
 
-\subsection{Derivation of the \texorpdfstring{$\epsilon$}{epsilon} terms}
-\label{sub:Derivation of the epsilon terms}
+\subsection{Matching the equating coefficients}
+\label{sub:Matching the equating coefficients}
 As $\epsilon$ is arbitrary and the terms of the expansion are not allowed to depend on $\epsilon$, equality has to hold in every order of $\epsilon$.
 
 \subsubsection{Zero'th order in \texorpdfstring{$\epsilon$}{epsilon}}
@@ -1151,14 +1151,15 @@ This gives
   \end{aligned}
 \end{equation}
 
-\subsection{Analysis of the Terms}
-\label{sub:Analysis of the Terms}
+\subsection{Expanding the normalized cumulants}
+\label{sub:Expanding the normalized cumulants}
+ToDo
 
-\subsubsection{Prerequesites}
-\label{subs:Prerequesites}
+\section{Prerequisites}
+\label{sec:Prerequisites}
 Before starting to analyse the terms, we need to set up
-\paragraph{Mass conservation}
-\label{par:Mass conservation}
+\subsection{Mass conservation}
+\label{sub:Mass conservation}
 The described cumulant method shall not have any sources and sinks and be incompressible. Hence
 \begin{equation}
     \rho  = m_{00} = m_{00}^*
@@ -1170,8 +1171,8 @@ and thus
 
 Velocity is no conserved quantity in our setting, because forcing terms like gravity can alter it.
 
-\paragraph{Zeroth order moments are constant in space}
-\label{par:Zeroth order moments are constant in space}
+\subsection{Zeroth order moments are constant in space}
+\label{sub:Zeroth order moments are constant in space}
 Zeroth order terms are independent of our expansion parameter $\epsilon$ and thus have to be constant in space. Hence
 \begin{equation}
   \partial_x m_{\alpha\beta}^{(0)} = 0
@@ -1181,8 +1182,8 @@ Zeroth order terms are independent of our expansion parameter $\epsilon$ and thu
 \end{equation}
 
 
-\subsubsection{Collision invariants}
-\label{subs:Collision invariants}
+\subsection{Collision invariants}
+\label{sub:Collision invariants}
 As the zeroth order terms of the expansion have to be constant in space, we get
 \begin{equation}
   \label{eq:first order collision invariant}
@@ -1196,9 +1197,8 @@ As the zeroth order terms of the expansion have to be constant in space, we get
 \end{equation}
 Thus, all moments are collision invariants at zeroth,~\eqref{eq:zeroth order in epsilon}, and first order,~\eqref{eq:first order collision invariant}, in $\epsilon$.
 
-\subsubsection{Mass conservation}
-\label{subs:Mass conservation}
-
+\section{Mass conservation}
+\label{sec:Mass conservation}
 We choose $\epsilon^2$, $\alpha=0$, $\beta=0$ and get with~\eqref{eq:first order collision invariant}
 \begin{equation}
     \begin{aligned}
@@ -1213,14 +1213,14 @@ Inserting the macroscopic values for the moments, we get
 \end{equation}
 Which is the mass conservation even \textbf{without} the assumption of incompressibility
 
-\subsubsection{Momentum equation}
-\label{subs:Momentum equation}
+\section{Momentum equation}
+\label{sec:Momentum equation}
 \paragraph{Goal}
 \label{par:Goal}
 For convenience, we state the momentum equation of the Navier-Stokes-Equation.
 
-\subparagraph{Incompressible}
-\label{subp:Incompressible}
+\subsection{Incompressible momentum equation}
+\label{sub:Incompressible momentum equation}
 The incompressible momentum equation reads
 \begin{equation}
   \partial_t \mathbf{v} + \left(\mathbf{v}\cdot\nabla\right)\mathbf{v} = - \frac{1}{\rho}\nabla p + \nu \Delta \mathbf{v} + \mathbf{f}
@@ -1235,8 +1235,8 @@ or in separate equations
   \end{aligned}
 \end{equation}
 
-\subparagraph{Compressible}
-\label{subp:Compressible}
+\subsection{Compressible momentum equation}
+\label{sub:Compressible momentum equation}
 The compressible momentum equation reads in conservative form
 \begin{equation}
   \label{eq:compressible NS}
@@ -1354,8 +1354,9 @@ and finally with moments:
             + \partial_{yy} \frac{m_{10}}{m_{00}} \right) + m_{00}f_x
   \end{aligned}
 \end{equation}
-\paragraph{Derivation}
-\label{par:Derivation of momentum equation}
+
+\subsection{Derivation}
+\label{sub:Derivation of momentum equation}
 
 For $\epsilon^2$, $\alpha=1$, $\beta=0$ we get
 \begin{equation}
