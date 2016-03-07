@@ -33,7 +33,8 @@ In the paper, he states
   \frac{m_{10}^{(1)}m_{01}^{(1)}}
        {m_{00}^{(0)}}
 \end{equation}
-Which obviously has same $\epsilon$ coefficients on both sides, but I can't see, why this is the right way to do it?
+Which obviously has same $\epsilon$ coefficients on both sides.
+
 The sum in the denominater can be dealt with a geometric series, like follows
 \begin{equation}
   \begin{aligned}
@@ -90,6 +91,7 @@ Which leaves the second order terms
     + \frac{m_{00}^{(2)}m_{10}^{(0)}m_{01}^{(0)}}{m_{00}^{(0)2}}
   \end{aligned}
 \end{equation}
-Why should I not be allowed to match $*^{(0)}$ and $*^{(2)}$. Sure, they are on different scales, but I suppose they can be combined, anyway. Do I miss something, or is there additional modelling work to be done to get rid of those terms?
-In the Geier Paper, it's (G.29) ff.
+Why should I not be allowed to match $*^{(0)}$ and $*^{(2)}$. Sure, they are on different scales, but I suppose they can interact, anyway. One remedy would be to assume $m_{10}^{(0)}=0=m_{01}^{(0)}$ which would cancel out all spare terms.
+
+Do I miss something, or is there additional modelling work to be done to get rid of those?
 \end{document}
