@@ -40,3 +40,83 @@ As the zeroth order terms of the expansion have to be constant in space, we get
 \end{equation}
 Thus, all moments of order zero,~\eqref{eq:zeroth order in epsilon},
 and one,~\eqref{eq:first order collision invariant}, in $\epsilon$, are collision invariants.
+
+\subsection{Collision of moments}
+\label{sub:Collision of moments}
+Last but not least, we take a look at the collision and insert the findings of Section~\ref{sub:Expanding the normalized cumulants}.
+Starting from~\eqref{eq:collision equation system full}, multiplying by $m_{00}$ we get
+\begin{equation}
+  \begin{aligned}
+    K_{11}^{*} & = (1-\omega_1)K_{11} \\
+    K_{20}^{*} - K_{02}^{*} & = (1-\omega_1) (K_{20} - K_{02}) \\
+    K_{20}^{*} + K_{02}^{*} & = (1-\omega_2) (K_{20} + K_{02}) + \omega_2 \frac{2 m_{00}}{3} \\
+    K_{21}^{*} & = (1-\omega_3)K_{21} \\
+    K_{12}^{*} & = (1-\omega_3)K_{12} \\
+    K_{22}^{*} & = (1-\omega_4)K_{22}.
+  \end{aligned}
+\end{equation}
+now, insert the moment representations at first order to get
+\begin{equation}
+  \begin{aligned}
+    m_{11}^{(1)*}
+    & = (1-\omega_1)m_{11}^{(1)} \\
+%
+    m_{20}^{(1)*} - m_{02}^{(1)*}
+    & = (1-\omega_1) (m_{20}^{(1)} - m_{02}^{(1)}) \\
+%
+    m_{20}^{(1)*} + m_{02}^{(1)*}
+    & = (1-\omega_2) (m_{20}^{(1)} + m_{02}^{(1)}) + \omega_2 \frac{2 m_{00}}{3} \\
+%
+    m_{21}^{(1)*} - \theta m_{01}^{(1)*}
+    & = (1-\omega_3)(m_{21}^{(1)}- \theta m_{01}^{(1)}) \\
+%
+    m_{12}^{(1)*} - \theta m_{10}^{(1)*}
+    & = (1-\omega_3)(m_{12}^{(1)}- \theta m_{01}^{(1)}) \\
+%
+    m_{22}^{(1)*} - \theta (m_{20}^{(1)*} + m_{02}^{(1)*})
+    & = (1-\omega_4)(m_{22}^{(1)} - \theta (m_{20}^{(1)} + m_{02}^{(1)})) \\
+\Leftrightarrow
+    m_{22}^{(1)*}
+    & = (1-\omega_4)(m_{22}^{(1)} - \theta (m_{20}^{(1)} + m_{02}^{(1)}))
+    \\&\quad
+    + \theta ((1-\omega_2) (m_{20}^{(1)} + m_{02}^{(1)}) + \omega_2 \frac{2 m_{00}}{3}) .
+  \end{aligned}
+\end{equation}
+Inserting the second order approximations
+\begin{equation}
+  \begin{aligned}
+    m_{11}^{(2)*} - \frac{ m_{10}^{(1)*}m_{01}^{(1)*}}{m_{00}^{(0)*}} & = (1-\omega_1)\left(m_{11}^{(2)} - \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}\right) \\
+    m_{20}^{(2)*}-m_{02}^{(2)*} - \frac{ m_{10}^{(1)*2} - m_{01}^{(1)*2}}{m_{00}^{(0)*}} & = (1-\omega_1) \left(m_{20}^{(2)}-m_{02}^{(2)} - \frac{ m_{10}^{(1)2} - m_{01}^{(1)2}}{m_{00}^{(0)}}\right) \\
+    %
+    m_{20}^{(2)*}+m_{02}^{(2)*} - \frac{ m_{10}^{(1)*2} + m_{01}^{(1)*2}}{m_{00}^{(0)*}} & = (1-\omega_2)
+    \left(m_{20}^{(2)}+m_{02}^{(2)} - \frac{ m_{10}^{(1)2} + m_{01}^{(1)2}}{m_{00}^{(0)}}\right)
+    \\&\quad
+    + \omega_2 \frac{2 m_{00}}{3} \\
+  \end{aligned}
+\end{equation}
+
+\paragraph{Reduced case}
+\label{par:Reduced case}
+In the reduced case where only $\omega_1$ is not one, we get
+\begin{equation}
+  \begin{aligned}
+    m_{11}^{(1)*} & = (1-\omega_1) m_{11}^{(1)} \\
+    m_{20}^{(1)*} - m_{02}^{(1)*}
+      & = (1-\omega_1) (m_{20}^{(1)} - m_{02}^{(1)}) \\
+    m_{20}^{(1)*} + m_{02}^{(1)*}
+      & =  \frac{2 m_{00}}{3} \\
+    m_{21}^{(1)*} & = \theta m_{01}^{(1)*} \\
+    m_{12}^{(1)*} & = \theta m_{10}^{(1)*} \\
+    m_{22}^{(1)*} & = \theta (m_{20}^{(1)*} + m_{02}^{(1)*}) = \theta \frac{2 m_{00}}{3}
+  \end{aligned}
+\end{equation}
+And finally, inserting the second order terms into the first three equations
+\begin{equation}
+  \begin{aligned}
+    K_{11}^{*} & = (1-\omega_1)K_{11} \\
+    K_{20}^{*} - K_{02}^{*}
+      & = (1-\omega_1) (K_{20} - K_{02}) \\
+    K_{20}^{*} + K_{02}^{*}
+      & =  \frac{2 m_{00}}{3} \\
+  \end{aligned}
+\end{equation}
