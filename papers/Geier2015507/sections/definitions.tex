@@ -99,11 +99,15 @@ Taylor expansion of $F_c$
   \label{eq: taylor of Fc}
   \begin{aligned}
     F_c(\Xi_1, \Xi_2) & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F_c(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
-    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!}
-      \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} \sum_{i,j}f_{ij} e^{-\Xi_1 (ic+u_1)} e^{-\Xi_2 (jc+u_2)} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \Bigg(
+        \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} \\
+          &\qquad\qquad
+          \sum_{i,j}f_{ij} e^{-\Xi_1 (ic+u_1)} e^{-\Xi_2 (jc+u_2)} \Bigg)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \sum_{i,j} {(ic+u_1)}^\alpha {(jc+u_2)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
-    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}
-      \sum_{i,j} {\left(i+\frac{u_1}{c}\right)}^\alpha {\left(j+\frac{u_2}{c}\right)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \Bigg(
+        \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}\\
+        &\qquad\qquad  \sum_{i,j} {\left(i+\frac{u_1}{c}\right)}^\alpha {\left(j+\frac{u_2}{c}\right)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}
+      \Bigg)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}
       \sum_{i,j} {\left(i+\frac{u_1}{c}\right)}^\alpha {\left(j+\frac{u_2}{c}\right)}^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  c_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta
