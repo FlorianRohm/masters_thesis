@@ -56,11 +56,11 @@ Additionally, the moments are expanded according to the scale $\epsilon$
 \begin{align}
     \label{eq:expansion of m}
     m_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)} \\
-    \label{eq:expansion of m*}
+    \label{eq:expansion of m star}
     m^*_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{*(p)}.
 \end{align}
 Those are still dependent of space and time, but as they are separated on their length scales, they are not allowed to depend on $\epsilon$ neither implicitly nor explicitly.
-Inserting~\eqref{eq:nondimensionalisation},~\eqref{eq:expansion of m} and~\eqref{eq:expansion of m*} into~\eqref{eq: Taylor of moments} yields
+Inserting~\eqref{eq:nondimensionalisation},~\eqref{eq:expansion of m} and~\eqref{eq:expansion of m star} into~\eqref{eq: Taylor of moments} yields
 
 \begin{align}
   \phantom{\equivalent\qquad}
@@ -101,7 +101,7 @@ Where in~\eqref{eq:final nondimensionalised expansion series}, the summation ind
 As $\epsilon$ is arbitrary and the terms of the expansion are not allowed to depend on $\epsilon$, equality has to hold in every order of $\epsilon$.
 
 \subsubsection{Zero'th order in \texorpdfstring{$\epsilon$}{epsilon}}
-\label{subs:Zero'th order in epsilon}
+\label{subs:Zeroth order in epsilon}
 
 To achieve $\epsilon^0$, we have to choose $\tau=p=p'=m=n=0$, yielding
 \begin{equation}
@@ -183,7 +183,7 @@ This gives
 
 \subsection{Expanding the normalized cumulants}
 \label{sub:Expanding the normalized cumulants}
-We start by expanding the first nontrivial normalized cumulant, $K_{11}$, which was defined in~\eqref{eq: K_11 from moments}.
+We start by expanding the first nontrivial normalized cumulant, $K_{11}$, which was defined in~\eqref{eq: K 11 from moments}.
 \begin{equation}
   \begin{aligned}
     K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}}\\
@@ -201,7 +201,7 @@ Now is a good time to fix the frame of reference for this analysis. As we'll see
 \end{equation}
 
 \subsubsection{\texorpdfstring{$K_{11}$}{K 11}}
-\label{subs:K_11}
+\label{subs:K 11}
 
 Now to analyse the cumulant $K_{11}$. We can get rid of the denominator, using the geometric series, which leads to
 \begin{equation}
@@ -279,7 +279,7 @@ For the second order terms, we get
 \end{equation}
 
 \subsubsection{\texorpdfstring{$K_{20}$}{K 20} and \texorpdfstring{$K_{02}$}{K 02}}
-\label{subs:K_20}
+\label{subs:K 20}
 Going further to $K_{20}$, we get with the same reasoning
 \begin{equation}
   \begin{aligned}
@@ -305,8 +305,8 @@ and consequently
 \end{equation}
 
 \subsubsection{\texorpdfstring{$K_{21}$}{K 21} and \texorpdfstring{$K_{12}$}{K 12}}
-\label{subs:K_21}
-As before, we take the defining equation for the normalized cumulant, in this case~\eqref{eq: K_21 from moments}, and plug in all expansions with the geometric series expansion like in~\ref{subs:K_11}.
+\label{subs:K 21}
+As before, we take the defining equation for the normalized cumulant, in this case~\eqref{eq: K 21 from moments}, and plug in all expansions with the geometric series expansion like in~\ref{subs:K 11}.
 \begin{equation}
   \begin{aligned}
     \sum_{i=0}^\infty \epsilon^i K_{21}^{(i)}
@@ -340,7 +340,7 @@ In contrary to the aforementioned, the first order expansions differ:
 \end{equation}
 
 \subsubsection{\texorpdfstring{$K_{22}$}{K 22}}
-\label{subs:K_22}
+\label{subs:K 22}
 \begin{equation}
   \begin{aligned}
 K_{22} & = m_{22} \\

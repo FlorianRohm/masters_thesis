@@ -171,22 +171,22 @@ For more convenient reading, the normalized cumulants
 are introduced.
 
 \begin{align}
-  K_{00} & = \ln(m_{00})m_{00} \label{eq: K_00 from moments}\\
-  K_{10} & = m_{10} \label{eq: K_10 from moments}\\
-  K_{01} & = m_{01} \label{eq: K_01 from moments}\\
-  K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}} \label{eq: K_11 from moments} \\
-  K_{20} & = m_{20} - \frac{m_{10}^2}{m_{00}} \label{eq: K_20 from moments}\\
-  K_{02} & = m_{02} - \frac{m_{01}^2}{m_{00}} \label{eq: K_02 from moments}\\
+  K_{00} & = \ln(m_{00})m_{00} \label{eq: K 00 from moments}\\
+  K_{10} & = m_{10} \label{eq: K 10 from moments}\\
+  K_{01} & = m_{01} \label{eq: K 01 from moments}\\
+  K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}} \label{eq: K 11 from moments} \\
+  K_{20} & = m_{20} - \frac{m_{10}^2}{m_{00}} \label{eq: K 20 from moments}\\
+  K_{02} & = m_{02} - \frac{m_{01}^2}{m_{00}} \label{eq: K 02 from moments}\\
   K_{21} & = m_{21} - \frac{m_{20}m_{01}}{m_{00}}
-       - 2\frac{m_{10}m_{11}}{m_{00}} + 2\frac{m_{10}^2 m_{01}}{m_{00}^2} \label{eq: K_21 from moments}\\
+       - 2\frac{m_{10}m_{11}}{m_{00}} + 2\frac{m_{10}^2 m_{01}}{m_{00}^2} \label{eq: K 21 from moments}\\
   K_{12} & = m_{12} - \frac{m_{10}m_{02}}{m_{00}}
-       - 2\frac{m_{11}m_{01}}{m_{00}} + 2\frac{m_{10} m_{01}^2}{m_{00}^2} \label{eq: K_12 from moments}\\
+       - 2\frac{m_{11}m_{01}}{m_{00}} + 2\frac{m_{10} m_{01}^2}{m_{00}^2} \label{eq: K 12 from moments}\\
   K_{22} & = m_{22} \\
        & \quad - 2 \frac{m_{10}m_{12}}{m_{00}} - 2\frac{m_{21}m_{01}}{m_{00}}
         - 2 \frac{m_{11}^2}{m_{00}} - \frac{m_{20}m_{02}}{m_{00}} \\
        & \quad + 2 \frac{m_{10}^2 m_{02}}{m_{00}^2} + 8 \frac{m_{10}m_{11}m_{01}}{m_{00}^2}
         + 2 \frac{m_{20}m_{01}^2}{m_{00}^2} \\
-       & \quad - 6 \frac{m_{10}^2 m_{01}^2}{m_{00}^3}\label{eq: K_22 from moments}
+       & \quad - 6 \frac{m_{10}^2 m_{01}^2}{m_{00}^3}\label{eq: K 22 from moments}
 \end{align}
 
 \subsection{Central moments from cumulants}
@@ -389,7 +389,7 @@ By chaining this technique in 3D, much more computing power is saved.
 We can further analyze the $c_{\alpha\beta}$ and $c_{i|\beta}$ terms:
 \begin{equation}
   \begin{aligned}
-    \label{eq:fast forward c_alpha beta expanded}
+    \label{eq:fast forward c alpha beta expanded}
     c_{\alpha\beta} & = \sum_{i} {\left(i-\frac{u_1}{c}\right)}^\alpha c_{i|\beta} \\
     & = {\left(-1-\frac{u_1}{c}\right)}^\alpha c_{-1|\beta} + {\left(-\frac{u_1}{c}\right)}^\alpha c_{0|\beta} + {\left(1-\frac{u_1}{c}\right)}^\alpha c_{1|\beta}
   \end{aligned}
@@ -397,14 +397,14 @@ We can further analyze the $c_{\alpha\beta}$ and $c_{i|\beta}$ terms:
 
 \begin{equation}
   \begin{aligned}
-    \label{eq:fast forward c_i pipe beta expanded}
+    \label{eq:fast forward c i pipe beta expanded}
     c_{i|\beta} & = \sum_{j} {\left(j-\frac{u_2}{c}\right)}^\beta f_{ij} \\
     & = {\left(-1-\frac{u_2}{c}\right)}^\beta f_{i-1} + {\left(-\frac{u_2}{c}\right)}^\beta f_{i0} + {\left(1-\frac{u_2}{c}\right)}^\beta f_{i1}
   \end{aligned}
 \end{equation}
-With~\eqref{eq:fast forward c_alpha beta expanded}, we can explicitly write
+With~\eqref{eq:fast forward c alpha beta expanded}, we can explicitly write
 \begin{equation}
-  \label{eq:fast forward c_alpha beta matrix}
+  \label{eq:fast forward c alpha beta matrix}
   \begin{pmatrix}
     c_{0\beta} \\
     c_{1\beta} \\
@@ -422,9 +422,9 @@ With~\eqref{eq:fast forward c_alpha beta expanded}, we can explicitly write
     c_{1|\beta}
   \end{pmatrix}
 \end{equation}
-and with~\eqref{eq:fast forward c_i pipe beta expanded}
+and with~\eqref{eq:fast forward c i pipe beta expanded}
 \begin{equation}
-  \label{eq:fast forward c_i pipe beta matrix}
+  \label{eq:fast forward c i pipe beta matrix}
   \begin{pmatrix}
     c_{i|0} \\
     c_{i|1} \\
@@ -445,8 +445,8 @@ and with~\eqref{eq:fast forward c_i pipe beta expanded}
 
 \subsubsection{Backward transformation}
 \label{subs:Backward transformation}
-To get the backwards direction, the systems~\eqref{eq:fast forward c_alpha beta expanded}
-and~\eqref{eq:fast forward c_i pipe beta expanded} are now solved where~\eqref{eq:fast forward c_alpha beta matrix} becomes, (cf.\ mathematica/backward\_transformation.nb)
+To get the backwards direction, the systems~\eqref{eq:fast forward c alpha beta expanded}
+and~\eqref{eq:fast forward c i pipe beta expanded} are now solved where~\eqref{eq:fast forward c alpha beta matrix} becomes, (cf.\ mathematica/backward\_transformation.nb)
 \begin{equation}
   \begin{pmatrix}
     c_{-1|\beta} \\
@@ -471,7 +471,7 @@ and~\eqref{eq:fast forward c_i pipe beta expanded} are now solved where~\eqref{e
     c_{2\beta}
   \end{pmatrix}
 \end{equation}
-and~\eqref{eq:fast forward c_i pipe beta matrix} analogously
+and~\eqref{eq:fast forward c i pipe beta matrix} analogously
 \begin{equation}
   \begin{pmatrix}
     f_{i-1} \\
