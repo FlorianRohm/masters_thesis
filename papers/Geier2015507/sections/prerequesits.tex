@@ -1,0 +1,41 @@
+% !TEX root = ../notes.tex
+
+Before starting to analyse the terms, we need to set up
+\subsection{Absence of sources}
+\label{sub:Absence of sources}
+The described cumulant method shall not have any sources and sinks and be incompressible. Hence
+\begin{equation}
+    \rho  = m_{00} = m_{00}^*
+\end{equation}
+and thus
+\begin{equation}
+    \rho = m_{00}^{(p)} = m_{00}^{*(p)}
+\end{equation}
+
+Velocity is no conserved quantity in our setting, because forcing terms like gravity can alter it.
+
+\subsection{Zeroth order moments are constant in space}
+\label{sub:Zeroth order moments are constant in space}
+Zeroth order terms are independent of our expansion parameter $\epsilon$ and thus have to be constant in space. Hence
+\begin{equation}
+  \partial_x m_{\alpha\beta}^{(0)} = 0
+\end{equation}
+\begin{equation}
+  \partial_y m_{\alpha\beta}^{(0)} = 0
+\end{equation}
+
+
+\subsection{Collision invariants}
+\label{sub:Collision invariants}
+As the zeroth order terms of the expansion have to be constant in space, we get
+\begin{equation}
+  \label{eq:first order collision invariant}
+  \begin{aligned}
+    m_{\alpha\beta}^{(1)}
+    & = m_{\alpha\beta}^{*(1)}
+    - \partial_x m_{(\alpha+1)\beta}^{*(0)}
+    - \partial_y m_{\alpha(\beta+1)}^{*(0)} \\
+    & = m_{\alpha\beta}^{*(1)}
+  \end{aligned}
+\end{equation}
+Thus, all moments are collision invariants at zeroth,~\eqref{eq:zeroth order in epsilon}, and first order,~\eqref{eq:first order collision invariant}, in $\epsilon$.

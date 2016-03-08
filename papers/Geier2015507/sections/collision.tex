@@ -1,0 +1,250 @@
+% !TEX root = ../notes.tex
+
+\subsection{Maxwell Distribution}
+\label{sub:Maxwell Distribution}
+The Maxwell distribuion in two dimensions reads
+\todo[inline]{cite Succi, p8}
+\begin{equation}
+  \label{eq:maxwell distribution raw}
+  f_{m, \rho, u, T}^{\text{maxwell}}(\xi) = \rho \frac{m}{2\pi k_B T} \exp \left( - \frac{m\abs{\xi-u}^2}{2 k_B T}\right)
+\end{equation}
+where
+\begin{center}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    Symbol & Quantity  \\
+    \midrule
+    $\xi$  & Microscopic speed  \\
+    $\rho$ & Macroscopic density     \\
+    $u$    & Macroscopic velocity   \\
+    $T$    & Temperature   \\
+    $k_B$  & Boltzmann constant \\
+    $m$    & Mass of the particles   \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+This distribution gives the probability of finding a particle with a certain speed at some point.
+Integrating this function (cf.\ mathematica/integrate\_maxwell.nb) gives
+\begin{equation}
+  \label{eq:integrate exponential sage}
+  \begin{aligned}
+    \int_{-\infty}^{\infty} \exp \left(-C \xi^2 + (2Cu - \Xi)\cdot\xi \right) d\xi
+    & = \sqrt{\frac{\pi}{C}}\exp \left(Cu^2 - \Xi u + \frac{1}{4} \frac{\Xi^2}{C}\right) \\
+    & = \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu-\Xi)}^2}{4C}\right)
+  \end{aligned}
+\end{equation}
+
+\subsection{Laplace Transform of Laplacian}
+\label{sub:Laplace Transform of Laplacian}
+With this work, the two sided Laplace Transform of the Maxwell Distribution reads
+\begin{equation}
+  \begin{aligned}
+    F^{eq}(\Xi) & = \mathcal{L}[f^{\text{maxwell}}](\Xi)
+    = \int_{\R^2} \rho \frac{m}{2\pi k_B T} \exp \left( - \frac{m\abs{\xi-u}^2}{2 k_B T}\right) \cdot e^{-\Xi\cdot\xi} d\xi \\
+    & = \rho  \frac{m}{2\pi k_B T} \int_{\R^2}
+      \exp \left( - \underbrace{\frac{m}{2 k_B T}}_{\defines C} \left( \abs{\xi}^2 - 2\xi\cdot u + \abs{u}^2 \right)\right) \cdot e^{-\Xi\cdot\xi} d\xi \\
+    & = \underbrace{\frac{\rho C} {\pi} e^{-C \abs{u}^2}}_{\defines D}
+      \int_{\R^2}
+      \exp \left( - C\abs{\xi}^2 + (2Cu -\Xi)\cdot\xi \right) d\xi \\
+    & =  D
+      \int_{\R} \int_{\R}
+      \exp \left( - C\abs{\xi_1}^2 + (2Cu_1 -\Xi_1)\cdot\xi_1 \right)
+      \exp \left( - C\abs{\xi_2}^2 + (2Cu_2 -\Xi_2)\cdot\xi_2 \right) d\xi_1 d\xi_2 \\
+    & = D
+      \int_{\R}
+      \exp \left( - C\abs{\xi_1}^2 + (2Cu_1 -\Xi_1)\cdot\xi_1 \right) d\xi_1
+      \int_{\R}
+      \exp \left( - C\abs{\xi_2}^2 + (2Cu_2 -\Xi_2)\cdot\xi_2 \right) d\xi_2 \\
+    & = \frac{\rho C} {\pi} e^{-C \abs{u}^2}
+      \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu_1-\Xi_1)}^2}{4C}\right)
+      \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu_2-\Xi_2)}^2}{4C}\right) \\
+    & = \rho
+      \exp \left( \frac{{(2Cu_1-\Xi_1)}^2}{4C} + \frac{{(2Cu_2-\Xi_2)}^2}{4C} -C \abs{u}^2 \right) \\
+    & = \rho
+      \exp \left( -\Xi_1 u_1 - \Xi_2 u_2 + \frac{1}{4C}\left(\Xi_1^2 + \Xi_2^2 \right)\right)
+  \end{aligned}
+\end{equation}
+
+\subsection{Equilibrium Distribution for Cumulants}
+\label{sub:Equilibrium Distribution for Cumulants}
+
+Like in the derivation of the cumulants, our equilibrium cumulants need the Taylor series of the logarithm of the Laplace transformed equilibrium distribution. With the speed of sound $c_s$ defined as
+\begin{equation}
+  c_s \defined \sqrt{\frac{k_B T}{m}}
+\end{equation}
+we get
+\begin{equation}
+  \begin{aligned}
+    \ln(F^{eq}(\Xi))
+      & = \ln(\rho) - \Xi_1 u_1 - \Xi_2 u_2 + \frac{1}{4C}\left(\Xi_1^2 + \Xi_2^2 \right) \\
+      & = \ln(\rho) - \Xi_1 u_1 - \Xi_2 u_2 + \frac{k_B T}{2m}\left(\Xi_1^2 + \Xi_2^2 \right) \\
+      & = \ln(\rho) - \Xi_1 u_1 - \Xi_2 u_2 + \frac{c_s^2}{2}\left(\Xi_1^2 + \Xi_2^2 \right)
+  \end{aligned}
+\end{equation}
+
+With~\eqref{eq:Definition of cumulants} follows
+\begin{equation}
+  \label{eq:equilibrium cumulants}
+  \begin{aligned}
+    \kappa_{00}^{eq} & = \ln(\rho) \\
+    \kappa_{10}^{eq} & = - {(-c)}^{-1} u_1 \\
+    \kappa_{01}^{eq} & = - {(-c)}^{-1} u_2 \\
+    \kappa_{11}^{eq} & = 0 \\
+    \kappa_{20}^{eq} & = {(-c)}^{-2} c_s^2  \\
+    \kappa_{02}^{eq} & = {(-c)}^{-2} c_s^2  \\
+    \kappa_{21}^{eq} & = 0 \\
+    \kappa_{12}^{eq} & = 0 \\
+    \kappa_{22}^{eq} & = 0.
+  \end{aligned}
+\end{equation}
+Additionally, we can simplify the $\kappa_{02}$ and $\kappa_{20}$. As their equilibrium is the same, we could also say, that the difference has zero equilibrium and their sum double the equilibrium:
+\begin{equation}
+  \begin{aligned}
+    \kappa_{20}^{eq} - \kappa_{02}^{eq} & = 0  \\
+    \kappa_{20}^{eq} + \kappa_{02}^{eq} & = 2 {(-c)}^{-2} c_s^2
+  \end{aligned}
+\end{equation}
+%
+and the post collision cumulants $\kappa_{\alpha\beta}^*$
+\begin{equation}
+  \label{eq: post equilibrium cumulants}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} + \omega_1 \left( \ln(\rho) - \kappa_{00} \right) \\
+    \kappa_{10}^{*} & = \kappa_{10} + \omega_2 \left( - {(-c)}^{-1} u_1 - \kappa_{10} \right) \\
+    \kappa_{01}^{*} & = \kappa_{01} + \omega_3 \left( - {(-c)}^{-1} u_2 - \kappa_{01} \right) \\
+    \kappa_{11}^{*} & = \kappa_{11} + \omega_4 \left( - \kappa_{11} \right) \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = \kappa_{20} - \kappa_{02} + \omega_5 \left( - \kappa_{20} + \kappa_{02} \right) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & = \kappa_{20} + \kappa_{02} + \omega_6 \left( 2 {(-c)}^{-2} c_s^2 - \kappa_{20} - \kappa_{02} \right) \\
+    \kappa_{21}^{*} & = \kappa_{21} + \omega_7 \left( - \kappa_{21} \right) \\
+    \kappa_{12}^{*} & = \kappa_{12} + \omega_8 \left( - \kappa_{12} \right) \\
+    \kappa_{22}^{*} & = \kappa_{22} + \omega_9 \left( - \kappa_{22} \right)
+  \end{aligned}
+\end{equation}
+which can be simplified to
+\begin{equation}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_4)\kappa_{11} \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (1-\omega_5) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & = \kappa_{20} + \kappa_{02} + \omega_6 \left( 2 {(-c)}^{-2} c_s^2 - \kappa_{20} - \kappa_{02} \right) \\
+    \kappa_{21}^{*} & = (1-\omega_7)\kappa_{21} \\
+    \kappa_{12}^{*} & = (1-\omega_8)\kappa_{12} \\
+    \kappa_{22}^{*} & = (1-\omega_9)\kappa_{22},
+  \end{aligned}
+\end{equation}
+as the first three cumulants are conserved quantities, compare~\eqref{eq: K_00 from moments} and following.
+%
+The recovered post equilibrium values $\kappa_{20}^{*}$ and $\kappa_{02}^{*}$ are with
+\begin{equation}
+  \begin{aligned}
+    a \defined \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (1-\omega_5) (\kappa_{20} - \kappa_{02}) \\
+    b \defined \kappa_{20}^{*} + \kappa_{02}^{*}
+      & = \kappa_{20} + \kappa_{02} + \omega_6 \left( 2 {(-c)}^{-2} c_s^2 - \kappa_{20} - \kappa_{02} \right)
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{pmatrix}
+    \kappa_{20}^{*} \\
+    \kappa_{02}^{*}
+  \end{pmatrix}
+  = \frac{1}{2}
+  \begin{pmatrix}
+    1 & 1 \\ -1 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    a\\
+    b
+  \end{pmatrix}
+\end{equation}
+To ensure rotational invariance, we have to relate some relaxation parameters, yielding (where the $\omega_i$ are not related to the ones before)
+\begin{equation}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & = \kappa_{20} + \kappa_{02} + \omega_2 \left( 2 {(-c)}^{-2} c_s^2 - \kappa_{20} - \kappa_{02} \right) \\
+    \kappa_{21}^{*} & = (1-\omega_3)\kappa_{21} \\
+    \kappa_{12}^{*} & = (1-\omega_3)\kappa_{12} \\
+    \kappa_{22}^{*} & = (1-\omega_4)\kappa_{22}
+  \end{aligned}
+\end{equation}
+
+\subsection{Choosing the \texorpdfstring{$\omega_i$}{omegai}}
+\label{sub:Choosing the omega_i}
+The only apparent relaxation parameter in the asymptotic analysis is $\omega_1$ which plays the role of viscosity like BGK-LBM.\@
+All other terms are save to be set to one.
+\todo[inline]{confirmation}
+The final collision looks like:
+\begin{equation}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & = \left( 2 {(-c)}^{-2} c_s^2 \right) \\
+    \kappa_{21}^{*} & = 0 \\
+    \kappa_{12}^{*} & = 0 \\
+    \kappa_{22}^{*} & = 0
+  \end{aligned}
+\end{equation}
+Which can be simplified by the final remarks, that we set the cell spacing $c=1$ and further insert the D2Q9 sound speed $c_s^2=\frac{1}{3}$.
+\begin{equation}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & =  \frac{2}{3} \\
+    \kappa_{21}^{*} & = 0 \\
+    \kappa_{12}^{*} & = 0 \\
+    \kappa_{22}^{*} & = 0
+  \end{aligned}
+\end{equation}
+or equivalently
+\begin{equation}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{20}^{*} & = \frac{1}{3} + \frac{1}{2}(1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{02}^{*} & = \frac{1}{3} - \frac{1}{2}(1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{21}^{*} & = 0 \\
+    \kappa_{12}^{*} & = 0 \\
+    \kappa_{22}^{*} & = 0
+  \end{aligned}
+\end{equation}
+
+\subsection{Final collision}
+\label{sub:Final collision}
+As we want to compute with the normalized cumulants,~\eqref{eq: definition normalized cumulants}, we need to multiply each line with $m_{00}$. Hence, the final collision reads
+\begin{equation}
+  \begin{aligned}
+    K_{00}^{*} & = K_{00} \\
+    K_{10}^{*} & = K_{10} \\
+    K_{01}^{*} & = K_{01} \\
+    K_{11}^{*} & = (1-\omega_1)K_{11} \\
+    K_{20}^{*} & = \frac{m_{00}}{3} + \frac{1}{2}(1-\omega_1) (K_{20} - K_{02}) \\
+    K_{02}^{*} & = \frac{m_{00}}{3} - \frac{1}{2}(1-\omega_1) (K_{20} - K_{02}) \\
+    K_{21}^{*} & = 0 \\
+    K_{12}^{*} & = 0 \\
+    K_{22}^{*} & = 0
+  \end{aligned}
+\end{equation}
