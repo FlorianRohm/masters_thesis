@@ -120,3 +120,47 @@ And finally, inserting the second order terms into the first three equations
       & =  \frac{2 m_{00}^{(2)}}{3} \\
   \end{aligned}
 \end{equation}
+
+\subsection{Equilibrium in terms of moments}
+\label{sub:Equilibrium in terms of moments}
+We can also define our equilibrium cumulants in terms of moments. Starting from~\eqref{eq:equilibrium cumulants}, multiplying by $m_{00}$ and inserting our known values, we get test
+\begin{equation}
+  \begin{aligned}
+    m_{11}^{eq} - \frac{m_{10}^{eq}m_{01}^{eq}}{m_{00}^{eq}} & = 0 \\
+    m_{20}^{eq} - \frac{m_{10}^{{eq}^2}}{m_{00}^{eq}} & = \frac{1}{3} m_{00} \\
+    m_{02}^{eq} - \frac{m_{01}^{{eq}^2}}{m_{00}^{eq}} & = \frac{1}{3} m_{00} \\
+    m_{21}^{eq} - \frac{m_{20}^{eq}m_{01}^{eq}}{m_{00}^{eq}} - 2\frac{m_{10}^{eq}m_{11}^{eq}} {m_{00}^{eq}} + 2\frac{m_{10}^{{eq}^2} m_{01}^{eq}}{m_{00}^{{eq}^2}} & = 0 \\
+    m_{12}^{eq} - \frac{m_{10}^{eq}m_{02}^{eq}}{m_{00}^{eq}}
+    - 2\frac{m_{11}^{eq}m_{01}^{eq}}{m_{00}^{eq}} + 2\frac{m_{10}^{eq} m_{01}^{{eq}^2}}{m_{00}^{{eq}^2}} & = 0 \\
+    m_{22}^{eq} &\\
+    - 2 \frac{m_{10}^{eq}m_{12}^{eq}}{m_{00}^{eq}} - 2\frac{m_{21}^{eq}m_{01}^{eq}}{m_{00}^{eq}}
+    - 2 \frac{m_{11}^{{eq}^2}}{m_{00}^{eq}} - \frac{m_{20}^{eq}m_{02}^{eq}}{m_{00}^{eq}} &\\
+    + 2 \frac{m_{10}^{{eq}^2} m_{02}^{eq}}{m_{00}^{{eq}^2}} + 8 \frac{m_{10}^{eq}m_{11}^{eq}m_{01}} {m_{00}^{{eq}^2}}
+    + 2 \frac{m_{20}^{eq}m_{01}^{{eq}^2}}{m_{00}^{{eq}^2}} &\\
+    - 6 \frac{m_{10}^{{eq}^2} m_{01}^{{eq}^2}}{m_{00}^{{eq}^3}} & = 0.
+  \end{aligned}
+\end{equation}
+Zeroth order: all are zero, exept $K_{22}$, which gives
+\todo[inline]{can this be?}
+\begin{equation}
+  m_{00}^{eq(0)} = 0.
+\end{equation}
+In the first order case, it looks like
+\begin{equation}
+  \begin{aligned}
+    m_{11}^{eq(1)} & = 0 \\
+    m_{20}^{eq(1)} & = \frac{1}{3} m_{00}^{(1)} \\
+    m_{02}^{eq(1)} & = \frac{1}{3} m_{00}^{(1)}  \\
+    m_{21}^{eq(1)} & = \theta m_{01}^{eq(1)} \\
+    m_{12}^{eq(1)} & = \theta m_{10}^{eq(1)} \\
+    m_{22}^{eq(1)} & = \theta (m_{20}^{eq(1)} + m_{02}^{eq(1)}).
+  \end{aligned}
+\end{equation}
+and the second order
+\begin{equation}
+  \begin{aligned}
+    m_{11}^{eq(2)} & = \frac{ m_{10}^{eq(1)}m_{01}^{eq(1)}}{m_{00}^{eq(0)}} \\
+    m_{20}^{eq(2)} - \frac{ m_{10}^{eq(1)2}}{m_{00}^{eq(0)}} & = \frac{1}{3} m_{00}^{(2)} \\
+    m_{02}^{eq(2)} - \frac{ m_{01}^{eq(1)2}}{m_{00}^{eq(0)}} & = \frac{1}{3} m_{00}^{(2)} \\
+  \end{aligned}
+\end{equation}
