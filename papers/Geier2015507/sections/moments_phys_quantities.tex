@@ -5,15 +5,15 @@ The following connections can be made:
 \paragraph{Density}
 \label{par:Density}
 \begin{equation}
-  \rho = \sum_{i,j} f_{ij}
+  \rho = \sum_{i,j} f_{ij} = m_{00}
 \end{equation}
 
 \paragraph{Macroscopic velocity}
 \label{par:Macroscopic velocity}
 \begin{equation}
   \begin{aligned}
-    v_x & = \frac{1}{\rho}\sum_{i,j} i f_{ij} \\
-    v_y & = \frac{1}{\rho}\sum_{i,j} j f_{ij}
+    v_x & = \frac{1}{\rho}\sum_{i,j} i f_{ij} = \frac{ m_{10} }{ m_{00} }\\
+    v_y & = \frac{1}{\rho}\sum_{i,j} j f_{ij} = \frac{ m_{10} }{ m_{00} }
   \end{aligned}
 \end{equation}
 
@@ -31,8 +31,7 @@ The pressure tensor $\mathbf{P}$ is given as
   \mathbf{P}_{xy} = \sum_{i,j} i_0 j_0 f_{ij}
 \end{equation}
 with the macroscopic pressure defined as
-\todo[inline]{how to handle 2D?\@ 1/2 or 1/3 of the trace?}
 \begin{equation}
   \label{eq:pressure}
-  p = \frac{1}{3}\mathbf{P}_{xx} = \sum_{i,j} i_0^2 f_{ij}
+  p = \frac{1}{3}\mathbf{P}_{xx} = \frac{1}{3}\sum_{i,j} i_0^2 f_{ij} = \frac{1}{3} \left(m_{20} - \frac{ m_{10}^2 }{ m_{00} } \right)
 \end{equation}
