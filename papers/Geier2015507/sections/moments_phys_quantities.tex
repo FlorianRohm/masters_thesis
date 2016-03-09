@@ -1,7 +1,37 @@
 % !TEX root = ../notes.tex
 
 The following connections can be made:
-\todo[inline]{Look up in Harris}
-\begin{table}
+\todo[inline]{Cite Harris}
+\paragraph{Density}
+\label{par:Density}
+\begin{equation}
+  \rho = \sum_{i,j} f_{ij}
+\end{equation}
 
-\end{table}
+\paragraph{Macroscopic velocity}
+\label{par:Macroscopic velocity}
+\begin{equation}
+  \begin{aligned}
+    v_x & = \frac{1}{\rho}\sum_{i,j} i f_{ij} \\
+    v_y & = \frac{1}{\rho}\sum_{i,j} j f_{ij}
+  \end{aligned}
+\end{equation}
+
+\paragraph{Microscopic velocities}
+\label{par:Microscopic velocities}
+
+The microscopic velocity describes the speed at \\which the particles move. The so called  peculiar velocity $\mathbf{v}_0$ is the particle velocity in a frame of reference moving with the flow, i.e. $i_0 \defined i_0(i) = i-v_x$, $j_0 \defined j_0(j) = j-v_y$.
+
+In this frame, the observed macroscopic velocity of course would be zero.
+
+\paragraph{Pressure}
+\label{par:Pressure}
+The pressure tensor $\mathbf{P}$ is given as
+\begin{equation}
+  \mathbf{P}_{xy} = \sum_{i,j} i_0 j_0 f_{ij}
+\end{equation}
+with the macroscopic pressure defined as
+\todo[inline]{how to handle 2D?\@ 1/2 or 1/3 of the trace?}
+\begin{equation}
+  p = \frac{1}{3}\mathbf{P}_{xx} = \sum_{i,j} i_0^2 f_{ij}
+\end{equation}
