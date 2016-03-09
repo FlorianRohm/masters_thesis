@@ -86,7 +86,6 @@ The split equations read
 \end{equation}
 
 For our method, we need to insert the density, velocity, pressure and momentum density in terms of our moments.
-\todo[inline]{Pressure in terms of moments?}
 Only the x-direction is stated:
 \begin{equation}
   \begin{aligned}
@@ -94,7 +93,7 @@ Only the x-direction is stated:
     + \frac{m_{10}}{m_{00}} (\partial_x m_{10} + \partial_y m_{01})
     + m_{10} (\partial_x \frac{m_{10}}{m_{00}} + \partial_y \frac{m_{01}}{m_{00}})  \\
     & =
-     - \partial_x p
+     - \frac{1}{3} \partial_x \left(m_{20} - \frac{ m_{10}^2 }{ m_{00} } \right)
      + \mu \left(\frac{4}{3}\partial_{xx}\frac{m_{10}}{m_{00}}
             + \frac{1}{3}\partial_x\partial_y \frac{m_{01}}{m_{00}}
             + \partial_{yy} \frac{m_{10}}{m_{00}} \right) \\
@@ -133,7 +132,7 @@ and finally with moments:
     + \frac{m_{10}}{m_{00}} (\partial_x m_{10} + \partial_y m_{01})
     + m_{10} (\partial_x \frac{m_{10}}{m_{00}} + \partial_y \frac{m_{01}}{m_{00}})  \\
     & =
-     - \partial_x p
+    - \frac{1}{3} \partial_x \left(m_{20} - \frac{ m_{10}^2 }{ m_{00} } \right)
      + \mu \left(\frac{4}{3}\partial_{xx}\frac{m_{10}}{m_{00}}
             + \frac{1}{3}\partial_x\partial_y \frac{m_{01}}{m_{00}}
             + \partial_{yy} \frac{m_{10}}{m_{00}} \right) + m_{00}f_x
