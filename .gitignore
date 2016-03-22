@@ -1,6 +1,10 @@
 # generated results of lbm code
 /**/out/
 
+# python notebook auxiliary files
+/**/.ipynb_checkpoints
+
+
 # latex auxiliary files
 *.aux
 *.fdb_latexmk
