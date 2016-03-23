@@ -1,5 +1,3 @@
-#Automatically generated, do not change
-
 from numpy import *
 
 def distributionsFromCentralMoments_min (u, c_00, c_11, c_20, c_02, c_22):

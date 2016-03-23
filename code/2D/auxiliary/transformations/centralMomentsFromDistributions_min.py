@@ -1,5 +1,3 @@
-#Automatically generated, do not change
-
 from numpy import *
 
 def centralMomentsFromDistributions_min (u, fin):
