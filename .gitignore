@@ -4,6 +4,8 @@
 # python notebook auxiliary files
 /**/.ipynb_checkpoints
 
+# waberla with interface
+/code/walberla/pywaLBerla/
 
 # latex auxiliary files
 *.aux
