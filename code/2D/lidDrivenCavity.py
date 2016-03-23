@@ -24,7 +24,7 @@ from numpy import *
 from matplotlib import cm, pyplot
 from auxiliary.VTKWrapper import saveToVTK
 from auxiliary.stream import stream
-from auxiliary.collide import BGKCollide, cumulantCollide
+from auxiliary.collide import BGKCollide, cumulantCollide, cumulantCollide_min
 from auxiliary.LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
 from auxiliary.ghiaResults import *
 from auxiliary.transformations.momentsFromDistributions import momentsFromDistributions
@@ -130,28 +130,9 @@ for time in range(maxIterations):
 
     feq = equilibrium(rho, u)
 
-    if ( (time % plotEveryN == 0) & (liveUpdate | saveVTK | savePlot) & (time > skipFirstN) ):
-        (c_00, c_10, c_01, c_11, c_20, c_02, c_21, c_12, c_22) = momentsFromDistributions(u,fin)
-
-        maxc00 = c_00[180,10]
-        maxc20 = c_20[180,10]
-        maxc02 = c_02[180,10]
-        maxc10 = c_22[180,10]
-
-        print "precollision:\nc_00: {0}\nc_20: {1}\nc_02: {2}\n".format(maxc00, maxc20, maxc02, maxc10)
-
-
     # Collision step.
     #fpost = BGKCollide(fin, feq, omega)
-    fpost = cumulantCollide(fin, rho, u, omega)
-    if ( (time % plotEveryN == 0) & (liveUpdate | saveVTK | savePlot) & (time > skipFirstN) ):
-        (c_00, c_10, c_01, c_11, c_20, c_02, c_21, c_12, c_22) = momentsFromDistributions(u,fin)
-
-        maxc00 = c_00[180,10]
-        maxc20 = c_20[180,10]
-        maxc02 = c_02[180,10]
-        maxc10 = c_22[180,10]
-        print "postcollision:\nc_00: {0}\nc_20: {1}\nc_02: {2}\nc_10: {3}\n".format(maxc00, maxc20, maxc02, maxc10)
+    fpost = cumulantCollide_min(fin, rho, u, omega)
 
     # Streaming step
     fin[0, :, :] = fpost[0, :, :]
