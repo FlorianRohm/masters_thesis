@@ -97,7 +97,7 @@
       2m_{20}^{(2)} + 2\partial_t m_{20}^{(0)} + 2\partial_y m_{21}^{*(1)} + 2\partial_x m_{30}^{*(1)}
       &= (1-\omega_1) (m_{20}^{(2)}-m_{02}^{(2)})
       \\&\quad
-      + (1+\omega_1)\frac{ m_{10}^{(1)2} - m_{01}^{(1)2}}{m_{00}^{(0)}} + \frac{2 m_{00}^{(2)}}{3}
+      + (1+\omega_1)\frac{ m_{10}^{(1)2} - m_{01}^{(1)2}}{m_{00}^{(0)}} + \frac{2 }{3}m_{00}^{(2)}
     \end{aligned}
   \end{equation*}
   with~\eqref{R4} and~\eqref{P3}
@@ -118,5 +118,19 @@
   \begin{equation}
     \label{C2}\tag{C2}
     m_{11}^{(2)} = (1-\omega_1)m_{11}^{(2)} + \omega_1 \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}  - \partial_t m_{11}^{(0)} - \theta\partial_y m_{10}^{(1)} - \theta\partial_x m_{01}^{(1)}
+  \end{equation}
+  \paragraph{transforming~\eqref{C1} and~\eqref{C2}}
+  \begin{equation}
+    \label{C3}\tag{C3}
+    \begin{aligned}
+      m_{20}^{(2)} &= \frac{1-\omega_1}{1+\omega_1}m_{02}^{(2)}
+      - \frac{ m_{10}^{(1)2} - m_{01}^{(1)2}}{m_{00}^{(0)}} - \frac{ 2}{3(1-\omega_1)}m_{00}^{(2)}
+      \\&\quad
+      + \frac{2}{1-\omega_1}\partial_t m_{20}^{(0)} + \frac{2\theta}{1-\omega_1}\partial_y m_{01}^{(1)} + \frac{2}{1-\omega_1}\partial_x m_{10}^{(1)}
+    \end{aligned}
+  \end{equation}
+  \begin{equation}
+    \label{C4}\tag{C4}
+    m_{11}^{(2)} =  \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}} - \frac{1}{\omega_1} \partial_t m_{11}^{(0)} - \frac{\theta}{\omega_1}\partial_y m_{10}^{(1)} - \frac{\theta}{\omega_1}\partial_x m_{01}^{(1)}
   \end{equation}
 \end{document}
