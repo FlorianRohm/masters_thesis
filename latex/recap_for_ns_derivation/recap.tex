@@ -165,7 +165,7 @@
     \end{aligned}
   \end{equation}
 
-  \pagebreak~\pagebreak
+  \pagebreak
   \paragraph{base}
   \begin{equation*}
     \begin{aligned}
@@ -238,5 +238,36 @@
       - \frac{1}{2} (\partial_{xx} m_{10}^{eq(1)} + \partial_{yy} m_{12}^{eq(1)} + 2\partial_{xy} m_{21}^{eq(1)})
     \end{aligned}
   \end{equation*}
+
+  \paragraph{rearranging}
+  \begin{equation*}
+    \begin{aligned}
+    \partial_t m_{10}^{(1)}
+    &\\\quad
+    + m_{10}^{(1)}\left(\partial_x \frac{  m_{10}^{(1)}}{m_{00}^{(0)}} + \partial_y \frac{  m_{01}^{(1)}}{m_{00}^{(0)}} \right)
+    &\\\quad
+    + \frac{ m_{10}^{(1)}}{m_{00}^{(0)}} \left(\partial_x m_{10}^{(1)} + \partial_y  m_{01}^{(1)}\right)
+    &\\\quad
+     &=
+      F_x^{(3)}
+      \\&\quad
+      \highlight[green]{-\frac{1-\omega_1}{1+\omega_1} \partial_x m_{02}^{(2)}}
+      \\&\quad
+      \highlight{+ \frac{m_{10}^{(1)}}{m_{00}^{(0)}} (\partial_y m_{01}^{(1)} + 3 \partial_x m_{10}^{(1)})}
+      \\&\quad
+      \highlight{+ \frac{m_{01}^{(1)}}{m_{00}^{(0)}} (\partial_x m_{01}^{(1)} - \partial_y m_{10}^{(1)})}
+      \\&\quad
+      \highlight[green]{+ \frac{ 2}{3(1-\omega_1)}\partial_x m_{00}^{(2)}}
+      \\&\quad
+      - \frac{2\theta}{1-\omega_1}\partial_{xy} m_{01}^{(1)} - \frac{2}{1-\omega_1}\partial_{xx} m_{10}^{(1)}
+      \\&\quad
+      + \frac{\theta}{\omega_1}\partial_{yy} m_{10}^{(1)}
+      \\&\quad
+      + \frac{\theta}{\omega_1}\partial_{xy} m_{01}^{(1)}
+      \\&\quad
+      - \frac{1}{2} (\partial_{xx} m_{10}^{eq(1)} + \partial_{yy} m_{12}^{eq(1)} + 2\partial_{xy} m_{21}^{eq(1)})
+    \end{aligned}
+  \end{equation*}
+
 
 \end{document}
