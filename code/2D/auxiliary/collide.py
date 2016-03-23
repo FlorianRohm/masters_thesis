@@ -25,6 +25,16 @@ def cumulantCollide(fin, rho, u, omega):
 
     return distributionsFromNormalizedCumulants (rho, u, K_00_p, K_10_p, K_01_p, K_11_p, K_20_p, K_02_p, K_21_p, K_12_p, K_22_p)
 
+def cumulantCollide_min(fin, rho, u, omega):
+    (K_11, K_20, K_02) = normalizedCumulantsFromDistributions_min (rho, u, fin)
+
+    K_11_p = (1-omega)*K_11
+
+    K_20_p = rho/3. + 0.5*(1-omega)*(K_20 - K_02)
+    K_02_p = rho/3. - 0.5*(1-omega)*(K_20 - K_02)
+
+    return distributionsFromNormalizedCumulants_min (rho, u, K_11_p, K_20_p, K_02_p)
+
 def cumulantCollideAll(fin, rho, u, omega1, omega2, omega3, omega4):
     (K_00, K_10, K_01, K_11, K_20, K_02, K_21, K_12, K_22) = normalizedCumulantsFromDistributions (rho, u, fin)
 
