@@ -38,14 +38,6 @@ def cumulantCollide(f, rho, u, omega):
     rhodiff = rho-rho2
     udiff = u-u2
 
-    print "rho: {}\nu:   {}\n".format(amax(rhodiff), amax(udiff))
-
-    for i in range(3):
-        for j in range(3):
-            for k in range(3):
-                print "f[{0},{1},{2}] diff: {3}".format(i,j,k, amax(f[i,j,k]))
-
-    print ""
     CS_000 = C_000
     CS_100 = C_100
     CS_010 = C_010
