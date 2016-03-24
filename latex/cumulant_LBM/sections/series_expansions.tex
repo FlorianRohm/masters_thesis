@@ -194,14 +194,19 @@ We start by expanding the first nontrivial normalized cumulant, $K_{11}$, which 
          {\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}
   \end{aligned}
 \end{equation}
-Now is a good time to fix the frame of reference for this analysis. As we are
-not in the physical domain, but in the discrete space spanned by the independent
-moments, we can choose our frame of reference to `move' in the space of moments such that:
+Now is a good time to fix the frame of reference for this analysis. The easiest will be to have a reference frame which eliminates the background velocity:
+\begin{equation}
+  \mathbf{v}^{(0)} = 0.
+\end{equation}
+As
+\begin{equation}
+  \mathbf{v}_x^{(0)} = \frac{m_{10}^{0}}{m_{00}^{0}}
+\end{equation}
+et vice versa, we get
 \begin{equation}
   \label{eq: frame of reference}
-  m_{\alpha\beta}^{(0)} = 0, \quad (\alpha,\beta)\nin \{(0,0),(2,0),(0,2)\}.
+  m_{10}^{(0)} = 0 = m_{10}^{(0)}.
 \end{equation}
-We have to exclude the thermodynamic properties density and pressure, as they are absolut values. If we would assume a bigger stancil, which also supports temperature, then this would also have to be excluded.
 Another observation is, that, the ideal gas law should hold, connecting pressure and density through a to be determined factor, $\theta$. As pressure is defined via centralized moments, c.f.~\eqref{eq:pressure}, which coincide with normal moments only when the velocity is zero, we get the connection in the sense of moments only at zeroth order where we appropriately set the reference frame. Thus
 \begin{equation}
   \label{eq: ideal gas}
