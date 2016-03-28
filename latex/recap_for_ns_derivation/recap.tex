@@ -270,105 +270,169 @@ Second order
   \begin{equation*}
     \begin{aligned}
     \partial_t m_{10}^{(1)}
-     & =
+      =&
       F_x^{(3)}
       - \partial_x m_{20}^{(2)} - \partial_y m_{11}^{(2)} \\
       &
       - \frac{1}{2} \left(\partial_{xx} m_{10}^{eq(1)} + \partial_{yy} m_{12}^{eq(1)} + 2\partial_{xy} m_{21}^{eq(1)}\right)
+     \\ \overset{\text{\small(Q15), (Q16)}}{=} &
+     F_x^{(3)}
+     - \partial_x m_{20}^{(2)} - \partial_y m_{11}^{(2)} \\
+     &
+     - \frac{1}{2} \left(\partial_{xx} m_{10}^{eq(1)} + \theta\partial_{yy} m_{10}^{(1)} + 2\theta\partial_{xy} m_{01}^{(1)}\right)
+     \\ \overset{\text{\small(C5), (C6)}}{=} &
+     F_x^{(3)}
+     - \frac{1-\omega_1}{1+\omega_1} \partial_x m_{02}^{(2)}
+     - 2 m_{10}^{(1)} \partial_x \frac{ m_{10}^{(1)} }{m_{00}^{(0)}}
+     - 2 \frac{1-\omega_1}{1+\omega_1} m_{01}^{(1)}\partial_x\frac{m_{01}^{(1)}}{m_{00}^{(0)}}
+     \\&
+     + \frac{ 2}{3(1-\omega_1)} \partial_x m_{00}^{(2)}
+     - \frac{2\theta}{1-\omega_1}\partial_{xy} m_{01}^{(1)}
+     - \frac{2}{1-\omega_1}\partial_{xx} m_{10}^{(1)}
+     \\&
+     -m_{10}^{(1)}\partial_y \frac{ m_{01}^{(1)}}{m_{00}^{(0)}}
+     -m_{01}^{(1)}\partial_y \frac{ m_{10}^{(1)}}{m_{00}^{(0)}}
+     + \frac{\theta}{\omega_1}\partial_{yy} m_{10}^{(1)}
+     + \frac{\theta}{\omega_1}\partial_{xy} m_{01}^{(1)}
+     \\&
+     - \frac{1}{2} \left(\partial_{xx} m_{10}^{eq(1)} + \theta\partial_{yy} m_{10}^{(1)} + 2\theta\partial_{xy} m_{01}^{(1)}\right)
     \end{aligned}
   \end{equation*}
-
-  \todo[inline]{not corrected below}
-  \paragraph{inserting (C4) and (C5)}
-  \begin{equation*}
-    \begin{aligned}
-    \partial_t m_{10}^{(1)}
-     & =
-      F_x^{(3)}
-      \\&\quad
-      -\frac{1-\omega_1}{1+\omega_1} \partial_x m_{02}^{(2)}
-      \\&\quad
-      + m_{10}^{(1)}\partial_x \frac{  m_{10}^{(1)}}{m_{00}^{(0)}} + \frac{ m_{10}^{(1)}}{m_{00}^{(0)}} \partial_x  m_{10}^{(1)}
-      \\&\quad
-      - m_{01}^{(1)}\partial_x \frac{  m_{01}^{(1)}}{m_{00}^{(0)}} - \frac{ m_{01}^{(1)}}{m_{00}^{(0)}} \partial_x  m_{01}^{(1)}
-      \\&\quad
-      + \frac{ 2}{3(1-\omega_1)}\partial_x m_{00}^{(2)}
-      \\&\quad
-      - \frac{2\theta}{1-\omega_1}\partial_{xy} m_{01}^{(1)} - \frac{2}{1-\omega_1}\partial_{xx} m_{10}^{(1)}
-      \\&\quad
-      - m_{10}^{(1)}\partial_y \frac{ m_{01}^{(1)}}{m_{00}^{(0)}}
-      \\&\quad
-      - m_{01}^{(1)}\partial_y \frac{ m_{10}^{(1)}}{m_{00}^{(0)}}
-      \\&\quad
-      + \frac{\theta}{\omega_1}\partial_{yy} m_{10}^{(1)}
-      \\&\quad
-      + \frac{\theta}{\omega_1}\partial_{xy} m_{01}^{(1)}
-      \\&\quad
-      - \frac{1}{2} (\partial_{xx} m_{10}^{eq(1)} + \partial_{yy} m_{12}^{eq(1)} + 2\partial_{xy} m_{21}^{eq(1)})
-    \end{aligned}
-  \end{equation*}
-  \paragraph{inserting null sum}
-  \begin{equation*}
-    \begin{aligned}
-    \partial_t m_{10}^{(1)}
-     & =
-      F_x^{(3)}
-      \\&\quad
-      -\frac{1-\omega_1}{1+\omega_1} \partial_x m_{02}^{(2)}
-      \\&\quad
-      + m_{10}^{(1)}\partial_x \frac{  m_{10}^{(1)}}{m_{00}^{(0)}} + \frac{ m_{10}^{(1)}}{m_{00}^{(0)}} \partial_x  m_{10}^{(1)}
-      \\&\quad
-      + m_{10}^{(1)}\partial_x \frac{  m_{10}^{(1)}}{m_{00}^{(0)}} + \frac{ m_{10}^{(1)}}{m_{00}^{(0)}} \partial_x  m_{10}^{(1)}
-      \\&\quad
-      - m_{10}^{(1)}\partial_x \frac{  m_{10}^{(1)}}{m_{00}^{(0)}} - \frac{ m_{10}^{(1)}}{m_{00}^{(0)}} \partial_x  m_{10}^{(1)}
-      \\&\quad
-      - m_{01}^{(1)}\partial_x \frac{  m_{01}^{(1)}}{m_{00}^{(0)}} - \frac{ m_{01}^{(1)}}{m_{00}^{(0)}} \partial_x  m_{01}^{(1)}
-      \\&\quad
-      + \frac{ 2}{3(1-\omega_1)}\partial_x m_{00}^{(2)}
-      \\&\quad
-      - \frac{2\theta}{1-\omega_1}\partial_{xy} m_{01}^{(1)} - \frac{2}{1-\omega_1}\partial_{xx} m_{10}^{(1)}
-      \\&\quad
-      - m_{10}^{(1)}\partial_y \frac{ m_{01}^{(1)}}{m_{00}^{(0)}}
-      \\&\quad
-      - m_{01}^{(1)}\partial_y \frac{ m_{10}^{(1)}}{m_{00}^{(0)}}
-      \\&\quad
-      + \frac{\theta}{\omega_1}\partial_{yy} m_{10}^{(1)}
-      \\&\quad
-      + \frac{\theta}{\omega_1}\partial_{xy} m_{01}^{(1)}
-      \\&\quad
-      - \frac{1}{2} (\partial_{xx} m_{10}^{eq(1)} + \partial_{yy} m_{12}^{eq(1)} + 2\partial_{xy} m_{21}^{eq(1)})
-    \end{aligned}
-  \end{equation*}
-
-  \paragraph{rearranging}
-  \begin{equation*}
-    \begin{aligned}
-    \partial_t m_{10}^{(1)}
-    &\\\quad
-    + m_{10}^{(1)}\left(\partial_x \frac{  m_{10}^{(1)}}{m_{00}^{(0)}} + \partial_y \frac{  m_{01}^{(1)}}{m_{00}^{(0)}} \right)
-    &\\\quad
-    + \frac{ m_{10}^{(1)}}{m_{00}^{(0)}} \left(\partial_x m_{10}^{(1)} + \partial_y  m_{01}^{(1)}\right)
-    &\\\quad
-     &=
-      F_x^{(3)}
-      \\&\quad
-      \highlight[green]{-\frac{1-\omega_1}{1+\omega_1} \partial_x m_{02}^{(2)}}
-      \\&\quad
-      \highlight{+ \frac{m_{10}^{(1)}}{m_{00}^{(0)}} (\partial_y m_{01}^{(1)} + 3 \partial_x m_{10}^{(1)})}
-      \\&\quad
-      \highlight{+ \frac{m_{01}^{(1)}}{m_{00}^{(0)}} (\partial_x m_{01}^{(1)} - \partial_y m_{10}^{(1)})}
-      \\&\quad
-      \highlight[green]{+ \frac{ 2}{3(1-\omega_1)}\partial_x m_{00}^{(2)}}
-      \\&\quad
-      - \frac{2\theta}{1-\omega_1}\partial_{xy} m_{01}^{(1)} - \frac{2}{1-\omega_1}\partial_{xx} m_{10}^{(1)}
-      \\&\quad
-      + \frac{\theta}{\omega_1}\partial_{yy} m_{10}^{(1)}
-      \\&\quad
-      + \frac{\theta}{\omega_1}\partial_{xy} m_{01}^{(1)}
-      \\&\quad
-      - \frac{1}{2} (\partial_{xx} m_{10}^{eq(1)} + \partial_{yy} m_{12}^{eq(1)} + 2\partial_{xy} m_{21}^{eq(1)})
-    \end{aligned}
-  \end{equation*}
-
-
+Adding the zero sum for convection, rearranging, adding the zero sum for diffusion
+\begin{align*}
+  \highlight[green]{
+  \partial_t m_{10}^{(1)}}
+  &
+  \highlight[green]{+ \frac{m_{10}^{(1)}}{m_{00}^{(0)}} ( \partial_x m_{10}^{(1)} + \partial_y m_{01}^{(1)} )
+  + m_{10}^{(1)} ( \partial_x \frac{m_{10}^{(1)}}{m_{00}^{(0)}} + \partial_y \frac{m_{01}^{(1)}}{m_{00}^{(0)}} )}
+  \\=&
+  \frac{m_{10}^{(1)}}{m_{00}^{(0)}} ( \partial_x m_{10}^{(1)} + \partial_y m_{01}^{(1)} )
+  + m_{10}^{(1)} ( \partial_x \frac{m_{10}^{(1)}}{m_{00}^{(0)}} + \partial_y \frac{m_{01}^{(1)}}{m_{00}^{(0)}} )
+  \\&
+  \highlight[green]{
+  + F_x^{(3)}
+  }
+  - \frac{1-\omega_1}{1+\omega_1} \partial_x m_{02}^{(2)}
+  - 2 m_{10}^{(1)} \partial_x \frac{ m_{10}^{(1)} }{m_{00}^{(0)}}
+  - 2 \frac{1-\omega_1}{1+\omega_1} m_{01}^{(1)}\partial_x\frac{m_{01}^{(1)}}{m_{00}^{(0)}}
+  \\&
+  + \frac{ 2}{3(1-\omega_1)} \partial_x m_{00}^{(2)}
+  - \frac{2\theta}{1-\omega_1}\partial_{xy} m_{01}^{(1)}
+  - \frac{2}{1-\omega_1}\partial_{xx} m_{10}^{(1)}
+  \\&
+  -m_{10}^{(1)}\partial_y \frac{ m_{01}^{(1)}}{m_{00}^{(0)}}
+  -m_{01}^{(1)}\partial_y \frac{ m_{10}^{(1)}}{m_{00}^{(0)}}
+  + \frac{\theta}{\omega_1}\partial_{yy} m_{10}^{(1)}
+  + \frac{\theta}{\omega_1}\partial_{xy} m_{01}^{(1)}
+  \\&
+  - \frac{1}{2} \left(\partial_{xx} m_{10}^{eq(1)} + \theta\partial_{yy} m_{10}^{(1)} + 2\theta\partial_{xy} m_{01}^{(1)}\right)
+  %
+  \\=&
+  %
+    \frac{m_{10}^{(1)}}{m_{00}^{(0)}} \partial_y m_{01}^{(1)}
+  - m_{01}^{(1)} \partial_y \frac{m_{10}^{(1)}}{m_{00}^{(0)}}
+  - 2 \frac{1 - \omega_1}{1 + \omega_1} m_{01}^{(1)} \partial_y \frac{m_{01}^{(1)}}{m_{00}^{(0)}}
+  \\&
+  - \frac{1 - \omega_1}{1 + \omega_1} \partial_x m_{02}^{(2)}
+  + \frac{2}{3(1-\omega_1)} \partial_x m_{00}^{(2)}
+  \highlight[green]{
+  - \frac{1}{3} \partial_x \left(m_{20}^{(2)} - \frac{m_{10}^{(1)2}}{m_{00}^{(0)}}\right)
+  }
+  \\&
+  + \frac{1}{3} \partial_x \left(m_{20}^{(2)} - \frac{m_{10}^{(1)}}{m_{00}^{(0)}}\right)
+  - \left( \frac{2}{1-\omega_1} + \frac{1}{2}\right) \partial_{xx} m_{10}^{(1)}
+  \\&
+  - \left( \frac{2\theta}{1-\omega_1} +\theta- \frac{\theta}{\omega_1}\right) \partial_{xy} m_{01}^{(1)}
+  \highlight[green]{
+  + \frac{1}{3}\left( \frac{1}{\omega_1} - \frac{1}{2}\right) \partial_{yy} m_{10}^{(1)}
+  }
+  \highlight[green]{
+  + F_x^{(3)}
+  }
+  %
+  \\ \overset{\text{\small(M2)}}{=} &
+  %
+  \highlight[green]{
+  - \frac{1}{3} \partial_x \left(m_{20}^{(2)} - \frac{m_{10}^{(1)}}{m_{00}^{(0)}}\right)
+  }
+  + \frac{m_{10}^{(1)}}{m_{00}^{(0)}} \partial_y m_{01}^{(1)}
+  - m_{01}^{(1)} \partial_y \frac{m_{10}^{(1)}}{m_{00}^{(0)}}
+  \\&
+  - \frac{1 - \omega_1}{1 + \omega_1} \partial_x \frac{m_{01}^{(1)2}}{m_{00}^{(0)}}
+  - \frac{1 - \omega_1}{1 + \omega_1} \partial_x \left(m_{20}^{(2)} - \frac{m_{01}^{(1)2} - m_{10}^{(1)2}}{m_{00}^{(0)}}\right)
+  \\&
+  + \frac{2}{1-\omega_1} \left(m_{20}^{(2)} - \frac{m_{10}^{(1)2}}{m_{00}^{(0)}}\right)
+  - \frac{1}{3} \partial_x \frac{m_{10}^{(1)2}}{m_{00}^{(0)}}
+  + \frac{1}{3} \partial_x m_{20}^{(1)}
+  \\&
+  \highlight[green]{
+  + \frac{1}{3}\left(\frac{1}{\omega_1}-\frac{1}{2}\right) \left(\frac{4}{3}\partial_{xx} m_{10}^{(1)} + \frac{1}{3} \partial_{xy}m_{01}^{(1)} + \partial_{yy}m_{10}^{(1)}\right)
+  }
+  \\&
+  + \frac{4}{3}\frac{1}{3}\left(\frac{1}{\omega_1}-\frac{1}{2}\right) \partial_{xy}m_{01}^{(1)}
+  + \frac{1}{9}\left(\frac{1}{\omega_1}-\frac{1}{2}\right) \partial_{xy}m_{01}^{(1)}
+  \\&
+  + \left(\frac{2}{1-\omega_1} + \frac{1}{2}\right) \partial_{xy}m_{01}^{(1)}
+  - \left(\frac{2\theta}{1-\omega_1} +\theta- \frac{\theta}{\omega_1}\right) \partial_{xy}m_{01}^{(1)}
+  \highlight[green]{
+  + F_x^{(3)}
+  }
+\end{align*}
+Coefficients in front of $\partial_{xy}m_{01}^{(1)}$, with $\theta=\frac{1}{3}$:
+\begin{align*}
+  & \frac{4}{3}\frac{1}{3}\left(\frac{1}{\omega_1}-\frac{1}{2}\right)
+  + \frac{1}{9}\left(\frac{1}{\omega_1}-\frac{1}{2}\right)
+  + \left(\frac{2}{1-\omega_1} + \frac{1}{2}\right)
+  - \left(\frac{2\theta}{1-\omega_1} +\theta- \frac{\theta}{\omega_1}\right)
+  \\=&
+  \frac{1}{3}\left(\frac{1}{\omega_1}-\frac{1}{2}\right)
+  + \left(\frac{2}{1-\omega_1} + \frac{1}{2}\right)
+  - \left(\frac{2\theta}{1-\omega_1} +\theta- \frac{\theta}{\omega_1}\right)
+  \\=&
+  \frac{2}{3}\frac{1}{\omega_1}
+  + \frac{1}{1-\omega_1} \left( 2 - \frac{2}{3}\right)
+  \\=&
+  \frac{2}{3}\left(\frac{1}{\omega_1} + \frac{2}{1-\omega_1} \right)
+  \\\neq&0
+\end{align*}
+Tinkering with the single derivative terms
+\begin{align*}
+  &
+  - \frac{1 - \omega_1}{1 + \omega_1} \partial_x \frac{m_{01}^{(1)2}}{m_{00}^{(0)}}
+  - \frac{1 - \omega_1}{1 + \omega_1} \partial_x \left(m_{20}^{(2)} - \frac{m_{01}^{(1)2} - m_{10}^{(1)2}}{m_{00}^{(0)}}\right)
+  \\&
+  + \frac{2}{1-\omega_1} \partial_x\left(m_{20}^{(2)} - \frac{m_{10}^{(1)2}}{m_{00}^{(0)}}\right)
+  - \frac{1}{3} \partial_x \frac{m_{10}^{(1)2}}{m_{00}^{(0)}}
+  + \frac{1}{3} \partial_x m_{20}^{(1)}
+  %
+  \\=&
+  %
+  - \frac{1 - \omega_1}{1 + \omega_1} \partial_x \frac{m_{01}^{(1)2}}{m_{00}^{(0)}}
+  - \frac{1 - \omega_1}{1 + \omega_1} \partial_x m_{20}^{(2)}
+  + \frac{1 - \omega_1}{1 + \omega_1} \partial_x \frac{m_{01}^{(1)2}}{m_{00}^{(0)}}
+  - \frac{1 - \omega_1}{1 + \omega_1} \partial_x \frac{m_{10}^{(1)2}}{m_{00}^{(0)}}
+  \\&
+  + \frac{2}{1-\omega_1}\partial_x \left(m_{20}^{(2)} - \frac{m_{10}^{(1)2}}{m_{00}^{(0)}}\right)
+  - \frac{1}{3} \partial_x \frac{m_{10}^{(1)2}}{m_{00}^{(0)}}
+  + \frac{1}{3} \partial_x m_{20}^{(1)}
+  %
+  \\=&
+  %
+  \frac{1 - \omega_1}{1 + \omega_1}\left(
+  - \partial_x \frac{m_{01}^{(1)2}}{m_{00}^{(0)}}
+  \underbrace{
+  - \partial_x m_{20}^{(2)}
+  + \partial_x \frac{m_{01}^{(1)2}}{m_{00}^{(0)}}
+  - \partial_x \frac{m_{10}^{(1)2}}{m_{00}^{(0)}}
+  }_{=-\partial_x m_{00}^{(2)}}
+  \right)
+  \\&
+  + \frac{2}{1-\omega_1} \partial_x m_{00}^{(2)}
+  - \frac{1}{3} \partial_x m_{00}^{(2)}
+  %
+  \\=&
+  %
+  - \frac{1 - \omega_1}{1 + \omega_1} \partial_x \frac{m_{01}^{(1)2}}{m_{00}^{(0)}}
+  + \partial_x m_{00}^{(2)} \left(\frac{2}{1-\omega_1} - \frac{1}{3} - \frac{1 - \omega_1}{1 + \omega_1}\right)
+\end{align*}
 \end{document}
