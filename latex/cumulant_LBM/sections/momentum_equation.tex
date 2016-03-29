@@ -157,16 +157,34 @@ We find the term $\partial_t m_{10}^{(1)} $ which is the desired time derivative
 \end{equation}
  which is the non-conserved term of the $x$-velocity, due to an external force. For all other moments, we need to derive further equations.
 
-$\epsilon^2$, $\alpha=2$, $\beta=0$:
+$\epsilon^2$, $\alpha=1$, $\beta=0$:
 \begin{equation}
-  \label{eq: m20 star pde}
-  m_{20}^{(2)} + \partial_t m_{20}^{(0)} + \partial_y m_{21}^{*(1)} + \partial_x m_{30}^{*(1)} = \highlight{m_{20}^{*(2)}}
+  \label{eq: m10 star pde}
+  m_{10}^{(2)} + \partial_t m_{10}^{(0)} + \partial_y m_{11}^{*(1)} + \partial_x m_{20}^{*(1)} = m_{10}^{*(2)}
+\end{equation}
+
+$\epsilon^2$, $\alpha=0$, $\beta=1$:
+\begin{equation}
+  \label{eq: m01 star pde}
+  m_{01}^{(2)} + \partial_t m_{01}^{(0)} + \partial_y m_{02}^{*(1)} + \partial_x m_{11}^{*(1)} = m_{01}^{*(2)}
 \end{equation}
 
 $\epsilon^2$, $\alpha=1$, $\beta=1$:
 \begin{equation}
   \label{eq: m11 star pde}
   m_{11}^{(2)} + \partial_t m_{11}^{(0)} + \partial_y m_{12}^{*(1)} + \partial_x m_{21}^{*(1)} = \highlight[green]{m_{11}^{*(2)}}
+\end{equation}
+
+$\epsilon^2$, $\alpha=2$, $\beta=0$:
+\begin{equation}
+  \label{eq: m20 star pde}
+  m_{20}^{(2)} + \partial_t m_{20}^{(0)} + \partial_y m_{21}^{*(1)} + \partial_x m_{30}^{*(1)} = \highlight{m_{20}^{*(2)}}
+\end{equation}
+
+$\epsilon^2$, $\alpha=0$, $\beta=2$:
+\begin{equation}
+  \label{eq: m02 star pde}
+  m_{02}^{(2)} + \partial_t m_{02}^{(0)} + \partial_y m_{03}^{*(1)} + \partial_x m_{12}^{*(1)} = m_{02}^{*(2)}
 \end{equation}
 
 Combining~\eqref{eq: start of momentum equation derivation} with~\eqref{eq: m20 star pde} and~\eqref{eq: m11 star pde} results in
