@@ -1,7 +1,5 @@
 \documentclass[12pt,a4paper,twoside]{article}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphicx}
+\usepackage{definitions}
 
 \setlength{\voffset}{-28.4mm}
 \setlength{\hoffset}{-1in}
@@ -31,7 +29,7 @@
 \normalsize
 \includegraphics{TUMlMschwarz.png}\\[15mm]
 
-Bachelor's Thesis\\[15mm]
+Master's Thesis\\[15mm]
 
 {\Huge
   Title
@@ -40,27 +38,28 @@ Bachelor's Thesis\\[15mm]
 
 \normalsize
 
-FirstName LastName
+Florian Rohm
 \end{center}
 \vspace*{75mm}
 
-Supervisor: ...
+Supervisor: Prof.\ Dr.\ Barbara Wohlmuth
+
 \medskip
 
-Advisor: ...
+Advisor: M.Sc. Ehsan Fattahi Evati
 \medskip
 
-Submission Date: ...
+Submission Date: \ldots
 
 \end{titlepage}
 %%%% The following has to be signed by hand!
 
 \vspace*{150mm}
 
-I assure the single handed composition of this bachelor's thesis only supported by declared resources.
+I assure the single handed composition of this master's thesis only supported by declared resources.
 \bigskip
 
-Garching, 
+Garching,
 \newpage
 %%%% Zusammenfassung in deutscher Sprache
 \section*{Zusammenfassung}
@@ -75,11 +74,122 @@ Daf\"ur ist hier Platz.
 \pagenumbering{arabic}
 \pagestyle{headings}
 
-\section{First Chapter}
-Here we go
+%%%%%%%%%%
+\section{History of Lattice Boltzmann}
+\label{sec:History of Lattice Boltzmann}
+Tell a bit about the two views of lbm, historically from Lattice Gas, see nowadays as numerical scheme for discrete boltzmann equation
 
+%%%%%%%%%%
+\section{Lattice Boltzman basics}
+\label{sec:Lattice Boltzman basics}
 
+\subsection{Stream and Collide}
+\label{sub:Stream and Collide}
+
+\subsection{Moments and physical quantities}
+\label{sub:Moments and physical quantities}
+
+\subsection{The issue with relaxation rates}
+\label{sub:The issue with relaxation rates}
+A bit about how fast we go to local equilibrium, coupling of independent processes
+
+\subsection{Cumulants}
+\label{sub:Cumulants}
+What are cumulants, why are they a good choice
+
+%%%%%%%%%%
+\section{Transformations}
+\label{sec:Transformations}
+
+\subsection{Cumulants from moments}
+\label{sub:Cumulants from moments}
+
+\subsection{Central moments from cumulants}
+\label{sub:Central moments from cumulants}
+
+\subsection{Cumulants from central moments}
+\label{sub:Cumulants from central moments}
+
+\subsection{Fast central moment transformation}
+\label{sub:Fast central moment transformation}
+
+%%%%%%%%%%
+\section{The cumulant collision}
+\label{sec:The cumulant collision}
+
+\subsection{The Maxwell-distribution}
+\label{sub:The Maxwell-distribution}
+
+\subsection{Equilibrium distribution for cumulants}
+\label{sub:Equilibrium distribution for cumulants}
+
+\subsection{Equilibrium in terms of moments}
+\label{sub:Equilibrium in terms of moments}
+
+\subsection{Choosing the \texorpdfstring{$\omega_i$}{omega i}}
+\label{sub:Choosing the omega i}
+
+%%%%%%%%%%
+\section{Series expansions}
+\label{sec:Series expansions}
+After presenting the method, we need to proove that it satisfies Navier-Stokes.
+Preparation
+
+\subsection{Expanding the Lattice Boltzmann equation}
+\label{sub:Expanding the Lattice Boltzmann equation}
+
+\subsection{Matching the coefficients}
+\label{sub:Matching the coefficients}
+
+\subsection{Expanding the normalized cumulants}
+\label{sub:Expanding the normalized cumulants}
+
+\subsection{Expanding the equilibrium moments}
+\label{sub:Expanding the equilibrium moments}
+
+\subsection{Collision of moments}
+\label{sub:Collision of moments}
+
+%%%%%%%%%%
+\section{Continuity equation}
+\label{sec:Continuity equation}
+
+\subsection{Assumptions}
+\label{sub:Assumptions}
+
+\subsubsection{Absence of sources}
+\label{subs:Absence of sources}
+
+\subsubsection{Derivatives of zeroth order terms}
+\label{subs:Derivatives of zeroth order terms}
+
+\subsection{Collision invariants}
+\label{sub:Collision invariants}
+
+\subsection{Deriving the continuity equation}
+\label{sub:Deriving the continuity equation}
+
+%%%%%%%%%%
+\section{Momentum equation}
+\label{sec:Momentum equation}
+
+%%%%%%%%%%
+\section{Numerics}
+\label{sec:Numerics}
+
+%%%%%%%%%%
+\section{Outlook}
+\label{sec:Outlook}
+2D vs 3D, effects of turbulence
+
+\newpage
+\begin{appendices}
+
+\section{Derivation of the other Transformations}
+sdfsdaf
+
+\section{Listing another thing}
+sdfsdafasddsa
+
+\end{appendices}
 \end{document}
-
-
-
