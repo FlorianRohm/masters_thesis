@@ -19,3 +19,5 @@
 *.pyc
 *.pyg
 *.tdo
+*.bbl
+*.blg
