@@ -1,3 +1,27 @@
 % !TEX root = ../thesis.tex
 
-Tell a bit about the two views of lbm, historically from Lattice Gas, see nowadays as numerical scheme for discrete boltzmann equation
+The Lattice-Boltzmann-Method, short LBM, is a vital part of todays computational fluid dynamics landscape and competing with Finite-Element/Volume/Differences-Methods even in the conservative field of commercial fluid dynamics. But how did this meteoric rise happen?
+
+We're back in the year 1976, where Hardy, Pomeau and de Pazzis published a paper,~\cite{hardy1976molecular}, where they introduced the first Lattice-Gas-Automaton later called HPP, a cellular automata designed to mimic gas behavior. The computational domain is a rectangular lattice where each lattice node is connected to its four neighbours. Each node could hold four particles with mutually different velocity directions pointing to the neighbours, the speed has to be unity. Even this first step in the history of LBM had its update split into the characteristic stream and collide substeps, explained in Section~\ref{sub:Stream and Collide}.
+
+Although, this first attempt was not sufficient to simulate the full Navier-Stokes-Equations, but marked the start for a new field of Study.
+About ten years should pass, until Frisch, Hasslacher and Pomeau published a paper,~\cite{frisch1986lattice}, where they introduced a similar lattice gas automaton, dubbed FHP-I, on a hexagonal lattice. This one, also just working with boolean occupations for the now six directions but was able to reproduce the Navier-Stokes-Equations in the macroscopic limit. This publication marked the beginning of a boom in LBM related papers. There were subsequent refinements, called FHP-II and III which added a spot for a resting particle at the center of each cell and additional rules for the collision.
+
+The biggest problem with those early schemes was the presence of much statistical noise, demanding for an averaging over many subsequent runs. Not far after, McNamara and Zanetti proposed to `Use [\ldots] the Boltzmann Equation to Simulate Lattice-Gas Automa',~\cite{PhysRevLett.61.2332}, which got rid of said noise. The collision operator was the continuum equivalent of the nonlinear boolean collision used in the earlier models.
+
+To understand what happened next, we have to go even more back in time to the origins of the Boltzmann (Transport) Equation. In 1970, Ludwig Boltzmann published a paper,~\cite{Boltzmann1970} called `Further studies of the equilibrium of temperature of gas molecules', often abbreviated `Further studies', where he amongst other proposes the said equation. This equation has a particularly difficult integral term on the right hand side, which describes the collisions of the particles. During his lifetime, the kinetic theory of gases never really hyped, which led to the quote
+\begin{quote}
+I am conscious of being only
+an individual struggling weakly
+against the stream of time. But
+it still remains in my power to
+contribute in such a way that,
+when the theory of gases is
+again revived, not too much
+will have to be rediscovered.
+\end{quote}
+It was not until the fifties of last century, that Bhatnagar, Gross and Krook (BGK) extremely simplified the equation by replacing the integral describing the collision. Their reasoning was, that instead of the collision, only the effect of the collision can be modeled. This lead to the famous BGK operator, where the particle distributions are shifted a bit to their equilibrium state at a certain rate, called the relaxation rate. This is exactly the effect of multiple collisions, where the relaxation rate regulates the mean free path in between collisions.
+
+Back at LBM, there were multiple people in the early ninties, which proposed to use the BGK simplification in the discrete scheme. This could be called the birth of modern lattice boltzmann. The rise of LBM was accompanied by the trend of supercomputers to scale not the operations per second on a single core, but clustering many cores to one big machine, reaching several million cores nowadays. As described later \todo[inline]{cite}, LBM is a near perfect scheme for parallel computing, which is one of the main factors for its popularity.
+
+From there on, schemes were invented which use two or more relaxation times and relax not the raw particle distributions, but statistical values derived from said distributions, e.g.\ moments or centralized moments. The last incarnation of this trend is the usage of cumulants in the collision, which was proposed by Geier et al.,~\cite{geier2015cumulant}, just last year.
