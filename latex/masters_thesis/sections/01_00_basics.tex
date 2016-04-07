@@ -1,1 +1,37 @@
 % !TEX root = ../thesis.tex
+
+After seeing where the Lattice Boltzmann Method originated, we now take a closer look at how the method is derived.
+
+As of today, the most intuitive way of deriving the LBM is to start at the Boltzmann-Equation. It describes the evolution of the so-called particle-distribution function, short pdf, $f(\vec{x},\vec{v},t)$, which gives the probability of finding a particle at spacial position $\vec{x}$ and time $t$ with velocity $\vec{v}$:
+\begin{equation}
+  \label{eq:Boltzmann transport equation}
+  \begin{aligned}
+  &\partial_t f(\vec{x},\vec{v},t) + \vec{v}\cdot \nabla_\vec{x} f(\vec{x},\vec{v},t)
+  \\&= \frac{1}{m}
+  \int \left( \vec{\tilde{v}_1}(\phi,\vec{v},\vec{v_2})-\vec{\tilde{v}_2}(\phi,\vec{v},\vec{v_2})\right )
+  \\&\qquad\qquad\left[
+    f(\vec{x},\vec{\tilde{v}_1}(\phi,\vec{v},\vec{v_2}),t)f(\vec{x},\vec{\tilde{v}_2}(\phi,\vec{v},\vec{v_2}),t)
+    -f(\vec{x},\vec{v},t)f(\vec{x},\vec{v_2},t)
+  \right] d\phi d\vec{v_2}
+  \\&\defines \Omega\left(f(\vec{x},\vec{v},t)\right).
+\end{aligned}
+\end{equation}
+Here, one easily sees the difficulty of this equation. The first line is just the total time derivative $\frac{\text{d}f}{\text{d}t}$, but the right hand side is the aforementioned integral term which includes the post-collision velocities $\vec{\tilde{v}_1}$ and $\vec{\tilde{v}_2}$. Those are dependent on the collision angle $\phi$ and the pre-collision velocities $\vec{v}$ and $\vec{v_2}$ and have to be integrated over all possible collision scenarios. For more background on this equation, refer to~\cite{harris2004introduction}. The silver lining in this case is, that we can extract multiple equations for fluid dynamics from~\eqref{eq:Boltzmann transport equation}, without the need to calculate the right hand side explicitly:
+\todo[inline]{graphic}
+%-Kn->
+%----------------------------------
+%| Euler | Navier Stokes | Burnett |
+%----------------------------------
+%              /\
+%              |
+%----------------------------------
+%       Boltzmann Equation
+%----------------------------------
+This graphic shows one of the main advantages of the Boltzmann Equation:
+
+To use the Navier-Stokes-Equations, one needs the so called continuum hypothesis, stating roughly that there have to be enough fluid particles in any given control volume for averaging processes to make sense. Only this hypothesis justifies the notations of density, pressure and temperature, being macroscopic, averaged values of a fluid.
+One can concretize this definition by introducing the Knudsen number, $Kn$, named after the Dutch physicist Martin Knudsen. It relates the mean free path $\lambda$ a particle can travel before colliding with another particle to the physical scale of the problem represented by a characteristic length $L$ of the problem like
+\begin{equation}
+  Kn=\frac{\lambda}{L}.
+\end{equation}
+When the Knudsen number is very low, i.e.\ several orders of magnitude below one, we can safely assume the continuum hypothesis. If either $\lambda$ gets very big, like in high altitudes where the atmosphere is very dilute, or $L$ gets very small like in the simulation of microchannels, $Kn$ is about the order of one and the hypothesis does not hold anymore. As teased above, there are other equations like the Burnett or Super-Burnett equations, which can handle these regimes but have their very own problems. The standard reference on this topic is~\cite{agarwal2001beyond}.
