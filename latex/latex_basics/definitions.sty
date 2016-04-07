@@ -81,8 +81,12 @@ nisi. Nam eget dui.}
 \newcommand{\RtoN}{\ensuremath{\R^n}}
 
 % at least some define symbol
-\newcommand{\defined}{\mathrel{\mathop:}=}
-\newcommand{\defines}{\mathrel{\mathop=}:}
+\newcommand{\defined}{\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt
+                     \hbox{\scriptsize.}\hbox{\scriptsize.}}}%
+                     =}
+\newcommand{\defines}{=\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt
+                     \hbox{\scriptsize.}\hbox{\scriptsize.}}}
+                     }
 
 % miscelaneous operators and helpers
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
