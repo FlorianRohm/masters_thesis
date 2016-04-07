@@ -21,3 +21,5 @@
 *.tdo
 *.bbl
 *.blg
+*.glo
+*.ist
