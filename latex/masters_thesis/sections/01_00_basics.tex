@@ -2,9 +2,10 @@
 
 After seeing where the Lattice Boltzmann Method originated, we now take a closer look at how the method is derived.
 
-As of today, the most intuitive way of deriving the LBM is to start at the Boltzmann-Equation. It describes the evolution of the so-called particle-distribution function, short pdf, $f(\vec{x},\vec{v},t)$, which gives the probability of finding a particle at spacial position $\vec{x}$ and time $t$ with velocity $\vec{v}$:
+As of today, the most intuitive way of deriving the LBM is to start at the Boltzmann-Equation.
+It describes the evolution of the so-called particle-distribution function, short pdf, $f(\vec{x},\vec{v},t)$, which gives the probability of finding a particle at spacial position $\vec{x}$ and time $t$ with velocity $\vec{v}$:
 \begin{equation}
-  \label{eq:Boltzmann transport equation}
+  \label{eq: Boltzmann transport equation}
   \begin{aligned}
   &\partial_t f(\vec{x},\vec{v},t) + \vec{v}\cdot \nabla_\vec{x} f(\vec{x},\vec{v},t)
   \\&= \frac{1}{m}
@@ -16,8 +17,15 @@ As of today, the most intuitive way of deriving the LBM is to start at the Boltz
   \\&\defines \Omega\left(f(\vec{x},\vec{v},t)\right).
 \end{aligned}
 \end{equation}
-Here, one easily sees the difficulty of this equation. The first line is just the total time derivative $\frac{\text{d}f}{\text{d}t}$, but the right hand side is the aforementioned integral term which includes the post-collision velocities $\vec{\tilde{v}_1}$ and $\vec{\tilde{v}_2}$. Those are dependent on the collision angle $\phi$ and the pre-collision velocities $\vec{v}$ and $\vec{v_2}$ and have to be integrated over all possible collision scenarios. For more background on this equation, refer to~\cite{harris2004introduction}. The silver lining in this case is, that we can extract multiple equations for fluid dynamics from~\eqref{eq:Boltzmann transport equation}, without the need to calculate the right hand side explicitly:
-\todo[inline]{graphic}
+Here, one easily sees the difficulty of this equation.
+The first line is just the total time derivative $\frac{\text{d}f}{\text{d}t}$, but the right hand side is the aforementioned integral term which includes the post-collision velocities $\vec{\tilde{v}_1}$ and $\vec{\tilde{v}_2}$.
+Those are dependent on the collision angle $\phi$ and the pre-collision velocities $\vec{v}$ and $\vec{v_2}$ and have to be integrated over all possible collision scenarios.
+For brevity, the whole collision operator will be called $\Omega$.
+More background information on this equation can be found in~\cite{harris2004introduction}.
+The silver lining in this case is, that we can extract multiple equations for fluid dynamics from~\eqref{eq: Boltzmann transport equation}, without the need to calculate the right hand side explicitly.
+Using only certain properties of $\Omega$, c.f.~\cite[Pages ??]{harris2004introduction}, we can for example derive the Navier-Stokes Equations.
+In this sense, the Boltzmann Equation is a more general view of gas dynamics than Navier-Stokes.
+\todo[inline]{figure}
 %-Kn->
 %----------------------------------
 %| Euler | Navier Stokes | Burnett |
@@ -27,11 +35,20 @@ Here, one easily sees the difficulty of this equation. The first line is just th
 %----------------------------------
 %       Boltzmann Equation
 %----------------------------------
-This graphic shows one of the main advantages of the Boltzmann Equation:
+% \label{fig: boltzmann vs navier stokes}
+This one of the advantages of using the Boltzmann Equation over Navier-Stokes, summarized in Figure~\ref{fig: boltzmann vs navier stokes}.
+\todo[inline]{define knudsen number earlier or refer to it}
 
-To use the Navier-Stokes-Equations, one needs the so called continuum hypothesis, stating roughly that there have to be enough fluid particles in any given control volume for averaging processes to make sense. Only this hypothesis justifies the notations of density, pressure and temperature, being macroscopic, averaged values of a fluid.
-One can concretize this definition by introducing the Knudsen number, $Kn$, named after the Dutch physicist Martin Knudsen. It relates the mean free path $\lambda$ a particle can travel before colliding with another particle to the physical scale of the problem represented by a characteristic length $L$ of the problem like
+To be more precise, one needs the so called continuum hypothesis to use the Navier-Stokes-Equations, stating roughly that there have to be enough fluid particles in any given control volume for averaging processes to make sense.
+Only this hypothesis justifies the notations of density, pressure and temperature, being macroscopic, averaged values of a fluid.
+One can concretize this definition by introducing the Knudsen number, $Kn$, named after the Dutch physicist Martin Knudsen.
+It relates the mean free path $\lambda$ a particle can travel before colliding with another particle to the physical scale of the problem represented by a characteristic length $L$ of the problem like
 \begin{equation}
+  \label{eq: definition of knudsen number}
   Kn=\frac{\lambda}{L}.
 \end{equation}
-When the Knudsen number is very low, i.e.\ several orders of magnitude below one, we can safely assume the continuum hypothesis. If either $\lambda$ gets very big, like in high altitudes where the atmosphere is very dilute, or $L$ gets very small like in the simulation of microchannels, $Kn$ is about the order of one and the hypothesis does not hold anymore. As teased above, there are other equations like the Burnett or Super-Burnett equations, which can handle these regimes but have their very own problems. The standard reference on this topic is~\cite{agarwal2001beyond}.
+When the Knudsen number is very low, i.e.\ several orders of magnitude below one, we can safely assume the continuum hypothesis.
+If either $\lambda$ gets very big, like in high altitudes where the atmosphere is very dilute, or $L$ gets very small like in the simulation of microchannels, $Kn$ is about the order of one and the hypothesis does not hold anymore.
+As teased in Figure~\ref{fig: boltzmann vs navier stokes}, there are other equations like the Burnett or Super-Burnett equations, which can handle these regimes.
+Nevertheless, they have their very own problems, like being inherently unstable.
+The standard reference on this topic is~\cite{agarwal2001beyond}.
