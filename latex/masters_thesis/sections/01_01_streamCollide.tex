@@ -22,21 +22,21 @@ Thus,~\eqref{eq: Boltzmann transport equation} is transformed to
   \label{eq: lattice boltzmann equation}
   \begin{aligned}
     f_{ij}(x + i \Delta x , y + j \Delta y,t + \Delta t)
-    &= \Omega(f_{ij}(x,y,t))
+    &= \tilde{\Omega}(f_{ij}(x,y,t))
     + f_{ij}(x,y,t)
     \\&
     \defines f_{ij}^*(x, y, t),
   \end{aligned}
 \end{equation}
 for all $i,j\in \{-1, 0, 1\}$,
-where $f_{ij}$ are the pre-collision distributions and $f_{ij}^*$ the post collision distributions.
-The full derivation can be found in Appendix~\ref{sec: Lattice Boltzmann Equation}.
+where $f_{ij}$ are the pre-collision distributions and $f_{ij}^*$ the post-collision distributions.
+As motivated in Section~\ref{sec: History of Lattice Boltzmann}, the used collision operator $\tilde{\Omega}$ will model the effect of the collisions in one timestep. This will be further specified in Section~\ref{sub: The issue with relaxation rates}.
+The full derivation of~\eqref{eq: lattice boltzmann equation} can be found in Appendix~\ref{sec: Lattice Boltzmann Equation}.
 
-Now, we can finally introduce the most known keywords asociated to LBM:\@ stream and collide.
+Now, we can finally introduce the most known keywords associated to LBM:\@ stream and collide.
 When looking at~\eqref{eq: lattice boltzmann equation}, we see, that we need two substeps for each iteration of the equation.
 
 Number one is the calculation of the post-collision distributions in each cell and can be found on the right hand side of~\eqref{eq: lattice boltzmann equation}. This is known as the collide step.
-Although not yet specified, it will relax the distributions to local equilibrium in a certain sense, as motivated in Section~\ref{sec: History of Lattice Boltzmann}. This will be discussed in Section~\ref{sub: The issue with relaxation rates}.
 \todo[inline]{picture?}
 
 Number two is found on the left hand side and formulates the spreading of the distributions according to their velocities to form the new particle distributions for the timestep $t+\Delta t$.
