@@ -15,8 +15,10 @@ In LBM jargon, the choice of velocities is called the stencil, which is denoted 
 
 The simplest way for discretization the derivatives is to use a combination of implicit and explicit Euler terms, where we set the relation between the size of the timesteps $\Delta t$ and spacial stepsizes $\Delta x$ and $\Delta y$ to
 \begin{equation}
+  \label{eq: relation between stepsizes}
   \frac{\Delta x} {\Delta{t}} = \frac{\Delta y} {\Delta{t}} = c
 \end{equation}
+As motivated in Section~\ref{sec: History of Lattice Boltzmann}, we replace the collision operator $\Omega$ with $\tilde{\Omega}$, which will model the effect of the collisions in one timestep. This will be further specified in Section~\ref{sub: The issue with relaxation rates}.
 Thus,~\eqref{eq: Boltzmann transport equation} is transformed to
 \begin{equation}
   \label{eq: lattice boltzmann equation}
@@ -28,9 +30,7 @@ Thus,~\eqref{eq: Boltzmann transport equation} is transformed to
     \defines f_{ij}^*(x, y, t),
   \end{aligned}
 \end{equation}
-for all $i,j\in \{-1, 0, 1\}$,
-where $f_{ij}$ are the pre-collision distributions and $f_{ij}^*$ the post-collision distributions.
-As motivated in Section~\ref{sec: History of Lattice Boltzmann}, the used collision operator $\tilde{\Omega}$ will model the effect of the collisions in one timestep. This will be further specified in Section~\ref{sub: The issue with relaxation rates}.
+for all $i,j\in \{-1, 0, 1\}$, where $f_{ij}$ are the pre-collision distributions and $f_{ij}^*$ the post-collision distributions.
 The full derivation of~\eqref{eq: lattice boltzmann equation} can be found in Appendix~\ref{sec: Lattice Boltzmann Equation}.
 
 Now, we can finally introduce the most known keywords associated to LBM:\@ stream and collide.
@@ -41,8 +41,10 @@ Number one is the calculation of the post-collision distributions in each cell a
 
 Number two is found on the left hand side and formulates the spreading of the distributions according to their velocities to form the new particle distributions for the timestep $t+\Delta t$.
 Unsurprisingly, this is called the streaming step, as it moves the particle distributions to new nodes.
-\todo[inline]{captain obvious?}
-\todo[inline]{picture?}
+\todo[inline]{picture? fig: stream}
+Figure~\ref{fig: stream} illustrates why we chose our velocities,~\eqref{eq: definition of the velocities}, and stepsizes,~\eqref{eq: relation between stepsizes}, in this particular way.
+This allows us to move our distribution functions exactly to the next node in the direction they are pointing. Hence we don't need to interpolate those functions to get the new distribution functions at the nodes for the next timestep.
+\todo[inline]{paper, interpolating}
 
 Now, we can imagine, why LBM is so good for parallel computation.
 The streaming step, which needs access to neighboring nodes and therefore potentially to the memory of other cores, is completely linear.

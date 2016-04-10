@@ -2,25 +2,26 @@
 
 After seeing where the Lattice Boltzmann Method originated, we now take a closer look at how the method is derived.
 
-As of today, the most intuitive way of deriving the LBM is to start at the Boltzmann-Equation.
-It describes the evolution of the so-called particle-distribution function, short pdf, $f(\vec{x},\vec{v},t)$, which gives the probability of finding a particle at spacial position $\vec{x}$ and time $t$ with velocity $\vec{v}$:
+As of today, the most intuitive way of deriving the \gls{lbm} is to start at the Boltzmann-Equation.
+It describes the evolution of the so-called \gls{pdf}, $f(\vec{x},\vec{v},t)$, which gives the probability of finding a particle at spacial position $\vec{x}$ and time $t$ with velocity $\vec{v}$:
 \begin{equation}
   \label{eq: Boltzmann transport equation}
+  \partial_t f(\vec{x},\vec{v},t) + \vec{v}\cdot \nabla_\vec{x} f(\vec{x},\vec{v},t) = \Omega\left(f(\vec{x},\vec{v},t)\right),
+\end{equation}
+where $\Omega$ describes the effect of the collision of two particles. The other part is just the total time derivative $\frac{\text{d}f}{\text{d}t}$. To see the difficulty of the Boltzmann-Equation, we need to write out the collision:
+\begin{equation}
+  \label{eq: Collision of boltzmann equation}
   \begin{aligned}
-  &\partial_t f(\vec{x},\vec{v},t) + \vec{v}\cdot \nabla_\vec{x} f(\vec{x},\vec{v},t)
-  \\&= \frac{1}{m}
-  \int \left( \vec{\tilde{v}_1}(\phi,\vec{v},\vec{v_2})-\vec{\tilde{v}_2}(\phi,\vec{v},\vec{v_2})\right )
-  \\&\qquad\qquad\left[
-    f(\vec{x},\vec{\tilde{v}_1}(\phi,\vec{v},\vec{v_2}),t)f(\vec{x},\vec{\tilde{v}_2}(\phi,\vec{v},\vec{v_2}),t)
+ \Omega\left(f(\vec{x},\vec{v},t)\right) =\frac{1}{m}
+  \int \left( \vec{\tilde{v}_1}-\vec{\tilde{v}_2}\right)
+  \left[
+    f(\vec{x},\vec{\tilde{v}_1},t)f(\vec{x},\vec{\tilde{v}_2},t)
     -f(\vec{x},\vec{v},t)f(\vec{x},\vec{v_2},t)
   \right] d\phi d\vec{v_2}
-  \\&\defines \Omega\left(f(\vec{x},\vec{v},t)\right).
 \end{aligned}
 \end{equation}
-Here, one easily sees the difficulty of this equation.
-The first line is just the total time derivative $\frac{\text{d}f}{\text{d}t}$, but the right hand side is the aforementioned integral term which includes the post-collision velocities $\vec{\tilde{v}_1}$ and $\vec{\tilde{v}_2}$.
-Those are dependent on the collision angle $\phi$ and the pre-collision velocities $\vec{v}$ and $\vec{v_2}$ and have to be integrated over all possible collision scenarios.
-For brevity, the whole collision operator will be called $\Omega$.
+The right hand side is the aforementioned integral term which includes the mass of the particles and the post-collision velocities $\vec{\tilde{v}_1}$ and $\vec{\tilde{v}_2}$.
+Those velocities are dependent on the collision angle $\phi$ and the pre-collision velocities $\vec{v}$ and $\vec{v_2}$ and have to be integrated over all possible collision scenarios.
 More background information on this equation can be found in~\cite{harris2004introduction}.
 The silver lining in this case is, that we can extract multiple equations for fluid dynamics from~\eqref{eq: Boltzmann transport equation}, without the need to calculate the right hand side explicitly.
 Using only certain properties of $\Omega$, c.f.~\cite[Pages ??]{harris2004introduction}, we can for example derive the Navier-Stokes Equations.

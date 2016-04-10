@@ -1,0 +1,59 @@
+% !TEX root = ../thesis.tex
+Now, after describing the general structure of the LBM, we can inspect another important question of \gls{cfd}:\@ What do we want to know at the end?
+
+The most basic thing one is interested in, is information about the flow field, i.e.\@ density, velocity and temperature in my domain, to analyze the flow patterns.
+Those are called macroscopic values.
+
+When calculating with Navier-Stokes-Equations, getting those values is easy, as the equations are stated in exactly those variables.
+Unfortunately, the Boltzmann Equation and also the discretized equation~\eqref{eq: lattice boltzmann equation} calculate the microscopic particle distributions. The extraction of macroscopic values out of those distributions will be treated in this Section.
+
+Before introducing velocity and density, we have to take a small detour to the field of probability theory and introduce moments. The moment $m_{\alpha\beta}$ of a bivariat probability distribution $f$ is a characteristic variable, defined as
+\begin{equation}
+  m_{\alpha\beta} \defined \int\int i^\alpha j^\beta f(i,j) didj.
+\end{equation}
+The zeroth moment $m_{00}$ of a probability is by definition one, the first moments $m_{10}$ and $m_{10}$ are its mean values in $i$ respectively $j$-direction. The choice of $i$ and $j$ for continuous variables is intentional to avoid confusion, as we will later apply this definition to $f_{ij}$ and $f_{ij}^*$.
+Another set of characteristic variables are the centralized moments $c_{\alpha\beta}$ defined as
+\begin{equation}
+  c_{\alpha\beta} \defined \int\int {\left(i - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(j-\frac{m_{01}}{m_{00}}\right)}^\beta f(i,j) didj.
+\end{equation}
+As $m_{00}=1$ for probability distributions, the denominator seems superfluous. However, the particle distributions we will handle in a few moments do not satisfy this condition and thus the term is already introduced here.
+
+As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can describe the macroscopic density $\rho$, the macroscopic velocity $\vec{u}$ and the pressure tensor $\tensor{P}$ as
+\begin{equation}
+  \begin{aligned}
+    \rho(\vec{x},t) & = \int f (\vec{v},\vec{x},t) d\vec{v} = m_{00}(\vec{x},t) \\
+    u_x(\vec{x},t)
+    & = \frac{1}{\rho(\vec{x},t)}\int v_x f(\vec{v},\vec{x},t) d\vec{v} = \frac{ m_{10}(\vec{x},t) }{ m_{00}(\vec{x},t) }\\
+    u_y(\vec{x},t)
+    & = \frac{1}{\rho(\vec{x},t)}\int v_y f(\vec{v},\vec{x},t) d\vec{v} = \frac{ m_{10}(\vec{x},t) }{ m_{00}(\vec{x},t) }.\\
+    \tensor{P}_{xy}(\vec{x},t)=\tensor{P}_{yx}(\vec{x},t)
+    & = \int (v_x - u_x(\vec{x},t))(v_y - u_y(\vec{x},t)) f(\vec{v},\vec{x},t) d\vec{v}
+      = c_{11} (\vec{x},t)\\
+    \tensor{P}_{xx}(\vec{x},t)
+    & = \int {(v_x - u_x(\vec{x},t))}^2 f(\vec{v},\vec{x},t) d\vec{v}
+      = c_{20} (\vec{x},t)\\
+    \tensor{P}_{yy}(\vec{x},t)
+    & = \int {(v_y - u_y(\vec{x},t))}^2 f(\vec{v},\vec{x},t) d\vec{v}
+      = c_{02} (\vec{x},t).
+  \end{aligned}
+\end{equation}
+In the following, the dependence on $\vec{x}$ and $t$ will be omitted.
+Those connections do hold for the equilibrium case, which is locally attained nearly instantaneously for the continuous case, c.f.~\cite[page 218]{smits2000physical}.
+
+To introduce the pressure tensor $\tensor{P}$, we need to move to central moments.
+The microscopic velocity describes the speed at which the particles move. The so called  peculiar velocity $\vec{v}_0$ is the particle velocity in a frame of reference moving with the flow, i.e. $i_0 \defined i_0(i) = i-v_x$, $j_0 \defined j_0(j) = j-v_y$.
+
+In this frame, the observed macroscopic velocity of course would be zero.
+
+\paragraph{Pressure}
+\label{par:Pressure}
+The pressure tensor $\mathbf{P}$ is given as
+\begin{equation}
+  \mathbf{P}_{xy} = \sum_{i,j} i_0 j_0 f_{ij}
+\end{equation}
+with the macroscopic pressure defined as
+\begin{equation}
+  \label{eq:pressure}
+  p = \frac{1}{3}\mathbf{P}_{xx} = \frac{1}{3}\sum_{i,j} i_0^2 f_{ij} = \frac{1}{3} \left(m_{20} - \frac{ m_{10}^2 }{ m_{00} } \right)
+\end{equation}
+%When going further, one maybe wants to know the drag force applied to a body in the flow or the heat input into a specific surface.
