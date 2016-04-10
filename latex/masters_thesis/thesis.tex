@@ -1,5 +1,7 @@
 \documentclass[12pt,a4paper,twoside]{article}
 \usepackage{definitions}
+\loadglsentries{sections/glossary}
+\makeglossaries{}
 
 \setlength{\voffset}{-28.4mm}
 \setlength{\hoffset}{-1in}
@@ -69,11 +71,12 @@ Daf\"ur ist hier Platz.
 \newpage
 \tableofcontents
 \newpage
+\printglossaries{}
+\newpage
 
 %%%% Page numbering restarts here
 \pagenumbering{arabic}
 \pagestyle{headings}
-
 %%%%%%%%%%
 \section{History of Lattice Boltzmann}
 \label{sec: History of Lattice Boltzmann}
