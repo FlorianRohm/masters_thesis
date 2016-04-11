@@ -5,49 +5,139 @@ The most basic thing one is interested in, is information about the flow field, 
 Those are called macroscopic values.
 
 When calculating with Navier-Stokes-Equations, getting those values is easy, as the equations are stated in exactly those variables.
-Unfortunately, the Boltzmann Equation and also the discretized equation~\eqref{eq: lattice boltzmann equation} calculate the microscopic particle distributions. The extraction of macroscopic values out of those distributions will be treated in this Section.
+Unfortunately, the Boltzmann Equation and also the discretized equation~\eqref{eq: lattice boltzmann equation} calculate the microscopic particle distributions.
+The extraction of macroscopic values out of those distributions will be treated in this Section.
 
-Before introducing velocity and density, we have to take a small detour to the field of probability theory and introduce moments. The moment $m_{\alpha\beta}$ of a bivariat probability distribution $f$ is a characteristic variable, defined as
+Before introducing velocity and density, we have to take a small detour to the field of probability theory and introduce moments.
+The moment $m_{\alpha\beta}$ of a bivariat probability distribution $f$ is a characteristic variable, defined as
 \begin{equation}
-  m_{\alpha\beta}(\vec{x},t) \defined \int\int i^\alpha j^\beta f(i,j,\vec{x},t) didj.
+  \label{eq: moments continuous}
+  m_{\alpha\beta} \defined \int\int i^\alpha j^\beta f(i,j) didj
 \end{equation}
 The zeroth moment $m_{00}$ of a probability is by definition one, the first moments $m_{10}$ and $m_{10}$ are its mean values in $i$ respectively $j$-direction.
 The choice of $i$ and $j$ for continuous variables is intentional to avoid confusion, as we will later apply this definition to $f_{ij}$ and $f_{ij}^*$.
+Additionally, this distribution and hence all derived characteristic variables will depend on space and time in the rest of this thesis, which is going to be omitted every time and implicitly assumed, hence
+\begin{equation}
+  m_{\alpha\beta} = m_{\alpha\beta}(\vec{x},t).
+\end{equation}
+This is also true for all other values like density or velocity.
+
 Another set of characteristic variables are the centralized moments $c_{\alpha\beta}$ defined as
 \begin{equation}
-  c_{\alpha\beta}(\vec{x},t) \defined \int\int {\left(i - \frac{m_{10}(\vec{x},t)}{m_{00}(\vec{x},t)}\right)}^\alpha {\left(j-\frac{m_{01}(\vec{x},t)}{m_{00}(\vec{x},t)}\right)}^\beta f(i,j) didj.
+  \label{eq: central moments continuous}
+  c_{\alpha\beta} \defined \int\int {\left(i - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(j-\frac{m_{01}}{m_{00}}\right)}^\beta f(i,j) didj.
 \end{equation}
-As $m_{00}=1$ for probability distributions, the denominator seems superfluous. However, the particle distributions we will handle in a few moments do not satisfy this condition and thus the term is already introduced here.
-
-Additionally, if a quantity only depends on $\vec{x}$ and $t$, the arguments will be omitted and implicitly assumed in the rest of the thesis, e.g.
-\begin{equation}
-    m_{\alpha\beta} \defined m_{\alpha\beta}(\vec{x},t)
-\end{equation}
-and
-\begin{equation}
-    c_{\alpha\beta} \defined c_{\alpha\beta}(\vec{x},t).
-\end{equation}
+As $m_{00}=1$ for probability distributions, the denominator seems superfluous.
+However, the particle distributions we will handle in a few moments do not satisfy this condition and thus the term is already introduced here.
 
 As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can describe the macroscopic density $\rho$, the macroscopic velocity $\vec{u}$ and the pressure tensor $\tensor{P}$ as
 \begin{equation}
+  \label{eq: physical quantities}
   \begin{aligned}
-    \rho & = \int f (\vec{v},\vec{x},t) d\vec{v} = m_{00} \\
+    \rho & = \int f (\vec{x},\vec{v},t) d\vec{v} = m_{00} \\
     u_x
-    & = \frac{1}{\rho}\int v_x f(\vec{v},\vec{x},t) d\vec{v} = \frac{ m_{10} }{ m_{00} }\\
+    & = \frac{1}{\rho}\int v_x f(\vec{x},\vec{v},t) d\vec{v} = \frac{ m_{10} }{ m_{00} }\\
     u_y
-    & = \frac{1}{\rho}\int v_y f(\vec{v},\vec{x},t) d\vec{v} = \frac{ m_{10} }{ m_{00} }.\\
+    & = \frac{1}{\rho}\int v_y f(\vec{x},\vec{v},t) d\vec{v} = \frac{ m_{10} }{ m_{00} }.\\
     \tensor{P}_{xy}=\tensor{P}_{yx}
-    & = \int (v_x - u_x)(v_y - u_y) f(\vec{v},\vec{x},t) d\vec{v}
+    & = \int (v_x - u_x)(v_y - u_y) f(\vec{x},\vec{v},t) d\vec{v}
       = c_{11} \\
     \tensor{P}_{xx}
-    & = \int {(v_x - u_x)}^2 f(\vec{v},\vec{x},t) d\vec{v}
+    & = \int {(v_x - u_x)}^2 f(\vec{x},\vec{v},t) d\vec{v}
       = c_{20} \\
     \tensor{P}_{yy}
-    & = \int {(v_y - u_y)}^2 f(\vec{v},\vec{x},t) d\vec{v}
+    & = \int {(v_y - u_y)}^2 f(\vec{x},\vec{v},t) d\vec{v}
       = c_{02} .
   \end{aligned}
 \end{equation}
-Those connections do hold for the equilibrium case, which is locally attained nearly instantaneously for the continuous case, c.f.~\cite[page 218]{smits2000physical}. In the discrete case, this 
+Those connections do hold for the equilibrium case, which is locally attained nearly instantaneously for the continuous case, c.f.~\cite[page 218]{smits2000physical}.
+In the discrete case, we can no longer assume local equilibrium.
+In fact, we already assume to be in a non equilibrium state, as we want the collision to shift our particle distributions a bit towards the local equilibrium.
+Looking at the quantities defined in~\eqref{eq: physical quantities}, we can directly define the velocity and density, as those should not be altered by the collision due to mass and momentum conservation laws.
+Also, the integrals in~\eqref{eq: moments continuous} and~\eqref{eq: central moments continuous} will degenerate to sums when changing to the discrete velocity set~\eqref{eq: definition of the velocities}, leaving us with
+\begin{align}
+  m_{\alpha\beta} &= \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
+  \label{eq: moment definition}\\
+  c_{\alpha\beta} &= \sum_{i,j \in \{-1,0,1\}} {\left(i - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(j-\frac{m_{01}}{m_{00}}\right)}^\beta f_{ij}
+  \label{eq: central moment definition}\\
+  \rho & = \sum_{i,j \in \{-1,0,1\}} f_{ij} = m_{00}
+  \label{eq: density definition}\\
+  u_x  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} v_x f_{ij} = \frac{m_{10}}{m_{00}}
+  \label{eq: x velocity definition}\\
+  u_y  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} v_y f_{ij} = \frac{m_{10}}{m_{00}}.
+  \label{eq: y velocity definition}
+\end{align}
+Another convention we introduce at this point is, that all sums over $i$ and/or $j$ shall range over the discrete velocity space, i.e.
+\begin{equation*}
+  \sum_{i,j \in \{-1,0,1\}} \rightarrow \sum_{i,j}
+\end{equation*}
+When looking at pressure, e.g.\ the momentum of the fluid particles normal to an imaginary wall, the discrete case looks quite different.
+Here we cannot assume collision invariance, as Figure~\ref{fig: pressure} illustrates.
+Hence we can assume the discrete analogon only when the distributions are equal to the equilibrium distributions $f_{ij}^{eq}$ which are by definition collision invariant.
+This leaves us with
+\begin{equation}
+  \begin{aligned}
+    \tensor{P}_{xx}
+    & = \sum_{ij} {(v_x - u_x)}^2 f_{ij}^{eq}
+    \\ & =
+    \sum_{ij} (v_x^2 - 2v_x u_x + u_x^2) f_{ij}^{eq}
+    \\ & =
+    \sum_{ij} v_x^2 f_{ij}^{eq} - 2 u_x \sum_{ij} v_x f_{ij}^{eq} + u_x^2 \sum_{ij}f_{ij}^{eq}
+    \\ & = m_{20}^{eq} - \frac{m_{10}^2}{m_{00}}
+  \end{aligned}
+\end{equation}
+and thus the pressure
+\begin{equation}
+  p=\frac{1}{3} \tensor{P}_{xx} = \frac{1}{3} \left(m_{20}^{eq} - \frac{m_{10}^2}{m_{00}}\right).
+\end{equation}
 
+If we wanted to include equations for energy and thus heat into our analysis, we would need higher order moments like $m_{30}$.
+But as we are working with the nine speed model D2Q9 as depicted in Figure~\ref{fig: d2q9}, we can only host nine independent moments.
+This is easily seen with
+\begin{equation}
+  m_{30} = \sum_{i,j} i^3 f_{ij} = \sum_{i,j} i i^2 f_{ij} = \sum_{i,j} i f_{ij} = m_{10},
+\end{equation}
+or in general
+\begin{equation}
+  \label{eq:aliasing of moments 1}
+  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^{(\alpha+2k)} j^\beta f_{ij} \quad \forall k,\beta, \forall \alpha \neq 0
+\end{equation}
+and
+\begin{equation}
+  \label{eq:aliasing of moments 2}
+  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^{(\beta+2l)} f_{ij} \quad \forall l, \alpha, \forall \beta \neq 0.
+\end{equation}
+According to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}, the full list of moments in D2Q9 is displayed in table~\ref{table:D2Q9 moments}.
 
-%When going further, one maybe wants to know the drag force applied to a body in the flow or the heat input into a specific surface.
+\setlength{\tabcolsep}{3pt}
+\begin{table} [ht!]
+  \centering
+  \begin{tabular}{r rr rrr rr r rrrrr r}
+    \toprule
+    \multicolumn{9}{c}{independent moments} & \multicolumn{6}{c}{dependent moments}   \\
+    \cmidrule(lr){1-9}\cmidrule(lr){10-15} \\
+    $m_{00}$
+    & $m_{10}$
+    & $m_{01}$
+    & $m_{11}$
+    & $m_{20}$
+    & $m_{02}$
+    & $m_{21}$
+    & $m_{12}$
+    & $m_{22}$
+    & $m_{30}$
+    & $m_{03}$
+    & $m_{31}$
+    & $m_{13}$
+    & $m_{40}$
+    & \ldots \\
+    &&&&&&&&
+    &= $m_{10}$
+    & = $m_{01}$
+    & = $m_{11}$
+    & = $m_{11}$
+    & = $m_{20}$ & \\
+    \bottomrule
+  \end{tabular}
+  \caption{D2Q9 moments}\label{table:D2Q9 moments}
+\end{table}
