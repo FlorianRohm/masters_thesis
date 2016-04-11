@@ -6,11 +6,11 @@ First of all, we restrict ourselves to a computational domain being composed of 
 The next step for the discretization is to restrict our velocity space to a finite set of velocities. As we will see in a bit, we want the cell spacing and the velocities to coincide, so we choose our velocities to be
 \begin{equation}
   \label{eq: definition of the velocities}
-  \vec{c_{ij}} \defined c\begin{pmatrix}i \\ j\end{pmatrix}, \quad\forall i,j\in \{-1, 0, 1\}.
+  \vec{c}_{ij} \defined c\begin{pmatrix}i \\ j\end{pmatrix}, \quad\forall i,j\in \{-1, 0, 1\}.
 \end{equation}
 As we are in two dimensions, we also split the vector $\vec{x}$ into its components $x$ and $y$.
 Hence, our particle distribution function $f(\vec{v},\vec{x},t)$ can now be interpreted as nine functions $f_{ij}(x,y,t)$, one for each direction.
-\todo[inline]{D2Q9 graphic}
+\todo[inline]{D2Q9 graphic fig: d2q9}
 In LBM jargon, the choice of velocities is called the stencil, which is denoted by D$n$Q$m$, with $n$ being the dimension and $m$ the cardinality of the velocity set. Consequently, we're working with a D2Q9 model.
 
 The simplest way for discretization the derivatives is to use a combination of implicit and explicit Euler terms, where we set the relation between the size of the timesteps $\Delta t$ and spacial stepsizes $\Delta x$ and $\Delta y$ to
