@@ -5,22 +5,22 @@ But how did this meteoric rise happen?
 
 We're back in the year 1976, where Hardy, Pomeau and de Pazzis published a paper,~\cite{hardy1976molecular}, in which they introduced the first Lattice-Gas-Automaton later called HPP, a cellular automaton designed to mimic gas behavior.
 The computational domain is a rectangular lattice where each lattice node is connected to its four neighbors.
-Each node can hold four particles with mutually different velocity directions pointing to the neighbors, the speed has to be unity.
+Each node can hold at most four particles with mutually different velocity directions pointing to the neighbors, the speed has to be unity.
 Even this first step in the history of \gls{lbm} has its update split into the characteristic stream and collide substeps, explained in Section~\ref{sub: Stream and Collide}.
 
-Although, this first attempt was not sufficient to simulate the full Navier-Stokes-Equations, it marked the start for a new field of Study.
+Although, this first attempt was not sufficient to simulate the full Navier-Stokes equations, listed in Appendix~\ref{appendix: Navier Sokes Equations}, it marked the start for a new field of study.
 About ten years should pass, until Frisch, Hasslacher and Pomeau introduced a similar lattice gas automaton, dubbed FHP-I, on a hexagonal lattice,~\cite{frisch1986lattice}.
-This one, also just working with boolean occupations for the now six directions, was able to reproduce the Navier-Stokes-Equations in the macroscopic limit.
+This one, also just working with boolean occupations for the now six directions, was able to reproduce the Navier-Stokes equations in the macroscopic limit.
 This publication marked the beginning of a boom in \gls{lbm} related papers.
 There were subsequent refinements, called FHP-II and III which added a spot for a resting particle at the center of each cell and additional rules for the collision.
 
 The biggest problem with those early schemes was the presence of much statistical noise, demanding for an averaging over many subsequent runs.
-Not far after, McNamara and Zanetti proposed to `Use [\ldots] the Boltzmann Equation to Simulate Lattice-Gas Automa',~\cite{PhysRevLett.61.2332}, which got rid of said noise.
+Not far after, McNamara and Zanetti proposed to `Use [\ldots] the Boltzmann equation to Simulate Lattice-Gas Automa',~\cite{PhysRevLett.61.2332}, which got rid of said noise.
 They did so, by allowing not just zero and one for the occupation of one direction, but also all values in between.
 Consequently, the collision operator was the continuum equivalent of the nonlinear boolean collision used in the earlier models.
 
-To understand what happened next, we have to go even more back in time to the origins of the Boltzmann (Transport) Equation.
-In 1970, Ludwig Boltzmann published the paper `Further studies of the equilibrium of temperature of gas molecules',~\cite{Boltzmann1970}, often abbreviated `Further studies', where he amongst others proposes aforementioned equation.
+To understand what happened next, we have to go even more back in time to the origins of the Boltzmann (Transport) equation.
+In 1970, Austrian physicist Ludwig Boltzmann published the paper `Further studies of the equilibrium of temperature of gas molecules',~\cite{Boltzmann1970}, often abbreviated `Further studies', where he amongst others proposes aforementioned equation.
 This equation includes a particularly difficult integral term, which describes the pairwise collisions of the particles.
 During his lifetime, the kinetic theory of gases never really hyped, which led to the quote:
 \begin{quotation}
@@ -34,6 +34,7 @@ This is exactly the effect of multiple collisions, where the relaxation rate reg
 
 Back at \gls{lbm}, there were multiple people in the early nineties, which proposed to use the BGK simplification in the discrete scheme.
 This could be called the birth of modern Lattice Boltzmann.
+
 The rise of \gls{lbm} was accompanied by the trend of supercomputers to scale not the operations per second on a single core, but clustering many cores to one big machine, reaching several million cores nowadays.
 As motivated at the end of Section~\ref{sub: Stream and Collide}, \gls{lbm} is a near perfect scheme for parallel computing, which is one of the main factors for its popularity.
 

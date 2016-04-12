@@ -18,7 +18,7 @@ The simplest way for discretization the derivatives is to use a combination of i
   \label{eq: relation between stepsizes}
   \frac{\Delta x} {\Delta{t}} = \frac{\Delta y} {\Delta{t}} = c
 \end{equation}
-As motivated in Section~\ref{sec: History of Lattice Boltzmann}, we replace the collision operator $\Omega$ with $\tilde{\Omega}$, which will model the effect of the collisions in one timestep. This will be further specified in Section~\ref{sub: The issue with relaxation rates}.
+As motivated in Section~\ref{sec: History of Lattice Boltzmann}, we replace the collision operator $\Omega$ with $\tilde{\Omega}$, which will model the effect of the collisions in one timestep. This will be further specified in Section~\ref{sub: Relaxation rates and their issues}.
 Thus,~\eqref{eq: Boltzmann transport equation} is transformed to
 \begin{equation}
   \label{eq: lattice boltzmann equation}
@@ -31,7 +31,7 @@ Thus,~\eqref{eq: Boltzmann transport equation} is transformed to
   \end{aligned}
 \end{equation}
 for all $i,j\in \{-1, 0, 1\}$, where $f_{ij}$ are the pre-collision distributions and $f_{ij}^*$ the post-collision distributions.
-The full derivation of~\eqref{eq: lattice boltzmann equation} can be found in Appendix~\ref{sec: Lattice Boltzmann Equation}.
+The full derivation of~\eqref{eq: lattice boltzmann equation} can be found in Appendix~\ref{appendix: Lattice Boltzmann Equation}.
 
 Now, we can finally introduce the most known keywords associated to LBM:\@ stream and collide.
 When looking at~\eqref{eq: lattice boltzmann equation}, we see, that we need two substeps for each iteration of the equation.

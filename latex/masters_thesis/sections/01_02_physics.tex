@@ -1,11 +1,11 @@
 % !TEX root = ../thesis.tex
 Now, after describing the general structure of the LBM, we can inspect another important question of \gls{cfd}:\@ What do we want to know at the end?
 
-The most basic thing one is interested in, is information about the flow field, i.e.\@ density, velocity and temperature in my domain, to analyze the flow patterns.
+The most basic thing one is interested in, is information about the flow field, i.e.\@ density, velocity and temperature in the domain, to analyze the flow patterns.
 Those are called macroscopic values.
 
-When calculating with Navier-Stokes-Equations, getting those values is easy, as the equations are stated in exactly those variables.
-Unfortunately, the Boltzmann Equation and also the discretized equation~\eqref{eq: lattice boltzmann equation} calculate the microscopic particle distributions.
+When calculating with the Navier-Stokes equations, getting those values is easy, as the equations are stated in exactly those variables.
+Unfortunately, the Boltzmann equation and also the discretized equation~\eqref{eq: lattice boltzmann equation} calculate the microscopic particle distributions.
 The extraction of macroscopic values out of those distributions will be treated in this Section.
 
 Before introducing velocity and density, we have to take a small detour to the field of probability theory and introduce moments.
@@ -16,7 +16,7 @@ The moment $m_{\alpha\beta}$ of a bivariat probability distribution $f$ is a cha
 \end{equation}
 The zeroth moment $m_{00}$ of a probability is by definition one, the first moments $m_{10}$ and $m_{10}$ are its mean values in $i$ respectively $j$-direction.
 The choice of $i$ and $j$ for continuous variables is intentional to avoid confusion, as we will later apply this definition to $f_{ij}$ and $f_{ij}^*$.
-Additionally, this distribution and hence all derived characteristic variables will depend on space and time in the rest of this thesis, which is going to be omitted every time and implicitly assumed, hence
+Additionally, this distribution and hence all derived characteristic variables will depend on space and time in the rest of this thesis, which is going to be omitted every time and implicitly assumed. Hence
 \begin{equation}
   m_{\alpha\beta} = m_{\alpha\beta}(\vec{x},t).
 \end{equation}
@@ -72,6 +72,7 @@ Another convention we introduce at this point is, that all sums over $i$ and/or 
   \sum_{i,j \in \{-1,0,1\}} \rightarrow \sum_{i,j}
 \end{equation*}
 When looking at pressure, e.g.\ the momentum of the fluid particles normal to an imaginary wall, the discrete case looks quite different.
+\todo[inline]{billiard table figure}
 Here we cannot assume collision invariance, as Figure~\ref{fig: pressure} illustrates.
 Hence we can assume the discrete analogon only when the distributions are equal to the equilibrium distributions $f_{ij}^{eq}$ which are by definition collision invariant.
 This leaves us with
@@ -107,7 +108,7 @@ and
   \label{eq:aliasing of moments 2}
   \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^{(\beta+2l)} f_{ij} \quad \forall l, \alpha, \forall \beta \neq 0.
 \end{equation}
-According to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}, the full list of moments in D2Q9 is displayed in table~\ref{table:D2Q9 moments}.
+The full list of moments in D2Q9 is displayed in table~\ref{table:D2Q9 moments}, according to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}.
 
 \setlength{\tabcolsep}{3pt}
 \begin{table} [ht!]
