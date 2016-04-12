@@ -1,2 +1,62 @@
 % !TEX root = ../thesis.tex
-A bit about how fast we go to local equilibrium, coupling of independent processes
+Up until now, we did not specify the collision part of~\eqref{eq: lattice boltzmann equation}.
+As stated in Section~\ref{sec: History of Lattice Boltzmann}, instead of calculating the collision, we can model the effect of multiple collisions, which is the shift towards a local equilibrium.
+Albeit not a physically sound reasoning, one can imagine a very big, frictionless billiard table.
+Initially we roll all balls in the same direction but not perfectly parallel to the wall.
+In the first few moments, those balls will go along in the same direction and the system will have a preferred direction and velocity, namely the direction and velocity we initiated.
+After some time passed, the balls will have collided several times amongst themselves and they will have a plethora of different speeds and directions.
+There's now no preferred direction and the distribution of speeds won't change anymore; the system is in an equilibrium.
+
+Changing back to the continuous view, this equilibrium is known as the Maxwellian Distribution, which reads in two dimensions, c.f.~\cite{succi2001lattice}:
+\begin{equation}
+  \label{eq:maxwell distribution raw}
+  f_{m, \rho, u, T}^{\text{maxwell}}(\xi) = \rho \frac{m}{2\pi k_B T} \exp \left( - \frac{m\abs{\xi-u}^2}{2 k_B T}\right)
+\end{equation}
+where
+\begin{center}
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    Symbol & Quantity  \\
+    \midrule
+    $\xi$  & Microscopic speed  \\
+    $\rho$ & Macroscopic density     \\
+    $u$    & Macroscopic velocity   \\
+    $T$    & Temperature   \\
+    $k_B$  & Boltzmann constant \\
+    $m$    & Mass of the particles   \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+We could now define $f_{ij}^{eq}$ due to some unspecified discretization of the velocity in~\eqref{eq:maxwell distribution raw} and write the collision of~\eqref{eq: lattice boltzmann equation} as
+\begin{equation}
+  \tilde{\Omega}(f_{ij}) = \omega \left(f_{ij}^{eq} - f_{ij}\right)
+\end{equation}
+and thus
+\begin{equation}
+  \label{eq: post collision discrete}
+  f_{ij}^* = f_{ij} + \omega \left(f_{ij}^{eq} - f_{ij}\right) = (1-\omega)f_{ij} + f_{ij}^{eq}.
+\end{equation}
+Here we can perfectly see the linear interpolation for the distributions.
+The most popular method of discretizing~\eqref{eq:maxwell distribution raw} is due to a Taylor series expansion, yielding
+\begin{equation}
+  f_{ij}^{eq}(\rho,\vec{u}) = W_{ij}\rho
+  \left[
+    1
+    + 3\frac{\vec{c}_{ij} \cdot \vec{u}}{c^2}
+    + \frac{9}{2}\frac{{(\vec{c}_{ij} \cdot \vec{u})}^2}{c^4}
+    - \frac{3}{2}\frac{\vec{u} \cdot \vec{u}^2}{c^2}
+  \right],
+\end{equation}
+where $W_{ij}$ is a weighting factor.
+This yields the most simple, but most famous BGK-LBM, also called \gls{srt}, as it uses only one parameter $\omega$ to relax the~\glspl{pdf}.
+
+When analyzing this method,~\cite[Section 5.2.3]{wolf2000lattice}, we see, that the macroscopic viscosity $\nu$ is actually calculated by
+\begin{equation}
+  \nu = \frac{1}{3}\left(\frac{1}{\omega} - \frac{1}{2}\right).
+\end{equation}
+Hence, to get to low viscosities, we actually have to overrelax the \glspl{pdf} in~\eqref{eq: post collision discrete}.
+The root of this seeming inconsistency is elucidated in~\cite[Section 4]{karlin2006elements}, and stems from our discretization of~\eqref{eq: Boltzmann transport equation}.
+
+
+%A bit about how fast we go to local equilibrium, coupling of independent processes
