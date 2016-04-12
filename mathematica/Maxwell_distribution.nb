@@ -1,0 +1,197 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7640,        188]
+NotebookOptionsPosition[      7215,        168]
+NotebookOutlinePosition[      7553,        183]
+CellTagsIndexPosition[      7510,        180]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"PDF", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"MaxwellDistribution", "[", "\[Sigma]", "]"}], ",", "x"}], 
+      "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "2"}], "}"}], ",", " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}]}], "\[IndentingNewLine]", "]"}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Sigma]", ",", " ", "0.5", ",", "\"\<Sigma\>\""}], "}"}], ",",
+      "0.1", ",", "5", ",", "\[IndentingNewLine]", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.66938041552262*^9, 3.669380415534547*^9}, {
+  3.669380470621572*^9, 3.669380555696026*^9}, {3.669380610220491*^9, 
+  3.669380747755533*^9}, {3.669380874048826*^9, 3.6693808801031713`*^9}, {
+  3.669381057456189*^9, 3.669381069914104*^9}, {3.669381202817031*^9, 
+  3.669381278208647*^9}, {3.669381344391313*^9, 3.6693813869810457`*^9}, {
+  3.66938201004591*^9, 3.6693820296246157`*^9}, {3.6693822752072487`*^9, 
+  3.669382287645317*^9}, {3.669382364620225*^9, 3.669382385351066*^9}, {
+  3.6693829627746143`*^9, 3.66938298521719*^9}, {3.669383059873094*^9, 
+  3.669383075751738*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Sigma]$$ = 0.5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Sigma]$$], 0.5, "Sigma"}, 0.1, 5}}, 
+    Typeset`size$$ = {360., {108., 113.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Sigma]$21682$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`\[Sigma]$$ = 0.5}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Sigma]$$, $CellContext`\[Sigma]$21682$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[
+        PDF[
+         MaxwellDistribution[$CellContext`\[Sigma]$$], $CellContext`x], \
+{$CellContext`x, 0, 2}, PlotRange -> All], 
+      "Specifications" :> {{{$CellContext`\[Sigma]$$, 0.5, "Sigma"}, 0.1, 5, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{407., {152., 159.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.669380712774782*^9, 3.6693807486516647`*^9, 3.669380880420229*^9, {
+   3.6693810609684877`*^9, 3.6693810706150093`*^9}, 3.669381263969586*^9, {
+   3.6693830607763147`*^9, 3.669383078032939*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"PDF", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"MaxwellDistribution", "[", "\[Sigma]", "]"}], ",", "x"}], 
+      "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "2"}], "}"}], ",", " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotLabel", "\[Rule]", " ", 
+      RowBox[{"\"\<\[Sigma] = \>\"", " ", "<>", " ", 
+       RowBox[{"ToString", "[", "\[Sigma]", "]"}]}]}], " ", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"AxesLabel", "\[Rule]", " ", 
+      RowBox[{"{", "\"\<speed\>\"", "}"}]}]}], "\[IndentingNewLine]", "]"}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Sigma]", ",", " ", "0.5", ",", "\"\<Sigma\>\""}], "}"}], ",",
+      "0.1", ",", "5", ",", "\[IndentingNewLine]", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.669381407159531*^9, 3.6693814167634153`*^9}, 
+   3.669383081285033*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Sigma]$$ = 0.5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Sigma]$$], 0.5, "Sigma"}, 0.1, 5}}, 
+    Typeset`size$$ = {360., {105., 109.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Sigma]$21914$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`\[Sigma]$$ = 0.5}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Sigma]$$, $CellContext`\[Sigma]$21914$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[
+        PDF[
+         MaxwellDistribution[$CellContext`\[Sigma]$$], $CellContext`x], \
+{$CellContext`x, 0, 2}, PlotRange -> All, PlotLabel -> 
+        StringJoin["\[Sigma] = ", 
+          ToString[$CellContext`\[Sigma]$$]], AxesLabel -> {"speed"}], 
+      "Specifications" :> {{{$CellContext`\[Sigma]$$, 0.5, "Sigma"}, 0.1, 5, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{407., {148., 155.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.6693830821092043`*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{1624, Automatic}, {42, Automatic}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1455, 29, 253, "Input"],
+Cell[2038, 53, 1961, 39, 328, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4036, 97, 1255, 28, 297, "Input"],
+Cell[5294, 127, 1905, 38, 353, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
