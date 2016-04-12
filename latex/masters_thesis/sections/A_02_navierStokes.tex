@@ -1,0 +1,28 @@
+% !TEX root = ../thesis.tex
+Equations for mass and momentum conservation in incompressible fluid flows, where $u_x$ and $u_y$ are the components of the velocity, $\rho$ is the density and $p$ the pressure
+\begin{equation}
+  \label{eq: navier stokes}
+  \begin{aligned}
+    \partial_x u_x + \partial_y u_y & = 0 \\
+    \partial_t u_x + u_x\partial_x u_x + u_y\partial_y u_x & = -\frac{1}{\rho} \partial_x p + \nu \left(\partial_{xx} u_x + \partial_{yy} u_x\right) \\
+    \partial_t u_y + u_x\partial_x u_y + u_y\partial_y u_y & = -\frac{1}{\rho} \partial_y p + \nu \left(\partial_{xx} u_y + \partial_{yy} u_y\right).
+  \end{aligned}
+\end{equation}
+When nondimensionalized with characteristic length $L$ and speed $u_0$,
+\begin{equation}
+    x  \rightarrow \frac{x}{L},\quad
+    y  \rightarrow \frac{y}{L},\quad
+    u_x  \rightarrow \frac{u_x}{u_0},\quad
+    u_y  \rightarrow \frac{u_y}{u_0},\quad
+    p  \rightarrow \frac{p}{\rho u_0^2},
+\end{equation}
+we get
+\begin{equation}
+  \label{eq: navier stokes nondim}
+  \begin{aligned}
+    \partial_x u_x + \partial_y u_y & = 0 \\
+    \partial_t u_x + u_x\partial_x u_x + u_y\partial_y u_x & = - \partial_x p + \frac{1}{Re} \left(\partial_{xx} u_x + \partial_{yy} u_x\right) \\
+    \partial_t u_y + u_x\partial_x u_y + u_y\partial_y u_y & = - \partial_y p + \frac{1}{Re} \left(\partial_{xx} u_y + \partial_{yy} u_y\right).
+  \end{aligned}
+\end{equation}
+with only one tunable parameter, $Re$.
