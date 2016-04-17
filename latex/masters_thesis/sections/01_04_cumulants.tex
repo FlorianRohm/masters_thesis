@@ -1,3 +1,47 @@
 % !TEX root = ../thesis.tex
 
-What are cumulants, why are they a good choice
+This Section will motivate the space of the yet to be defined cumulants as a suitable space for an easy collision.
+
+In real life, when two events happen at the same frequency, we can infer that they are statistically dependent.
+For an example, let the first event $X$ be the trees casting their leaves, which happens once a year
+\footnote{We assume to be in central Europe and do not include climate change which could set us up for an all green year}
+, and the second one $Y$ the lottery draw once a week.
+As those events are independent
+\footnote{As this is only an introduction, we spare the proof of lottery drawings being independent of trees}
+, the probabilities factor $P(X\intersect Y) = P(X)P(Y)$.
+On the other side, let the event of Easter be $Z$ which also happens once a year. As Easter is not in autumn, we have $0 = P(X\intersect Z) \neq P(X)P(Z) > 0$.
+
+Enough of holidays and nature, let's turn back to \gls{lbm}, where our fluid flow is composed of countless dependent and independent events.
+From the gedankenexperiment above, we know we want to relax independent events with different frequencies.
+To achieve this, we have to turn back to the moments we defined in~\eqref{eq: moments continuous}.
+
+We can equivalently define moments of a random variable $X$ as the coefficients of the Taylor expansion of the moment generating function $M_X(t)$, c.f.~\cite{weissteinMGF}.
+It can be proven,~\cite{weissteinMGF}, that it satisfies $M_{X+Y}(t) = M_{X}(t)M_{Y}(t)$ for two independent random variables $X$ and $Y$.
+In our case, this is not the desired behavior, as the coefficients of the Taylor series of the sum, i.e.\ our moments we observe are composed of moments of different order from the individual variables.
+
+As a remedy, we can turn the product into a sum by taking the logarithm on both sides:
+\begin{equation}
+  \ln(M_{X+Y}(t)) = \ln(M_{X}(t)) + \ln(M_{Y}(t)).
+\end{equation}
+
+The Taylor coefficients of $\ln(M_X(t))$ are now called cumulants and $\ln(M_{X}(t))$ is analogously called cumulant generating function.
+
+To get to cumulants, we need the moment generating function for $f_{ij}$ first.
+For this, we formulate our \glspl{pdf} $f_{ij}$ in a continuous way
+\begin{equation}
+  \label{eq:Definition of f xi}
+  f(\vec{\xi}) = \sum_{i,j} f_{ij}\delta(ic - \vec{\xi}_1)\delta(jc - \vec{\xi}_2),
+\end{equation}
+using the Diraque delta distribution\footnote{For a quick overview, please refer to~\cite{weissteinDelta}} $\delta$, characterized by
+\begin{equation}
+  \int f(x)\delta(x)dx = f(0).
+\end{equation}
+Albeit not a function in the classical sense, we will use $f(\vec{\xi})$ only within an integral expression so we don't get any ambiguity.
+
+
+
+%Moments: coefficients of taylor expansion of the moment generating function $M_X(t)$~\cite{weissteinMGF} for a random variable $X$.
+%Flipside: when we have two random variables $X$ and $Y$, we have $M_{X+Y}(t) = M_{X}(t)M_{Y}(t)$.
+%Problem: Taylor Series of a product not easy to compute, and if we do it, many moments of different orders interact.
+%Remedy: turn product into sum $\ln(M_{X+Y}(t)) = \ln(M_{X}(t)) + \ln(M_{Y}(t))$.
+%Taylor coefficients of $\ln(M_X(t))$ are called cumulants and $\ln(M_{X}(t))$ is called cumulant generating function.
