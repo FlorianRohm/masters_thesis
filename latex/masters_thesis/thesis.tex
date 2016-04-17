@@ -212,17 +212,19 @@ Daf\"ur ist hier Platz.
 \newpage
 \begin{appendices}
 \renewcommand{\theequation}{\Alph{section}.\arabic{equation}}
+\counterwithin*{equation}{section}
 
 \section{Lattice Boltzmann Equation}
 \label{appendix: Lattice Boltzmann Equation}
 \import{sections/}{A_01_latticeBoltzmannEquation.tex}
 
-\section{Navier-Sokes Equations}
+\section{Navier-Sokes equations}
 \label{appendix: Navier Sokes Equations}
 \import{sections/}{A_02_navierStokes.tex}
 
-\section{Derivation of the other Transformations}
-\section{Some Other Appendix}
+\section{Laplace transform}
+\label{appendix: Laplace transform}
+\import{sections/}{A_03_LaplaceTransform.tex}
 
 \end{appendices}
 \newpage

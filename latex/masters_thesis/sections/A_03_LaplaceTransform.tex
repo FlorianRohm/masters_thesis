@@ -1,0 +1,18 @@
+% !TEX root = ../thesis.tex
+
+The two sided Laplace transform $L$ of a function $g\colon \R^n \mapsto \R$ is defined as
+\begin{equation}
+  \label{eq: Definition of Laplace}
+  \mathcal{L}[g](\vec{\Xi}) = \int_{\R^n} g(\vec{\xi}) e^{-\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi}.
+\end{equation}
+For the translation of $g$ by a vector $\vec{u}$ we get
+\begin{equation}
+  \label{eq: translated laplace}
+  \begin{aligned}
+    \mathcal{L}[g(\cdot - \vec{u})](\vec{\Xi})
+    & = \int_{-\infty}^\infty g(\vec{\xi}-\vec{u}) e^{-\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi} \\
+    & = \int_{-\infty}^\infty g(\vec{\xi}) e^{-\vec{\Xi} \cdot (\vec{\xi}+\vec{u})}d\vec{\xi} \\
+    & =  e^{-\vec{\Xi} \cdot \vec{u}} \int_{-\infty}^\infty g(\vec{\xi}) e^{-\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi} \\
+    & =  e^{-\vec{\Xi} \cdot \vec{u}} \mathcal{L}[g](\vec{\Xi})
+  \end{aligned}
+\end{equation}
