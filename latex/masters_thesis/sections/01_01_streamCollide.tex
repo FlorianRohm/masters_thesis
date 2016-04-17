@@ -8,17 +8,17 @@ The next step for the discretization is to restrict our velocity space to a fini
   \label{eq: definition of the velocities}
   \vec{c}_{ij} \defined c\begin{pmatrix}i \\ j\end{pmatrix}, \quad\forall i,j\in \{-1, 0, 1\}.
 \end{equation}
-As we are in two dimensions, we also split the vector $\vec{x}$ into its components $x$ and $y$.
-Hence, our particle distribution function $f(\vec{v},\vec{x},t)$ can now be interpreted as nine functions $f_{ij}(x,y,t)$, one for each direction.
+Hence, our particle distribution function $f(\vec{v},\vec{x},t)$ can now be interpreted as nine functions $f_{ij}(\vec{x},t)$, one for each direction.
+Being in two dimensions, we also split the vector $\vec{x}$ into its components $x$ and $y$, leaving us with $f_{ij}(x,y,t)$ for the velocity-discretized particle distributions.
 \todo[inline]{D2Q9 graphic fig: d2q9}
 In LBM jargon, the choice of velocities is called the stencil, which is denoted by D$n$Q$m$, with $n$ being the dimension and $m$ the cardinality of the velocity set. Consequently, we're working with a D2Q9 model.
 
-The simplest way for discretization the derivatives is to use a combination of implicit and explicit Euler terms, where we set the relation between the size of the timesteps $\Delta t$ and spacial stepsizes $\Delta x$ and $\Delta y$ to
+The simplest way for discretizing the derivatives is to use a combination of implicit and explicit Euler terms, where we set the relation between the size of the timesteps $\Delta t$ and spacial stepsizes $\Delta x$ and $\Delta y$ to
 \begin{equation}
   \label{eq: relation between stepsizes}
   \frac{\Delta x} {\Delta{t}} = \frac{\Delta y} {\Delta{t}} = c
 \end{equation}
-As motivated in Section~\ref{sec: History of Lattice Boltzmann}, we replace the collision operator $\Omega$ with $\tilde{\Omega}$, which will model the effect of the collisions in one timestep. This will be further specified in Section~\ref{sub: Relaxation rates and their issues}.
+As motivated in Section~\ref{sec: History of Lattice Boltzmann}, we will replace the collision operator $\Omega$ with $\tilde{\Omega}$, which will model the effect of the collisions in one timestep. This will be further specified in Section~\ref{sub: Relaxation rates and their issues}.
 Thus,~\eqref{eq: Boltzmann transport equation} is transformed to
 \begin{equation}
   \label{eq: lattice boltzmann equation}

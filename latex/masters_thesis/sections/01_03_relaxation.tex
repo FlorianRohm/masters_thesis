@@ -31,7 +31,7 @@ where the quantities are defined in Table~\ref{table: maxwell quantities}.
 \label{table: maxwell quantities}
 \end{table}
 
-We could now define $f_{ij}^{eq}$ due to some unspecified discretization of~\eqref{eq: maxwell distribution raw} and write the collision of~\eqref{eq: lattice boltzmann equation} as
+We now define $f_{ij}^{eq}$ due to a yet unspecified discretization of~\eqref{eq: maxwell distribution raw} and write the collision of~\eqref{eq: lattice boltzmann equation} as
 \begin{equation}
   \tilde{\Omega}(f_{ij}) = \omega \left(f_{ij}^{eq} - f_{ij}\right)
 \end{equation}
@@ -48,7 +48,7 @@ The most popular method of discretizing~\eqref{eq: maxwell distribution raw} is 
     1
     + 3\frac{\vec{c}_{ij} \cdot \vec{u}}{c^2}
     + \frac{9}{2}\frac{{(\vec{c}_{ij} \cdot \vec{u})}^2}{c^4}
-    - \frac{3}{2}\frac{\vec{u} \cdot \vec{u}^2}{c^2}
+    - \frac{3}{2}\frac{\vec{u} \cdot \vec{u}}{c^2}
   \right],
 \end{equation}
 where $W_{ij}$ is a weighting factor.
@@ -59,9 +59,10 @@ When analyzing this method,~\cite[Section 5.2.3]{wolf2000lattice}, we see, that 
   \nu = \frac{1}{3}\left(\frac{1}{\omega} - \frac{1}{2}\right).
 \end{equation}
 Hence, to get to low viscosities, we actually have to overrelax the \glspl{pdf} in~\eqref{eq: post collision discrete}.
-The root of this seeming inconsistency is elucidated in~\cite[Section 4]{karlin2006elements}, and stems from our discretization of~\eqref{eq: Boltzmann transport equation}.
+The root of this seeming inconsistency is elucidated in~\cite[Section 4]{karlin2006elements} and stems from our discretization of~\eqref{eq: Boltzmann transport equation}.
 
-On looking upon the nondimensionalized, incompressible Navier-Stokes equations,~\eqref{eq: navier stokes nondim}, we see that the \gls{re} is more telling than just the viscosity. Hence instead of talking about low viscosities, we will talk about the Reynolds number being very high.
+On looking upon the nondimensionalized, incompressible Navier-Stokes equations,~\eqref{eq: navier stokes nondim}, we see that the \gls{re} is more telling than just the viscosity.
+Consequently we will talk about the Reynolds number being very high instead of the viscosities being low.
 Some typical values for \gls{re} are shown in Table~\ref{table: reynolds numbers}, stating the clear necessity of a numeric scheme that can handle a broad range of Reynolds numbers.
 \def\stackalignment{l}
 \setlength{\tabcolsep}{6pt}
@@ -90,10 +91,10 @@ Some typical values for \gls{re} are shown in Table~\ref{table: reynolds numbers
    & $0.01m$
    & $ 0.01 \frac{m}{s}$
    & $1.519 \times 10^{-6} \frac{m^2}{s}$
-   & $6.58 \times 10^{1}$
-%\bottomrule
+   & $6.58 \times 10^{1}$\\
+   \bottomrule
   \end{tabular}
-  \caption{Typical Reynolds numbers, values for viscosity from~\cite{engToolbox,engToolbox2,wolframquery}}\label{table: reynolds numbers}
+  \caption{Typical Reynolds numbers needed in simulations. Values for viscosity from~\cite{engToolbox,engToolbox2,wolframquery}}\label{table: reynolds numbers}.
 \end{table}
 Unfortunately, the SRT scheme develops serious instabilities for Reynolds numbers of some hundred or greater\footnote{This is not an exact value, but a rule of thumb. This value also depends on the other simulation settings}, as illustrated  by the checkerboard modes in Figure~\ref{fig: spurious modes SRT}. For higher Reynolds numbers, those instabilities take over, ruining the simulation. Albeit not a thorough analysis, this can be seen as a hint that \gls{lbm} may need further work to become a serious competitor in~\gls{cfd}.
 \begin{figure}
@@ -117,7 +118,7 @@ Unfortunately, the SRT scheme develops serious instabilities for Reynolds number
 Intuitively, we can describe SRT as a scheme, where all non-conserved quantities which can be computed from the \glspl{pdf}, are relaxed at the same rate.
 Hence we impose, that all events that happen in the fluid occur at the same rate, which is certainly not true.
 
-This was noticed very fast and apparently the remedy was found by d'Humiéres,~\cite{d1994generalized}, who proposes to change from the space of particle distributions to the space of moments and relax linear combinations of those independently.
+This was noticed very fast and apparently the remedy was found by d'Humiéres,~\cite{d1994generalized}, who proposed to change from the space of particle distributions to the space of moments and relax linear combinations of those independently.
 This was the birth of the \gls{mrt} schemes.
 Unfortunately, even today there is no consent about how to choose all the relaxation parameters in an optimal way.
 Although, when chosen right, the accuracy and stability can improve greatly in contrast to SRT, allowing simulations of $Re$ in the low thousands, c.f.~\cite{d2002multiple}. Still, this does not nearly cover the regions we see in Table~\ref{table: reynolds numbers}.

@@ -1,52 +1,53 @@
 % !TEX root = ../thesis.tex
-Now, after describing the general structure of the LBM, we can inspect another important question of \gls{cfd}:\@ What do we want to know at the end?
+After describing the general structure of the LBM, we can inspect another important question of \gls{cfd}:\@ What do we want to know at the end?
 
 The most basic thing one is interested in, is information about the flow field, i.e.\@ density, velocity and temperature in the domain, to analyze the flow patterns.
 Those are called macroscopic values.
 
 When calculating with the Navier-Stokes equations, getting those values is easy, as the equations are stated in exactly those variables.
 Unfortunately, the Boltzmann equation and also the discretized equation~\eqref{eq: lattice boltzmann equation} calculate the microscopic particle distributions.
+\glsadd{micVar}\glsadd{macVar}
 The extraction of macroscopic values out of those distributions will be treated in this Section.
 
 Before introducing velocity and density, we have to take a small detour to the field of probability theory and introduce moments.
-The moment $m_{\alpha\beta}$ of a bivariat probability distribution $f$ is a characteristic variable, defined as
+In analogy to bivariat probability distributions, we define the characteristic variables $m_{\alpha\beta}$, called moments, of a \gls{pdf} $f$ as
 \begin{equation}
   \label{eq: moments continuous}
-  m_{\alpha\beta} \defined \int\int i^\alpha j^\beta f(i,j) didj
+  m_{\alpha\beta}(\vec{x},t) \defined  \int v_x^\alpha v_y^\beta f(\vec{v},\vec{x},t) d\vec{v},\quad\forall\alpha,\beta\in\N
 \end{equation}
-The zeroth moment $m_{00}$ of a probability is by definition one, the first moments $m_{10}$ and $m_{10}$ are its mean values in $i$ respectively $j$-direction.
-The choice of $i$ and $j$ for continuous variables is intentional to avoid confusion, as we will later apply this definition to $f_{ij}$ and $f_{ij}^*$.
-Additionally, this distribution and hence all derived characteristic variables will depend on space and time in the rest of this thesis, which is going to be omitted every time and implicitly assumed. Hence
+In contrary to probability distributions, the zeroth moment $m_{00}$ is not one. The first moments $m_{10}$ and $m_{01}$ are still its mean values in the corresponding directions.
+
+Additionally, this distribution and hence all derived characteristic variables will depend on space and time in the rest of this thesis, which is going to be omitted every time when not strictly required and implicitly assumed. Hence
 \begin{equation}
+  \label{eq: leave out x and y}
   m_{\alpha\beta} = m_{\alpha\beta}(\vec{x},t).
 \end{equation}
-This is also true for all other values like density or velocity.
+This is also true for all other values like density, velocity or the \glspl{pdf}.
 
 Another set of characteristic variables are the centralized moments $c_{\alpha\beta}$ defined as
 \begin{equation}
   \label{eq: central moments continuous}
-  c_{\alpha\beta} \defined \int\int {\left(i - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(j-\frac{m_{01}}{m_{00}}\right)}^\beta f(i,j) didj.
+  c_{\alpha\beta} \defined \int {\left(v_x - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(v_y-\frac{m_{01}}{m_{00}}\right)}^\beta f(\vec{v})  d\vec{v}.
 \end{equation}
-As $m_{00}=1$ for probability distributions, the denominator seems superfluous.
-However, the particle distributions we will handle in a few moments do not satisfy this condition and thus the term is already introduced here.
+Here, the assumption associated with~\eqref{eq: leave out x and y} of course holds, too, making the centralized moments dependend on space and time.
 
 As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can describe the macroscopic density $\rho$, the macroscopic velocity $\vec{u}$ and the pressure tensor $\tensor{P}$ as
 \begin{equation}
   \label{eq: physical quantities}
   \begin{aligned}
-    \rho & = \int f (\vec{x},\vec{v},t) d\vec{v} = m_{00} \\
+    \rho & = \int f(\vec{v}) d\vec{v} = m_{00} \\
     u_x
-    & = \frac{1}{\rho}\int v_x f(\vec{x},\vec{v},t) d\vec{v} = \frac{ m_{10} }{ m_{00} }\\
+    & = \frac{1}{\rho}\int v_x f(\vec{v}) d\vec{v} = \frac{ m_{10} }{ m_{00} }\\
     u_y
-    & = \frac{1}{\rho}\int v_y f(\vec{x},\vec{v},t) d\vec{v} = \frac{ m_{10} }{ m_{00} }.\\
+    & = \frac{1}{\rho}\int v_y f(\vec{v}) d\vec{v} = \frac{ m_{01} }{ m_{00} }.\\
     \tensor{P}_{xy}=\tensor{P}_{yx}
-    & = \int (v_x - u_x)(v_y - u_y) f(\vec{x},\vec{v},t) d\vec{v}
+    & = \int (v_x - u_x)(v_y - u_y) f(\vec{v}) d\vec{v}
       = c_{11} \\
     \tensor{P}_{xx}
-    & = \int {(v_x - u_x)}^2 f(\vec{x},\vec{v},t) d\vec{v}
+    & = \int {(v_x - u_x)}^2 f(\vec{v}) d\vec{v}
       = c_{20} \\
     \tensor{P}_{yy}
-    & = \int {(v_y - u_y)}^2 f(\vec{x},\vec{v},t) d\vec{v}
+    & = \int {(v_y - u_y)}^2 f(\vec{v}) d\vec{v}
       = c_{02} .
   \end{aligned}
 \end{equation}
@@ -64,7 +65,7 @@ Also, the integrals in~\eqref{eq: moments continuous} and~\eqref{eq: central mom
   \label{eq: density definition}\\
   u_x  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} v_x f_{ij} = \frac{m_{10}}{m_{00}}
   \label{eq: x velocity definition}\\
-  u_y  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} v_y f_{ij} = \frac{m_{10}}{m_{00}}.
+  u_y  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} v_y f_{ij} = \frac{m_{01}}{m_{00}}.
   \label{eq: y velocity definition}
 \end{align}
 Another convention we introduce at this point is, that all sums over $i$ and/or $j$ shall range over the discrete velocity space, i.e.
