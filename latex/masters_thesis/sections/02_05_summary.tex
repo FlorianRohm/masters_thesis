@@ -1,0 +1,14 @@
+% !TEX root = ../thesis.tex
+
+After we worked through the whole table of transformations in this section, it's time to take a step back and look on what we did and why.
+
+Before collision, we have our particle distribution functions $f_{ij}$.
+Through equations~\eqref{eq: density definition} to~\eqref{eq: y velocity definition} we get our macroscopic variables in this cell.
+As our collision will be mass and momentum preserving\footnote{ignoring gravity or other forces which can alter velocity in the collision}, it does not matter if those are computed pre-collision.
+Using the macroscopic variables, central moments are computed via~\eqref{eq:fast forward c i pipe beta matrix} and afterwards~\eqref{eq: fast forward c alpha beta matrix}.
+To get our normalized cumulants, which we will use right in the next chapter for the collision, not much has to be done, as seen in~\eqref{eq: all normalized cumulants from central moments}.
+After the collision, we calculate our post-collision central moments from~\eqref{eq: all central moments from normalized cumulants}
+and transform them back to \glspl{pdf} via~\eqref{eq: fast forward c alpha beta matrix} and~\eqref{eq:fast forward c i pipe beta matrix}.
+
+The alert reader may have notices, that we tediously calculated the relation between normalized cumulants and moments in~\eqref{eq: K 00 from moments} through~\eqref{eq: K 22 from moments} but apparently never use them.
+This labor was not in vain, as we will need those expressions, when we prepare the analysis of the method in Section~\ref{sec: Series expansions}.

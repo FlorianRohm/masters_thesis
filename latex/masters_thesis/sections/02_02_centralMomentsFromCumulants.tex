@@ -1,1 +1,127 @@
 % !TEX root = ../thesis.tex
+We now could invert equations~\eqref{eq: K 00 from moments} to~\eqref{eq: K 22 from moments} go over to the actual collision and call it a day.
+As the title of this section spoils, we won't do exactly that, but take a quick detour over central moments.
+The calculation of those from our \glspl{pdf} can be done in an efficient way as shown in~\ref{sub: Fast central moment transformation},
+so we don't loose hardly any performance on this step.
+On the other side, we will see in this chapter that the way from central moments to cumulants is much more smooth, cutting the computational costs of the transformation, especially in 3D.
+
+As described in~\eqref{eq: central moments continuous} and thereafter, central moments are just our normal moments, when we move our frame of reference with the flow velocity.
+Hence, we can alter~\eqref{eq:Definition of f xi} to represent the particle distributions relative to the macroscopic flow velocity
+\begin{equation}
+  \label{eq:Definition of f c xi}
+  f_c(\vec{\xi}) \defined f(\vec{\xi}-\vec{u}) = \sum_{i,j} f_{ij}\delta(ic - (\xi_1-u_1))\delta(jc - (\xi_2-u_2)).
+\end{equation}
+Thus, the moment generating function $F_c$ of this distribution is
+\begin{equation}
+  \label{eq: Definition of centralized F}
+  \begin{aligned}
+    F_c(\Xi_1, \Xi_2) & = \mathcal{L}[f_c](\vec{\Xi}) = \mathcal{L}[f(\cdot - \vec{u})](\vec{\Xi}) \\
+    & = \int_{-\infty}^\infty f(\vec{\xi}-\vec{u}) e^{-\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi} \\
+    & = \int_{-\infty}^\infty f(\vec{\xi}) e^{-\vec{\Xi} \cdot (\vec{\xi} + \vec{u})}d\vec{\xi} \\
+    & = \sum_{i,j}f_{ij} e^{-\Xi_1 (ic+u_1)} e^{-\Xi_2 (jc+u_2)} \\
+    & = e^{-\Xi_1 u_1}e^{-\Xi_2 u_2}\sum_{i,j}f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}\\
+    & = e^{-\Xi_1 u_1}e^{-\Xi_2 u_2} F(\Xi_1, \Xi_2).
+  \end{aligned}
+\end{equation}
+Unsurprisingly, the Taylor expansion of $F_c$ yields
+\begin{equation}
+  \label{eq: taylor of Fc}
+  \begin{aligned}
+    F_c(\Xi_1, \Xi_2) & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F_c(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \Bigg(
+        \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta}
+          \sum_{i,j}f_{ij} e^{-\Xi_1 (ic+u_1)} e^{-\Xi_2 (jc+u_2)} \Bigg)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \sum_{i,j} {(ic+u_1)}^\alpha {(jc+u_2)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \Bigg(
+        \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta} \sum_{i,j} {\left(i+\frac{u_1}{c}\right)}^\alpha {\left(j+\frac{u_2}{c}\right)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}
+      \Bigg)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}
+      \sum_{i,j} {\left(i+\frac{u_1}{c}\right)}^\alpha {\left(j+\frac{u_2}{c}\right)}^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  c_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta
+  \end{aligned}
+\end{equation}
+%
+and thus, the central moments can be represented by
+\begin{equation}
+  \label{eq: alternative representation of central moments}
+  c_{\alpha\beta} = {(-c)}^{-\alpha-\beta} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F_c(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0}.
+\end{equation}
+
+Instead of starting at the definition of cumulants like in Section~\ref{sub: Cumulants from moments} and looking for central moments, it will be easier to do it the other way around.
+For this, Markus Muhr provided a trick in writing~\eqref{eq: Definition of centralized F} as
+\begin{equation}
+  F_c(\Xi_1, \Xi_2) = \exp(\ln(F(\Xi_1,\Xi_2)) - \Xi_1 u_1 - \Xi_2 u_2),
+\end{equation}
+which will simplify the following calculations.
+In addition to the abbreviations in~\eqref{eq: abbreviations for deriving cumulants from moments}, we define the folowing
+\begin{equation}
+  \label{eq: additional abbreviations}
+  \begin{aligned}
+    E & \defined \exp(\ln(F(\Xi_1,\Xi_2)) - \Xi_1 u_1 - \Xi_2 u_2) \\
+    L_i & \defined \partial_i \ln(F) - u_i
+  \end{aligned}
+\end{equation}
+and therefore
+\begin{equation}
+  \begin{aligned}
+    \partial_i E & = EL_i \\
+    \partial_i L_j & = \partial_i\partial_j\ln(F)\\
+    L_1\bigr|_{\Xi_1=\Xi_2 = 0} & = \bigg(
+      \underbrace{ \partial_1\ln(F) \bigr|_{\Xi_1=\Xi_2 = 0}}_{ = c\kappa_{10} = c\frac{m_{10}}{m_{00}}}
+      - \underbrace{u_1}_{ = c\frac{m_{10}}{m_{00}}} \bigg) = 0 \\
+    L_2\bigr|_{\Xi_1=\Xi_2 = 0} & = 0.
+  \end{aligned}
+\end{equation}
+From there on, we can express the first order central moments to get
+\begin{align*}
+  \phantom{c_{00}}
+  &\begin{aligned}
+  \nonumber
+    \mathllap{c_{00}} & = E\bigr|_{\Xi_1=\Xi_2 = 0} = F(0,0) = m_{00}
+  \end{aligned}\\
+  %
+  &\begin{aligned}
+  \nonumber
+    \mathllap{c_{10}} & = {(-c)}^{-1} \partial_1 E  \bigr|_{\Xi_1=\Xi_2 = 0} \\
+    & = {(-c)}^{-1} EL_1  \bigr|_{\Xi_1=\Xi_2 = 0} \\
+    & = 0
+  \end{aligned}\\
+  %
+  &\begin{aligned}
+  \nonumber
+    \mathllap{c_{01}} & = 0
+  \end{aligned}\\
+\end{align*}
+which had to be consistent to the well known definition of central moments.
+In the case of higher order central moments, we recognize the definition of cumulants to get to
+\begin{equation}
+  \label{eq: all central moments from cumulants}
+  \begin{aligned}
+    c_{00} & = m_{00} \\
+    c_{10} & = 0 \\
+    c_{01} & = 0 \\
+    c_{20} & = m_{00}\kappa_{20} \\
+    c_{02} & = m_{00}\kappa_{02} \\
+    c_{11} & = m_{00}\kappa_{11} \\
+    c_{21} & = m_{00}\kappa_{21} \\
+    c_{12} & = m_{00}\kappa_{12} \\
+    c_{22} & = m_{00}(\kappa_{22} + 2\kappa_{11}^2 + \kappa_{20}\kappa_{02})
+  \end{aligned}
+\end{equation}
+As we can see here, cumulants for non conserved modes only differ from central moments, apart from scaling, in order higher than $3$. The whole derivation is presented in Appendix~\ref{appendix: All cumulants from central moments}.
+We will again introduce the normalized cumulants~\eqref{eq: definition normalized cumulants}, to finally get
+\begin{equation}
+  \label{eq: all central moments from normalized cumulants}
+  \begin{aligned}
+    c_{00} & = m_{00}\\
+    c_{10} & = 0 \\
+    c_{01} & = 0 \\
+    c_{20} & = K_{20} \\
+    c_{02} & = K_{02} \\
+    c_{11} & = K_{11} \\
+    c_{21} & = K_{21} \\
+    c_{12} & = K_{12} \\
+    c_{22} & = K_{22} + 2 \frac{K_{11}^2}{m_{00}} + \frac{K_{20}K_{02}}{m_{00}}
+  \end{aligned}
+\end{equation}
+which is much more convenient to handle.

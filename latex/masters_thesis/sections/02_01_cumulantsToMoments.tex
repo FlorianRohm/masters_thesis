@@ -1,1 +1,91 @@
 % !TEX root = ../thesis.tex
+
+The link to moments can now be established with the chain rule for differentiaton.
+From~\eqref{eq: alternative representation of moments} and~\eqref{eq: definition of cumulants} follows for $\alpha=\beta=0$:
+\begin{equation}
+  \label{eq: definition of kappa_00}
+  \kappa_{00} = \ln(F(0,0)) = \ln(m_{00}) = \ln(\rho).
+\end{equation}
+For brevity, the following notations are introduced
+\begin{equation}
+  \label{eq: abbreviations for deriving cumulants from moments}
+  \begin{aligned}
+    F & \defined F(\Xi_1, \Xi_2) \\
+    \vec{\Xi} &\defined \begin{pmatrix}\Xi_1 \\ \Xi_2  \end{pmatrix} \\
+    \partial_i &\defined \frac{\partial}{\partial \Xi_i}
+  \end{aligned}
+\end{equation}
+To get the first cumulant, all we have to do is use~\eqref{eq: definition of cumulants} with $\alpha=1$, $\beta=0$ and secondly~\eqref{eq: alternative representation of moments}
+for recognizing $m_{00} = \left. F \right|_{\vec{\Xi} = 0} $ and $m_{10} = {(-c)}^{-1} \left. \partial_1 F \right|_{\vec{\Xi} = 0}$:
+\begin{equation}
+  \label{eq: definition of kappa_10}
+  \begin{aligned}
+    \kappa_{10} & = {(-c)}^{-1} \left.\partial_1 \ln(F) \right|_{\vec{\Xi} = 0} \\
+    & = {(-c)}^{-1} \left. \frac{1}{F} \partial_1 F \right|_{\vec{\Xi} = 0} \\
+    & = \frac{m_{10}}{m_{00}}
+  \end{aligned}
+\end{equation}
+The cumulant $\kappa_{01}$ follows from symmetry.
+To not inflate the text, all other derivations are calculated in Appendix~\ref{appendix: All moments from cumulants}.
+After all calculations, we are left with
+\begin{align}
+  \kappa_{00} & = \ln(m_{00}) \\
+  \kappa_{10} & = \frac{m_{10}}{m_{00}} \\
+  \kappa_{01} & = \frac{m_{01}}{m_{00}} \\
+  \kappa_{11} & = \frac{m_{11}}{m_{00}} - \frac{m_{10}m_{01}}{m_{00}^2} \\
+  \kappa_{20} & = \frac{m_{20}}{m_{00}} - \frac{m_{10}^2}{m_{00}^2} \\
+  \kappa_{02} & = \frac{m_{02}}{m_{00}} - \frac{m_{01}^2}{m_{00}^2} \\
+  \kappa_{21} & = \frac{m_{21}}{m_{00}} - \frac{m_{20}m_{01}}{m_{00}^2}
+       - 2\frac{m_{10}m_{11}}{m_{00}^2} + 2\frac{m_{10}^2 m_{01}}{m_{00}^3} \\
+  \kappa_{12} & = \frac{m_{12}}{m_{00}} - \frac{m_{10}m_{02}}{m_{00}^2}
+       - 2\frac{m_{11}m_{01}}{m_{00}^2} + 2\frac{m_{10} m_{01}^2}{m_{00}^3} \\
+  \kappa_{22} & = \frac{1}{m_{00}} m_{22} \\
+    &\quad
+    - \frac{1}{m_{00}^2}
+    \left(
+       2 m_{10}m_{12}  + 2m_{21}m_{01} + 2 m_{11}^2 + m_{20}m_{02}
+    \right) \\
+    &\quad
+    + \frac{2}{m_{00}^3}
+      \left(
+        m_{10}^2 m_{02} + 4 m_{10}m_{11}m_{01} + m_{20}m_{01}^2
+      \right)\\
+    &\quad
+    - \frac{6}{m_{00}^4} m_{10}^2 m_{01}^2.
+\end{align}
+Several things can be noticed here.
+Firstly, the zeroth cumulant $\kappa_{00}$ is somehow the odd one out in featuring a logarithm in it's calculation.
+At first sight, this may spell doom for our computation costs.
+Fortunately, we won't need to calculate this cumulant in the actual algorithm later on.
+
+Further, we can see the the price we have to pay for not working with probability distributions: Everything has to be normed by the density $m_{00}$.
+We can remedy part of this by passing over to normalized cumulants $K_{\alpha\beta}$ defined as
+\begin{equation}
+  \label{eq: definition normalized cumulants}
+  K_{\alpha\beta} \defined m_{00}\kappa_{\alpha\beta}.
+\end{equation}
+Hence, we get
+\begin{align}
+  K_{00} & = \ln(m_{00})m_{00} \label{eq: K 00 from moments}\\
+  K_{10} & = m_{10} \label{eq: K 10 from moments}\\
+  K_{01} & = m_{01} \label{eq: K 01 from moments}\\
+  K_{11} & = m_{11} - \frac{m_{10}m_{01}}{m_{00}} \label{eq: K 11 from moments} \\
+  K_{20} & = m_{20} - \frac{m_{10}^2}{m_{00}} \label{eq: K 20 from moments}\\
+  K_{02} & = m_{02} - \frac{m_{01}^2}{m_{00}} \label{eq: K 02 from moments}\\
+  K_{21} & = m_{21} - \frac{m_{20}m_{01}}{m_{00}}
+       - 2\frac{m_{10}m_{11}}{m_{00}} + 2\frac{m_{10}^2 m_{01}}{m_{00}^2} \label{eq: K 21 from moments}\\
+  K_{12} & = m_{12} - \frac{m_{10}m_{02}}{m_{00}}
+       - 2\frac{m_{11}m_{01}}{m_{00}} + 2\frac{m_{10} m_{01}^2}{m_{00}^2} \label{eq: K 12 from moments}\\
+  K_{22} & = m_{22} \\
+       & \quad - 2 \frac{m_{10}m_{12}}{m_{00}} - 2\frac{m_{21}m_{01}}{m_{00}}
+        - 2 \frac{m_{11}^2}{m_{00}} - \frac{m_{20}m_{02}}{m_{00}} \\
+       & \quad + 2 \frac{m_{10}^2 m_{02}}{m_{00}^2} + 8 \frac{m_{10}m_{11}m_{01}}{m_{00}^2}
+        + 2 \frac{m_{20}m_{01}^2}{m_{00}^2} \\
+       & \quad - 6 \frac{m_{10}^2 m_{01}^2}{m_{00}^3}\label{eq: K 22 from moments}.
+\end{align}
+This definitely is more pleasant to look at and saves us a few computations.
+Down the line, we will also formulate the collision in terms of normalized cumulants.
+
+Further, the structure behind cumulants becomes more clear, being equal to their corresponding order moments plus a nonlinear, polynomial to be exact, correction term.
+One can think of this term as the correction we have to do when decoupling~\eqref{eq: moment generating function for independent variables}
+to~\eqref{eq: cumulant generating function for independent variables}.

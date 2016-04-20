@@ -1,1 +1,37 @@
 % !TEX root = ../thesis.tex
+For implementing the cumulant LBM, we also need to get normalized cumulants from central moments, as we want to have the collision in the cumulant space.
+Coming from~\eqref{eq: all central moments from cumulants} this is an easy task.
+Nevertheless, we have to distinguish between the different equations in~\eqref{eq: all central moments from cumulants}.
+The first three can not be inverted but have to be computed from the moments $m_{00}$, $m_{10}$ and $m_{01}$ which we need anyway for the central moment computation.
+All other but the last equation are inverted straightforward.
+Inserting the resulting equations for $\kappa_{11}$, $\kappa_{02}$ and $\kappa_{20}$ in the last equation, we get
+\begin{equation}
+  \label{eq: all cumulants from central moments}
+  \begin{aligned}
+    \kappa_{00} & = \ln(m_{00})\\
+    \kappa_{10} & = \frac{m_{10}}{m_{00}} \\
+    \kappa_{01} & = \frac{m_{01}}{m_{00}} \\
+    \kappa_{20} & = \frac{c_{20}}{m_{00}} \\
+    \kappa_{02} & = \frac{c_{02}}{m_{00}} \\
+    \kappa_{11} & = \frac{c_{11}}{m_{00}} \\
+    \kappa_{21} & = \frac{c_{21}}{m_{00}} \\
+    \kappa_{12} & = \frac{c_{12}}{m_{00}} \\
+    \kappa_{22} & = \frac{c_{22}}{m_{00}} - 2{\left(\frac{c_{11}}{m_{00}}\right)}^2 - \frac{c_{20}}{m_{00}}\frac{c_{02}}{m_{00}}
+  \end{aligned}
+\end{equation}
+%
+or with the normalized cumulants
+\begin{equation}
+  \begin{aligned}
+    \label{eq: all normalized cumulants from central moments}
+    K_{00} & = \ln(m_{00})m_{00} \\
+    K_{10} & = m_{10} \\
+    K_{01} & = m_{01} \\
+    K_{20} & = c_{20} \\
+    K_{02} & = c_{02} \\
+    K_{11} & = c_{11} \\
+    K_{21} & = c_{21} \\
+    K_{12} & = c_{12} \\
+    K_{22} & = c_{22} - 2 \frac{{c_{11}}^2}{m_{00}} - \frac{c_{20}c_{02}}{m_{00}}.
+  \end{aligned}
+\end{equation}
