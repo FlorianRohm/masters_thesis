@@ -1,0 +1,66 @@
+% !TEX root = ../thesis.tex
+The only apparent relaxation parameter in the asymptotic analysis in Section~\ref{sec: Momentum equation} and following will be $\omega_1$ which plays the role of viscosity like in the single relaxation time.
+All other terms are save to be set to one regarding the first order analysis.
+
+With the cell spacing set to one, $c=1$ and the speed of sound for the D2Q9\todo[inline]{cite}\todo[inline]{speed of sound nachfragen} calculated as  $c_s^2=\frac{1}{3}$ we get
+\begin{equation}
+  \label{eq:collision equation system}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & =  \frac{2}{3} \\
+    \kappa_{21}^{*} & = 0 \\
+    \kappa_{12}^{*} & = 0 \\
+    \kappa_{22}^{*} & = 0
+  \end{aligned}
+\end{equation}
+or equivalently
+\begin{equation}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{20}^{*} & = \frac{1}{3} + \frac{1}{2}(1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{02}^{*} & = \frac{1}{3} - \frac{1}{2}(1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{21}^{*} & = 0 \\
+    \kappa_{12}^{*} & = 0 \\
+    \kappa_{22}^{*} & = 0.
+  \end{aligned}
+\end{equation}
+
+As we want to compute with the normalized cumulants,~\eqref{eq: definition normalized cumulants}, we need to multiply each line with $m_{00}$.
+Hence, the final collision reads
+\begin{equation}
+  \begin{aligned}
+    K_{00}^{*} & = K_{00} \\
+    K_{10}^{*} & = K_{10} \\
+    K_{01}^{*} & = K_{01} \\
+    K_{11}^{*} & = (1-\omega_1)K_{11} \\
+    K_{20}^{*} & = \frac{m_{00}}{3} + \frac{1}{2}(1-\omega_1) (K_{20} - K_{02}) \\
+    K_{02}^{*} & = \frac{m_{00}}{3} - \frac{1}{2}(1-\omega_1) (K_{20} - K_{02}) \\
+    K_{21}^{*} & = 0 \\
+    K_{12}^{*} & = 0 \\
+    K_{22}^{*} & = 0
+  \end{aligned}
+\end{equation}
+in the case with only one relaxation parameter and
+\begin{equation}
+  \begin{aligned}
+    K_{00}^{*} & = K_{00} \\
+    K_{10}^{*} & = K_{10} \\
+    K_{01}^{*} & = K_{01} \\
+    K_{11}^{*} & = (1-\omega_1)K_{11} \\
+    K_{20}^{*} & =  \frac{1}{2}(1-\omega_2) (K_{20} + K_{02}) + \omega_2 \frac{\rho}{3} + \frac{1}{2}(1-\omega_1) (K_{20} - K_{02}) \\
+    K_{02}^{*} & = \frac{1}{2}(1-\omega_2) (K_{20} + K_{02}) + \omega_2 \frac{\rho}{3} - \frac{1}{2}(1-\omega_1) (K_{20} - K_{02}) \\
+    K_{21}^{*} & = (1-\omega_3)K_{21} \\
+    K_{12}^{*} & = (1-\omega_3)K_{12} \\
+    K_{22}^{*} & = (1-\omega_4)K_{22}
+  \end{aligned}
+\end{equation}
+when we consider all of them.
