@@ -1,1 +1,26 @@
 % !TEX root = ../thesis.tex
+The transformation of~\eqref{eq: maxwell distribution raw} is done in multiple steps.
+To prepare for the following calculation, we integrate\footnote{cf.\ mathematica/integrate\_maxwell.nb}
+\begin{equation}
+  \label{eq:integrate exponential sage}
+  \begin{aligned}
+    \int_{-\infty}^{\infty} \exp \left(-C \xi^2 + (2Cu - \Xi)\cdot\xi \right) d\xi
+    & = \sqrt{\frac{\pi}{C}}\exp \left(Cu^2 - \Xi u + \frac{1}{4} \frac{\Xi^2}{C}\right) \\
+    & = \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu-\Xi)}^2}{4C}\right).
+  \end{aligned}
+\end{equation}
+
+With this sorted out, we can calculate the Laplace Transform of the Maxwell Distribution~\eqref{eq: maxwell distribution raw} with
+\begin{equation}
+  C \defined \frac{m}{2 k_B T}
+\end{equation}
+like
+\begin{equation}
+  \label{eq: laplace of maxwell}
+  \begin{aligned}
+    F^{eq}(\Xi) & = \mathcal{L}[f^{\text{maxwell}}](\Xi)
+    \\& = \rho
+      \exp \left( -\Xi_1 u_1 - \Xi_2 u_2 + \frac{1}{4C}\left(\Xi_1^2 + \Xi_2^2 \right)\right).
+  \end{aligned}
+\end{equation}
+As usual, the full derivation is in the appendix, namely Appendix~\ref{appendix: Laplace transform of Maxwellian distribution}.
