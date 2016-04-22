@@ -1,7 +1,7 @@
 % !TEX root = ../thesis.tex
 We now could invert equations~\eqref{eq: K 00 from moments} to~\eqref{eq: K 22 from moments} go over to the actual collision and call it a day.
 As the title of this section spoils, we won't do exactly that, but take a quick detour over central moments.
-The calculation of those from our \glspl{pdf} can be done in an efficient way as shown in~\ref{sub: Fast central moment transformation},
+Their calculation from our \glspl{pdf} can be done in an efficient way as shown in~\ref{sub: Fast central moment transformation},
 so we don't loose hardly any performance on this step.
 On the other side, we will see in this chapter that the way from central moments to cumulants is much more smooth, cutting the computational costs of the transformation, especially in 3D.
 
@@ -67,8 +67,8 @@ and therefore
     \partial_i E & = EL_i \\
     \partial_i L_j & = \partial_i\partial_j\ln(F)\\
     L_1\bigr|_{\Xi_1=\Xi_2 = 0} & = \bigg(
-      \underbrace{ \partial_1\ln(F) \bigr|_{\Xi_1=\Xi_2 = 0}}_{ = c\kappa_{10} = c\frac{m_{10}}{m_{00}}}
-      - \underbrace{u_1}_{ = c\frac{m_{10}}{m_{00}}} \bigg) = 0 \\
+      \underbrace{ \partial_1\ln(F) \bigr|_{\Xi_1=\Xi_2 = 0}}_{ = -c\kappa_{10} = -c\frac{m_{10}}{m_{00}}}
+      - \underbrace{u_1}_{ = -c\frac{m_{10}}{m_{00}}} \bigg) = 0 \\
     L_2\bigr|_{\Xi_1=\Xi_2 = 0} & = 0.
   \end{aligned}
 \end{equation}
