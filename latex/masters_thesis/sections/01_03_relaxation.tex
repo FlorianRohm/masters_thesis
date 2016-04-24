@@ -10,7 +10,7 @@ There's now no preferred direction and the distribution of speeds won't change a
 Changing back to the continuous view, this equilibrium is known as the Maxwellian Distribution, which reads in two dimensions, c.f.~\cite{succi2001lattice}:
 \begin{equation}
   \label{eq: maxwell distribution raw}
-  f_{m, \rho, u, T}^{\text{maxwell}}(\xi) = \rho \frac{m}{2\pi k_B T} \exp \left( - \frac{m\abs{\xi-u}^2}{2 k_B T}\right)
+  f_{m, \rho, \vec{u}, T}^{\text{maxwell}}(\vec{\xi}) = \rho \frac{m}{2\pi k_B T} \exp \left( - \frac{m\abs{\vec{\xi}-\vec{u}}^2}{2 k_B T}\right)
 \end{equation}
 where the quantities are defined in Table~\ref{table: maxwell quantities}.
 \begin{table} [ht!]
@@ -19,9 +19,9 @@ where the quantities are defined in Table~\ref{table: maxwell quantities}.
     \toprule
     Symbol & Quantity  \\
     \midrule
-    $\xi$  & Microscopic speed  \\
+    $\vec{\xi}$  & Microscopic velocity  \\
     $\rho$ & Macroscopic density     \\
-    $u$    & Macroscopic velocity   \\
+    $\vec{u}$    & Macroscopic velocity   \\
     $T$    & Temperature   \\
     $k_B$  & Boltzmann constant \\
     $m$    & Mass of the particles   \\
@@ -31,11 +31,11 @@ where the quantities are defined in Table~\ref{table: maxwell quantities}.
 \label{table: maxwell quantities}
 \end{table}
 
-We now define $f_{ij}^{eq}$ due to a yet unspecified discretization of~\eqref{eq: maxwell distribution raw} and write the collision of~\eqref{eq: lattice boltzmann equation} as
+We now define $f_{ij}^{eq}$ as a yet unspecified discretization of~\eqref{eq: maxwell distribution raw} and write the collision of~\eqref{eq: lattice boltzmann equation} as
 \begin{equation}
-  \tilde{\Omega}(f_{ij}) = \omega \left(f_{ij}^{eq} - f_{ij}\right)
+  \tilde{\Omega}(f_{ij}) = \omega \left(f_{ij}^{eq} - f_{ij}\right),
 \end{equation}
-and thus
+with an also unspecified `relaxation time' $\omega$ and thus
 \begin{equation}
   \label{eq: post collision discrete}
   f_{ij}^* = f_{ij} + \omega \left(f_{ij}^{eq} - f_{ij}\right) = (1-\omega)f_{ij} + f_{ij}^{eq}.
@@ -51,7 +51,7 @@ The most popular method of discretizing~\eqref{eq: maxwell distribution raw} is 
     - \frac{3}{2}\frac{\vec{u} \cdot \vec{u}}{c^2}
   \right],
 \end{equation}
-where $W_{ij}$ is a weighting factor.
+where $W_{ij}$ is a weighting factor and $\vec{c}_{ij}$ are the velocities defined in~\eqref{eq: definition of the velocities}.
 This yields the most simple, but most famous BGK-LBM, also called \gls{srt}, as it uses only one parameter $\omega$ to relax the~\glspl{pdf}.
 
 When analyzing this method,~\cite[Section 5.2.3]{wolf2000lattice}, we see, that the kinematic viscosity $\nu$ is actually calculated by
@@ -115,15 +115,15 @@ Unfortunately, the SRT scheme develops serious instabilities for Reynolds number
 \label{fig: spurious modes SRT}
 \end{figure}
 
-Intuitively, we can describe SRT as a scheme, where all non-conserved quantities which can be computed from the \glspl{pdf}, are relaxed at the same rate.
+Intuitively, we can describe \gls{srt} as a scheme, where all non-conserved quantities which can be computed from the \glspl{pdf}, are relaxed at the same rate.
 Hence we impose, that all events that happen in the fluid occur at the same rate, which is certainly not true.
 
-This was noticed very fast and apparently the remedy was found by d'Humiéres,~\cite{d1994generalized}, who proposed to change from the space of particle distributions to the space of moments and relax linear combinations of those independently.
+This was noticed soon after its publication and apparently the remedy was found by d'Humiéres,~\cite{d1994generalized}, who proposed to change from the space of particle distributions to the space of moments and relax linear combinations of those independently.
 This was the birth of the \gls{mrt} schemes.
 Unfortunately, even today there is no consent about how to choose all the relaxation parameters in an optimal way.
 Although, when chosen right, the accuracy and stability can improve greatly in contrast to SRT, allowing simulations of $Re$ in the low thousands, c.f.~\cite{d2002multiple}. Still, this does not nearly cover the regions we see in Table~\ref{table: reynolds numbers}.
 
-The source of these problems can be interpreted as the violation of \gls{galInv}, as deduced in~\cite{geier2006cascaded}. Consequently, they choose the space of central moments for the relaxation, as they are centered around the first moment, i.e.\ the velocity times density.
+The source of these problems can be interpreted as the violation of \gls{galInv}, as deduced in~\cite{geier2006cascaded}. Consequently, the authors choose the space of central moments for the relaxation, as they are centered around the first moment, i.e.\ the velocity times density.
 This method is capable of simulating \gls{re} way above the ones, \gls{mrt} was capable of and is used in industrial grade \gls{lbm} solvers, like \href{http://www.xflowcfd.com/technology/view/cfd}{xFlow}.
 
 Nevertheless, we will introduce yet another set of characteristic variables in the next Section and explain the physical reasoning behind choosing them.

@@ -1,12 +1,12 @@
 %!TEX root = ../thesis.tex
 
-Despite being a relatively new method, the \gls{lbm} is a vital part of todays \gls{cfd} landscape. It's competing with Finite-Element/Volume/Differences methods even in the conservative field of commercial fluid dynamics software.
+The \gls{lbm} is a vital part of todays \gls{cfd} landscape, despite being a relatively new method. It's competing with Finite-Element/Volume/Differences methods even in the conservative field of commercial fluid dynamics software.
 But how did this meteoric rise happen?
 
 We're back in the year 1976, where Hardy, Pomeau and de Pazzis published a paper,~\cite{hardy1976molecular}, in which they introduced the first Lattice-Gas-Automaton later called HPP, a cellular automaton designed to mimic gas behavior.
 The computational domain is a rectangular lattice where each lattice node is connected to its four neighbors.
 Each node can hold at most four particles with mutually different velocity directions pointing to the neighbors, the speed has to be unity.
-Even this first step in the history of \gls{lbm} has its update split into the characteristic stream and collide substeps, explained in Section~\ref{sub: Stream and Collide}.
+Even this first step in the history of \gls{lbm} included the characteristic substeps stream and collide, explained in Section~\ref{sub: Stream and Collide}.
 
 Although, this first attempt was not sufficient to simulate the full Navier-Stokes equations, listed in Appendix~\ref{appendix: Navier Sokes Equations}, it marked the start for a new field of study.
 About ten years should pass, until Frisch, Hasslacher and Pomeau introduced a similar lattice gas automaton, dubbed FHP-I, on a hexagonal lattice,~\cite{frisch1986lattice}.
@@ -20,7 +20,7 @@ They did so, by allowing not just zero and one for the occupation of one directi
 Consequently, the collision operator was the continuum equivalent of the nonlinear boolean collision used in the earlier models.
 
 To understand what happened next, we have to go even more back in time to the origins of the Boltzmann (Transport) equation.
-In 1970, Austrian physicist Ludwig Boltzmann published the paper `Further studies of the equilibrium of temperature of gas molecules',~\cite{Boltzmann1970}, often abbreviated `Further studies', where he amongst others proposes aforementioned equation.
+In $1870$, Austrian physicist Ludwig Boltzmann published the paper `Further studies of the equilibrium of temperature of gas molecules',~\cite{Boltzmann1970}, often abbreviated `Further studies', where he amongst others proposes aforementioned transport equation.
 This equation includes a particularly difficult integral term, which describes the pairwise collisions of the particles.
 During his lifetime, the kinetic theory of gases never really hyped, which led to the quote:
 \begin{quotation}

@@ -1,5 +1,5 @@
 % !TEX root = ../thesis.tex
-After describing the general structure of the LBM, we can inspect another important question of \gls{cfd}:\@ What do we want to know at the end?
+After describing the general structure of the LBM, this section will cover another important question of \gls{cfd}:\@ What do we want to know at the end?
 
 The most basic thing one is interested in, is information about the flow field, i.e.\@ density, velocity and temperature in the domain, to analyze the flow patterns.
 Those are called macroscopic values.
@@ -9,20 +9,21 @@ Unfortunately, the Boltzmann equation and also the discretized equation~\eqref{e
 \glsadd{micVar}\glsadd{macVar}
 The extraction of macroscopic values out of those distributions will be treated in this Section.
 
-Before introducing velocity and density, we have to take a small detour to the field of probability theory and introduce moments.
+Before introducing (macroscopic) velocity and density, we have to take a small detour to the field of probability theory and introduce moments.
 In analogy to bivariat probability distributions, we define the characteristic variables $m_{\alpha\beta}$, called moments, of a \gls{pdf} $f$ as
 \begin{equation}
   \label{eq: moments continuous}
-  m_{\alpha\beta}(\vec{x},t) \defined  \int v_x^\alpha v_y^\beta f(\vec{v},\vec{x},t) d\vec{v},\quad\forall\alpha,\beta\in\N
+  m_{\alpha\beta}(\vec{x},t) \defined  \int v_x^\alpha v_y^\beta f(\vec{v},\vec{x},t) d\vec{v},\quad\forall\alpha,\beta\in\N,
 \end{equation}
+Where $v_x$ and $v_y$ are the components of the particle velocity $\vec{v}$.
 In contrary to probability distributions, the zeroth moment $m_{00}$ is not one. The first moments $m_{10}$ and $m_{01}$ are still its mean values in the corresponding directions.
 
-Additionally, this distribution and hence all derived characteristic variables will depend on space and time in the rest of this thesis, which is going to be omitted every time when not strictly required and implicitly assumed. Hence
+Additionally, the \glspl{pdf} and hence all derived characteristic variables will depend on space and time in the rest of this thesis. For the sake of simplicity this dependence is going to be omitted every time when not strictly required and implicitly assumed. Hence
 \begin{equation}
   \label{eq: leave out x and y}
-  m_{\alpha\beta} = m_{\alpha\beta}(\vec{x},t).
+  m_{\alpha\beta} \defined m_{\alpha\beta}(\vec{x},t).
 \end{equation}
-This is also true for all other values like density, velocity or the \glspl{pdf}.
+This is also true for all other values like density and velocity.
 
 Another set of characteristic variables are the centralized moments $c_{\alpha\beta}$ defined as
 \begin{equation}
@@ -31,7 +32,8 @@ Another set of characteristic variables are the centralized moments $c_{\alpha\b
 \end{equation}
 Here, the assumption associated with~\eqref{eq: leave out x and y} of course holds, too, making the centralized moments dependend on space and time.
 
-As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can describe the macroscopic density $\rho$, the macroscopic velocity $\vec{u}$ and the pressure tensor $\tensor{P}$ as
+As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can calculate the macroscopic density $\rho$, the macroscopic velocity $\vec{u}=\begin{pmatrix}u_x\\u_y\end{pmatrix}$ and the pressure tensor $\tensor{P}=\begin{pmatrix}\tensor{P}_{xx}&\tensor{P}_{xy}\\ \tensor{P}_{yx}&\tensor{P}_{yy}\end{pmatrix}$ as
+
 \begin{equation}
   \label{eq: physical quantities}
   \begin{aligned}
@@ -48,33 +50,32 @@ As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can describe the m
       = c_{20} \\
     \tensor{P}_{yy}
     & = \int {(v_y - u_y)}^2 f(\vec{v}) d\vec{v}
-      = c_{02} .
+      = c_{02},
   \end{aligned}
 \end{equation}
+where we identified the definitions of the moments and central moments in the second equation
 Those connections do hold for the equilibrium case, which is locally attained nearly instantaneously for the continuous case, c.f.~\cite[page 218]{smits2000physical}.
-From those equations, we can also conclude, that centralized moments are just like normal moments, but seen from a frame of reference moving with the flow velocity $\vec{u}=\begin{pmatrix}u_x\\u_y\end{pmatrix}$.
+From the equations in~\eqref{eq: physical quantities}, we can also conclude, that centralized moments are just like normal moments, but seen from a frame of reference moving with the flow velocity $\vec{u}$.
 \glsadd{frame of reference}
 
-In the discrete case, we can no longer assume local equilibrium.
+Switching to the discrete case, we can no longer assume local equilibrium.
 In fact, we already assume to be in a non equilibrium state, as we want the collision to shift our particle distributions a bit towards the local equilibrium.
 Looking at the quantities defined in~\eqref{eq: physical quantities}, we can directly define the velocity and density, as those should not be altered by the collision due to mass and momentum conservation laws.
 Also, the integrals in~\eqref{eq: moments continuous} and~\eqref{eq: central moments continuous} will degenerate to sums when changing to the discrete velocity set~\eqref{eq: definition of the velocities}, leaving us with
 \begin{align}
-  m_{\alpha\beta} &= \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
+  m_{\alpha\beta} &= \sum_{i,j \in \{-1,0,1\}} c^{\alpha + \beta} i^\alpha j^\beta f_{ij}
   \label{eq: moment definition}\\
-  c_{\alpha\beta} &= \sum_{i,j \in \{-1,0,1\}} {\left(i - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(j-\frac{m_{01}}{m_{00}}\right)}^\beta f_{ij}
+  c_{\alpha\beta} &= \sum_{i,j \in \{-1,0,1\}}
+  {\left(ci - \frac{m_{10}}{m_{00}}\right)}^\alpha
+  {\left(cj - \frac{m_{01}}{m_{00}}\right)}^\beta f_{ij}
   \label{eq: central moment definition}\\
   \rho & = \sum_{i,j \in \{-1,0,1\}} f_{ij} = m_{00}
   \label{eq: density definition}\\
-  u_x  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} v_x f_{ij} = \frac{m_{10}}{m_{00}}
+  u_x  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} ci f_{ij} = \frac{m_{10}}{m_{00}}
   \label{eq: x velocity definition}\\
-  u_y  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} v_y f_{ij} = \frac{m_{01}}{m_{00}}.
+  u_y  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} cj f_{ij} = \frac{m_{01}}{m_{00}}.
   \label{eq: y velocity definition}
 \end{align}
-Another convention we introduce at this point is, that all sums over $i$ and/or $j$ shall range over the discrete velocity space, i.e.
-\begin{equation*}
-  \sum_{i,j \in \{-1,0,1\}} \rightarrow \sum_{i,j}
-\end{equation*}
 When looking at pressure, e.g.\ the momentum of the fluid particles normal to an imaginary wall, the discrete case looks quite different.
 \todo[inline]{billiard table figure}
 Here we cannot assume collision invariance, as Figure~\ref{fig: pressure} illustrates.
@@ -100,19 +101,29 @@ If we wanted to include equations for energy and thus heat into our analysis, we
 But as we are working with the nine speed model D2Q9 as depicted in Figure~\ref{fig: d2q9}, we can only host nine independent moments.
 This is easily seen with
 \begin{equation}
-  m_{30} = \sum_{i,j} i^3 f_{ij} = \sum_{i,j} i i^2 f_{ij} = \sum_{i,j} i f_{ij} = m_{10},
+  m_{30} = \sum_{i,j \in \{-1,0,1\}} i^3 f_{ij} = \sum_{i,j \in \{-1,0,1\}} i i^2 f_{ij} = \sum_{i,j \in \{-1,0,1\}} i f_{ij} = m_{10},
 \end{equation}
 or in general
 \begin{equation}
   \label{eq:aliasing of moments 1}
-  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^{(\alpha+2k)} j^\beta f_{ij} \quad \forall k,\beta, \forall \alpha \neq 0
+  m_{\alpha\beta}
+  = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
+  = \sum_{i,j \in \{-1,0,1\}} i^{(\alpha+2k)} j^\beta f_{ij}
+  = m_{(\alpha+2k)\beta} \quad \forall k,\beta, \forall \alpha \neq 0
 \end{equation}
 and
 \begin{equation}
   \label{eq:aliasing of moments 2}
-  \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij} = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^{(\beta+2l)} f_{ij} \quad \forall l, \alpha, \forall \beta \neq 0.
+  m_{\alpha\beta}
+  = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
+  = \sum_{i,j \in \{-1,0,1\}} i^\alpha j^{(\beta+2l)} f_{ij}
+  = m_{\alpha(\beta+2l)} \quad \forall l, \alpha, \forall \beta \neq 0.
 \end{equation}
 The full list of moments in D2Q9 is displayed in table~\ref{table:D2Q9 moments}, according to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}.
+Another convention we introduce in this section is, that all sums over $i$ and/or $j$ shall range over the discrete velocity space, i.e.
+\begin{equation*}
+  \sum_{i,j \in \{-1,0,1\}} \rightarrow \sum_{i,j}
+\end{equation*}
 
 \setlength{\tabcolsep}{3pt}
 \begin{table} [ht!]
