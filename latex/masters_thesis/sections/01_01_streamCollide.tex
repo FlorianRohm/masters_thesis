@@ -3,6 +3,9 @@ After stating the advantages of using~\eqref{eq: Boltzmann transport equation} f
 This thesis will focus on the two dimensional case, as it is already shown to work in 3D by Geier et al.\ in~\cite{geier2015cumulant} and the 2D case is easier to grasp for an introduction. Nevertheless, justification of this 2D model is controversial as discussed in Section~\ref{sec: Outlook}.
 
 First of all, we restrict ourselves to a computational domain being composed of square\footnote{There are researches for rectangular cells like~\cite{Bouzidi2001704}, but to the authors knowledge it's rarely used in any application.} cells with a constant width $c$.
+Not too much attention should be granted to this value, as in most realizations, $c=1$ is chosen and this factor will vanish.
+Nevertheless, we will maintain $c$ as a variable through most of the calculations and explicitly state when it's set to one.
+
 The next step for the discretization is to restrict our velocity space to a finite set of velocities. As we will see in a bit, we want the cell spacing and the velocities to coincide, so we choose our microscopic velocities to be
 \begin{equation}
   \label{eq: definition of the velocities}

@@ -29,22 +29,24 @@ Unsurprisingly, the Taylor expansion of $F_c$ yields
   \begin{aligned}
     F_c(\Xi_1, \Xi_2) & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F_c(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \Bigg(
-        \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta}
-          \sum_{i,j}f_{ij} e^{-\Xi_1 (ic+u_1)} e^{-\Xi_2 (jc+u_2)} \Bigg)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
-    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \sum_{i,j} {(ic+u_1)}^\alpha {(jc+u_2)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+      \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta}
+        \sum_{i,j}f_{ij} e^{\Xi_1 (-ic-u_1)} e^{\Xi_2 (-jc-u_2)} \Bigg)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!}
+      \sum_{i,j} {(-ic-u_1)}^\alpha {(-jc-u_2)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \Bigg(
-        \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta} \sum_{i,j} {\left(i+\frac{u_1}{c}\right)}^\alpha {\left(j+\frac{u_2}{c}\right)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}
+        \frac{1}{\alpha!\beta!}
+        \sum_{i,j} {\left(ic - u_1\right)}^\alpha {\left(jc - u_2\right)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}
       \Bigg)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
-    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}
-      \sum_{i,j} {\left(i+\frac{u_1}{c}\right)}^\alpha {\left(j+\frac{u_2}{c}\right)}^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
-    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  c_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!}
+      \sum_{i,j} {\left(ic - u_1\right)}^\alpha {\left(jc - u_2\right)}^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} c_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta
   \end{aligned}
 \end{equation}
 %
 and thus, the central moments can be represented by
 \begin{equation}
   \label{eq: alternative representation of central moments}
-  c_{\alpha\beta} = {(-c)}^{-\alpha-\beta} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F_c(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0}.
+  c_{\alpha\beta} = {(-1)}^{-\alpha-\beta} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F_c(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0}.
 \end{equation}
 
 Instead of starting at the definition of cumulants like in Section~\ref{sub: Cumulants from moments} and looking for central moments, it will be easier to do it the other way around.
@@ -67,8 +69,8 @@ and therefore
     \partial_i E & = EL_i \\
     \partial_i L_j & = \partial_i\partial_j\ln(F)\\
     L_1\bigr|_{\Xi_1=\Xi_2 = 0} & = \bigg(
-      \underbrace{ \partial_1\ln(F) \bigr|_{\Xi_1=\Xi_2 = 0}}_{ = -c\kappa_{10} = -c\frac{m_{10}}{m_{00}}}
-      - \underbrace{u_1}_{ = -c\frac{m_{10}}{m_{00}}} \bigg) = 0 \\
+      \underbrace{ \partial_1\ln(F) \bigr|_{\Xi_1=\Xi_2 = 0}}_{ = \kappa_{10} = \frac{m_{10}}{m_{00}}}
+      - \underbrace{u_1}_{ = \frac{m_{10}}{m_{00}}} \bigg) = 0 \\
     L_2\bigr|_{\Xi_1=\Xi_2 = 0} & = 0.
   \end{aligned}
 \end{equation}
@@ -82,8 +84,8 @@ From there on, we can express the first order central moments to get
   %
   &\begin{aligned}
   \nonumber
-    \mathllap{c_{10}} & = {(-c)}^{-1} \partial_1 E  \bigr|_{\Xi_1=\Xi_2 = 0} \\
-    & = {(-c)}^{-1} EL_1  \bigr|_{\Xi_1=\Xi_2 = 0} \\
+    \mathllap{c_{10}} & =  \partial_1 E  \bigr|_{\Xi_1=\Xi_2 = 0} \\
+    & = EL_1  \bigr|_{\Xi_1=\Xi_2 = 0} \\
     & = 0
   \end{aligned}\\
   %

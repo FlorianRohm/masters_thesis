@@ -4,24 +4,24 @@ As mentioned in Section~\ref{sub: Cumulants from central moments}, we need to ca
   \phantom{c_{00}}
   &\begin{aligned}
   \nonumber
-    \mathllap{c_{20}} & = {(-c)}^{-2} \partial_1 (EL_1)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
-    & = {(-c)}^{-2} \big( EL_1^2 + E \partial_1^2\ln(F)\big)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
-    & = {(-c)}^{-2} \big( 0 + \underbrace{E \bigr|_{\Xi_1=\Xi_2 = 0}}_{=m_{00}}
-    \underbrace{\partial_1^2\ln(F) \bigr|_{\Xi_1=\Xi_2 = 0}}_{={(-c)}^{2}\kappa_{20}} \big) \\
+    \mathllap{c_{20}} & = \partial_1 (EL_1)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
+    & = \big( EL_1^2 + E \partial_1^2\ln(F)\big)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
+    & = \big( 0 + \underbrace{E \bigr|_{\Xi_1=\Xi_2 = 0}}_{=m_{00}}
+    \underbrace{\partial_1^2\ln(F) \bigr|_{\Xi_1=\Xi_2 = 0}}_{=\kappa_{20}} \big) \\
     & = m_{00}\kappa_{20}
   \end{aligned}\\
   %
   &\begin{aligned}
   \nonumber
-    \mathllap{c_{11}} & = {(-c)}^{-2} \partial_2 (EL_1) \bigr|_{\Xi_1=\Xi_2 = 0} \\
-    & = {(-c)}^{-2} \big( E L_1 L_2 + E \partial_1\partial_2\ln(F) \big)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
+    \mathllap{c_{11}} & = \partial_2 (EL_1) \bigr|_{\Xi_1=\Xi_2 = 0} \\
+    & = \big( E L_1 L_2 + E \partial_1\partial_2\ln(F) \big)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
     & = m_{00}\kappa_{11}
   \end{aligned}\\
   %
   &\begin{aligned}
   \nonumber
-    \mathllap{c_{21}} & = {(-c)}^{-3} \partial_2 \big(EL_1^2 + E \partial_1^2\ln(F)\big)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
-    & = {(-c)}^{-3} \big( E L_1^2 L_2 + 2EL_1\partial_1\partial_2\ln(F) \\
+    \mathllap{c_{21}} & = \partial_2 \big(EL_1^2 + E \partial_1^2\ln(F)\big)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
+    & = \big( E L_1^2 L_2 + 2EL_1\partial_1\partial_2\ln(F) \\
       &\qquad\quad\ \ + EL_2 \partial_1^2\ln(F) + E \partial_1^2\partial_2\ln(F) \big)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
     & = m_{00}\kappa_{21}
   \end{aligned}\\
@@ -32,9 +32,9 @@ As mentioned in Section~\ref{sub: Cumulants from central moments}, we need to ca
   %
   &\begin{aligned}
   \nonumber
-    \mathllap{c_{22}} & = {(-c)}^{-4} \partial_2 \big( E L_1^2 L_2 + 2EL_1\partial_1\partial_2\ln(F) \\
+    \mathllap{c_{22}} & = \partial_2 \big( E L_1^2 L_2 + 2EL_1\partial_1\partial_2\ln(F) \\
       &\qquad\qquad\ \ + EL_2 \partial_1^2\ln(F) + E \partial_1^2\partial_2\ln(F) \big)  \bigr|_{\Xi_1=\Xi_2 = 0} \\
-    & = {(-c)}^{-4} \big(
+    & = \big(
       E L_1^2 L_2^2 + E L_2^2 \partial_2^2\ln(F) + 2 E L_1 L_2 \partial_1\partial_2 \ln(F) \\
     & \qquad\quad\ \ +
       2 E L_1 L_2 \partial_1\partial_2 \ln(F) + 2 E \partial_1\partial_2 \ln(F) \partial_1\partial_2 \ln(F) + 2 E L_1 \partial_1\partial_2^2 \ln(F) \\
@@ -43,7 +43,7 @@ As mentioned in Section~\ref{sub: Cumulants from central moments}, we need to ca
     & \qquad\quad\ \ +
       E L_2 \partial_1^2 \partial_2 \ln(F) + E\partial_1^2\partial_2^2 \ln(F)
       \big) \bigr|_{\Xi_1=\Xi_2 = 0} \\
-    & = {(-c)}^{-4} \big(
+    & = \big(
     0 + 0 + 0 \\
     & \qquad\quad\ \ +
       0 + 2 E \partial_1\partial_2 \ln(F) \partial_1\partial_2 \ln(F) + 0 \\

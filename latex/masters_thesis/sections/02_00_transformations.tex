@@ -27,23 +27,24 @@ We can check this equivalence by
   \begin{aligned}
     F(\Xi_1, \Xi_2) & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}
-      {{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta}  \sum_{i,j}f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
-    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  \sum_{i,j} i^\alpha j^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
-    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  \sum_{i,j} i^\alpha j^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
-    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} {(-c)}^{\alpha+\beta}  m_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta
+      {{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta}  \sum_{i,j} f_{ij} e^{\Xi_1 (-ic)} e^{\Xi_2 (-jc)} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!}
+    \sum_{i,j}  {(-ic)}^\alpha {(-jc)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!}
+    \sum_{i,j} {(ic)}^\alpha {(jc)}^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} m_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta,
   \end{aligned}
 \end{equation}
+where we used, the fact, that the inner sum goes over $\{-1,0,1\}$ and thus it does not matter if we sum over $-i$ and $-j$ or $i$ and $j$.
 Hence,
 \begin{equation}
   \label{eq: alternative representation of moments}
-  m_{\alpha\beta} = {(-c)}^{-\alpha-\beta} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0}.
+  m_{\alpha\beta} = \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0}.
 \end{equation}
-The correction ${(-c)}^{-\alpha-\beta}$ we have to do, is due to the fact, that we do not use probability densities, but are in the more general space of (particle) distributions.
-In the actual implementation, we will nearly always calculate with $c=1$, so even this small difference vanishes.
 
 As mentioned in Section~\ref{sub: Cumulants}, the cumulants are the coefficients on the Taylor expansion of the logarithm of the moment generating function.
-With the aforesaid correction, this yields for the cumulant $\kappa_{\alpha\beta}$:
+This yields for the cumulant $\kappa_{\alpha\beta}$:
 \begin{equation}
   \label{eq: definition of cumulants}
-  \kappa_{\alpha\beta} = {(-c)}^{-\alpha-\beta} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} \ln(F(\Xi_1, \Xi_2))\Bigr|_{\Xi_1=\Xi_2 = 0}.
+  \kappa_{\alpha\beta} = \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} \ln(F(\Xi_1, \Xi_2))\Bigr|_{\Xi_1=\Xi_2 = 0}.
 \end{equation}
