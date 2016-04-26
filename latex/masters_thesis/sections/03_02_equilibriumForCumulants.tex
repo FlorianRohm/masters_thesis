@@ -31,6 +31,10 @@ Hence, we can directly read of the cumulants, following~\eqref{eq: definition of
     \kappa_{22}^{eq} & = 0.
   \end{aligned}
 \end{equation}
+Comparing~\eqref{eq: equilibrium cumulants} to~\eqref{eq: equilibrium particle distributions}, we can identify several advantages.
+First and foremost, the Maxwell distribution is fully incorporated and we don't introduce a truncation error\footnote{On closer analysis, this error is of order $O(u^2)$, c.f.~\cite[page 178]{wolf2000lattice}, and thus making the \gls{srt} only viable at low speeds}. Going further, we don't need to calculate any weighting $W_{ij}$ and as we incorporated the cell width $c$ in the calculation of the central moments and hence the cumulants, it is hidden from the collision calculation.
+
+
 Additionally, we can simplify the $\kappa_{02}$ and $\kappa_{20}$.
 As their equilibria are the same, their difference has zero equilibrium and their sum double the equilibrium, i.e.
 \begin{equation}

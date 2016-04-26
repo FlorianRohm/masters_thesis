@@ -43,6 +43,7 @@ with an also unspecified `relaxation time' $\omega$ and thus
 Here we can perfectly see the linear interpolation for the distributions.
 The most popular method of discretizing~\eqref{eq: maxwell distribution raw} is due to a Taylor series expansion, yielding
 \begin{equation}
+  \label{eq: equilibrium particle distributions}
   f_{ij}^{eq}(\rho,\vec{u}) = W_{ij}\rho
   \left[
     1
@@ -51,7 +52,7 @@ The most popular method of discretizing~\eqref{eq: maxwell distribution raw} is 
     - \frac{3}{2}\frac{\vec{u} \cdot \vec{u}}{c^2}
   \right],
 \end{equation}
-where $W_{ij}$ is a weighting factor and $\vec{c}_{ij}$ are the velocities defined in~\eqref{eq: definition of the velocities}.
+where $W_{ij}$ is a weighting factor depending on the chosen lattice and $\vec{c}_{ij}$ are the velocities defined in~\eqref{eq: definition of the velocities}.
 This yields the most simple, but most famous BGK-LBM, also called \gls{srt}, as it uses only one parameter $\omega$ to relax the~\glspl{pdf}.
 
 When analyzing this method,~\cite[Section 5.2.3]{wolf2000lattice}, we see, that the kinematic viscosity $\nu$ (in lattice units) is actually calculated by
