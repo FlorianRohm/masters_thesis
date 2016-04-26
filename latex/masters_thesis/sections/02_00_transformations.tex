@@ -12,7 +12,13 @@ using the Diraque delta distribution\footnote{For a quick overview, please refer
   \int f(x)\delta(x)dx = f(0).
 \end{equation}
 Albeit not a function in the classical sense, we will use $f(\vec{\xi})$ only within an integral expression so we don't get any ambiguity.
-With the help of a modified Laplace transformation, described in Appendix~\ref{appendix: Laplace transform}, we get
+To get the moment generating function from a density distribution, we have to introduce an integral transformation $\mathcal{L}$, similar to the Laplace transformation, c.f.~\cite{weissteinLaplace}, defined as
+\begin{equation}
+  \label{eq: Definition of integral transformation}
+  \mathcal{L}[g](\vec{\Xi}) \defined \int_{\R^n} g(\vec{\xi}) e^{\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi}.
+\end{equation}
+
+With the help of this transformation, we get
 \begin{equation}
   \label{eq:Definition of F}
   \begin{aligned}
@@ -38,8 +44,9 @@ We can check this equivalence by
 Hence,
 \begin{equation}
   \label{eq: alternative representation of moments}
-  m_{\alpha\beta} = \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0}.
+  m_{\alpha\beta} = \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0},
 \end{equation}
+and we showed the equivalence of the definitions.
 
 As mentioned in Section~\ref{sub: Cumulants}, the cumulants are the coefficients on the Taylor expansion of the logarithm of the moment generating function.
 This yields for the cumulant $\kappa_{\alpha\beta}$:
