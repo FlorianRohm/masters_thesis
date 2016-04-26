@@ -4,9 +4,11 @@ To prepare for the following calculation, we integrate\footnote{cf.\ mathematica
 \begin{equation}
   \label{eq:integrate exponential sage}
   \begin{aligned}
-    \int_{-\infty}^{\infty} \exp \left(-C \xi^2 + (2Cu - \Xi)\cdot\xi \right) d\xi
-    & = \sqrt{\frac{\pi}{C}}\exp \left(Cu^2 - \Xi u + \frac{1}{4} \frac{\Xi^2}{C}\right) \\
-    & = \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu-\Xi)}^2}{4C}\right).
+    \int_{-\infty}^{\infty} \exp \left(-C \xi^2 + (2Cu + \Xi)\cdot\xi \right) d\xi
+    & = \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu + \Xi)}^2}{4C}\right)
+    \\
+    & = \sqrt{\frac{\pi}{C}}\exp \left(Cu^2 + \Xi u + \frac{1}{4} \frac{\Xi^2}{C}\right)
+    .
   \end{aligned}
 \end{equation}
 
@@ -20,7 +22,7 @@ like
   \begin{aligned}
     F^{eq}(\Xi) & = \mathcal{L}[f^{\text{maxwell}}](\Xi)
     \\& = \rho
-      \exp \left( -\Xi_1 u_1 - \Xi_2 u_2 + \frac{1}{4C}\left(\Xi_1^2 + \Xi_2^2 \right)\right).
+      \exp \left( \Xi_1 u_1 + \Xi_2 u_2 + \frac{1}{4C}\left(\Xi_1^2 + \Xi_2^2 \right)\right).
   \end{aligned}
 \end{equation}
 As usual, the full derivation is in the appendix, namely Appendix~\ref{appendix: Laplace transform of Maxwellian distribution}.

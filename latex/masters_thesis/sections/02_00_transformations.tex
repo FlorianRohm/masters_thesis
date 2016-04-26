@@ -12,12 +12,12 @@ using the Diraque delta distribution\footnote{For a quick overview, please refer
   \int f(x)\delta(x)dx = f(0).
 \end{equation}
 Albeit not a function in the classical sense, we will use $f(\vec{\xi})$ only within an integral expression so we don't get any ambiguity.
-With the help of the Laplace transformation, described in Appendix~\ref{appendix: Laplace transform}, we get
+With the help of a modified Laplace transformation, described in Appendix~\ref{appendix: Laplace transform}, we get
 \begin{equation}
   \label{eq:Definition of F}
   \begin{aligned}
-    F(\Xi_1, \Xi_2) & \defined \mathcal{L}[f](\vec{\Xi}) = \int_{-\infty}^\infty f(\vec{\xi}) e^{-\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi} \\
-     & = \sum_{i,j}f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc}.
+    F(\Xi_1, \Xi_2) & \defined \mathcal{L}[f](\vec{\Xi}) = \int_{-\infty}^\infty f(\vec{\xi}) e^{\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi} \\
+     & = \sum_{i,j}f_{ij} e^{\Xi_1 ic} e^{\Xi_2 jc}.
   \end{aligned}
 \end{equation}
 The moments are now equivalently defined as the coefficients in the Taylor expansion of $F$.
@@ -27,15 +27,14 @@ We can check this equivalence by
   \begin{aligned}
     F(\Xi_1, \Xi_2) & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}
-      {{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta}  \sum_{i,j} f_{ij} e^{\Xi_1 (-ic)} e^{\Xi_2 (-jc)} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+      {{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta}  \sum_{i,j} f_{ij} e^{\Xi_1 (ic)} e^{\Xi_2 (jc)} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!}
-    \sum_{i,j}  {(-ic)}^\alpha {(-jc)}^\beta f_{ij} e^{-\Xi_1 ic} e^{-\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+    \sum_{i,j}  {(ic)}^\alpha {(jc)}^\beta f_{ij} e^{\Xi_1 ic} e^{\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!}
     \sum_{i,j} {(ic)}^\alpha {(jc)}^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
-    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} m_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta,
+    & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} m_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta.
   \end{aligned}
 \end{equation}
-where we used, the fact, that the inner sum goes over $\{-1,0,1\}$ and thus it does not matter if we sum over $-i$ and $-j$ or $i$ and $j$.
 Hence,
 \begin{equation}
   \label{eq: alternative representation of moments}

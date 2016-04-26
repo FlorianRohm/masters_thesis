@@ -10,14 +10,16 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      1536,         57]
-NotebookOptionsPosition[      1302,         44]
-NotebookOutlinePosition[      1640,         59]
-CellTagsIndexPosition[      1597,         56]
+NotebookDataLength[      2214,         82]
+NotebookOptionsPosition[      1907,         66]
+NotebookOutlinePosition[      2245,         81]
+CellTagsIndexPosition[      2202,         78]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{"F", "[", "\[Xi]_", "]"}], ":=", " ", 
@@ -29,7 +31,7 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"(", 
       RowBox[{
-       RowBox[{"2", "C", " ", "u"}], "-", "\[CapitalXi]"}], ")"}], 
+       RowBox[{"2", "C", " ", "u"}], "+", "\[CapitalXi]"}], ")"}], 
      "\[Xi]"}]}], "]"}]}], "\[IndentingNewLine]", 
  RowBox[{"Integrate", "[", 
   RowBox[{
@@ -40,9 +42,29 @@ Cell[BoxData[{
   "]"}]}], "Input",
  CellChangeTimes->{{3.665751900082739*^9, 3.665751900316575*^9}, {
   3.665752230230603*^9, 3.665752283907751*^9}, {3.6657523682919083`*^9, 
-  3.665752399521101*^9}}]
+  3.665752399521101*^9}, {3.6706542211424837`*^9, 3.6706542215924377`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ConditionalExpression", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["\[ExponentialE]", 
+      FractionBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"2", " ", "C", " ", "u"}], "+", "\[CapitalXi]"}], ")"}], 
+        "2"], 
+       RowBox[{"4", " ", "C"}]]], " ", 
+     SqrtBox["\[Pi]"]}], 
+    SqrtBox["C"]], ",", 
+   RowBox[{
+    RowBox[{"Re", "[", "C", "]"}], ">", "0"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.670654227203383*^9}]
+}, Open  ]]
 },
-WindowSize->{1920, 1028},
+WindowSize->{1389, 1028},
 WindowMargins->{{-9, Automatic}, {Automatic, -8}},
 FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
 StyleDefinitions->"Default.nb"
@@ -58,7 +80,10 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 740, 22, 59, "Input"]
+Cell[CellGroupData[{
+Cell[580, 22, 790, 22, 59, "Input"],
+Cell[1373, 46, 518, 17, 104, "Output"]
+}, Open  ]]
 }
 ]
 *)
