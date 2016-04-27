@@ -13,13 +13,13 @@ by shifting $x$ and $y$. Now, a Taylor expansion of~\eqref{eq: lattice boltzmann
 \end{equation*}
 which is equivalent to
 \begin{equation}
-  \label{eq:Taylor LB1}
+  \label{eq: Taylor LB1}
   \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(t, x, y) =
     \sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} {(ci)}^m {(cj)}^n f^*_{ij}(t, x, y),
 \end{equation}
 using~\eqref{eq: relation between stepsizes}.
 
-Equation~\eqref{eq:Taylor LB1} holds for all $f_{ij}$ and thus also for all linear combinations
+Equation~\eqref{eq: Taylor LB1} holds for all $f_{ij}$ and thus also for all linear combinations
 \begin{equation*}
   \sum_{k}\lambda_k f_{ij},
 \end{equation*}
@@ -47,6 +47,7 @@ Therefore, we rewrite the system of equations for the $f_{ij}$ to a system of eq
 \end{align}
 To make our lives a bit easier, we will rescale the moments according to their order like
 \begin{equation}
+  \label{eq: rescaling the moments}
   \frac{m^*_{\alpha\beta}}{c^{\alpha + \beta}} \rightarrow m^*_{\alpha\beta}, \quad   \frac{m_{\alpha\beta}}{c^{\alpha + \beta}} \rightarrow m_{\alpha\beta}
 \end{equation}
 to finally get
@@ -60,7 +61,7 @@ Additionally, this will take out the $c$-term in the aliasing of the moments,~\e
 For the scale analysis, we introduce a dimensionless scaling parameter $\epsilon$.
 Adapting the widely used diffusive scaling, we nondimensionalize the equations with characteristic length and timescales, $L$ and $\iota$
 \begin{equation}
-  \label{eq:nondimensionalisation}
+  \label{eq: nondimensionalisation}
   \begin{aligned}
     \Delta x & = L\epsilon \\
     \Delta t & = \iota\epsilon^2 \\
@@ -71,13 +72,13 @@ Adapting the widely used diffusive scaling, we nondimensionalize the equations w
 \end{equation}
 Additionally, the moments are expanded according to the scale $\epsilon$
 \begin{align}
-    \label{eq:expansion of m}
+    \label{eq: expansion of m}
     m_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)} \\
-    \label{eq:expansion of m star}
+    \label{eq: expansion of m star}
     m^*_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{*(p)}.
 \end{align}
-Those are still dependent of space and time, but as they are separated on their length scales, they are not allowed to depend on $\epsilon$ neither implicitly nor explicitly.
-Inserting~\eqref{eq:nondimensionalisation},~\eqref{eq:expansion of m} and~\eqref{eq:expansion of m star} into~\eqref{eq: Taylor of moments} yields
+Those are still dependent of space and time, but as they are separated on their length scales, their spatial part is not allowed to depend on $\epsilon$ neither implicitly nor explicitly.
+Inserting~\eqref{eq: nondimensionalisation},~\eqref{eq: expansion of m} and~\eqref{eq: expansion of m star} into~\eqref{eq: Taylor of moments} yields
 
 \begin{align}
   \phantom{\equivalent\qquad}
@@ -88,7 +89,7 @@ Inserting~\eqref{eq:nondimensionalisation},~\eqref{eq:expansion of m} and~\eqref
   \end{aligned}\\
   %
   &\begin{aligned}
-    \label{eq:nondimensionalised expansion series}
+    \label{eq: nondimensionalised expansion series}
     \mathllap{\equivalent\qquad} &
     \sum_{\tau = 0}^\infty \frac{{(\iota\epsilon^2)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau \iota^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)} \\
     = &{}\sum_{m,n = 0}^\infty \frac{{(-\frac{L}{\iota\epsilon}(\iota\epsilon^2))}^{m+n}} {m!n!}
@@ -104,11 +105,11 @@ Inserting~\eqref{eq:nondimensionalisation},~\eqref{eq:expansion of m} and~\eqref
   \end{aligned} \\
  %
   &\begin{aligned}
-    \label{eq:final nondimensionalised expansion series}
+    \label{eq: final nondimensionalised expansion series}
     \mathllap{\equivalent\qquad} &
     \sum_{\tau, p = 0}^\infty\epsilon^{2\tau + p} \frac{1} {\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta}^{(p)} \\
     = &{} \sum_{m,n,p' = 0}^\infty  \epsilon^{m+n+p'} \frac{{(-1)}^{m+n}} {m!n!}
     \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n } m_{(\alpha + m)(\beta + n)}^{*(p')}
   \end{aligned}
 \end{align}
-Where in~\eqref{eq:final nondimensionalised expansion series}, the summation indices are changed to be unique for better recognition.
+Where in~\eqref{eq: final nondimensionalised expansion series}, the summation indices are changed to be unique for better recognition.
