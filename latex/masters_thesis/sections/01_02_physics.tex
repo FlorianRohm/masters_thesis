@@ -94,7 +94,8 @@ This leaves us with
 \end{equation}
 and thus the pressure\footnote{It can be shown, that the pressure is equal to the trace of the pressure tensor and that its diagonal elements are equal. The third entry is the pressure in $z$-direction, which has to be accounted for as 2D simulations are just 3D where we assume the flow to be invariant in one direction. As pressure is isotropic, the pressure is also extended in the last direction, even when the flow velocity is not.}\todo[inline]{refer to discussion section}
 \begin{equation}
-  p=\frac{1}{3} \tensor{P}_{xx} = \frac{1}{3} \left(m_{20}^{eq} - \frac{m_{10}^2}{m_{00}}\right).
+  \label{eq: pressure}
+  p = \tensor{P}_{xx} = m_{20}^{eq} - \frac{m_{10}^2}{m_{00}}.
 \end{equation}
 
 If we wanted to include equations for energy and thus heat into our analysis, we would need higher order moments like $m_{30}$.
