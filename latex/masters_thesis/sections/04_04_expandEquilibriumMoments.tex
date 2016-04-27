@@ -1,1 +1,71 @@
 % !TEX root = ../thesis.tex
+We can also define our equilibrium cumulants in terms of moments.
+First of all, we start with combining~\eqref{eq: definition of kappa_00} with the first equation in~\eqref{eq: equilibrium cumulants}, which results in
+\todo[inline]{hochstellen richtig}
+\begin{equation}
+  \begin{aligned}
+    {\ln(m_{00})}^{eq} &= {\ln(m_{00})}^{eq} \\
+    \Leftrightarrow\quad m_{00}^{eq} &= m_{00}^{eq} \\
+    \Leftrightarrow\quad m_{00}^{eq(p)} &= m_{00}^{eq(p)} \quad\forall p\ge 0
+  \end{aligned}
+\end{equation}
+Starting from~\eqref{eq: equilibrium cumulants}, multiplying by $m_{00}$ and inserting our known values, we get
+\begin{equation}
+  \begin{aligned}
+    m_{10}^{eq} & = m_{10} \\
+    m_{01}^{eq} & = m_{01} \\
+    m_{11}^{eq} - \frac{m_{10}^{eq}m_{01}^{eq}}{m_{00}} & = 0 \\
+    m_{20}^{eq} - \frac{m_{10}^{{eq}^2}}{m_{00}} & = \frac{1}{3} m_{00} \\
+    m_{02}^{eq} - \frac{m_{01}^{{eq}^2}}{m_{00}} & = \frac{1}{3} m_{00} \\
+    m_{21}^{eq} - \frac{m_{20}^{eq}m_{01}^{eq}}{m_{00}} - 2\frac{m_{10}^{eq}m_{11}^{eq}} {m_{00}} + 2\frac{m_{10}^{{eq}^2} m_{01}^{eq}}{m_{00}^2} & = 0 \\
+    m_{12}^{eq} - \frac{m_{10}^{eq}m_{02}^{eq}}{m_{00}}
+    - 2\frac{m_{11}^{eq}m_{01}^{eq}}{m_{00}} + 2\frac{m_{10}^{eq} m_{01}^{{eq}^2}}{m_{00}^2} & = 0 \\
+    m_{22}^{eq} &\\
+    - 2 \frac{m_{10}^{eq}m_{12}^{eq}}{m_{00}} - 2\frac{m_{21}^{eq}m_{01}^{eq}}{m_{00}}
+    - 2 \frac{m_{11}^{{eq}^2}}{m_{00}} - \frac{m_{20}^{eq}m_{02}^{eq}}{m_{00}} &\\
+    + 2 \frac{m_{10}^{{eq}^2} m_{02}^{eq}}{m_{00}^2} + 8 \frac{m_{10}^{eq}m_{11}^{eq}m_{01}} {m_{00}^2}
+    + 2 \frac{m_{20}^{eq}m_{01}^{{eq}^2}}{m_{00}^2} &\\
+    - 6 \frac{m_{10}^{{eq}^2} m_{01}^{{eq}^2}}{m_{00}^{{eq}^3}} & = 0.
+  \end{aligned}
+\end{equation}
+Zeroth order:
+\begin{equation}
+  \begin{aligned}
+    m_{10}^{eq(0)} & = m_{10}^{(0)} = 0 \\
+    m_{01}^{eq(0)} & = 0 \\
+    m_{11}^{eq(0)} & = 0 \\
+    m_{20}^{eq(0)} & = \frac{1}{3} m_{00}^{(0)} \\
+    m_{02}^{eq(0)} & = \frac{1}{3} m_{00}^{(0)} \\
+    m_{21}^{eq(0)} & = 0 \\
+    m_{12}^{eq(0)} & = 0 \\
+    m_{22}^{eq(0)} - \theta m_{00}^{(0)} - 2\frac{ m_{11}^{eq(0)2}}{m_{00}^{(0)}} & = 0 \\
+    \Leftrightarrow\quad m_{22}^{eq(0)} &= \frac{1}{3} m_{00}^{(0)}.
+  \end{aligned}
+\end{equation}
+In the first order case, it looks like
+\begin{equation}
+  \begin{aligned}
+    m_{10}^{eq(1)} & = m_{10}^{(1)} \\
+    m_{01}^{eq(1)} & = m_{01}^{(1)} \\
+    m_{11}^{eq(1)} & = 0 \\
+    m_{20}^{eq(1)} & = \frac{1}{3} m_{00}^{(1)} \\
+    m_{02}^{eq(1)} & = \frac{1}{3} m_{00}^{(1)} \\
+    m_{21}^{eq(1)} & = \theta m_{01}^{eq(1)} = \theta m_{01}^{(1)}\\
+    m_{12}^{eq(1)} & = \theta m_{10}^{eq(1)} = \theta m_{10}^{(1)} \\
+    m_{22}^{eq(1)} - \theta (m_{20}^{eq(1)} + m_{02}^{eq(1)})
+    - 2\frac{ m_{10}^{eq(1)} m_{12}^{eq(0)} }{m_{00}^{(0)}}&\\
+    - 2\frac{ m_{21}^{eq(0)} m_{01}^{eq(1)} }{m_{00}^{(0)}}
+    - 4\frac{ m_{11}^{eq(1)} m_{11}^{eq(0)} }{m_{00}^{(0)}}&=0\\
+    m_{22}^{eq(1)} &= \frac{2}{9} m_{00}^{(1)}
+    + \frac{2}{3}\frac{  m_{10}^{{(1)}^2} +m_{01}^{{(1)}^2} }{m_{00}^{(0)}}.
+  \end{aligned}
+\end{equation}
+The last equation would be much nicer in 3D, as we would get 3 components and finally the term $\frac{1}{3} m_{00}^{(1)} + \ldots$.
+Finally we get in the second order terms
+\begin{equation}
+  \begin{aligned}
+    m_{11}^{eq(2)} & = \frac{ m_{10}^{eq(1)}m_{01}^{eq(1)}}{m_{00}^{(0)}} \\
+    m_{20}^{eq(2)} - \frac{ m_{10}^{eq(1)2}}{m_{00}^{(0)}} & = \frac{1}{3} m_{00}^{(2)} \\
+    m_{02}^{eq(2)} - \frac{ m_{01}^{eq(1)2}}{m_{00}^{(0)}} & = \frac{1}{3} m_{00}^{(2)}.
+  \end{aligned}
+\end{equation}
