@@ -1,1 +1,36 @@
 % !TEX root = ../thesis.tex
+We assume, that the ideal gas law shall hold, connecting pressure and density.
+As our small stencil can not represent temperature, we can assume it's connected by a constant factor, $\theta$.
+Tn this particular Lattice Boltzmann framework, we can show $\theta=\frac{c^2}{3}$, c.f.~\cite[page 175]. As pressure is a second order (central) moment and density a first order one, we have to normalize $\theta$ to be equal to one third to be consistent with~\eqref{eq: rescaling the moments}.
+
+We already formulated the pressure in terms of moments in~\eqref{eq: pressure} and thus just need to expand
+\begin{equation}
+  \label{eq: expand pressure}
+  \begin{aligned}
+    \theta m_{00} & = m_{20} - \frac{m_{10}^2}{m_{00}}\\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{20}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{10}^{(j)}}
+        {\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}\\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{20}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{10}^{(j)}}
+        {m_{00}^{(0)}}
+    \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j,
+  \end{aligned}
+\end{equation}
+like in~\eqref{eq: first expansion}.
+
+Extracting the different orders, we get
+\begin{align}
+  \label{eq: ideal gas zeroth order}
+  \theta m_{00}^{(0)} &= m_{20}^{(0)} = m_{02}^{(0)}
+\\
+  \label{eq: ideal gas first order}
+  \theta m_{00}^{(1)} &= m_{20}^{(1)} = m_{02}^{(1)}
+  \\
+  \label{eq: ideal gas second order}
+  \theta m_{00}^{(2)} &= m_{20}^{(2)} - \frac{m_{10}^{(1)2}}{m_{00}^{(0)}}  = m_{02}^{(1)} - \frac{m_{01}^{(1)2}}{m_{00}^{(0)}}.
+\end{align}

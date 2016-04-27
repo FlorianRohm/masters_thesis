@@ -1,1 +1,108 @@
 % !TEX root = ../thesis.tex
+As $\epsilon$ is arbitrary and the terms of the expansion are not allowed to depend on $\epsilon$, equality has to hold in every order of $\epsilon$.
+Therefore, we will take a closer look on the equations arising, by extracting each order of $\epsilon$ from equation~\eqref{eq: final nondimensionalised expansion series}.
+
+\subsubsection{Zero'th order in \texorpdfstring{$\epsilon$}{epsilon}}
+\label{subs: Zeroth order in epsilon}
+
+To achieve $\epsilon^0$, we have to choose $\tau=p=p'=m=n=0$, yielding
+\begin{equation}
+  \label{eq: zeroth order in epsilon}
+  m_{\alpha\beta}^{(0)} = m_{\alpha\beta}^{*(0)}.
+\end{equation}
+The important part is, what does this actually mean?
+When voiced, equation~\eqref{eq: zeroth order in epsilon} states, that all pre-collision zeroth order moments are equal to their post-collision counterparts.
+This means, they have to be in equilibrium for the collision to have no effect on them.
+Thus,
+\begin{equation}
+  \label{eq: zeroth order invariant}
+  m_{\alpha\beta}^{(0)} = m_{\alpha\beta}^{*(0)} = m_{\alpha\beta}^{eq(0)}.
+\end{equation}
+
+One important thing to note is, that zeroth order terms may not depend on the expansion parameter $\epsilon$, which is arbitrary.
+Additionally, we demanded that the expanded moments do not depend on $\epsilon$.
+The only class of functions, which satisfies these conditions are constants in space.
+
+\subsubsection{First order in \texorpdfstring{$\epsilon$}{epsilon}}
+\label{subs: First order in epsilon}
+
+For the first order terms, one has to choose $p=1$ on the left side and one of $m$, $n$ and $p'$ equal to one.
+
+\begin{equation}
+  \label{eq: first order in epsilon}
+  \begin{aligned}
+  m_{\alpha\beta}^{(1)}
+  & = m_{\alpha\beta}^{*(1)}
+  - \partial_x m_{(\alpha+1)\beta}^{*(0)} - \partial_y m_{\alpha(\beta+1)}^{*(0)} \\
+  & = m_{\alpha\beta}^{*(1)}
+  \end{aligned}
+\end{equation}
+The second line is due to the fact, that the zeroth order terms have to be constant in space, c.f. Section~\ref{subs: Zeroth order in epsilon}, and thus all spatial derivatives vanish.
+We see again the equivalence of pre- and post-collision moments and thus with the same reasoning
+\begin{equation}
+  \label{eq: first order invariant}
+  m_{\alpha\beta}^{(1)} = m_{\alpha\beta}^{*(1)} = m_{\alpha\beta}^{eq(1)}.
+\end{equation}
+
+\subsubsection{Second order in \texorpdfstring{$\epsilon$}{epsilon}}
+\label{subs: Second order in epsilon}
+
+Getting second order terms in~\eqref{eq: final nondimensionalised expansion series} requires on the left hand side $\tau=1$ and $p=0$ or $\tau=0$ and $p=2$.
+On the right hand side, we have six possibilities to finally get $\epsilon^2$, depicted in Table~\ref{table: second order epsilon}.
+\begin{table}[h]
+  \centering
+  \begin{tabular} {r || c | *{2}{c} | *{2}{c} | c}
+    m  & 0 & 1 & 2 & 0 & 0 & 1 \\
+    n  & 0 & 0 & 0 & 1 & 2 & 1 \\
+    p' & 2 & 1 & 0 & 1 & 0 & 0
+  \end{tabular}
+  \caption{All possibilities to achieve $\epsilon^2$ in equation~\eqref{eq: final nondimensionalised expansion series}}
+\label{table: second order epsilon}
+\end{table}
+Resulting in
+\begin{equation}
+  \label{eq: second order in epsilon}
+  \begin{aligned}
+    \partial_t m_{\alpha\beta}^{(0)} + m_{\alpha\beta}^{(2)}
+    & =  m_{\alpha\beta}^{*(2)} \\
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(1)} + \partial_{xx} m_{(\alpha+2)\beta}^{*(0)}/2 \\
+    &\quad - \partial_y m_{\alpha(\beta+1)}^{*(1)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(0)}/2 \\
+    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(0)}\\
+    & =  m_{\alpha\beta}^{*(2)} - \partial_x m_{(\alpha+1)\beta}^{*(1)} - \partial_y m_{\alpha(\beta+1)}^{*(1)}.
+  \end{aligned}
+\end{equation}
+After~\eqref{eq: first order in epsilon} and~\eqref{eq: second order in epsilon}, this is the first equation to not result in collision invariants, but features different orders of moments and all partial derivatives.
+This will later mark the first equation to examine for the Navier-Stokes derivation.
+
+\subsubsection{Third order in \texorpdfstring{$\epsilon$}{epsilon}}
+\label{subs: Third order in epsilon}
+Now, things are getting complicated.
+Third order in $\epsilon$ still means two possibilities on the left hand side, namely either $\begin{pmatrix}\tau \\ p\end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$ or $\begin{pmatrix}\tau \\ p\end{pmatrix} = \begin{pmatrix} 0 \\ 3 \end{pmatrix}$.
+The right hand side on the other hand, has ten possibilities, displayed in Table~\ref{table: third order epsilon}.
+\begin{table}[h]
+  \centering
+  \begin{tabular} {r || c | *{3}{c} | *{3}{c} | *{3}{c} }
+    m  & 0 & 1 & 2 & 3 & 0 & 0 & 0 & 1 & 2 & 1 \\
+    n  & 0 & 0 & 0 & 0 & 1 & 2 & 3 & 1 & 1 & 2 \\
+    p' & 3 & 2 & 1 & 0 & 2 & 1 & 0 & 1 & 0 & 0
+  \end{tabular}
+  \caption{All possibilities to achieve $\epsilon^3$ in equation~\eqref{eq: final nondimensionalised expansion series}}
+\label{table: third order epsilon}
+\end{table}
+Fortunately, some of them are zeroth order terms with derivatives and hence they vanish, giving us
+\begin{equation}
+  \label{eq: third order in epsilon}
+  \begin{aligned}
+    \frac{\partial}{\partial t} m_{\alpha\beta}^{(1)} + m_{\alpha\beta}^{(3)}
+    & =  m_{\alpha\beta}^{*(3)} \\
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(2)} + \partial_{xx} m_{(\alpha+2)\beta}^{*(1)}/2 - \partial_{xxx} m_{(\alpha+3)\beta}^{*(0)}/6 \\
+    &\quad - \partial_y m_{\alpha(\beta+1)}^{*(2)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(1)}/2 - \partial_{yyy} m_{\alpha(\beta+3)}^{*(0)}/6 \\
+    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(1)} \\
+    &\quad - \partial_{xxy} m_{(\alpha+2)(\beta+1)}^{*(0)}/2 - \partial_{xyy} m_{(\alpha+1)(\beta+2)}^{*(0)}/2 \\
+    & =  m_{\alpha\beta}^{*(3)} \\
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(2)} - \partial_y m_{\alpha(\beta+1)}^{*(2)}  \\
+    &\quad  + \partial_{xx} m_{(\alpha+2)\beta}^{*(1)}/2 + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(1)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(1)}/2.
+  \end{aligned}
+\end{equation}
+Those equations will mark the starting point for the upcoming analysis.
+Before, doing so, we have to do some more tedious work, expanding the normalized cumulants and equilibrium moments.
