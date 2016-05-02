@@ -1,11 +1,12 @@
 %!TEX root = ../thesis.tex
 
-The \gls{lbm} is a vital part of todays \gls{cfd} landscape, despite being a relatively new method. It's competing with Finite-Element/Volume/Differences methods even in the conservative field of commercial fluid dynamics software.
+The \gls{lbm} is a vital part of todays \gls{cfd} landscape, despite being a relatively new method.
+It's competing with Finite-Elements/Volumes/Differences methods even in the conservative field of commercial fluid dynamics software.
 But how did this meteoric rise happen?
 
 We're back in the year 1976, where Hardy, Pomeau and de Pazzis published a paper,~\cite{hardy1976molecular}, in which they introduced the first Lattice-Gas-Automaton later called HPP, a cellular automaton designed to mimic gas behavior.
 The computational domain is a rectangular lattice where each lattice node is connected to its four neighbors.
-Each node can hold at most four particles with mutually different velocity directions pointing to the neighbors, the speed has to be unity.
+Each node can hold at most four particles with mutually different velocity directions pointing to the neighbors, their speed has to be unity.
 Even this first step in the history of \gls{lbm} included the characteristic substeps stream and collide, explained in Section~\ref{sub: Stream and Collide}.
 
 Although, this first attempt was not sufficient to simulate the full Navier-Stokes equations, listed in Appendix~\ref{appendix: Navier Sokes Equations}, it marked the start for a new field of study.

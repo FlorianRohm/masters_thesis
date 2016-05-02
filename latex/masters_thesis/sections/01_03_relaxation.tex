@@ -4,7 +4,7 @@ As stated in Section~\ref{sec: History of Lattice Boltzmann}, instead of calcula
 Albeit not a physically sound reasoning, one can imagine a very big, frictionless billiard table.
 Initially we roll all balls in the same direction but not perfectly parallel to the wall.
 In the first few moments, those balls will go along in the same direction and the system will have a preferred direction and velocity, namely the direction and velocity we initiated.
-After some time passed, the balls will have collided several times amongst themselves and they will have a plethora of different speeds and directions.
+After some time passed, the balls will have collided several times amongst themselves and the walls\footnote{The wall is only needed to make them collide amongst each other. For the result, the ball-ball collisions are the important ones, as they can change not only the direction but also the magnitude of their velocity. Alternatively one could also talk about the table being mirrored in every direction indefinitely which would have the same result, but that's a bit harder to imagine.} and they will have a plethora of different speeds and directions.
 There's now no preferred direction and the distribution of speeds won't change anymore; the system is in an equilibrium.
 
 Changing back to the continuous view, this equilibrium is known as the Maxwellian Distribution, which reads in two dimensions, c.f.~\cite{succi2001lattice}:
@@ -127,4 +127,4 @@ Although, when chosen right, the accuracy and stability can improve greatly in c
 The source of these problems can be interpreted as the violation of \gls{galInv}, as deduced in~\cite{geier2006cascaded}. Consequently, the authors choose the space of central moments for the relaxation, as they are centered around the first moment, i.e.\ the velocity times density.
 This method is capable of simulating \gls{re} way above the ones, \gls{mrt} was capable of and is used in industrial grade \gls{lbm} solvers, like \href{http://www.xflowcfd.com/technology/view/cfd}{xFlow}.
 
-Nevertheless, we will introduce yet another set of characteristic variables in the next Section and explain the physical reasoning behind choosing them.
+Nevertheless, we will introduce yet another set of characteristic variables in the next section and explain the physical reasoning behind choosing them.

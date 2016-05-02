@@ -14,10 +14,10 @@ Therefore, we split~\eqref{eq: central moment definition} to get
     & = \sum_{i} {\left(ic-u_1\right)}^\alpha c_{i|\beta}.
   \end{aligned}
 \end{equation}
-Thus, by first computing the $c_{i|\beta}$ and then the $c_{\alpha\beta}$ we need $3$ (inner sum) times $9$ (number of  $c_{i|\beta}$ respectively $c_{\alpha\beta}$) calculations.
+Thus, by first computing the $c_{i|\beta}$ for all $\beta$ and $i$ we need $27$ (three for the inner sum times nine for the count) summations, which gets doubled by the same amount of calculations for the $c_{\alpha\beta}$.
 This yields a total of $54$ calculations, with the original count being $81$.
 This is a reduction of one third; not bad for such a small calculation.
-By chaining this technique in 3D, we can even come down to only one third of the costs, i.e.\ $243$ instead of $729$ summations.
+By chaining this technique in 3D, we can even come down to only one third of the costs, i.e.\ $243$ instead of $729$ summations\footnote{As we focus on the 2D case, this calculation can be left to the reader without remorse.}.
 
 We can further expand the $c_{\alpha\beta}$ and $c_{i|\beta}$ terms to get
 \begin{equation}
@@ -113,16 +113,16 @@ and~\eqref{eq:fast forward c i pipe beta matrix} analogously
   \end{pmatrix}
   =
   \begin{pmatrix}[1.5]
-    \frac{1}{2}\left(\frac{u_2^2}{c^2}-\frac{u_2}{c}\right) 
-    & \frac{u_2}{c} - \frac{1}{2c} 
+    \frac{1}{2}\left(\frac{u_2^2}{c^2}-\frac{u_2}{c}\right)
+    & \frac{u_2}{c} - \frac{1}{2c}
     & \frac{1}{2 c^2}
     \\
-    1-\frac{u_2^2}{c^2} 
-    & -\frac{2 u_2}{c^2} 
+    1-\frac{u_2^2}{c^2}
+    & -\frac{2 u_2}{c^2}
     & -\frac{1}{c^2}
     \\
-    \frac{1}{2}\left(\frac{u_2^2}{c^2}+\frac{u_2}{c}\right) 
-    & \frac{u_2}{c} + \frac{1}{2c} 
+    \frac{1}{2}\left(\frac{u_2^2}{c^2}+\frac{u_2}{c}\right)
+    & \frac{u_2}{c} + \frac{1}{2c}
     & \frac{1}{2 c^2}
   \end{pmatrix}
   \begin{pmatrix}

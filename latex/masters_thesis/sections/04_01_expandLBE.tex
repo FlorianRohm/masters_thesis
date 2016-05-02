@@ -19,16 +19,15 @@ which is equivalent to
 \end{equation}
 using~\eqref{eq: relation between stepsizes}.
 
-Equation~\eqref{eq: Taylor LB1} holds for all $f_{ij}$ and thus also for all linear combinations
+In formulating Equation~\eqref{eq: Taylor LB1}, we did not need to restrict ourselves to specific $f_{ij}$ and thus it has to hold for all of them. Notably also for all linear combinations
 \begin{equation*}
   \sum_{k}\lambda_k f_{ij},
 \end{equation*}
-especially for those, which yield the moments, $m_{\alpha\beta} $, of $f$:
+especially for those, which yield the moments, $m_{\alpha\beta} $, of $f$ like
 \begin{equation}
   \sum_{k}\lambda_k f_{ij} = \sum_{i,j}c^{\alpha + \beta}i^\alpha j^\beta f_{ij}=m_{\alpha\beta}.
 \end{equation}
-Therefore, we rewrite the system of equations for the $f_{ij}$ to a system of equations for the $m_{\alpha\beta}$ like
-
+Therefore, we rewrite the system of equations for the $f_{ij}$ to a system of equations for the $m_{\alpha\beta}$ in the manner of
 \begin{align}
     \nonumber
     & & \sum_{ij} \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} {(ci)}^\alpha {(cj)}^\beta f_{ij}
@@ -45,10 +44,10 @@ Therefore, we rewrite the system of equations for the $f_{ij}$ to a system of eq
      \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \frac{m_{\alpha\beta}}{c^{\alpha + \beta}} &=
     \sum_{m,n = 0}^\infty \frac{{(- c\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} \frac{m^*_{(\alpha + m)(\beta + n)}}{c^{\alpha + m + \beta + n}}.
 \end{align}
-To make our lives a bit easier, we will rescale the moments according to their order like
+To make our lives a bit easier, we will rescale the moments according to their order,
 \begin{equation}
   \label{eq: rescaling the moments}
-  \frac{m^*_{\alpha\beta}}{c^{\alpha + \beta}} \rightarrow m^*_{\alpha\beta}, \quad   \frac{m_{\alpha\beta}}{c^{\alpha + \beta}} \rightarrow m_{\alpha\beta}
+  \frac{m^*_{\alpha\beta}}{c^{\alpha + \beta}} \rightarrow m^*_{\alpha\beta}, \quad   \frac{m_{\alpha\beta}}{c^{\alpha + \beta}} \rightarrow m_{\alpha\beta},
 \end{equation}
 to finally get
 \begin{equation}
@@ -70,7 +69,7 @@ Adapting the widely used diffusive scaling, we nondimensionalize the equations w
     t & \rightarrow \frac{t}{\iota}.
   \end{aligned}
 \end{equation}
-Additionally, the moments are expanded according to the scale $\epsilon$
+Furthermore, the moments are asymptotically expanded in space according to the scale $\epsilon$
 \begin{align}
     \label{eq: expansion of m}
     m_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)} \\
@@ -109,7 +108,7 @@ Inserting~\eqref{eq: nondimensionalisation},~\eqref{eq: expansion of m} and~\eqr
     \mathllap{\equivalent\qquad} &
     \sum_{\tau, p = 0}^\infty\epsilon^{2\tau + p} \frac{1} {\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta}^{(p)} \\
     = &{} \sum_{m,n,p' = 0}^\infty  \epsilon^{m+n+p'} \frac{{(-1)}^{m+n}} {m!n!}
-    \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n } m_{(\alpha + m)(\beta + n)}^{*(p')}
+    \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n } m_{(\alpha + m)(\beta + n)}^{*(p')},
   \end{aligned}
 \end{align}
-Where in~\eqref{eq: final nondimensionalised expansion series}, the summation indices are changed to be unique for better recognition.
+where in~\eqref{eq: final nondimensionalised expansion series}, the summation indices are changed to be unique for better recognition in the next chapter.

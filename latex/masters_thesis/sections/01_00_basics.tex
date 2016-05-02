@@ -7,7 +7,8 @@ It describes the evolution of the so-called \gls{pdf} $f(\vec{v},\vec{x},t)$, wh
   \label{eq: Boltzmann transport equation}
   \partial_t f(\vec{v},\vec{x},t) + \vec{v} \cdot \nabla_{\vec{x}} f(\vec{v},\vec{x},t) = \Omega\left(f(\vec{v},\vec{x},t)\right),
 \end{equation}
-where $\Omega$ describes the effect of the collision of two particles. The other part is just the total time derivative $\frac{\text{d}f}{\text{d}t}$. To see the difficulty of the Boltzmann equation, we need to write out the collision $\Omega$:
+where $\Omega$ describes the effect of the collision of two particles. The other part is just the total time derivative\footnote{leaving out external forces} $\frac{\text{d}f}{\text{d}t}$.
+To see the difficulty of the Boltzmann equation, we need to write out the collision $\Omega$:
 \begin{equation}
   \label{eq: Collision of boltzmann equation}
   \begin{aligned}
@@ -50,7 +51,7 @@ This is one of the advantages of using the Boltzmann equation over Navier-Stokes
 
 To be more precise, one needs the so called continuum hypothesis to use the Navier-Stokes equations, stating roughly that there have to be enough fluid particles in any given control volume for averaging processes to make sense.
 Only this hypothesis justifies the notations of density, pressure and temperature, being macroscopic, averaged values of a fluid.
-One can concretize this definition by introducing the \gls{kn} named after the Dutch physicist Martin Knudsen.
+One can concretize this definition by introducing the \gls{kn}, named after the Dutch physicist Martin Knudsen.
 It relates the mean free path $\lambda$ a particle can travel before colliding with another particle to the physical scale of the problem represented by a characteristic length $L$ of the problem like
 \begin{equation}
   \label{eq: definition of knudsen number}

@@ -7,7 +7,7 @@ Those are called macroscopic values.
 When calculating with the Navier-Stokes equations, getting those values is easy, as the equations are stated in exactly those variables.
 Unfortunately, the Boltzmann equation and also the discretized equation~\eqref{eq: lattice boltzmann equation} calculate the microscopic particle distributions.
 \glsadd{micVar}\glsadd{macVar}
-The extraction of macroscopic values out of those distributions will be treated in this Section.
+The extraction of macroscopic values out of those distributions will be treated in this section.
 
 Before introducing (macroscopic) velocity and density, we have to take a small detour to the field of probability theory and introduce moments.
 In analogy to bivariat probability distributions, we define the characteristic variables $m_{\alpha\beta}$, called moments, of a \gls{pdf} $f$ as
@@ -30,7 +30,8 @@ Another set of characteristic variables are the centralized moments $c_{\alpha\b
   \label{eq: central moments continuous}
   c_{\alpha\beta} \defined \int {\left(v_x - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(v_y-\frac{m_{01}}{m_{00}}\right)}^\beta f(\vec{v})  d\vec{v}.
 \end{equation}
-Here, the assumption associated with~\eqref{eq: leave out x and y} of course holds, too, making the centralized moments dependend on space and time.
+
+Here, the assumption associated with~\eqref{eq: leave out x and y} of course also holds, making the centralized moments dependent on space and time.
 
 As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can calculate the macroscopic density $\rho$, the macroscopic velocity $\vec{u}=\begin{pmatrix}u_x\\u_y\end{pmatrix}$ and the pressure tensor $\tensor{P}=\begin{pmatrix}\tensor{P}_{xx}&\tensor{P}_{xy}\\ \tensor{P}_{yx}&\tensor{P}_{yy}\end{pmatrix}$ as
 
@@ -53,7 +54,7 @@ As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can calculate the 
       = c_{02},
   \end{aligned}
 \end{equation}
-where we identified the definitions of the moments and central moments in the second equation
+where we identified the definitions of the moments and central moments in the second equation in each line.
 Those connections do hold for the equilibrium case, which is locally attained nearly instantaneously for the continuous case, c.f.~\cite[page 218]{smits2000physical}.
 From the equations in~\eqref{eq: physical quantities}, we can also conclude, that centralized moments are just like normal moments, but seen from a frame of reference moving with the flow velocity $\vec{u}$.
 \glsadd{frame of reference}
@@ -92,7 +93,7 @@ This leaves us with
     \\ & = m_{20}^{eq} - \frac{m_{10}^2}{m_{00}}
   \end{aligned}
 \end{equation}
-and thus the pressure\footnote{It can be shown, that the pressure is equal to the trace of the pressure tensor and that its diagonal elements are equal. The third entry $\tensor{P}_{zz}$ would be the pressure in $z$-direction, which has to be accounted for as 2D simulations are just 3D where we assume the flow to be invariant in one direction. As pressure is isotropic, the pressure is also extended in the last direction, even when the flow velocity is not.}\todo[inline]{refer to discussion section}
+and thus the pressure\footnote{It can be shown, that the pressure is equal to one third the trace of the pressure tensor and that its diagonal elements are equal. The third entry $\tensor{P}_{zz}$ would be the pressure in $z$-direction, which has to be accounted for as 2D simulations are just 3D where we assume the flow to be invariant in one direction. As pressure is isotropic, the pressure is also extended in the last direction, even when the flow velocity is not. When defining this tensor, the $z$-components were left out to not provoke confusion.}\todo[inline]{refer to discussion section}
 \begin{equation}
   \label{eq: pressure}
   \begin{aligned}

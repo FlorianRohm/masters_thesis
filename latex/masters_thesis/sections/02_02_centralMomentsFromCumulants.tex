@@ -1,7 +1,7 @@
 % !TEX root = ../thesis.tex
-We now could invert equations~\eqref{eq: K 00 from moments} to~\eqref{eq: K 22 from moments} go over to the actual collision and call it a day.
+We now could invert equations~\eqref{eq: K 00 from moments} to~\eqref{eq: K 22 from moments}, go over to the actual collision and call it a day.
 As the title of this section spoils, we won't do exactly that, but take a quick detour over central moments.
-Their calculation from our \glspl{pdf} can be done in an efficient way as shown in~\ref{sub: Fast central moment transformation},
+Their calculation from our \glspl{pdf} can be done in an efficient way as shown in Section~\ref{sub: Fast central moment transformation},
 so we don't loose hardly any performance on this step.
 On the other side, we will see in this chapter that the way from central moments to cumulants is much more smooth, cutting the computational costs of the transformation, especially in 3D.
 
@@ -17,11 +17,9 @@ Thus we can write the moment generating function $F_c$ of this distribution as
   \begin{aligned}
     F_c(\Xi_1, \Xi_2) & \defined \mathcal{L}[f_c](\vec{\Xi}) =  \\
     & = \int_{\R^n} \sum_{i,j} f_{ij}\delta((ic - u_1) - \xi_1)\delta((jc - u_2) -\xi_2) e^{\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi} \\
-    & =\sum_{i,j} f_{ij} e^{\Xi_1(ic - u_1)} e^{\Xi_2(jc - u_2)}
-,
+    & =\sum_{i,j} f_{ij} e^{\Xi_1(ic - u_1)} e^{\Xi_2(jc - u_2)}.
   \end{aligned}
 \end{equation}
-using~\eqref{eq: translated integral}.
 Unsurprisingly, the Taylor expansion of $F_c$ yields
 \begin{equation}
   \label{eq: taylor of Fc}
