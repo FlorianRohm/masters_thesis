@@ -1,0 +1,50 @@
+% !TEX root = ../../thesis.tex
+\begin{tikzpicture}[scale=0.35, every node/.style={scale=0.35}]
+
+% grid
+\draw (3,3) rectangle (9,9);
+\draw (3,-3) rectangle (9,3);
+\draw (3,-9) rectangle (9,-3);
+
+\draw (-3,3) rectangle (3,9);
+\draw (-3,-3) rectangle (3,3);
+\draw (-3,-9) rectangle (3,-3);
+
+\draw (-9,3) rectangle (-3,9);
+\draw (-9,-3) rectangle (-3,3);
+\draw (-9,-9) rectangle (-3,-3);
+
+
+\pdfSmallCenter{black}{0,6}{0,2};
+\pdfSmallCenter{black}{6,0}{0.7,0};
+\pdfSmallCenter{black}{0,-6}{0,-1.5};
+\pdfSmallCenter{black}{-6,0}{-1.2,0};
+
+\pdfSmallCenter{black}{6,-6}{0.8,-0.8};
+\pdfSmallCenter{black}{-6,6}{-1.2,1.2};
+\pdfSmallCenter{black}{-6,-6}{-1.2,-1.2};
+\pdfSmallCenter{black}{6,6}{1,1};
+
+
+\pdfSmallCenter{red}{0,0}{0,1.5};
+\pdfSmallCenter{red}{0,0}{0,-2};
+
+\pdfSmallCenter{red}{0,0}{1,-1};
+\pdfSmallCenter{red}{0,0}{1.7,0};
+\pdfSmallCenter{red}{0,0}{0.8,0.8};
+
+\pdfSmallCenter{red}{0,0}{-1.8,-1.8};
+\pdfSmallCenter{red}{0,0}{-0.5,0};
+\pdfSmallCenter{red}{0,0}{-0.8,0.8};
+
+
+\fill[color=red] (-6,6) circle (3pt);
+\fill[color=red] (-6,0) circle (3pt);
+\fill[color=red] (-6,-6) circle (3pt);
+\fill[color=red] (0,6) circle (3pt);
+\fill[color=black] (0,0) circle (3pt);
+\fill[color=red] (0,-6) circle (3pt);
+\fill[color=red] (6,6) circle (3pt);
+\fill[color=red] (6,0) circle (3pt);
+\fill[color=red] (6,-6) circle (3pt);
+\end{tikzpicture}

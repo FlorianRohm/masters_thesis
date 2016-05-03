@@ -1,0 +1,26 @@
+\begin{tikzpicture}
+
+  \draw (-3,-3) rectangle (3,3);
+  \pdf{black}{0,3}
+  \pdf{black}{3,0}
+  \pdf{black}{0,-3}
+  \pdf{black}{-3,0}
+
+  \pdf{black}{3,-3}
+  \pdf{black}{-3,3}
+  \pdf{black}{-3,-3}
+  \pdf{black}{3,3}
+  \fill (0,0) circle (3pt);
+
+  \node at (3.5,0) {$f_{1,0}$};
+  \node at (0,3.3) {$f_{0,1}$};
+  \node at (0,-3.3) {$f_{0,\text{-}1}$};
+  \node at (-3.5,0) {$f_{0,\text{-}1}$};
+
+  \node at (3.5,3.3) {$f_{1,1}$};
+  \node at (-3.5,3.3) {$f_{\text{-}1,1}$};
+  \node at (3.5,-3.3) {$f_{1,\text{-}1}$};
+  \node at (-3.5,-3.3) {$f_{\text{-}1,\text{-}1}$};
+
+  \node at (0.6,0.2)  {$f_{0,0}$};
+\end{tikzpicture}

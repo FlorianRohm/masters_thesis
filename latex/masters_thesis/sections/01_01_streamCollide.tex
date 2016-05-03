@@ -19,32 +19,7 @@ Consequently, we're working with a D2Q9 model, which is depicted in Figure~\ref{
 
 \begin{figure}
   \centering
-  \begin{tikzpicture}
-
-    \draw (-3,-3) rectangle (3,3);
-    \pdf{black}{0,3}
-    \pdf{black}{3,0}
-    \pdf{black}{0,-3}
-    \pdf{black}{-3,0}
-
-    \pdf{black}{3,-3}
-    \pdf{black}{-3,3}
-    \pdf{black}{-3,-3}
-    \pdf{black}{3,3}
-    \fill (0,0) circle (3pt);
-
-    \node at (3.5,0) {$f_{1,0}$};
-    \node at (0,3.3) {$f_{0,1}$};
-    \node at (0,-3.3) {$f_{0,\text{-}1}$};
-    \node at (-3.5,0) {$f_{0,\text{-}1}$};
-
-    \node at (3.5,3.3) {$f_{1,1}$};
-    \node at (-3.5,3.3) {$f_{\text{-}1,1}$};
-    \node at (3.5,-3.3) {$f_{1,\text{-}1}$};
-    \node at (-3.5,-3.3) {$f_{\text{-}1,\text{-}1}$};
-
-    \node at (0.6,0.2)  {$f_{0,0}$};
-  \end{tikzpicture}
+  \input{tikz/d2q9.tex}
 \caption{The D$2$Q$9$ stencil. The indices in this picture are separated to be better distinguishable.}
 \label{fig: D2Q9 stencil}
 \end{figure}
@@ -79,53 +54,13 @@ Number one is the calculation of the post-collision distributions in each cell a
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-
-  \begin{tikzpicture}
-
-  \draw (-3,-3) rectangle (3,3);
-  \pdf{black}{0,2};
-  \pdf{black}{0.7,0};
-  \pdf{black}{0,-1.5};
-  \pdf{black}{-1.2,0};
-
-  \pdf{black}{0.8,-0.8};
-  \pdf{black}{-1.2,1.2};
-  \pdf{black}{-1.2,-1.2};
-  \pdf{black}{1,1};
-  \fill (0,0) circle (3pt);
-  \end{tikzpicture}
+  \input{tikz/preCollide.tex}
 \caption{Exemplaric pre-collision \glspl{pdf} $f_{ij}$\linebreak}
 \label{fig: pre-collision example}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \begin{tikzpicture}
-
-  \draw (-3,-3) rectangle (3,3);
-
-  \pdf{gray}{0,2};
-  \pdf{gray}{0.7,0};
-  \pdf{gray}{0,-1.5};
-  \pdf{gray}{-1.2,0};
-
-  \pdf{gray}{0.8,-0.8};
-  \pdf{gray}{-1.2,1.2};
-  \pdf{gray}{-1.2,-1.2};
-  \pdf{gray}{1,1};
-
-  \fill (0,0) circle (3pt);
-
-  \pdf{black}{0,1.8};
-  \pdf{black}{0.9,0};
-  \pdf{black}{0,-1.2};
-  \pdf{black}{-1.15,0};
-
-  \pdf{black}{0.85,-0.85};
-  \pdf{black}{-1.26,1.26};
-  \pdf{black}{-1.1,-1.1};
-  \pdf{black}{0.9,0.9};
-
-  \end{tikzpicture}
+  \input{tikz/postCollide.tex}
 \caption{Exemplaric post-collision \glspl{pdf} $f_{ij}^*$, pre-collision ones are shadowed in gray.}
 \label{fig: post-collision example}
 \end{subfigure}
@@ -140,93 +75,14 @@ Unsurprisingly, this is called the streaming step, as it moves the particle dist
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-
-  \begin{tikzpicture}[scale=0.35, every node/.style={scale=0.35}]
-
-% grid
-  \draw (3,3) rectangle (9,9);
-  \draw (3,-3) rectangle (9,3);
-  \draw (3,-9) rectangle (9,-3);
-
-  \draw (-3,3) rectangle (3,9);
-  \draw (-3,-3) rectangle (3,3);
-  \draw (-3,-9) rectangle (3,-3);
-
-  \draw (-9,3) rectangle (-3,9);
-  \draw (-9,-3) rectangle (-3,3);
-  \draw (-9,-9) rectangle (-3,-3);
-
-  \pdfSmallCenter{black}{0,0}{0,2};
-  \pdfSmallCenter{black}{0,0}{0.7,0};
-  \pdfSmallCenter{black}{0,0}{0,-1.5};
-  \pdfSmallCenter{black}{0,0}{-1.2,0};
-
-  \pdfSmallCenter{black}{0,0}{0.8,-0.8};
-  \pdfSmallCenter{black}{0,0}{-1.2,1.2};
-  \pdfSmallCenter{black}{0,0}{-1.2,-1.2};
-  \pdfSmallCenter{black}{0,0}{1,1};
-
-
-  \pdfSmallCenter{red}{0, -6}{0,1.5};
-  \pdfSmallCenter{red}{0,6}{0,-2};
-
-  \pdfSmallCenter{red}{-6,6}{1,-1};
-  \pdfSmallCenter{red}{-6, 0}{1.7,0};
-  \pdfSmallCenter{red}{-6,-6}{0.8,0.8};
-
-  \pdfSmallCenter{red}{6, 6}{-1.8,-1.8};
-  \pdfSmallCenter{red}{6,0}{-0.5,0};
-  \pdfSmallCenter{red}{6, -6}{-0.8,0.8};
-
-  \fill (0,0) circle (3pt);
-  \end{tikzpicture}
+  \input{tikz/prestream.tex}
 \caption{Exemplaric pre-stream \glspl{pdf} setting for the \glspl{pdf}.}
 \label{fig: pre-stream example}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-
-    \begin{tikzpicture}[scale=0.35, every node/.style={scale=0.35}]
-
-  % grid
-    \draw (3,3) rectangle (9,9);
-    \draw (3,-3) rectangle (9,3);
-    \draw (3,-9) rectangle (9,-3);
-
-    \draw (-3,3) rectangle (3,9);
-    \draw (-3,-3) rectangle (3,3);
-    \draw (-3,-9) rectangle (3,-3);
-
-    \draw (-9,3) rectangle (-3,9);
-    \draw (-9,-3) rectangle (-3,3);
-    \draw (-9,-9) rectangle (-3,-3);
-
-
-    \pdfSmallCenter{black}{0,6}{0,2};
-    \pdfSmallCenter{black}{6,0}{0.7,0};
-    \pdfSmallCenter{black}{0,-6}{0,-1.5};
-    \pdfSmallCenter{black}{-6,0}{-1.2,0};
-
-    \pdfSmallCenter{black}{6,-6}{0.8,-0.8};
-    \pdfSmallCenter{black}{-6,6}{-1.2,1.2};
-    \pdfSmallCenter{black}{-6,-6}{-1.2,-1.2};
-    \pdfSmallCenter{black}{6,6}{1,1};
-
-
-    \pdfSmallCenter{red}{0,0}{0,1.5};
-    \pdfSmallCenter{red}{0,0}{0,-2};
-
-    \pdfSmallCenter{red}{0,0}{1,-1};
-    \pdfSmallCenter{red}{0,0}{1.7,0};
-    \pdfSmallCenter{red}{0,0}{0.8,0.8};
-
-    \pdfSmallCenter{red}{0,0}{-1.8,-1.8};
-    \pdfSmallCenter{red}{0,0}{-0.5,0};
-    \pdfSmallCenter{red}{0,0}{-0.8,0.8};
-
-    \fill (0,0) circle (3pt);
-    \end{tikzpicture}
-    \caption{Exemplaric post-stream \glspl{pdf}.\linebreak}
+  \input{tikz/postStream.tex}
+  \caption{Exemplaric post-stream \glspl{pdf}.\linebreak}
 \label{fig: post-collision example}
 \end{subfigure}
 \caption{Streaming in the \gls{lbm}. The distributions are shifted in the direction of their associated velocity. Every cell has of course all its nine \glspl{pdf}, but the ones not relevant to the center cell are left out}
