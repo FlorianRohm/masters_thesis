@@ -80,27 +80,7 @@ Also, the integrals in~\eqref{eq: moments continuous} and~\eqref{eq: central mom
 When looking at pressure, e.g.\ the momentum of the fluid particles normal to an imaginary wall, the discrete case looks quite different.
 \begin{figure}
 \centering
-  \begin{tikzpicture}
-
-  \draw (-5,-3) rectangle (5,3);
-
-  \draw (-1,2) -- (1,2) node[right, scale=0.8] {$A$};
-  \draw[->] (0,2) -- (0,2.5) node[right, scale=0.8] {$F$};
-
-  \draw (-4,0) node[circle,minimum size=0.4pt,draw] (A1) {};
-  \draw (4,0.2) node[circle,minimum size=0.4pt,draw] (B1) {};
-
-  \draw (-0.17,0) node[circle,minimum size=0.4pt,draw, fill=gray] (A2) {};
-  \draw (0.17,0.2) node[circle,minimum size=0.4pt,draw, fill=gray] (B2) {};
-
-  \draw (0,-1.8) node[circle,minimum size=0.4pt,draw, fill] (A3) {};
-  \draw (0,1.8) node[circle,minimum size=0.4pt,draw, fill] (B3) {};
-
-  \begin{pgfonlayer}{bg}
-  \draw[->, shorten <=0.1pt] (A1) -- (A2) --(A3);
-  \draw[->, shorten <=0.1pt] (B1) -- (B2) -- (B3) -- (-0.1,1);
-  \end{pgfonlayer}
-  \end{tikzpicture}
+\input{tikz/billard.tex}
 \caption{Path of two particles during a given time, where the brightness depicts the temporal progress. In the time before the collision, the plate $A$ does not experience any pressure, but afterwards the right particle collides with $A$, applying the force $F$, and thus a pressure, to it.}
 \label{fig: billard table}
 \end{figure}

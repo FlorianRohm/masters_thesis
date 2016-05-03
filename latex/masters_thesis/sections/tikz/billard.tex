@@ -1,0 +1,22 @@
+% !TEX root = ../../thesis.tex
+\begin{tikzpicture}
+
+\draw (-5,-3) rectangle (5,3);
+
+\draw (-1,2) -- (1,2) node[right, scale=0.8] {$A$};
+\draw[->] (0,2) -- (0,2.5) node[right, scale=0.8] {$F$};
+
+\draw (-4,0) node[circle,minimum size=0.4pt,draw] (A1) {};
+\draw (4,0.2) node[circle,minimum size=0.4pt,draw] (B1) {};
+
+\draw (-0.17,0) node[circle,minimum size=0.4pt,draw, fill=gray] (A2) {};
+\draw (0.17,0.2) node[circle,minimum size=0.4pt,draw, fill=gray] (B2) {};
+
+\draw (0,-1.8) node[circle,minimum size=0.4pt,draw, fill] (A3) {};
+\draw (0,1.8) node[circle,minimum size=0.4pt,draw, fill] (B3) {};
+
+\begin{pgfonlayer}{bg}
+\draw[->, shorten <=0.1pt] (A1) -- (A2) --(A3);
+\draw[->, shorten <=0.1pt] (B1) -- (B2) -- (B3) -- (-0.1,1);
+\end{pgfonlayer}
+\end{tikzpicture}
