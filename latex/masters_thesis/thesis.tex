@@ -3,6 +3,21 @@
 \loadglsentries{sections/glossary}
 \makeglossaries{}
 
+% arrow with tip
+\newcommand{\pdf}[2]{
+  \draw[thick,->, color=#1,shorten >=3.5pt] (0,0) -- (#2); % chktex 8, needs to be this length for tikz
+  \fill[color=#1] (#2) circle (3pt);
+}
+\newcommand{\pdfSmall}[2]{
+  \draw[thick,->, color=#1,shorten >=1.2pt] (0,0) -- (#2); % chktex 8, needs to be this length for tikz
+  \fill[color=#1] (#2) circle (3pt);
+}
+\newcommand{\pdfSmallCenter}[3]{
+  \draw[thick,->, color=#1,shorten >=1.2pt] (#2) -- ($(#2) + (#3)$); % chktex 8, needs to be this length for tikz
+  \fill[color=#1] ($(#2) + (#3)$) circle (3pt);
+}
+
+
 \setlength{\voffset}{-28.4mm}
 \setlength{\hoffset}{-1in}
 \setlength{\topmargin}{20mm}

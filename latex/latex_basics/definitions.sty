@@ -38,12 +38,20 @@
 \usepackage{xparse}
 \allowdisplaybreaks{}
 
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
 % has to be loaded after some packages
 \usepackage[nonumberlist]{glossaries}
 \glsdisablehyper
 
 \usetikzlibrary{shapes, decorations}
+\usetikzlibrary{calc}
 \usetikzlibrary{positioning}
+\pgfdeclarelayer{bg}    % declare background layer
+\pgfsetlayers{bg,main}  % set the order of the layers (main is the standard layer)
+
 
 \overfullrule 1pt  % chktex 1
 

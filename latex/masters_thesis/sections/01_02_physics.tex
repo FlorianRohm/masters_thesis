@@ -78,8 +78,33 @@ Also, the integrals in~\eqref{eq: moments continuous} and~\eqref{eq: central mom
   \label{eq: y velocity definition}
 \end{align}
 When looking at pressure, e.g.\ the momentum of the fluid particles normal to an imaginary wall, the discrete case looks quite different.
-\todo[inline]{billiard table figure}
-Here we cannot assume collision invariance, as Figure~\ref{fig: pressure} illustrates.
+\begin{figure}
+\centering
+  \begin{tikzpicture}
+
+  \draw (-5,-3) rectangle (5,3);
+
+  \draw (-1,2) -- (1,2) node[right, scale=0.8] {$A$};
+  \draw[->] (0,2) -- (0,2.5) node[right, scale=0.8] {$F$};
+
+  \draw (-4,0) node[circle,minimum size=0.4pt,draw] (A1) {};
+  \draw (4,0.2) node[circle,minimum size=0.4pt,draw] (B1) {};
+
+  \draw (-0.17,0) node[circle,minimum size=0.4pt,draw, fill=gray] (A2) {};
+  \draw (0.17,0.2) node[circle,minimum size=0.4pt,draw, fill=gray] (B2) {};
+
+  \draw (0,-1.8) node[circle,minimum size=0.4pt,draw, fill] (A3) {};
+  \draw (0,1.8) node[circle,minimum size=0.4pt,draw, fill] (B3) {};
+
+  \begin{pgfonlayer}{bg}
+  \draw[->, shorten <=0.1pt] (A1) -- (A2) --(A3);
+  \draw[->, shorten <=0.1pt] (B1) -- (B2) -- (B3) -- (-0.1,1);
+  \end{pgfonlayer}
+  \end{tikzpicture}
+\caption{Path of two particles during a given time, where the brightness depicts the temporal progress. In the time before the collision, the plate $A$ does not experience any pressure, but afterwards the right particle collides with $A$, applying the force $F$, and thus a pressure, to it.}
+\label{fig: billard table}
+\end{figure}
+Here we cannot assume collision invariance, as Figure~\ref{fig: billard table} illustrates.
 Hence we can assume the discrete analogon only when the distributions are equal to the equilibrium distributions $f_{ij}^{eq}$ which are by definition collision invariant.
 This leaves us with
 \begin{equation}
@@ -103,7 +128,7 @@ and thus the pressure\footnote{It can be shown, that the pressure is equal to on
 \end{equation}
 
 If we wanted to include equations for energy and thus heat into our analysis, we would need higher order moments like $m_{30}$.
-But as we are working with the nine speed model D2Q9 as depicted in Figure~\ref{fig: d2q9}, we can only host nine independent moments.
+But as we are working with the nine speed model D2Q9 as depicted in Figure~\ref{fig: D2Q9 stencil}, we can only host nine independent moments.
 This is easily seen with
 \begin{equation}
   m_{30} = \sum_{i,j \in \{-1,0,1\}} i^3 c^3 f_{ij} = c^2\sum_{i,j \in \{-1,0,1\}} ic i^2 f_{ij} = c^2 \sum_{i,j \in \{-1,0,1\}} ic f_{ij} = c^2 m_{10},
@@ -124,7 +149,7 @@ and
   = \sum_{i,j \in \{-1,0,1\}} c^{\alpha+\beta}i^\alpha j^{(\beta+2l)} f_{ij}
   = c^{-2l}m_{\alpha(\beta+2l)} \quad \forall l, \alpha, \forall \beta \neq 0.
 \end{equation}
-The full list of moments in D2Q9 is displayed in table~\ref{table:D2Q9 moments}, according to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}.
+The full list of moments in D2Q9 is displayed in Table~\ref{table:D2Q9 moments}, according to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}.
 Another convention we introduce in this section is, that all sums over $i$ and/or $j$ shall range over the discrete velocity space, i.e.
 \begin{equation*}
   \sum_{i,j \in \{-1,0,1\}} \rightarrow \sum_{i,j}
