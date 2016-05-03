@@ -31,24 +31,23 @@ The simplest way for discretizing the derivatives is to use a combination of imp
 \end{equation}
 As motivated in Section~\ref{sec: History of Lattice Boltzmann}, we will use another collision operator $\tilde{\Omega}$, modeling the effect of the collisions in one timestep, instead of the original $\Omega$.
 This will be further specified in Section~\ref{sub: Relaxation rates and their issues}.
-Using the described techniques, equation~\eqref{eq: Boltzmann transport equation} can be transformed to
+Using the described techniques, equation~\eqref{eq: Boltzmann transport equation} can be transformed\footnote{The full derivation is in Appendix~\ref{appendix: Lattice Boltzmann Equation}.} to
 \begin{equation}
   \label{eq: lattice boltzmann equation}
-  \begin{aligned}
     f_{ij}(x + i \Delta x , y + j \Delta y,t + \Delta t)
-    &= \tilde{\Omega}(f_{ij}(x,y,t))
-    + f_{ij}(x,y,t)
-    \\&
-    \defines f_{ij}^*(x, y, t),
-  \end{aligned}
+    = f_{ij}^*(x, y, t)
 \end{equation}
-for all $i,j\in \{-1, 0, 1\}$, where $f_{ij}$ are the pre-collision distributions and $f_{ij}^*$ the post-collision distributions.
-The full derivation of~\eqref{eq: lattice boltzmann equation} can be found in Appendix~\ref{appendix: Lattice Boltzmann Equation}.
+for all $i,j\in \{-1, 0, 1\}$, where $f_{ij}^*$ are the post-collision distributions defined as
+\begin{equation}
+  \label{eq: define post collision}
+  f_{ij}^*(x, y, t) \defined \tilde{\Omega}(f_{ij}(x,y,t)) + f_{ij}(x,y,t).
+\end{equation}
+The $f_{ij}$ are accordingly labeled pre-collision distributions.
 
 Now, we can finally introduce the most known keywords associated to LBM:\@ stream and collide.
-When looking at~\eqref{eq: lattice boltzmann equation}, we see, that we need two substeps for each iteration of the equation.
 
-Number one is the calculation of the post-collision distributions in each cell and can be found on the right hand side of~\eqref{eq: lattice boltzmann equation}. This is known as the collide step, illustrated in Figure~\ref{fig: examplary collision}.
+The split equations allow us to calculate the post-collision distributions in equation~\eqref{eq: define post collision}.
+This is known as the collide step, illustrated in Figure~\ref{fig: examplary collision}.
 
 \begin{figure}
 \centering
@@ -64,11 +63,13 @@ Number one is the calculation of the post-collision distributions in each cell a
 \caption{Exemplaric post-collision \glspl{pdf} $f_{ij}^*$, pre-collision ones are shadowed in gray.}
 \label{fig: post-collision example}
 \end{subfigure}
-\caption{Collision in the \gls{lbm}. The distributions are rearranged according to the collision rule.}
+\caption{Collision in the \gls{lbm}.
+The distributions are rearranged according to the collision rule.
+Their value is shown as the arrow length, their associated speed is still controled by equation~\eqref{eq: definition of the velocities}.}
 \label{fig: examplary collision}
 \end{figure}
 
-Number two is found on the left hand side and formulates the spreading of the distributions according to their velocities to form the new particle distributions for the timestep $t+\Delta t$.
+Afterwards in~\eqref{eq: lattice boltzmann equation} we spread the distributions according to their velocities to form the new particle distributions for the timestep $t+\Delta t$.
 Unsurprisingly, this is called the streaming step, as it moves the particle distributions to new nodes.
 
 \begin{figure}
@@ -85,13 +86,17 @@ Unsurprisingly, this is called the streaming step, as it moves the particle dist
   \caption{Exemplaric post-stream \glspl{pdf}.\linebreak}
 \label{fig: post-collision example}
 \end{subfigure}
-\caption{Streaming in the \gls{lbm}. The distributions are shifted in the direction of their associated velocity. Every cell has of course all its nine \glspl{pdf}, but the ones not relevant to the center cell are left out}
+\caption{Streaming in the \gls{lbm}.
+The distributions are shifted in the direction of their associated velocity.
+Every cell has of course all its nine \glspl{pdf}, but the ones not relevant to the center cell are left out.
+Like in Figure~\ref{fig: examplary collision}, the speeds are not associated to the arrow length.}
 \label{fig: examplary stream}
 \end{figure}
 
 Figure~\ref{fig: examplary stream} illustrates why we chose our velocities,~\eqref{eq: definition of the velocities}, and stepsizes,~\eqref{eq: relation between stepsizes}, in this particular way.
-This allows us to move our distribution functions exactly to the next node in the direction they are pointing. Hence we don't need to interpolate those functions to get the new distribution functions at the nodes for the next timestep.
+This allows us to move our distribution functions exactly to the next node in the direction they are pointing.
+Hence we don't need to interpolate those functions to get the new distribution functions at the nodes for the next timestep.
 
 Now, we can imagine, why LBM is so good for parallel computation.
-The streaming step, which needs access to neighboring nodes and therefore potentially to the memory of other cores, is completely linear.
-The collide step, which we didn't specify in more detail, yet, will be more computationally heavy but completely local and thus can be computed in parallel.
+The streaming step,~\eqref{eq: lattice boltzmann equation}, which needs access to neighboring nodes and therefore potentially to the memory of other cores, is completely linear.
+The collide step,~\eqref{eq: define post collision}, which we didn't specify in more detail, yet, will be more computationally heavy but completely local and thus can be computed in parallel.
