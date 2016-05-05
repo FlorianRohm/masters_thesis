@@ -1,0 +1,29 @@
+% !TEX root = ../thesis.tex
+
+The convective form of the momentum equations reads
+\begin{equation}
+  \label{eq:compressible NS}
+  \begin{aligned}
+    \partial_t \mathbf{m} + \nabla \cdot (\mathbf{m}\mathbf{v}^T)
+    &= - \nabla p + \nabla \cdot (\mu\mathbb{S}) + \rho \mathbf{f} \\
+    \Leftrightarrow\partial_t \mathbf{m} + (\nabla \cdot \mathbf{m})\mathbf{v} + (\nabla \cdot \mathbf{v})\mathbf{m}
+    &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \mathbb{S}^T \nabla\mu + \rho \mathbf{f}
+  \end{aligned}
+\end{equation}
+where
+\begin{equation}
+  \mathbf{m} = \rho \mathbf{u}
+\end{equation}
+is the momentum density,
+\begin{equation}
+  \mathbb{S} \defined \left({(D\mathbf{v})}^T + D\mathbf{v} - \frac{2}{3}\mathbb{I}\nabla\cdot\mathbf{v} \right)
+\end{equation}
+with the abused notation of the divergence of a matrix
+\begin{equation}
+  \nabla \cdot M =
+  \begin{pmatrix}
+    \partial_x M_{11} + \partial_y M_{21} \\
+    \partial_x M_{12} + \partial_y M_{22}
+  \end{pmatrix}
+\end{equation}
+and the Jacobian Matrix of $\mathbf{v}$ denoted as $D\mathbf{v}$.
