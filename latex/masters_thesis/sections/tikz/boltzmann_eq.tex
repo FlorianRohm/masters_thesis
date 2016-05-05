@@ -1,0 +1,23 @@
+% !TEX root = ../../thesis.tex
+\begin{tikzpicture}[ scale=.8]
+\draw[style=dashed] (0,0) -- (1, 0);
+\draw[style=dashed] (0,1) -- (1, 1);
+\draw (1,0) rectangle (5,1) node[pos=.5] {Euler Equations};
+\draw (5,0) rectangle (12,1) node[pos=.5] {Navier-Stokes Equations};
+\draw (12,0) rectangle (17,1) node[pos=.5] {Burnett-Equation};
+\draw[style=dashed] (17,0) -- (18, 0);
+\draw[style=dashed] (17,1) -- (18, 1);
+
+\draw[->] (9,-2) -- (9,-1);
+
+\draw[draw=white] (1,-3) rectangle (17,-4) node[pos=0.5] {Boltzmann Equation};
+\draw[style=dashed] (0,-3) -- (1, -3);
+\draw[style=dashed] (17,-3) -- (18, -3);
+\draw (1,-3) -- (17, -3);
+\draw[style=dashed] (0,-4) -- (1, -4);
+\draw[style=dashed] (17,-4) -- (18, -4);
+\draw (1,-4) -- (17, -4);
+
+\draw[->] (5,-5) -- (13, -5) node[midway, below] {$Kn$};
+
+\end{tikzpicture}
