@@ -1,20 +1,73 @@
 % !TEX root = ../thesis.tex
-Derive the boltzmann equation.
-%\begin{equation}
-%  \begin{aligned}
-%    &
-%    \frac{f_{ij}(x, y, t+\Delta t) - f_{ij}(x, y, t)}{\Delta t}
-%    + \frac{f_{ij}(\vec{x} + \vec{c_{ij}} \Delta{x},t+\Delta t) - f_{ij}(x, y, t+\Delta t)}{\Delta x}
-%    = \Omega\left(f_{ij}(x, y, t)\right)
-%    \\\equivalent\quad&
-%    -f_{ij}(x, y, t)  + f_{ij}(\vec{x} + \vec{c_{ij}} \Delta{x},t+\Delta t)
-%    = \Omega\left(f_{ij}(x, y, t)\right)
-%    \\\equivalent\quad&
-%    f_{ij}(\vec{x} + \vec{c_{ij}} \Delta x, t+\Delta x)
-%    = \Omega\left(f_{ij}(x, y, t)\right)
-%    + f_{ij}(x, y, t)
-%    \\\equivalent\quad&
-%    f_{ij}(\vec{x} + \vec{c_{ij}} \Delta x, t+\Delta x)
-%    = f_{ij}^*(x, y, t),
-%  \end{aligned}
-%\end{equation}
+Our first appendix will cope with the discretization of the Boltzmann equation~\eqref{eq: Boltzmann transport equation}.
+As we will heavily use the explicit and implicit Euler scheme, we provide a small reminder.
+For some functions $g$ and $h$ with
+\begin{equation}
+  \label{eq: app_lbm_1}
+  \partial_x f(x) = g(x),
+\end{equation}
+and two points $x_k$ and $x_k + \Delta x$,
+\begin{equation}
+  f(x_k+\Delta x) - f(x_k) = \int_{x_k}^{x_k+\Delta x} g(x) dx
+\end{equation}
+holds by integrating~\eqref{eq: app_lbm_1}.
+We can now approximate the integral by evaluating it at a specific point and dividing the other parts with the length of the integration interval.
+The explicit form chooses the starting point of the integral, whereas the implicit one takes the endpoint, yielding
+\begin{equation}
+  \frac{f(x_k+\Delta x) - f(x_k)}{\Delta x} =  g(x_k)
+\end{equation}
+for the explicit form and
+\begin{equation}
+  \frac{f(x_k+\Delta x) - f(x_k)}{\Delta x} =  g(x_k + \Delta x)
+\end{equation}
+for the implicit one.
+
+To start deriving, we again state~\eqref{eq: Boltzmann transport equation} for easier oversight.
+\begin{equation}
+  \label{eq: app_lbm_2}
+  \partial_t f(\vec{v},\vec{x},t) + \vec{v} \cdot \nabla_{\vec{x}} f(\vec{v},\vec{x},t) = \Omega\left(f(\vec{v},\vec{x},t)\right)
+\end{equation}
+First of all, we switch to the discrete velocity space and explicitly calculate the dot product, leaving us with
+\begin{equation}
+  \label{eq: app_lbm_3}
+  \partial_t f_{ij}(\vec{x},t) + \vec{c}_{ij} \cdot \nabla_{\vec{x}} f_{ij}(\vec{x},t) = \Omega\left(f_{ij}(\vec{x},t)\right).
+\end{equation}
+Now, we discretize the time derivative, using the implicit scheme on the remaining summands on the left hand side and staying explicit on the right hand side.
+\begin{equation}
+  \label{eq: app_lbm_4}
+  \frac{f_{ij}(\vec{x}, t+\Delta t) - f_{ij}(\vec{x}, t)}{\Delta t}
+  +
+  \underbrace {\vec{c}_{ij} \cdot \nabla_{\vec{x}} f_{ij}(\vec{x},t+\Delta t)
+  }_{\text{implicit}}
+   = \underbrace{\Omega\left(f_{ij}(\vec{x},t)\right)}_{\text{explicit}}.
+\end{equation}
+For the next step, we have to see, that the term $\vec{c}_{ij} \cdot \nabla_{\vec{x}}$ actually gives us the directional derivative in the direction $\begin{pmatrix}i\\j\end{pmatrix}$, scaled with $\norm{\vec{c}_{ij}}$.
+Thus we can discretize~\eqref{eq: app_lbm_4} to
+\begin{equation}
+  \label{eq: app_lbm_5}
+  \begin{aligned}
+    \underbrace{\frac{f_{ij}(\vec{x}, t+\Delta t) - f_{ij}(\vec{x}, t)}{\Delta t}}_{\text{explicit}}
+    & + \norm{\vec{c}_{ij}}\frac{f_{ij}\left(\vec{x}+\begin{pmatrix}i\Delta x\\j\Delta y\end{pmatrix}, t+\Delta t\right) - f_{ij}(\vec{x}, t+\Delta t)}{\sqrt{i^2\Delta x^2 + j^2\Delta y^2}}
+    \\&
+    = \underbrace{\Omega\left(f_{ij}(\vec{x},t)\right)}_{\text{explicit}}.
+  \end{aligned}
+\end{equation}
+With the relation between the stepsizes,~\eqref{eq: relation between stepsizes}, we can reformulate~\eqref{eq: app_lbm_5} to
+\begin{equation}
+  \label{eq: app_lbm_6}
+  \begin{aligned}
+    \frac{f_{ij}(x,y, t+\Delta t) - f_{ij}(x,y, t)}{\Delta t}
+    & + \frac{f_{ij}\left(x + ci\Delta t, y+ cj\Delta t, t+\Delta t\right) - f_{ij}(x,y, t+\Delta t)}{\Delta t}
+    \\&
+    = \Omega\left(f_{ij}(x,y,t)\right).
+  \end{aligned} 
+\end{equation}
+and thus
+\begin{equation}
+  \label{eq: app_lbm_7}
+  \begin{aligned}
+    f_{ij}\left(x + ci\Delta t, y+ cj\Delta t, t+\Delta t\right)
+    = \Delta t\ \Omega\left(f_{ij}(x,y,t)\right) + f_{ij}(x,y, t).
+  \end{aligned}
+\end{equation}
+When inserting our modified collision, which we assume to be scaled with $\Delta t$, this is exactly equation~\eqref{eq: lattice boltzmann equation}.
