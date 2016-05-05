@@ -56,13 +56,14 @@ The most popular method of discretizing~\eqref{eq: maxwell distribution raw} is 
   \right],
 \end{equation}
 where $W_{ij}$ is a weighting factor depending on the chosen lattice, $c_s$ the speed of sound in the lattice and $\vec{c}_{ij}$ are the velocities defined in~\eqref{eq: definition of the velocities}.
+As we can see here, $f^{eq}$ nonlinearly depends on all $f_{ij}$ via the macroscopic velocity and pressure.
 
 This whole procedure yields the most simple, but most famous BGK-LBM, also called \gls{srt}, as it uses only one parameter $\omega$ to relax the~\glspl{pdf}.
 When analyzing this method,~\cite[Section 5.2.3]{wolf2000lattice}, we see, that the kinematic viscosity $\nu$ (in lattice units) is actually calculated by
 \begin{equation}
   \nu = \frac{1}{3}\left(\frac{1}{\omega} - \frac{1}{2}\right).
 \end{equation}
-Hence, to get to low viscosities, we need $\omega \rightarrow 2$ inst and thus to actually overrelax the \glspl{pdf} in~\eqref{eq: post collision discrete}.
+Hence, to get to low viscosities, we need $\omega \rightarrow 2$ instead and thus to actually overrelax the \glspl{pdf} in~\eqref{eq: post collision discrete}.
 The root of this seeming inconsistency is elucidated in~\cite[Section 4]{karlin2006elements} and stems from our discretization of~\eqref{eq: Boltzmann transport equation}.
 
 On looking upon the nondimensionalized, incompressible Navier-Stokes equations,~\eqref{eq: navier stokes nondim}, we see that the \gls{re} is more telling than just the viscosity.

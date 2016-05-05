@@ -13,6 +13,7 @@ The next step for the discretization is to restrict our velocity space to a fini
 \end{equation}
 Hence, our particle distribution function $f(\vec{v},\vec{x},t)$ can now be interpreted as nine functions $f_{ij}(\vec{x},t)$, one for each direction.
 Being in two dimensions, we also split the vector $\vec{x}$ into its components $x$ and $y$, leaving us with $f_{ij}(x,y,t)$ for the velocity-discretized particle distributions.
+Further, we denote $\vec{f}$ as the vector of all $f_{ij}$.
 
 In LBM jargon, the choice of velocities is called the stencil, which is denoted by D$n$Q$m$, with $n$ being the dimension and $m$ the cardinality of the velocity set.
 Consequently, we're working with a D2Q9 model, which is depicted in Figure~\ref{fig: D2Q9 stencil}.
@@ -37,12 +38,13 @@ Using the described techniques, equation~\eqref{eq: Boltzmann transport equation
     f_{ij}(x + i \Delta x , y + j \Delta y,t + \Delta t)
     = f_{ij}^*(x, y, t)
 \end{equation}
-for all $i,j\in \{-1, 0, 1\}$, where $f_{ij}^*$ are the post-collision distributions defined as
+for all $i,j\in \{-1, 0, 1\}$, where $f_{ij}^*$ are the post-collision distributions\footnote{The $f_{ij}$ are accordingly labeled pre-collision distributions.
+} defined as
 \begin{equation}
   \label{eq: define post collision}
-  f_{ij}^*(x, y, t) \defined \tilde{\Omega}(f_{ij}(x,y,t)) + f_{ij}(x,y,t).
+  f_{ij}^*(x, y, t) \defined \tilde{\Omega}(\vec{f}(x,y,t)) + f_{ij}(x,y,t) \quad\forall i,j\in \{-1, 0, 1\}.
 \end{equation}
-The $f_{ij}$ are accordingly labeled pre-collision distributions.
+As the collision operator will be nonlinear in most cases, we can not decouple the equations and we still need all \glspl{pdf} as arguments.
 
 Now, we can finally introduce the most known keywords associated to LBM:\@ stream and collide.
 
