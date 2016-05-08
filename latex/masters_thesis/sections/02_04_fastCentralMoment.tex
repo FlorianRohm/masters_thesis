@@ -23,7 +23,7 @@ We can further expand the $c_{\alpha\beta}$ and $c_{i|\beta}$ terms to get
 \begin{equation}
   \begin{aligned}
     \label{eq: fast forward c alpha beta expanded}
-    c_{\alpha\beta} & = \sum_{i} {\left(ic-u_1 c\right)}^\alpha c_{i|\beta} \\
+    c_{\alpha\beta} & = \sum_{i} {\left(ic-u_1\right)}^\alpha c_{i|\beta} \\
     & = {\left(-c-u_1\right)}^\alpha c_{-1|\beta} + {\left(-u_1\right)}^\alpha c_{0|\beta} + {\left(c-u_1\right)}^\alpha c_{1|\beta}
   \end{aligned}
 \end{equation}
@@ -32,10 +32,10 @@ and
   \begin{aligned}
     \label{eq: fast forward c i pipe beta expanded}
     c_{i|\beta} & = \sum_{j} {\left(jc-u_2\right)}^\beta f_{ij} \\
-    & = {\left(-c-u_2\right)}^\beta f_{i-1} + {\left(-u_2\right)}^\beta f_{i0} + {\left(c-u_2\right)}^\beta f_{i1}.
+    & = {\left(-c-u_2\right)}^\beta f_{i(-1)} + {\left(-u_2\right)}^\beta f_{i0} + {\left(c-u_2\right)}^\beta f_{i1}.
   \end{aligned}
 \end{equation}
-Thus we can formulate~\eqref{eq: fast forward c alpha beta expanded} as a vector-matrix product
+Thus we can formulate~\eqref{eq: fast forward c alpha beta expanded} as a matrix-vector product
 \begin{equation}
   \label{eq: fast forward c alpha beta matrix}
   \begin{pmatrix}
@@ -70,14 +70,14 @@ In complete analogy,~\eqref{eq: fast forward c i pipe beta expanded} is written 
     {\left(-c- u_2\right)}^2 & u_2^2 &  {\left(c- u_2\right)}^2
   \end{pmatrix}
   \begin{pmatrix}
-    f_{i-1} \\
+    f_{i(-1)} \\
     f_{i0} \\
     f_{i1}
   \end{pmatrix}.
 \end{equation}
 
 Of course, we also need to get the backward direction.
-Thanks to the preliminary work of writing the transformation as two vector-matrix transformations, this is as easy as inverting those matrices.
+Thanks to the preliminary work of writing the transformation as two matrix-vector transformations, this is as easy as inverting those matrices.
 In our case,~\eqref{eq: fast forward c alpha beta matrix} becomes\footnote{c.f.\ mathematica/backward\_transformation.nb}
 \begin{equation}
   \begin{pmatrix}
@@ -107,7 +107,7 @@ In our case,~\eqref{eq: fast forward c alpha beta matrix} becomes\footnote{c.f.\
 and~\eqref{eq:fast forward c i pipe beta matrix} analogously
 \begin{equation}
   \begin{pmatrix}
-    f_{i-1} \\
+    f_{i(-1)} \\
     f_{i0} \\
     f_{i1}
   \end{pmatrix}

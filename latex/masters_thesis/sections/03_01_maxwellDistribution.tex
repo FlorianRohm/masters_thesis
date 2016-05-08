@@ -4,10 +4,10 @@ To prepare for the following calculation, we integrate\footnote{cf.\ mathematica
 \begin{equation}
   \label{eq:integrate exponential sage}
   \begin{aligned}
-    \int_{-\infty}^{\infty} \exp \left(-C \xi^2 + (2Cu + \Xi)\cdot\xi \right) d\xi
-    & = \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu + \Xi)}^2}{4C}\right)
+    \int_{-\infty}^{\infty} \exp \left(-C \xi_i^2 + (2Cu_i + \Xi_i)\cdot\xi_i \right) d\xi_i
+    & = \sqrt{\frac{\pi}{C}}\exp \left( \frac{{(2Cu_i + \Xi_i)}^2}{4C}\right)
     \\
-    & = \sqrt{\frac{\pi}{C}}\exp \left(Cu^2 + \Xi u + \frac{1}{4} \frac{\Xi^2}{C}\right)
+    & = \sqrt{\frac{\pi}{C}}\exp \left(Cu_i^2 + \Xi_i u_i + \frac{1}{4} \frac{\Xi_i^2}{C}\right),\quad i=1,2
     .
   \end{aligned}
 \end{equation}
@@ -20,7 +20,7 @@ like
 \begin{equation}
   \label{eq: laplace of maxwell}
   \begin{aligned}
-    F^{eq}(\Xi) & = \mathcal{L}[f^{\text{maxwell}}](\Xi)
+    F^{eq}(\vec{\Xi}) & = \mathcal{L}[f^{\text{maxwell}}](\vec{\Xi})
     \\& = \rho
       \exp \left( \Xi_1 u_1 + \Xi_2 u_2 + \frac{1}{4C}\left(\Xi_1^2 + \Xi_2^2 \right)\right).
   \end{aligned}

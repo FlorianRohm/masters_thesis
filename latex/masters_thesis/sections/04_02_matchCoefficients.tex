@@ -22,23 +22,31 @@ Thus,
 One important thing to note is, that zeroth order terms may not depend on the expansion parameter $\epsilon$, which is arbitrary.
 Additionally, we demanded that the expanded moments do not depend on $\epsilon$.
 The only class of functions, which satisfies these conditions are constants in space.
+Hence, we know
+\begin{equation}
+  \label{eq: derivative of zeroth order}
+  \begin{aligned}
+    \partial_x m_{\alpha\beta}^{(0)} &= 0 \\
+    \partial_y m_{\alpha\beta}^{(0)} &= 0
+  \end{aligned}
+\end{equation}
 
 \subsubsection{First order in \texorpdfstring{$\epsilon$}{epsilon}}
 \label{subs: First order in epsilon}
 
-For the first order terms, one has to choose $p=1$ on the left side and one of $m$, $n$ and $p'$ equal to one.
-
+For the first order terms, one has to choose $p=1$ and $\iota=0$ on the left side and one of $m$, $n$ and $p'$ equal to one.
+Incorporating those three equations, we get
 \begin{equation}
   \label{eq: first order in epsilon}
   \begin{aligned}
   m_{\alpha\beta}^{(1)}
   & = m_{\alpha\beta}^{*(1)}
   - \partial_x m_{(\alpha+1)\beta}^{*(0)} - \partial_y m_{\alpha(\beta+1)}^{*(0)} \\
-  & = m_{\alpha\beta}^{*(1)}
+  & = m_{\alpha\beta}^{*(1)},
   \end{aligned}
 \end{equation}
-The second line is due to the fact, that the zeroth order terms have to be constant in space, c.f. Section~\ref{subs: Zeroth order in epsilon}, and thus all spatial derivatives vanish.
-We see again the equivalence of pre- and post-collision moments and thus with the same reasoning
+using~\eqref{eq: derivative of zeroth order}.
+We see again the equivalence of pre- and post-collision moments in analogy to~\eqref{eq: zeroth order in epsilon} and thus with the same reasoning that led to equation~\eqref{eq: zeroth order invariant}
 \begin{equation}
   \label{eq: first order invariant}
   m_{\alpha\beta}^{(1)} = m_{\alpha\beta}^{*(1)} = m_{\alpha\beta}^{eq(1)}.
@@ -69,9 +77,10 @@ Resulting in
     &\quad - \partial_x m_{(\alpha+1)\beta}^{*(1)} + \partial_{xx} m_{(\alpha+2)\beta}^{*(0)}/2 \\
     &\quad - \partial_y m_{\alpha(\beta+1)}^{*(1)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(0)}/2 \\
     &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(0)}\\
-    & =  m_{\alpha\beta}^{*(2)} - \partial_x m_{(\alpha+1)\beta}^{*(1)} - \partial_y m_{\alpha(\beta+1)}^{*(1)}.
+    & =  m_{\alpha\beta}^{*(2)} - \partial_x m_{(\alpha+1)\beta}^{*(1)} - \partial_y m_{\alpha(\beta+1)}^{*(1)},
   \end{aligned}
 \end{equation}
+again using equation~\eqref{eq: derivative of zeroth order}.
 After~\eqref{eq: first order in epsilon} and~\eqref{eq: second order in epsilon}, this is the first equation to not result in collision invariants, but features different orders of moments and all partial derivatives.
 This will later mark the first equation to examine for the Navier-Stokes derivation.
 

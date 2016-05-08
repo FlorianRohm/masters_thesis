@@ -400,7 +400,7 @@ We can further analyze the $c_{\alpha\beta}$ and $c_{i|\beta}$ terms:
   \begin{aligned}
     \label{eq:fast forward c i pipe beta expanded}
     c_{i|\beta} & = \sum_{j} {\left(j-\frac{u_2}{c}\right)}^\beta f_{ij} \\
-    & = {\left(-1-\frac{u_2}{c}\right)}^\beta f_{i-1} + {\left(-\frac{u_2}{c}\right)}^\beta f_{i0} + {\left(1-\frac{u_2}{c}\right)}^\beta f_{i1}
+    & = {\left(-1-\frac{u_2}{c}\right)}^\beta f_{i(-1)} + {\left(-\frac{u_2}{c}\right)}^\beta f_{i0} + {\left(1-\frac{u_2}{c}\right)}^\beta f_{i1}
   \end{aligned}
 \end{equation}
 With~\eqref{eq:fast forward c alpha beta expanded}, we can explicitly write
@@ -438,7 +438,7 @@ and with~\eqref{eq:fast forward c i pipe beta expanded}
     {\left(-1-\frac{u_2}{c}\right)}^2 & {\left(\frac{u_2}{c}\right)}^2 &  {\left(1-\frac{u_2}{c}\right)}^2
   \end{pmatrix}
   \begin{pmatrix}
-    f_{i-1} \\
+    f_{i(-1)} \\
     f_{i0} \\
     f_{i1}
   \end{pmatrix}
@@ -475,7 +475,7 @@ and~\eqref{eq:fast forward c i pipe beta expanded} are now solved where~\eqref{e
 and~\eqref{eq:fast forward c i pipe beta matrix} analogously
 \begin{equation}
   \begin{pmatrix}
-    f_{i-1} \\
+    f_{i(-1)} \\
     f_{i0} \\
     f_{i1}
   \end{pmatrix}

@@ -44,7 +44,7 @@ Thus, equation~\eqref{eq: define post collision} reads now
 If we choose $\omega\in[0,1]$, this is exactly a linear interpolation, also called relaxation towards equilibrium.
 At this moment, though, we have no equation to fix $\omega$, but we will first deal with the problem of discretizing $f^{maxwell}$ into $f_{ij}^{eq}$.
 
-The most popular method of discretizing~\eqref{eq: maxwell distribution raw} is due to a Taylor series expansion, yielding\footnote{The microscopic velocity is again delegated to the index, $\rho$ and $\vec{u}$ are now parameters. The factor $\frac{m}{k_B T}$ is constant and equal to the speed of sound $c_s$.}
+The most popular method of discretizing~\eqref{eq: maxwell distribution raw} is due to a Taylor series expansion, yielding\footnote{The microscopic velocity is again delegated to the index $ij$, whereas $\rho$ and $\vec{u}$ are now parameters. The factor $\frac{m}{k_B T}$ is constant and equal to the speed of sound $c_s$, more details in Section~\ref{sub: Equilibrium distribution for cumulants}.}
 \begin{equation}
   \label{eq: equilibrium particle distributions}
   f_{ij}^{eq}(\rho,\vec{u}) = W_{ij}\rho
@@ -116,19 +116,20 @@ Unfortunately, the SRT scheme develops serious instabilities for Reynolds number
   \includegraphics[width=0.8\linewidth]{../figures/ldc_re500_rho2_0019_trim.png} % chktex 11
   \caption{Density fluctuations}
 \end{subfigure}
-\caption{Simulation of a lid driven cavity with SRT LBM at $Re=500$. Especially in the density field, we can see the checkerboard pattern of upcoming instabilities.}
+\caption[Lid driven cavity]{Simulation of a lid driven cavity\protect\footnotemark\ with SRT LBM at $Re=500$. Especially in the density field, we can see the checkerboard pattern of upcoming instabilities.}
 \label{fig: spurious modes SRT}
 \end{figure}
-
 Intuitively, we can describe \gls{srt} as a scheme, where all non-conserved quantities which can be computed from the \glspl{pdf}, are relaxed at the same rate.
 Hence we impose, that all events that happen in the fluid occur at the same rate, which is certainly not true.
+\footnotetext{A lid driven cavity is a box filled with fluid, where all walls are fixed except the top one which moves with a prescribed velocity to the right.}
 
 This was noticed soon after its publication and apparently the remedy was found by d'Humiéres,~\cite{d1994generalized}, who proposed to change from the space of particle distributions to the space of moments and relax linear combinations of those independently.
 This was the birth of the \gls{mrt} schemes.
 Unfortunately, even today there is no consent about how to choose all the relaxation parameters in an optimal way.
-Although, when chosen right, the accuracy and stability can improve greatly in contrast to SRT, allowing simulations of $Re$ in the low thousands, c.f.~\cite{d2002multiple}. Still, this does not nearly cover the regions we see in Table~\ref{table: reynolds numbers}.
+When chosen right, the accuracy and stability can improve greatly in contrast to SRT, allowing simulations of $Re$ in the low thousands, c.f.~\cite{d2002multiple}.
+Still, this does not nearly cover the regions we see in Table~\ref{table: reynolds numbers}.
 
 The source of these problems can be interpreted as the violation of \gls{galInv}, as deduced in~\cite{geier2006cascaded}. Consequently, the authors choose the space of central moments for the relaxation, as they are centered around the first moment, i.e.\ the velocity times density.
-This method is capable of simulating \gls{re} way above the ones, \gls{mrt} was capable of and is used in industrial grade \gls{lbm} solvers, like \href{http://www.xflowcfd.com/technology/view/cfd}{xFlow}.
+This method is capable of simulating \gls{re} way above the ones, \gls{mrt} is capable of and is used in industrial grade \gls{lbm} solvers, like \href{http://www.xflowcfd.com/technology/view/cfd}{xFlow}.
 
 Nevertheless, we will introduce yet another set of characteristic variables in the next section and explain the physical reasoning behind choosing them.

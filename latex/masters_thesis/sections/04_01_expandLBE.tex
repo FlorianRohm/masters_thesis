@@ -8,14 +8,14 @@ First of all,~\eqref{eq: lattice boltzmann equation} is reformulated to
 \end{equation}
 by shifting $x$ and $y$. Now, a Taylor expansion of~\eqref{eq: lattice boltzmann equation shifted} in both time and space gives
 \begin{equation*}
-  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(t, x, y) =
-  \sum_{m,n = 0}^\infty \frac{{(-i\Delta x)}^m{(-j\Delta y)}^n} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} f^*_{ij}(t, x, y)
+  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(x, y, t) =
+  \sum_{m,n = 0}^\infty \frac{{(-i\Delta x)}^m{(-j\Delta y)}^n} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} f^*_{ij}(x, y, t)
 \end{equation*}
 which is equivalent to
 \begin{equation}
   \label{eq: Taylor LB1}
-  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(t, x, y) =
-    \sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} {(ci)}^m {(cj)}^n f^*_{ij}(t, x, y),
+  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(x, y, t) =
+    \sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} {(ci)}^m {(cj)}^n f^*_{ij}(x, y, t),
 \end{equation}
 using~\eqref{eq: relation between stepsizes}.
 
@@ -34,13 +34,13 @@ Therefore, we rewrite the system of equations for the $f_{ij}$ to a system of eq
     &=
     \sum_{ij}\sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} {(ci)}^m {(cj)}^n {(ci)}^\alpha {(cj)}^\beta f^*_{ij}
     \\ \nonumber &\equivalent &
-    \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{ij}i^\alpha j^\beta f_{ij}
+    \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{ij}{(ci)}^\alpha {(cj)}^\beta f_{ij}
     &=
     \sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n}\sum_{ij}{(ci)}^{(\alpha+m)} {(cj)}^{(\beta+n)} f^*_{ij}
     \\ \nonumber &\equivalent &
      \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta} &=
     \sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} m^*_{(\alpha + m)(\beta + n)}
-     \\  \label{eq: Taylor of moments} &\equivalent &
+     \\   &\equivalent &
      \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \frac{m_{\alpha\beta}}{c^{\alpha + \beta}} &=
     \sum_{m,n = 0}^\infty \frac{{(- c\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} \frac{m^*_{(\alpha + m)(\beta + n)}}{c^{\alpha + m + \beta + n}}.
 \end{align}
@@ -51,19 +51,30 @@ To make our lives a bit easier, we will rescale the moments according to their o
 \end{equation}
 to finally get
 \begin{equation}
+  \label{eq: Taylor of moments}
   \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta} =
  \sum_{m,n = 0}^\infty \frac{{(- c\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} m^*_{(\alpha + m)(\beta + n)}.
 \end{equation}
 This scaling is easily reverted by multiplying with same term again, but most of the time, we will calculate with $c=1$, so the effect of the scaling vanishes completely.
 Additionally, this will take out the $c$-term in the aliasing of the moments,~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}, making it a $1:1$ relationship.
+Finally, as the speed of sound squared is calculated as $\frac{dp}{d\rho}$, c.f.~\cite[page 175]{wolf2000lattice}, $c_s$ needs also to be rescaled to $\frac{1}{3}$, as the pressure is a second order (central) moment and gets rescaled with $c^{-2}$, according to~\eqref{eq: rescaling the moments}.
+
+\subsubsection{Nondimensionalization}
+\label{subs:Nondimensionalization}
 
 For the scale analysis, we introduce a dimensionless scaling parameter $\epsilon$.
-Adapting the widely used diffusive scaling, we nondimensionalize the equations with characteristic length and timescales, $L$ and $\iota$
+Using the characteristic length and timescales, $L$ and $\iota$, we adapt the widely used diffusive scaling
 \begin{equation}
   \label{eq: nondimensionalisation}
   \begin{aligned}
     \Delta x & = L\epsilon \\
-    \Delta t & = \iota\epsilon^2 \\
+    \Delta t & = \iota\epsilon^2
+  \end{aligned}
+\end{equation}
+and nondimensionalize equation~\eqref{eq: Taylor of moments} with
+\begin{equation}
+  \label{eq: nondimensionalisation 2}
+  \begin{aligned}
     c & = \frac{L}{\iota\epsilon} \\
     \{x, y\} & \rightarrow \{\frac{x}{L}, \frac{y}{L}\} \\
     t & \rightarrow \frac{t}{\iota}.
@@ -77,7 +88,7 @@ Furthermore, the moments are asymptotically expanded in space according to the s
     m^*_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{*(p)}.
 \end{align}
 Those are still dependent of space and time, but as they are separated on their length scales, their spatial part is not allowed to depend on $\epsilon$ neither implicitly nor explicitly.
-Inserting~\eqref{eq: nondimensionalisation},~\eqref{eq: expansion of m} and~\eqref{eq: expansion of m star} into~\eqref{eq: Taylor of moments} yields
+Inserting~\eqref{eq: expansion of m},~\eqref{eq: expansion of m star} and~\eqref{eq: nondimensionalisation} into~\eqref{eq: Taylor of moments} yields
 
 \begin{align}
   \phantom{\equivalent\qquad}
@@ -112,3 +123,53 @@ Inserting~\eqref{eq: nondimensionalisation},~\eqref{eq: expansion of m} and~\eqr
   \end{aligned}
 \end{align}
 where in~\eqref{eq: final nondimensionalised expansion series}, the summation indices are changed to be unique for better recognition in the next chapter.
+
+\subsubsection{Changing the coordinate system}
+\label{subs: Changing the coordinate system}
+Our choice of coordinates to this point was arbitrary.
+Something interesting happens though, when we just mirror each axis.
+The Problem remains the same, just all involved velocities will change their sign, i.e.\ $c$ gets replaced with $-c$.
+Now, our moments $\tilde{m}$ in the new coordinate system are
+\begin{align}
+  \tilde{m}_{\alpha\beta} &= {(-c)}^{\alpha + \beta}\sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
+  ={(-1)}^{\alpha + \beta}{c}^{\alpha + \beta}\sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
+  ={(-1)}^{\alpha + \beta}  m_{\alpha\beta}
+\end{align}
+But still represent the same value.
+To get the same expansion in the nondimensionalized, c.f.~\eqref{eq: nondimensionalisation}, case, our expansion parameter $\epsilon$ also needs to be negated.
+Thus
+\begin{align}
+    \tilde{m}_{\alpha\beta}
+    & = \sum_{p=0}^{\infty} {(-\epsilon)}^p \tilde{m}_{\alpha\beta}^{(p)}
+     = {(-1)}^{\alpha + \beta} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}
+    = {(-1)}^{\alpha + \beta}  m_{\alpha\beta}
+\end{align}
+and as we corrected the error we made with the introduction of $-\epsilon$
+\begin{align}
+  \label{eq: negativ expansion}
+  \sum_{p=0}^{\infty} {(-\epsilon)}^p m_{\alpha\beta}^{(p)}
+  = {(-1)}^{\alpha + \beta} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}.
+\end{align}
+The implications from equation~\eqref{eq: negativ expansion} can be separated between even and odd order moments.
+Even order moments, like the density $m_{00}$, have to fulfill
+\begin{align}
+  \label{eq: negativ expansion even}
+  \sum_{p=0}^{\infty} {(-\epsilon)}^p m_{\alpha\beta}^{(p)}
+  = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)} \quad \forall \alpha+\beta=2k, k\in\N
+\end{align}
+and thus all odd order parts of the expansion have to be zero, e.g.
+\begin{equation}
+  \begin{aligned}
+    m_{\alpha\beta}^{(p)} = 0 \quad
+    \forall\alpha+\beta & = 2k, k\in\N, \\
+    \forall p & = 2l+1, l\in\N.
+  \end{aligned}
+\end{equation}
+With exactly the same reasoning, the odd order moments like $m_{10}$ may only have even orders in their expansion, e.g.
+\begin{equation}
+  \begin{aligned}
+    m_{\alpha\beta}^{(p)} = 0 \quad
+    \forall\alpha+\beta & = 2k+1, k\in\N, \\
+    \forall p & = 2l, l\in\N.
+  \end{aligned}
+\end{equation}

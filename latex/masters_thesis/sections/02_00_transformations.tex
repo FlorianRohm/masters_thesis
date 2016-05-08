@@ -22,18 +22,18 @@ With the help of this transformation, we get the moment generating function $F$ 
 \begin{equation}
   \label{eq:Definition of F}
   \begin{aligned}
-    F(\Xi_1, \Xi_2) & \defined \mathcal{L}[f](\vec{\Xi}) = \int_{-\infty}^\infty f(\vec{\xi}) e^{\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi} \\
+    F(\Xi_1, \Xi_2) & \defined \mathcal{L}[f](\vec{\Xi}) = \int_{\R^2} f(\vec{\xi}) e^{\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi} \\
      & = \sum_{i,j}f_{ij} e^{\Xi_1 ic} e^{\Xi_2 jc}.
   \end{aligned}
 \end{equation}
 The moments are now equivalently defined as the coefficients in the Taylor expansion of $F$.
-We can check this equivalence by
+We can check this equivalence using the original definition~\eqref{eq: moment definition} by
 \begin{equation}
   \label{eq: taylor of F}
   \begin{aligned}
     F(\Xi_1, \Xi_2) & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}
-      {{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta}  \sum_{i,j} f_{ij} e^{\Xi_1 (ic)} e^{\Xi_2 (jc)} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
+      {{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta}  \sum_{i,j} f_{ij} e^{\Xi_1 ic} e^{\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!}
     \sum_{i,j}  {(ic)}^\alpha {(jc)}^\beta f_{ij} e^{\Xi_1 ic} e^{\Xi_2 jc} \Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!}
