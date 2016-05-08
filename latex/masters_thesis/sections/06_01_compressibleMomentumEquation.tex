@@ -4,21 +4,17 @@ The convective form of the momentum equations reads
 \begin{equation}
   \label{eq:compressible NS}
   \begin{aligned}
-    \partial_t \mathbf{m} + \nabla \cdot (\mathbf{m}\mathbf{v}^T)
-    &= - \nabla p + \nabla \cdot (\mu\mathbb{S}) + \rho \mathbf{f} \\
-    \Leftrightarrow\partial_t \mathbf{m} + (\nabla \cdot \mathbf{m})\mathbf{v} + (\nabla \cdot \mathbf{v})\mathbf{m}
-    &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \mathbb{S}^T \nabla\mu + \rho \mathbf{f}
+    \partial_t \vec{m} + \nabla \cdot (\vec{m}\vec{v}^T)
+    &= - \nabla p + \nabla \cdot (\mu\mathbb{S}) + \rho \vec{f} \\
+    \Leftrightarrow\partial_t \vec{m} + (\nabla \cdot \vec{m})\vec{v} + (\nabla \cdot \vec{v})\vec{m}
+    &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \mathbb{S}^T \nabla\mu + \rho \vec{f}
   \end{aligned}
 \end{equation}
 where
 \begin{equation}
-  \mathbf{m} = \rho \mathbf{u}
+  \mathbb{S} \defined \left({(D\vec{v})}^T + D\vec{v} - \frac{2}{3}\mathbb{I}\nabla\cdot\vec{v} \right)
 \end{equation}
-is the momentum density,
-\begin{equation}
-  \mathbb{S} \defined \left({(D\mathbf{v})}^T + D\mathbf{v} - \frac{2}{3}\mathbb{I}\nabla\cdot\mathbf{v} \right)
-\end{equation}
-with the abused notation of the divergence of a matrix
+is the Cauchy-stress and
 \begin{equation}
   \nabla \cdot M =
   \begin{pmatrix}
@@ -26,4 +22,59 @@ with the abused notation of the divergence of a matrix
     \partial_x M_{12} + \partial_y M_{22}
   \end{pmatrix}
 \end{equation}
-and the Jacobian Matrix of $\mathbf{v}$ denoted as $D\mathbf{v}$.
+with an abused notation of the divergence of a matrix and the Jacobian Matrix of $\vec{v}$ denoted as $D\vec{v}$.
+For our method, we need to insert the density, velocity, pressure and momentum density in terms of our moments.
+Only the $x$-direction is stated, the other one follows from symmetry:
+\begin{equation}
+  \begin{aligned}
+    & \partial_t m_{10}
+    + \frac{m_{10}}{m_{00}} (\partial_x m_{10} + \partial_y m_{01})
+    + m_{10} (\partial_x \frac{m_{10}}{m_{00}} + \partial_y \frac{m_{01}}{m_{00}})  \\
+    & =
+     - \frac{1}{3} \partial_x \left(m_{20} - \frac{ m_{10}^2 }{ m_{00} } \right)
+     + \mu \left(\frac{4}{3}\partial_{xx}\frac{m_{10}}{m_{00}}
+            + \frac{1}{3}\partial_x\partial_y \frac{m_{01}}{m_{00}}
+            + \partial_{yy} \frac{m_{10}}{m_{00}} \right) \\
+    &\quad + \frac{4}{3}\partial_x \mu \partial_x \frac{m_{10}}{m_{00}}
+    - \frac{2}{3}\partial_x \mu \partial_y \frac{m_{01}}{m_{00}}
+    + \partial_y \mu \partial_y \frac{m_{10}}{m_{00}}
+    + \partial_y \mu \partial_x \frac{m_{01}}{m_{00}}
+    + m_{00}f_x
+  \end{aligned}
+\end{equation}
+It should be noted, that the term $\nabla \mu$ will only be relevant, if the viscosity is changing.
+In ideal gases, $\mu$ is a variable of the temperature only.
+As our method only treats isothermal phenomena in this setting, we are save to assume $\mu$ to be constant.
+For a general treatment, of compressible flow, this has to be accounted for, as temperature is coupled to pressure and density, thus $\mu$ won't be constant.
+The resulting Navier Stokes equation reads now:
+\begin{equation}
+  \label{eq:compressible NS isotherm}
+  \partial_t \mathbf{m} + (\nabla \cdot \mathbf{m})\mathbf{v} + (\nabla \cdot \mathbf{v})\mathbf{m}
+    = - \nabla p + \mu \nabla \cdot \mathbb{S} + \rho \mathbf{f}
+\end{equation}
+Just in $x$-direction:
+\begin{equation}
+  \begin{aligned}
+    & \partial_t \text{m}_x
+    + v_x (\partial_x \text{m}_x + \partial_y \text{m}_y)
+    + \text{m}_x (\partial_x v_x + \partial_y v_y)  \\
+    & =
+     - \partial_x p
+     + \mu \left(\frac{4}{3}\partial_{xx}v_x
+            + \frac{1}{3}\partial_x\partial_x v_y
+            + \partial_{yy} v_x \right)  + \rho f_x
+  \end{aligned}
+\end{equation}
+and finally with moments:
+\begin{equation}
+  \begin{aligned}
+    & \partial_t m_{10}
+    + \frac{m_{10}}{m_{00}} (\partial_x m_{10} + \partial_y m_{01})
+    + m_{10} (\partial_x \frac{m_{10}}{m_{00}} + \partial_y \frac{m_{01}}{m_{00}})  \\
+    & =
+    - \frac{1}{3} \partial_x \left(m_{20} - \frac{ m_{10}^2 }{ m_{00} } \right)
+     + \mu \left(\frac{4}{3}\partial_{xx}\frac{m_{10}}{m_{00}}
+            + \frac{1}{3}\partial_x\partial_y \frac{m_{01}}{m_{00}}
+            + \partial_{yy} \frac{m_{10}}{m_{00}} \right) + m_{00}f_x
+  \end{aligned}
+\end{equation}
