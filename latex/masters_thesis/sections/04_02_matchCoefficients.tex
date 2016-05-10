@@ -8,7 +8,7 @@ Therefore, we will take a closer look on the equations arising, by extracting ea
 To achieve $\epsilon^0$, we have to choose $\tau=p=p'=m=n=0$, yielding
 \begin{equation}
   \label{eq: zeroth order in epsilon}
-  m_{\alpha\beta}^{(0)} = m_{\alpha\beta}^{*(0)}.
+  m_{\alpha\beta}^{(0)} = m_{\alpha\beta}^{*^{(0)}}.
 \end{equation}
 The important part is, what does this actually mean?
 When voiced, equation~\eqref{eq: zeroth order in epsilon} states, that all pre-collision zeroth order moments are equal to their post-collision counterparts.
@@ -16,7 +16,7 @@ This means, they have to be in equilibrium for the collision to have no effect o
 Thus,
 \begin{equation}
   \label{eq: zeroth order invariant}
-  m_{\alpha\beta}^{(0)} = m_{\alpha\beta}^{*(0)} = m_{\alpha\beta}^{eq(0)}.
+  m_{\alpha\beta}^{(0)} = m_{\alpha\beta}^{*^{(0)}} = m_{\alpha\beta}^{eq^{(0)}}.
 \end{equation}
 
 One important thing to note is, that zeroth order terms may not depend on the expansion parameter $\epsilon$, which is arbitrary.
@@ -40,16 +40,16 @@ Incorporating those three equations, we get
   \label{eq: first order in epsilon}
   \begin{aligned}
   m_{\alpha\beta}^{(1)}
-  & = m_{\alpha\beta}^{*(1)}
-  - \partial_x m_{(\alpha+1)\beta}^{*(0)} - \partial_y m_{\alpha(\beta+1)}^{*(0)} \\
-  & = m_{\alpha\beta}^{*(1)},
+  & = m_{\alpha\beta}^{*^{(1)}}
+  - \partial_x m_{(\alpha+1)\beta}^{*^{(0)}} - \partial_y m_{\alpha(\beta+1)}^{*^{(0)}} \\
+  & = m_{\alpha\beta}^{*^{(1)}},
   \end{aligned}
 \end{equation}
 using~\eqref{eq: derivative of zeroth order}.
 We see again the equivalence of pre- and post-collision moments in analogy to~\eqref{eq: zeroth order in epsilon} and thus with the same reasoning that led to equation~\eqref{eq: zeroth order invariant}
 \begin{equation}
   \label{eq: first order invariant}
-  m_{\alpha\beta}^{(1)} = m_{\alpha\beta}^{*(1)} = m_{\alpha\beta}^{eq(1)}.
+  m_{\alpha\beta}^{(1)} = m_{\alpha\beta}^{*^{(1)}} = m_{\alpha\beta}^{eq^{(1)}}.
 \end{equation}
 In contrast to the zeroth orders, the first orders don't need to be constant in space and we can not set their derivatives to zero.
 
@@ -73,11 +73,11 @@ Resulting in
   \label{eq: second order in epsilon}
   \begin{aligned}
     \partial_t m_{\alpha\beta}^{(0)} + m_{\alpha\beta}^{(2)}
-    & =  m_{\alpha\beta}^{*(2)} \\
-    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(1)} + \partial_{xx} m_{(\alpha+2)\beta}^{*(0)}/2 \\
-    &\quad - \partial_y m_{\alpha(\beta+1)}^{*(1)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(0)}/2 \\
-    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(0)}\\
-    & =  m_{\alpha\beta}^{*(2)} - \partial_x m_{(\alpha+1)\beta}^{*(1)} - \partial_y m_{\alpha(\beta+1)}^{*(1)},
+    & =  m_{\alpha\beta}^{*^{(2)}} \\
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*^{(1)}} + \partial_{xx} m_{(\alpha+2)\beta}^{*^{(0)}}/2 \\
+    &\quad - \partial_y m_{\alpha(\beta+1)}^{*^{(1)}} + \partial_{yy} m_{\alpha(\beta+2)}^{*^{(0)}}/2 \\
+    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*^{(0)}}\\
+    & =  m_{\alpha\beta}^{*^{(2)}} - \partial_x m_{(\alpha+1)\beta}^{*^{(1)}} - \partial_y m_{\alpha(\beta+1)}^{*^{(1)}},
   \end{aligned}
 \end{equation}
 again using equation~\eqref{eq: derivative of zeroth order}.
@@ -103,15 +103,15 @@ Fortunately, some of them are zeroth order terms with derivatives and hence they
 \begin{equation}
   \label{eq: third order in epsilon}
   \begin{aligned}
-    \frac{\partial}{\partial t} m_{\alpha\beta}^{(1)} + m_{\alpha\beta}^{(3)}
+    \partial_t m_{\alpha\beta}^{(1)} + m_{\alpha\beta}^{(3)}
     & =  m_{\alpha\beta}^{*(3)} \\
-    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(2)} + \partial_{xx} m_{(\alpha+2)\beta}^{*(1)}/2 - \partial_{xxx} m_{(\alpha+3)\beta}^{*(0)}/6 \\
-    &\quad - \partial_y m_{\alpha(\beta+1)}^{*(2)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(1)}/2 - \partial_{yyy} m_{\alpha(\beta+3)}^{*(0)}/6 \\
-    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(1)} \\
-    &\quad - \partial_{xxy} m_{(\alpha+2)(\beta+1)}^{*(0)}/2 - \partial_{xyy} m_{(\alpha+1)(\beta+2)}^{*(0)}/2 \\
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*^{(2)}} + \partial_{xx} m_{(\alpha+2)\beta}^{*^{(1)}}/2 - \partial_{xxx} m_{(\alpha+3)\beta}^{*^{(0)}}/6 \\
+    &\quad - \partial_y m_{\alpha(\beta+1)}^{*^{(2)}} + \partial_{yy} m_{\alpha(\beta+2)}^{*^{(1)}}/2 - \partial_{yyy} m_{\alpha(\beta+3)}^{*^{(0)}}/6 \\
+    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*^{(1)}} \\
+    &\quad - \partial_{xxy} m_{(\alpha+2)(\beta+1)}^{*^{(0)}}/2 - \partial_{xyy} m_{(\alpha+1)(\beta+2)}^{*^{(0)}}/2 \\
     & =  m_{\alpha\beta}^{*(3)} \\
-    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(2)} - \partial_y m_{\alpha(\beta+1)}^{*(2)}  \\
-    &\quad  + \partial_{xx} m_{(\alpha+2)\beta}^{*(1)}/2 + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(1)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(1)}/2.
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*^{(2)}} - \partial_y m_{\alpha(\beta+1)}^{*^{(2)}}  \\
+    &\quad  + \partial_{xx} m_{(\alpha+2)\beta}^{*^{(1)}}/2 + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*^{(1)}} + \partial_{yy} m_{\alpha(\beta+2)}^{*^{(1)}}/2.
   \end{aligned}
 \end{equation}
 Those equations will mark the starting point for the upcoming analysis.
