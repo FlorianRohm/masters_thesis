@@ -1,132 +1,210 @@
 % !TEX root = ../thesis.tex
+Starting where we left of in Section~\eqref{sub: Expanding the normalized cumulants}, this appendix is devoted to expand all other cumulants.
+Not all of them will be used in the derivation of the Navier-Stokes equations, but are stated nevertheless for further studies.
 
 \subsection{\texorpdfstring{$K_{20}$}{K 20} and \texorpdfstring{$K_{02}$}{K 02}}
 \label{sub: K 20}
-Going further to $K_{20}$, we get with the same reasoning
+Going on to $K_{20}$, we start at equation~\eqref{eq: K 20 from moments} and get in the same fashion as for equations~\eqref{eq: first expansion} and following, using the expanded geometric series~\eqref{eq: expand g}
 \begin{equation}
   \begin{aligned}
-    K_{20} & = m_{20} - \frac{m_{10}^2}{m_{00}}\\
+    K_{20}  = &\ m_{20} - \frac{m_{10}^2}{m_{00}}\\
     \Leftrightarrow
     \sum_{i=0}^\infty \epsilon^i K_{20}^{(i)}
-    & = \sum_{i=0}^\infty \epsilon^i m_{20}^{(i)} -
-    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{10}^{(j)}}
+    =& \sum_{i=0}^\infty \epsilon^i m_{20}^{(i)}
+    - \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{10}^{(j)}}
         {m_{00}^{(0)}}
-    \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
+    \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)
   \end{aligned}
 \end{equation}
-As before, the zeroth and first order terms of the cumulant and corresponding moment coincide.
+As before, the zeroth and first order terms of the cumulant and corresponding moment coincide, where the latter one is again $0$.
 For the second order terms, we get
 \begin{equation}
-  K_{20}^{(2)} = m_{20}^{(2)}
-  - \frac{ m_{10}^{{(1)}^2}}{m_{00}^{(0)}},
+  K_{20}^{(2)} = m_{20}^{(2)} - \frac{ m_{10}^{{(1)}^2}}{m_{00}^{(0)}},
 \end{equation}
-and consequently
+and consequently by symmetry
 \begin{equation}
-  K_{02}^{(2)} = m_{02}^{(2)}
-  - \frac{ m_{01}^{{(1)}^2}}{m_{00}^{(0)}}.
+  K_{02}^{(2)} = m_{02}^{(2)} - \frac{ m_{01}^{{(1)}^2}}{m_{00}^{(0)}}.
 \end{equation}
 
 \subsection{\texorpdfstring{$K_{21}$}{K 21} and \texorpdfstring{$K_{12}$}{K 12}}
 \label{sub: K 21}
-As before, we take the defining equation for the normalized cumulant, in this case~\eqref{eq: K 21 from moments}, and plug in all expansions with the geometric series expansion like in~\eqref{eq: first expansion}.
+As before, we take the defining equation for the normalized cumulant, in this case~\eqref{eq: K 21 from moments}, and plug in all expansions with the geometric series expansion like in~\eqref{eq: first expansion continue}.
 
 \begin{equation}
   \begin{aligned}
+    K_{21} = &\ m_{21} - \frac{m_{20}m_{01}}{m_{00}}
+         - 2\frac{m_{10}m_{11}}{m_{00}} + 2\frac{m_{10}^2 m_{01}}{m_{00}^2}
+    \\
+    \equivalent
     \sum_{i=0}^\infty \epsilon^i K_{21}^{(i)}
-    & = \sum_{i=0}^\infty \epsilon^i m_{21}^{(i)}
-    \\ &\quad
+     = &\ \sum_{i=0}^\infty \epsilon^i m_{21}^{(i)}
+    \\ &
     - \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{20}^{(i)} m_{01}^{(j)}}{m_{00}^{(0)}}
-      \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-    \\ &\quad
+      \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)
+    \\ &
      - 2\frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)} m_{11}^{(j)}}{m_{00}^{(0)}}
-      \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-     \\ &\quad
-     + 2\frac{\sum_{i,j,k=0}^\infty \epsilon^{i+j+k} m_{10}^{(i)} m_{10}^{(j)} m_{01}^{(k)}}{m_{00}^{(0)2}}
-      {\left(
-        \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-      \right)}^2\\
+      \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)
+     \\ &
+     +
+        2 \frac{\sum_{i,j,k=0}^\infty \epsilon^{i+j+k} m_{10}^{(i)} m_{10}^{(j)} m_{01}^{(k)}}{m_{00}^{{(0)}^2}}
+        {
+          \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)
+        }^2
    \end{aligned}
 \end{equation}
-Collecting the zeroth order terms, we find again
-
+Collecting the zeroth order terms, we find again the direct relation between cumulants and moments
 \begin{equation}
-  K_{21}^{(0)} = m_{21}^{(0)}.
+  K_{21}^{(0)} = m_{21}^{(0)} = 0.
 \end{equation}
-In contrary to the aforementioned, the first order expansions differ:
 
+In contrary to the aforementioned, the first order expansions differ:
 \begin{equation}
   \begin{aligned}
-    K_{21}^{(1)} & = m_{21}^{(1)}
+    K_{21}^{(1)} = &\ m_{21}^{(1)}
     - \frac{m_{20}^{(0)} m_{01}^{(1)}}{m_{00}^{(0)}}
-    \\ &
-    = m_{21}^{(1)} - \theta m_{01}^{(1)}
+    - \frac{m_{10}^{(1)} m_{11}^{(0)}}{m_{00}^{(0)}}
   \end{aligned}
 \end{equation}
+
+Going over to the second orders, we get
+\begin{equation}
+  \begin{aligned}
+    K_{21}^{(2)} = &\ m_{21}^{(2)} = 0,
+  \end{aligned}
+\end{equation}
+as every combination we can choose either gets an even moment with odd order or the other way.
 
 \subsection{\texorpdfstring{$K_{22}$}{K 22}}
 \label{sub: K 22}
 The procedure is now well known,~\eqref{eq: K 22 from moments} is expanded into the series.
 
-\begin{equation}
-  \begin{aligned}
+\begin{align*}
+  K_{22} = &\ m_{22}
+   - 2 \frac{m_{10}m_{12}}{m_{00}} - 2\frac{m_{21}m_{01}}{m_{00}}
+    - 2 \frac{m_{11}^2}{m_{00}} - \frac{m_{20}m_{02}}{m_{00}}
+    \\
+   &  + 2 \frac{m_{10}^2 m_{02}}{m_{00}^2} + 8 \frac{m_{10}m_{11}m_{01}}{m_{00}^2}
+    + 2 \frac{m_{20}m_{01}^2}{m_{00}^2}
+    \\
+   &  - 6 \frac{m_{10}^2 m_{01}^2}{m_{00}^3}
+  \\\equivalent
   \sum_{i=0}^\infty \epsilon^i K_{22}^{(i)}
-  & = \sum_{i=0}^\infty \epsilon^i m_{22}^{(i)}
-  \\& \quad
+  = &\ \sum_{i=0}^\infty \epsilon^i m_{22}^{(i)}
+  \\&
   - 2 \frac{ \sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)} m_{12}^{(j)} }{m_{00}^{(0)}}
-   \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-  \\& \quad
+   \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)
+  \\&
   - 2 \frac{ \sum_{i,j=0}^\infty \epsilon^{i+j} m_{21}^{(i)} m_{01}^{(j)} }{m_{00}^{(0)}}
-   \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-  \\& \quad
+   \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)
+  \\&
   - 2 \frac{ \sum_{i,j=0}^\infty \epsilon^{i+j} m_{11}^{(i)} m_{11}^{(j)} }{m_{00}^{(0)}}
-   \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-  \\& \quad
+   \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)
+  \\&
   -   \frac{ \sum_{i,j=0}^\infty \epsilon^{i+j} m_{20}^{(i)} m_{02}^{(j)} }{m_{00}^{(0)}}
-   \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-  \\& \quad
+   \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)
+  \\&
   + 2 \frac{ \sum_{i,j,k=0}^\infty \epsilon^{i+j+k} m_{10}^{(i)}m_{10}^{(j)}m_{02}^{(k)} }
-  {m_{00}^{(0)2}}
-   {\left(
-     \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-   \right)}^2
-  \\& \quad
+  {m_{00}^{{(0)}^2}}
+   {\left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)}^2
+  \\&
   + 8 \frac{ \sum_{i,j,k=0}^\infty \epsilon^{i+j+k} m_{10}^{(i)}m_{11}^{(j)}m_{01}^{(k)} }
-  {m_{00}^{(0)2}}
-   {\left(
-     \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-   \right)}^2
-  \\& \quad
+  {m_{00}^{{(0)}^2}}
+   {\left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)}^2
+  \\&
   + 2 \frac{ \sum_{i,j,k=0}^\infty \epsilon^{i+j+k} m_{20}^{(i)}m_{01}^{(j)}m_{01}^{(k)} }
-  {m_{00}^{(0)2}}
-   {\left(
-     \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-   \right)}^2
-  \\& \quad
+  {m_{00}^{{(0)}^2}}
+   {\left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)}^2
+  \\&
   - 6 \frac{ \sum_{i,j,k,l=0}^\infty \epsilon^{i+j+k+l} m_{10}^{(i)}m_{10}^{(j)}m_{01}^{(k)}m_{01}^{(l)}}{m_{00}^{(0)3}}
-   {\left(
-     \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j
-   \right)}^3
-   \end{aligned}
- \end{equation}
-This time, even the zeroth order moment differs from the cumulant.
+   {\left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)}^3
+\end{align*}
+This time, even the zeroth order moment differs from the cumulant,
 \begin{equation}
   K_{22}^{(0)}
   = m_{22}^{(0)} - \frac{ m_{20}^{(0)} m_{02}^{(0)} }{m_{00}^{(0)}} - 2\frac{ m_{11}^{(0)2}  }{m_{00}^{(0)}} = m_{22}^{(0)} - \theta^2 m_{00}^{(0)} - 2\frac{ m_{11}^{(0)2}  }{m_{00}^{(0)}}
  \end{equation}
-and the first order terms are
+and the first order results in
 \begin{equation}
   \begin{aligned}
-    K_{22}^{(1)}
-    & = m_{22}^{(1)}
-      - 2\frac{ m_{10}^{(1)} m_{12}^{(0)} }{m_{00}^{(0)}}
-      - 2\frac{ m_{21}^{(0)} m_{01}^{(1)} }{m_{00}^{(0)}}
-      - 4\frac{ m_{11}^{(1)} m_{11}^{(0)} }{m_{00}^{(0)}}
-      - \frac{ m_{20}^{(0)} m_{02}^{(1)} }{m_{00}^{(0)}}
-      - \frac{ m_{20}^{(1)} m_{02}^{(0)} }{m_{00}^{(0)}}
-    \\& = m_{22}^{(1)}
-      - \theta (m_{20}^{(1)} + m_{02}^{(1)})
-      - 2\frac{ m_{10}^{(1)} m_{12}^{(0)} }{m_{00}^{(0)}}
-      - 2\frac{ m_{21}^{(0)} m_{01}^{(1)} }{m_{00}^{(0)}}
-      - 4\frac{ m_{11}^{(1)} m_{11}^{(0)} }{m_{00}^{(0)}}
+    K_{22}^{(1)} = m_{22}^{(1)} =  0.
   \end{aligned}
- \end{equation}
+\end{equation}
+Back over at the second order, we again get more terms
+\begin{equation}
+  \begin{aligned}
+    K_{22}^{(2)}
+    = &\
+    m_{22}^{(2)}
+    \\&
+    - 2 \frac{ m_{10}^{(1)} m_{12}^{(1)} }{m_{00}^{(0)}}
+    - 2 \frac{ m_{21}^{(1)} m_{01}^{(1)} }{m_{00}^{(0)}}
+    - 2 \frac{ m_{11}^{(1)} m_{11}^{(1)} }{m_{00}^{(0)}}
+    + 2 \frac{ m_{11}^{(0)} m_{11}^{(0)} }{m_{00}^{(0)}}\frac{ m_{00}^{(2)} }{m_{00}^{(0)}}
+    \\&
+    - \frac{ m_{20}^{(0)} m_{02}^{(2)} }{m_{00}^{(0)}}
+    - \frac{ m_{20}^{(2)} m_{02}^{(0)} }{m_{00}^{(0)}}
+    + \frac{ m_{20}^{(0)} m_{02}^{(0)} }{m_{00}^{(0)}}\frac{ m_{00}^{(2)} }{m_{00}^{(0)}}
+    \\&
+    + 2 \frac{ m_{10}^{{(1)}^2} m_{02}^{(0)} }{m_{00}^{{(0)}^2}}
+    + 2 \frac{ m_{01}^{{(1)}^2} m_{20}^{(0)} }{m_{00}^{{(0)}^2}}
+    + 8 \frac{ m_{10}^{(1)}m_{01}^{(1)} m_{11}^{(0)} }{m_{00}^{{(0)}^2}}
+  \end{aligned}
+\end{equation}
+
+The complete list reads for now
+\begin{align}
+  \label{eq: expansions of cumulants zeroth order}
+  &\begin{aligned}
+    K_{10}^{(0)} =&\ m_{10}^{(0)}=0\\
+    K_{01}^{(0)} =&\ m_{01}^{(0)}=0\\
+    K_{11}^{(0)} =&\ m_{11}^{(0)}\\
+    K_{20}^{(0)} =&\ m_{20}^{(0)}\\
+    K_{02}^{(0)} =&\ m_{02}^{(0)}\\
+    K_{21}^{(0)} =&\ m_{21}^{(0)}=0\\
+    K_{12}^{(0)} =&\ m_{12}^{(0)}=0\\
+    K_{22}^{(0)} =&\ m_{22}^{(0)} - \frac{ m_{20}^{(0)} m_{02}^{(0)} }{m_{00}^{(0)}} - 2\frac{ m_{11}^{(0)2}}{m_{00}^{(0)}}
+  \end{aligned}
+  \\\nonumber&\\&
+  \label{eq: expansions of cumulants first order}
+  \begin{aligned}
+    K_{10}^{(1)} =&\ m_{10}^{(1)}\\
+    K_{01}^{(1)} =&\ m_{01}^{(1)}\\
+    K_{11}^{(1)} =&\ m_{11}^{(1)} = 0 \\
+    K_{20}^{(1)} =&\ m_{20}^{(1)} = 0\\
+    K_{02}^{(1)} =&\ m_{02}^{(1)} = 0\\
+    K_{21}^{(1)} =&\ m_{21}^{(1)}
+    - \frac{m_{20}^{(0)} m_{01}^{(1)}}{m_{00}^{(0)}}
+    - \frac{m_{10}^{(1)} m_{11}^{(0)}}{m_{00}^{(0)}} \\
+    K_{12}^{(1)} =&\ m_{21}^{(1)}
+    - \frac{m_{02}^{(0)} m_{10}^{(1)}}{m_{00}^{(0)}}
+    - \frac{m_{01}^{(1)} m_{11}^{(0)}}{m_{00}^{(0)}} \\
+    K_{22}^{(1)} =&\ m_{22}^{(1)} = 0
+  \end{aligned}
+\\\nonumber&\\&
+  \label{eq: expansions of cumulants second order}
+  \begin{aligned}
+    K_{10}^{(2)} =&\ m_{10}^{(2)} = 0\\
+    K_{01}^{(2)} =&\ m_{01}^{(2)} = 0\\
+    K_{11}^{(2)} =&\ m_{11}^{(2)} - \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}} \\
+    K_{20}^{(2)} =&\ m_{20}^{(2)} - \frac{ m_{10}^{{(1)}^2}}{m_{00}^{(0)}} \\
+    K_{02}^{(2)} =&\ m_{02}^{(2)} - \frac{ m_{01}^{{(1)}^2}}{m_{00}^{(0)}} \\
+    K_{12}^{(2)} =&\ m_{12}^{(2)} = 0\\
+    K_{21}^{(2)} =&\ m_{21}^{(2)} = 0\\
+    K_{22}^{(2)}
+    = &\
+    m_{22}^{(2)}
+    \\&
+    - 2 \frac{ m_{10}^{(1)} m_{12}^{(1)} }{m_{00}^{(0)}}
+    - 2 \frac{ m_{21}^{(1)} m_{01}^{(1)} }{m_{00}^{(0)}}
+    - 2 \frac{ m_{11}^{(1)} m_{11}^{(1)} }{m_{00}^{(0)}}
+    + 2 \frac{ m_{11}^{(0)} m_{11}^{(0)} }{m_{00}^{(0)}}\frac{ m_{00}^{(2)} }{m_{00}^{(0)}}
+    \\&
+    - \frac{ m_{20}^{(0)} m_{02}^{(2)} }{m_{00}^{(0)}}
+    - \frac{ m_{20}^{(2)} m_{02}^{(0)} }{m_{00}^{(0)}}
+    + \frac{ m_{20}^{(0)} m_{02}^{(0)} }{m_{00}^{(0)}}\frac{ m_{00}^{(2)} }{m_{00}^{(0)}}
+    \\&
+    + 2 \frac{ m_{10}^{{(1)}^2} m_{02}^{(0)} }{m_{00}^{{(0)}^2}}
+    + 2 \frac{ m_{01}^{{(1)}^2} m_{20}^{(0)} }{m_{00}^{{(0)}^2}}
+    + 8 \frac{ m_{10}^{(1)}m_{01}^{(1)} m_{11}^{(0)} }{m_{00}^{{(0)}^2}}
+  \end{aligned}
+\end{align}
