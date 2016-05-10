@@ -8,27 +8,22 @@ In fact, we already computed this link in equation~\eqref{eq: equilibrium cumula
     \kappa_{02}^{eq} & = c_s^2
   \end{aligned}
 \end{equation}
-which we can multiply by $m_{00}^{eq} = m_{00}$ and again identify $c_s^2=\frac{1}{3}$ to get
+which we can multiply by $m_{00}^{eq} = m_{00}$ to get
 \begin{equation}
 \label{eq: pressure density connection}
   \begin{aligned}
-    K_{20}^{eq} & = \frac{m_{00}}{3}  \\
-    K_{02}^{eq} & = \frac{m_{00}}{3}.
+    K_{20}^{eq} & = c_s^2 m_{00}  \\
+    K_{02}^{eq} & = c_s^2 m_{00}.
   \end{aligned}
 \end{equation}
-Identifying the normalized cumulants with the central moments via equation~\eqref{eq: all normalized cumulants from central moments}, we have the desired statement of $\theta=\frac{1}{3}$.
-Interestingly enough, $\theta$ is a function of the speed of sound $c_s$ and hence the temperature $T$, like in the continuous ideal gas law, $p=\rho RT$.
-This is yet another hint at our choice of using cumulants being good.
+Identifying the normalized cumulants with the central moments via equation~\eqref{eq: all normalized cumulants from central moments}, we have the desired statement of $\theta=c_s^2$.
+Interestingly enough, $\theta$ is a function of the speed of sound $c_s$ and hence the temperature $T$, like in the continuous ideal gas law\footnote{$\gamma$ is the isentropic exponent },
+\begin{equation}
+  p=\rho RT = \rho \frac{c_s^2}{\gamma}.
+\end{equation}
+In contrary to the theory of gases, where $\gamma$ is strictly greater than one and a function of the temperature, our method calculates with $\gamma=1$.
+
 
 To use equation~\eqref{eq: pressure density connection} in our calculations, we still have to get the asymptotic expansion.
-Luckily, we already did this in equations~\eqref{eq: expansions of cumulants zeroth order} through~\eqref{eq: expansions of cumulants second order}, yielding
-\begin{align}
-  \label{eq: ideal gas zeroth order}
-  \theta m_{00}^{(0)} &= m_{20}^{(0)} = m_{02}^{(0)}
-  \\
-  \label{eq: ideal gas first order}
-  \theta m_{00}^{(1)} &= m_{20}^{(1)} = m_{02}^{(1)}
-  \\
-  \label{eq: ideal gas second order}
-  \theta m_{00}^{(2)} &= m_{20}^{(2)} - \frac{m_{10}^{{(1)}^2}}{m_{00}^{(0)}}  = m_{02}^{(1)} - \frac{m_{01}^{{(1)}^2}}{m_{00}^{(0)}}.
-\end{align}
+Luckily, we already did this in equations~\eqref{eq: eq moments 20_0} and~\eqref{eq: eq moments 02_0} for the zeroth order and equations~\eqref{eq: eq moments 20_2} and~\eqref{eq: eq moments 02_2} for the second order.
+The first order gives no new information, as these equations just result in $0=0$.
