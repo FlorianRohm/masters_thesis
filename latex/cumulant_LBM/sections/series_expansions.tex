@@ -106,7 +106,7 @@ As $\epsilon$ is arbitrary and the terms of the expansion are not allowed to dep
 To achieve $\epsilon^0$, we have to choose $\tau=p=p'=m=n=0$, yielding
 \begin{equation}
   \label{eq:zeroth order in epsilon}
-  m_{\alpha\beta}^{(0)} = m_{\alpha\beta}^{*(0)}.
+  m_{\alpha\beta}^{(0)} = m_{\alpha\beta}^{*^{(0)}}.
 \end{equation}
 
 
@@ -119,9 +119,9 @@ For the first order terms, one has to choose $p=1$ on the left side and one of $
   \label{eq:first order in epsilon}
   \begin{aligned}
   m_{\alpha\beta}^{(1)}
-  & = m_{\alpha\beta}^{*(1)}
-  - \partial_x m_{(\alpha+1)\beta}^{*(0)} - \partial_y m_{\alpha(\beta+1)}^{*(0)} \\
-  & = m_{\alpha\beta}^{*(1)}
+  & = m_{\alpha\beta}^{*^{(1)}}
+  - \partial_x m_{(\alpha+1)\beta}^{*^{(0)}} - \partial_y m_{\alpha(\beta+1)}^{*^{(0)}} \\
+  & = m_{\alpha\beta}^{*^{(1)}}
   \end{aligned}
 \end{equation}
 The second line is due to the fact, that the zeroth order terms have to be constant in space and thus all spatial derivatives vanish.
@@ -143,11 +143,11 @@ Resulting in
   \label{eq:second order in epsilon}
   \begin{aligned}
     \partial_t m_{\alpha\beta}^{(0)} + m_{\alpha\beta}^{(2)}
-    & =  m_{\alpha\beta}^{*(2)} \\
-    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(1)} + \partial_{xx} m_{(\alpha+2)\beta}^{*(0)}/2 \\
-    &\quad - \partial_y m_{\alpha(\beta+1)}^{*(1)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(0)}/2 \\
-    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(0)}\\
-    & =  m_{\alpha\beta}^{*(2)} - \partial_x m_{(\alpha+1)\beta}^{*(1)} - \partial_y m_{\alpha(\beta+1)}^{*(1)}
+    & =  m_{\alpha\beta}^{*^{(2)}} \\
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*^{(1)}} + \partial_{xx} m_{(\alpha+2)\beta}^{*^{(0)}}/2 \\
+    &\quad - \partial_y m_{\alpha(\beta+1)}^{*^{(1)}} + \partial_{yy} m_{\alpha(\beta+2)}^{*^{(0)}}/2 \\
+    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*^{(0)}}\\
+    & =  m_{\alpha\beta}^{*^{(2)}} - \partial_x m_{(\alpha+1)\beta}^{*^{(1)}} - \partial_y m_{\alpha(\beta+1)}^{*^{(1)}}
   \end{aligned}
 \end{equation}
 
@@ -171,13 +171,13 @@ This gives
   \begin{aligned}
     \frac{\partial}{\partial t} m_{\alpha\beta}^{(1)} + m_{\alpha\beta}^{(3)}
     & =  m_{\alpha\beta}^{*(3)} \\
-    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(2)} + \partial_{xx} m_{(\alpha+2)\beta}^{*(1)}/2 - \partial_{xxx} m_{(\alpha+3)\beta}^{*(0)}/6 \\
-    &\quad - \partial_y m_{\alpha(\beta+1)}^{*(2)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(1)}/2 - \partial_{yyy} m_{\alpha(\beta+3)}^{*(0)}/6 \\
-    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(1)} \\
-    &\quad - \partial_{xxy} m_{(\alpha+2)(\beta+1)}^{*(0)}/2 - \partial_{xyy} m_{(\alpha+1)(\beta+2)}^{*(0)}/2 \\
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*^{(2)}} + \partial_{xx} m_{(\alpha+2)\beta}^{*^{(1)}}/2 - \partial_{xxx} m_{(\alpha+3)\beta}^{*^{(0)}}/6 \\
+    &\quad - \partial_y m_{\alpha(\beta+1)}^{*^{(2)}} + \partial_{yy} m_{\alpha(\beta+2)}^{*^{(1)}}/2 - \partial_{yyy} m_{\alpha(\beta+3)}^{*^{(0)}}/6 \\
+    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*^{(1)}} \\
+    &\quad - \partial_{xxy} m_{(\alpha+2)(\beta+1)}^{*^{(0)}}/2 - \partial_{xyy} m_{(\alpha+1)(\beta+2)}^{*^{(0)}}/2 \\
     & =  m_{\alpha\beta}^{*(3)} \\
-    &\quad - \partial_x m_{(\alpha+1)\beta}^{*(2)} - \partial_y m_{\alpha(\beta+1)}^{*(2)}  \\
-    &\quad  + \partial_{xx} m_{(\alpha+2)\beta}^{*(1)}/2 + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*(1)} + \partial_{yy} m_{\alpha(\beta+2)}^{*(1)}/2
+    &\quad - \partial_x m_{(\alpha+1)\beta}^{*^{(2)}} - \partial_y m_{\alpha(\beta+1)}^{*^{(2)}}  \\
+    &\quad  + \partial_{xx} m_{(\alpha+2)\beta}^{*^{(1)}}/2 + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*^{(1)}} + \partial_{yy} m_{\alpha(\beta+2)}^{*^{(1)}}/2
   \end{aligned}
 \end{equation}
 

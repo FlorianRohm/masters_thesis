@@ -56,8 +56,8 @@
   \begin{align}
     m_{00} &= m_{00}^* = m_{00}^{eq}  \tag{P1}\\
     m_{00}^{(p)} &= m_{00}^{*^{(p)}} = m_{00}^{eq(p)} \tag{P2} \\
-    m_{\alpha\beta}^{(1)} &= m_{\alpha\beta}^{*(1)} = m_{\alpha\beta}^{eq^{(1)}} \tag{P3} \\
-    m_{\alpha\beta}^{(0)} &= m_{\alpha\beta}^{*(0)} = m_{\alpha\beta}^{eq^{(0)}} \tag{P4} \\
+    m_{\alpha\beta}^{(1)} &= m_{\alpha\beta}^{*^{(1)}} = m_{\alpha\beta}^{eq^{(1)}} \tag{P3} \\
+    m_{\alpha\beta}^{(0)} &= m_{\alpha\beta}^{*^{(0)}} = m_{\alpha\beta}^{eq^{(0)}} \tag{P4} \\
     \partial_x m_{\alpha\beta}^{(0)} &= 0  \tag{P5} \\
     \partial_y m_{\alpha\beta}^{(0)} &= 0  \tag{P6} \\
     \theta m_{00}^{(0)} &= m_{20}^{(0)} = m_{02}^{(0)} \tag{P7} \\
@@ -171,24 +171,24 @@ Second order
     \tag{B1}
     \begin{aligned}
        \partial_t m_{10}^{(1)} & =
-      m_{10}^{*(3)} - m_{10}^{(3)} - \partial_x m_{20}^{*(2)} \\
-      &\quad - \partial_y m_{11}^{*(2)} + \frac{1}{2}\partial_{xx} m_{30}^{*(1)} + \frac{1}{2} \partial_{yy} m_{12}^{*(1)} + \partial_{xy} m_{21}^{*(1)}
+      m_{10}^{*(3)} - m_{10}^{(3)} - \partial_x m_{20}^{*^{(2)}} \\
+      &\quad - \partial_y m_{11}^{*^{(2)}} + \frac{1}{2}\partial_{xx} m_{30}^{*^{(1)}} + \frac{1}{2} \partial_{yy} m_{12}^{*^{(1)}} + \partial_{xy} m_{21}^{*^{(1)}}
     \end{aligned}
   \end{equation}
 
   \paragraph{auxiliary equations}
   \begin{align}
-    m_{20}^{(2)} + \partial_t m_{20}^{(0)} + \theta\partial_y m_{01}^{(1)} + \partial_x m_{10}^{(1)} &= m_{20}^{*(2)} \tag{A1} \\
-    m_{11}^{(2)} + \partial_t m_{11}^{(0)} + \theta\partial_y m_{10}^{(1)} + \theta\partial_x m_{01}^{(1)} &= m_{11}^{*(2)} \tag{A2} \\
-    m_{10}^{(2)} + \partial_t m_{10}^{(0)} + \partial_y m_{11}^{*(1)} + \partial_x m_{20}^{*(1)} &= m_{10}^{*(2)} \tag{A3} \\
-    m_{01}^{(2)} + \partial_t m_{01}^{(0)} + \partial_y m_{02}^{*(1)} + \partial_x m_{11}^{*(1)} &= m_{01}^{*(2)} \tag{A4} \\
-    m_{02}^{(2)} + \partial_t m_{02}^{(0)} + \partial_y m_{01}^{(1)} + \theta\partial_x m_{10}^{(1)} &= m_{02}^{*(2)} \tag{A5}
+    m_{20}^{(2)} + \partial_t m_{20}^{(0)} + \theta\partial_y m_{01}^{(1)} + \partial_x m_{10}^{(1)} &= m_{20}^{*^{(2)}} \tag{A1} \\
+    m_{11}^{(2)} + \partial_t m_{11}^{(0)} + \theta\partial_y m_{10}^{(1)} + \theta\partial_x m_{01}^{(1)} &= m_{11}^{*^{(2)}} \tag{A2} \\
+    m_{10}^{(2)} + \partial_t m_{10}^{(0)} + \partial_y m_{11}^{*^{(1)}} + \partial_x m_{20}^{*^{(1)}} &= m_{10}^{*^{(2)}} \tag{A3} \\
+    m_{01}^{(2)} + \partial_t m_{01}^{(0)} + \partial_y m_{02}^{*^{(1)}} + \partial_x m_{11}^{*^{(1)}} &= m_{01}^{*^{(2)}} \tag{A4} \\
+    m_{02}^{(2)} + \partial_t m_{02}^{(0)} + \partial_y m_{01}^{(1)} + \theta\partial_x m_{10}^{(1)} &= m_{02}^{*^{(2)}} \tag{A5}
   \end{align}
 
   \paragraph{combined}~(A1) + (R11)
   \begin{equation*}
     \begin{aligned}
-      2m_{20}^{(2)} + 2\partial_t m_{20}^{(0)} + 2\partial_y m_{21}^{*(1)} + 2\partial_x m_{30}^{*(1)}
+      2m_{20}^{(2)} + 2\partial_t m_{20}^{(0)} + 2\partial_y m_{21}^{*^{(1)}} + 2\partial_x m_{30}^{*^{(1)}}
       &= (1-\omega_1) \left(m_{20}^{(2)}-m_{02}^{(2)}\right)
       \\&\quad
       + \frac{ m_{10}^{(1)2} + m_{01}^{{(1)}^2}}{m_{00}^{(0)}} + \omega_1 \frac{ m_{10}^{(1)2} - m_{01}^{{(1)}^2}}{m_{00}^{(0)}}
@@ -210,7 +210,7 @@ Second order
   \end{equation}
   \paragraph{combined}~(A2) + (R11)
   \begin{equation*}
-    m_{11}^{(2)} + \partial_t m_{11}^{(0)} + \partial_y m_{12}^{*(1)} + \partial_x m_{21}^{*(1)} = (1-\omega_1)m_{11}^{(2)} + \omega_1 \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
+    m_{11}^{(2)} + \partial_t m_{11}^{(0)} + \partial_y m_{12}^{*^{(1)}} + \partial_x m_{21}^{*^{(1)}} = (1-\omega_1)m_{11}^{(2)} + \omega_1 \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
   \end{equation*}
   with~(R4),~(R5) and~(P3)
   \begin{equation}
@@ -270,38 +270,38 @@ Second order
 
   \paragraph{analysing (A3)}
   \begin{align*}
-    &m_{10}^{(2)} + \partial_t m_{10}^{(0)} + \partial_y m_{11}^{*(1)} + \partial_x m_{20}^{*(1)} = m_{10}^{*(2)}
+    &m_{10}^{(2)} + \partial_t m_{10}^{(0)} + \partial_y m_{11}^{*^{(1)}} + \partial_x m_{20}^{*^{(1)}} = m_{10}^{*^{(2)}}
     \\ \Leftrightarrow \quad &
-    \partial_y m_{11}^{*(1)} + \partial_x m_{20}^{*(1)} = 0
+    \partial_y m_{11}^{*^{(1)}} + \partial_x m_{20}^{*^{(1)}} = 0
     \\ \Leftrightarrow \quad &
-    \partial_x m_{20}^{*(1)} = 0
+    \partial_x m_{20}^{*^{(1)}} = 0
   \end{align*}
   Never appears in the equations\ldots
   \paragraph{analysing (A4)} completely analogously
   \begin{equation*}
-    \partial_y m_{02}^{*(1)} = 0
+    \partial_y m_{02}^{*^{(1)}} = 0
   \end{equation*}
   Never appears in the equations\ldots
 
   \paragraph{analysing (A5)}
   \begin{align*}
     &
-    m_{02}^{(2)} + \partial_t m_{02}^{(0)} + \partial_y m_{03}^{*(1)} + \partial_x m_{12}^{*(1)} = m_{02}^{*(2)}
+    m_{02}^{(2)} + \partial_t m_{02}^{(0)} + \partial_y m_{03}^{*^{(1)}} + \partial_x m_{12}^{*^{(1)}} = m_{02}^{*^{(2)}}
     \\ \Leftrightarrow\quad &
-    m_{02}^{(2)} + \partial_t m_{02}^{(0)} + \partial_y m_{01}^{(1)} + \theta\partial_x m_{10}^{(1)} = m_{02}^{*(2)}
+    m_{02}^{(2)} + \partial_t m_{02}^{(0)} + \partial_y m_{01}^{(1)} + \theta\partial_x m_{10}^{(1)} = m_{02}^{*^{(2)}}
   \end{align*}
 
   \paragraph{repeat (A1), for next try}
   \begin{align*}
     &
-    m_{20}^{(2)} + \partial_t m_{20}^{(0)} + \partial_y m_{21}^{*(1)} + \partial_x m_{30}^{*(1)} = m_{20}^{*(2)}
+    m_{20}^{(2)} + \partial_t m_{20}^{(0)} + \partial_y m_{21}^{*^{(1)}} + \partial_x m_{30}^{*^{(1)}} = m_{20}^{*^{(2)}}
     \\ \Leftrightarrow\quad &
-    m_{20}^{(2)} + \partial_t m_{20}^{(0)} + \theta\partial_y m_{01}^{(1)} + \partial_x m_{10}^{(1)} = m_{20}^{*(2)}
+    m_{20}^{(2)} + \partial_t m_{20}^{(0)} + \theta\partial_y m_{01}^{(1)} + \partial_x m_{10}^{(1)} = m_{20}^{*^{(2)}}
   \end{align*}
 
   \paragraph{adding (A1) and (A5) and take the x-derivative}
   \begin{equation}
-    \partial_x (m_{20}^{(2)} + m_{02}^{(2)}) =\partial_x (m_{20}^{*(2)} + m_{02}^{*(2)}) - (1+\theta)(\partial_{xy} m_{01}^{(1)} + \partial_{xx} m_{10}^{(1)})  \tag{C7} \\
+    \partial_x (m_{20}^{(2)} + m_{02}^{(2)}) =\partial_x (m_{20}^{*^{(2)}} + m_{02}^{*^{(2)}}) - (1+\theta)(\partial_{xy} m_{01}^{(1)} + \partial_{xx} m_{10}^{(1)})  \tag{C7} \\
   \end{equation}
 
   \pagebreak
@@ -511,7 +511,7 @@ Whats left to show:
     - \frac{1}{2} \partial_{xx} m_{10}^{(1)} - \frac{\theta}{2}\partial_{yy} m_{10}^{(1)} - \theta\partial_{xy} m_{01}^{(1)}
     \\ \overset{\text{\small(C7)}}{=} &
     F_x^{(3)}
-    - \partial_x (m_{20}^{*(2)} + m_{02}^{*(2)}) + \partial_x m_{02}^{(2)} - \partial_y m_{11}^{(2)}
+    - \partial_x (m_{20}^{*^{(2)}} + m_{02}^{*^{(2)}}) + \partial_x m_{02}^{(2)} - \partial_y m_{11}^{(2)}
     \\ &
     - (\frac{1}{2}-1-\theta) \partial_{xx} m_{10}^{(1)} - \frac{\theta}{2}\partial_{yy} m_{10}^{(1)} + \partial_{xy} m_{01}^{(1)}
     \\ \overset{\text{\small(R9)}}{=} &
