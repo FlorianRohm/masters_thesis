@@ -3,13 +3,14 @@ Our goal in this little section is the derivation of the continuity equation.
 
 Upon looking at the equations derived in Section~\ref{sub: Matching the coefficients}, we see that our first nontrivial equation is for $\epsilon^2$, namely~\eqref{eq: second order in epsilon}.
 Choosing $\alpha=\beta=0$ and using that the first order terms are collision invariant,~\eqref{eq: first order invariant}, we get
-\begin{equation}
-    \begin{aligned}
-      \partial_t m_{00}^{(0)} + m_{00}^{(2)} & =  m_{00}^{*^{(2)}} - \partial_x m_{10}^{*^{(1)}} - \partial_y m_{01}^{*^{(1)}} \\
-      \equivalent \qquad \partial_t m_{00}^{(0)} & =  - \partial_x m_{10}^{*^{(1)}} - \partial_y m_{01}^{*^{(1)}} \\
-      & =  - \partial_x m_{10}^{(1)} - \partial_y m_{01}^{(1)}.
-    \end{aligned}
-\end{equation}
+\begin{align}
+  \nonumber
+  \partial_t m_{00}^{(0)} + m_{00}^{(2)} & =  m_{00}^{*^{(2)}} - \partial_x m_{10}^{*^{(1)}} - \partial_y m_{01}^{*^{(1)}} \\
+  \equivalent \qquad \partial_t m_{00}^{(0)} & =  - \partial_x m_{10}^{*^{(1)}} - \partial_y m_{01}^{*^{(1)}} \nonumber
+  \\
+  & =  - \partial_x m_{10}^{(1)} - \partial_y m_{01}^{(1)}.
+  \label{eq: continuity moments}
+\end{align}
 Introducing the momentum density,
 \begin{equation}
   \vec{m} \defined \rho \vec{u} = \begin{pmatrix}m_{10} \\m_{01}  \end{pmatrix},
@@ -26,3 +27,13 @@ With the findings of Section~\ref{subs: Changing the coordinate system}, we also
 \end{equation}
 and thus, the continuity equation is satisfied in at least the first two orders.
 Winged by this finding, we will also try to get the compressible version of the momentum equations in the following section.
+
+Another important aspect worth mentioning are the derivatives of the continuity equation.
+On taking the $x$- respectively $y$- derivatives of~\eqref{eq: continuity moments}, the zeroth order term vanishes and we're left with
+\begin{align}
+  \label{eq: continuity derivative x}
+  \partial_{xx} m_{10}^{(1)} & = - \partial_{xy} m_{01}^{(1)}\\
+  \label{eq: continuity derivative y}
+  \partial_{xy} m_{10}^{(1)} & = - \partial_{yy} m_{01}^{(1)},
+\end{align}
+which will be helpful in deriving the momentum equations.
