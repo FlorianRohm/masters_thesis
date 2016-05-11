@@ -161,3 +161,50 @@ The same treatment is applied to~\eqref{eq: auxiliaries 8}, this time multiplied
   + \frac{c_s^2}{\omega_4}\partial_{yy} m_{10}^{(1)}
   .
 \end{align}
+With this, the preliminary work is finally done and we can go over to actually derive the momentum equations.
+
+\subsubsection{Finalizing the derivation}
+\label{subs:Finalizing the derivation}
+First of all, we insert equations~\eqref{eq: auxiliaries 1} and~\eqref{eq: auxiliaries 1} into~\eqref{eq: start of momentum equation derivation}
+and afterwards the final equations~\eqref{eq: auxiliaries 9} and~\eqref{eq: auxiliaries 10} to get
+\begin{align}
+  \nonumber
+  \partial_t m_{10}^{(1)} =&\,
+  F_x^{(3)}
+  - \partial_x m_{20}^{*^{(2)}}
+  - \partial_y m_{11}^{*^{(2)}}
+  + \frac{1}{2}\partial_{xx} m_{10}^{(1)}
+  + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}
+  \\\nonumber =&\,
+  F_x^{(3)}
+  - \partial_x m_{20}^{(2)}
+  - \partial_{xx} m_{10}^{(1)}
+  - c_s^2\partial_{xy} m_{01}^{(1)}
+  \\\nonumber =&\,
+  - \partial_y m_{11}^{(2)}
+  - c_s^2 \partial_{xy} m_{01}^{(1)}
+  - c_s^2 \partial_{yy} m_{10}^{(1)}
+  + \frac{1}{2}\partial_{xx} m_{10}^{(1)}
+  + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}
+  \\\nonumber =&\,
+  F_x^{(3)}
+  - c_s^2 \partial_x  m_{00}^{(2)}
+  \\\nonumber &\,
+  - \partial_x\frac{ m_{10}^{{(1)}^2} }{m_{00}^{(0)}}
+  + \partial_{xx} m_{10}^{(1)} \left(\frac{1}{2\omega_6}(1+c_s^2)
+  + \frac{1}{2\omega_5} (1 - c_s^2)\right)
+  \\\nonumber &\,
+  + \partial_{xy} m_{01}^{(1)} \left(\frac{1}{2\omega_6}(1+c_s^2)
+  + \frac{1}{2\omega_5} (c_s^2 - 1)\right)
+  - \partial_{xx} m_{10}^{(1)}
+  - c_s^2\partial_{xy} m_{01}^{(1)}
+  \\\nonumber &\,
+  -\partial_y \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
+  + \frac{c_s^2}{\omega_4}\partial_{xy} m_{01}^{(1)}
+  + \frac{c_s^2}{\omega_4}\partial_{yy} m_{10}^{(1)}
+  - c_s^2 \partial_{xy} m_{01}^{(1)}
+  - c_s^2 \partial_{yy} m_{10}^{(1)}
+  \\\nonumber &\,
+  + \frac{1}{2}\partial_{xx} m_{10}^{(1)}
+  + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}
+\end{align}
