@@ -19,7 +19,7 @@ In this case, we could expand $K_{30}^{eq}$ and seek to replace this term. In ou
   \label{eq: start of momentum equation derivation}
   \begin{aligned}
     \partial_t m_{10}^{(1)} & =
-    F_x^{(3)} - \partial_x \highlight{m_{20}^{*^{(2)}}} - \partial_y \highlight[green]{m_{11}^{*^{(2)}}} + \frac{1}{2}\partial_{xx} m_{10}^{(1)} + \frac{\theta}{2} \partial_{yy} m_{10}^{(1)} + \theta\partial_{xy} m_{01}^{(1)}.
+    F_x^{(3)} - \partial_x \highlight{m_{20}^{*^{(2)}}} - \partial_y \highlight[green]{m_{11}^{*^{(2)}}} + \frac{1}{2}\partial_{xx} m_{10}^{(1)} + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}.
   \end{aligned}
 \end{equation}
 This is already looking quite promising, but the green and red highlighted terms need some additional treatment.
@@ -102,8 +102,8 @@ The same procedure is now applied to equation~\eqref{eq: auxiliaries 3} with the
   =
   \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
   - \partial_t m_{11}^{(0)}
-  - c_s^2\partial_x m_{01}^{(1)}
-  - c_s^2\partial_y m_{10}^{(1)}
+  - \frac{1}{\omega_4} c_s^2\partial_x m_{01}^{(1)}
+  - \frac{1}{\omega_4} c_s^2\partial_y m_{10}^{(1)}
   .
 \end{align}
 As a last step before we actually insert anything, we bring those equations in the right form to directly insert them in equation~\eqref{eq: start of momentum equation derivation}.
@@ -157,7 +157,7 @@ The same treatment is applied to~\eqref{eq: auxiliaries 8}, this time multiplied
   -\partial_y m_{11}^{(2)}
   =
   -\partial_y \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
-  + c_s^2\partial_{xy} m_{01}^{(1)}
-  + c_s^2\partial_{yy} m_{10}^{(1)}
+  + \frac{c_s^2}{\omega_4}\partial_{xy} m_{01}^{(1)}
+  + \frac{c_s^2}{\omega_4}\partial_{yy} m_{10}^{(1)}
   .
 \end{align}
