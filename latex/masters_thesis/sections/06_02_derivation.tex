@@ -22,3 +22,35 @@ We can already simplify this equation by using the aliasing of moments for $m_{3
   \end{aligned}
 \end{equation}
 This is already looking quite promising, but the green and red highlighted terms need some additional treatment.
+
+\subsubsection{Auxiliary equations}
+\label{subs:Auxiliary equations}
+To cope with those rouge terms, we take a look back at the second order in $\epsilon$ equation~\eqref{eq: second order in epsilon}.
+We can extract three\footnote{We could insert $\alpha=1$, $\beta=0$ et vice versa, but this would lead to two equations where everything is zero due to equations~\eqref{eq: kill even moments odd order} and~\eqref{eq: kill odd moments even order}.
+Choosing $\alpha$ or $\beta$ higher than two just results in the known equations due to moment aliasing.} more equations out of it.
+Namely, we get for $\alpha=2$, $\beta=0$
+\begin{equation}
+  \label{eq: auxiliaries 1 raw}
+  \partial_t m_{20}^{(0)} + m_{20}^{(2)} =  m_{20}^{*^{(2)}} - \partial_x m_{30}^{*^{(1)}} - \partial_y m_{21}^{*^{(1)}},
+\end{equation}
+for $\alpha=0$, $\beta=2$
+\begin{equation}
+  \label{eq: auxiliaries 2 raw}
+  \partial_t m_{02}^{(0)} + m_{02}^{(2)} =  m_{02}^{*^{(2)}} - \partial_x m_{12}^{*^{(1)}} - \partial_y m_{03}^{*^{(1)}},
+\end{equation}
+and last but not least for $\alpha=1$, $\beta=1$
+\begin{equation}
+  \label{eq: auxiliaries 3 raw}
+  \partial_t m_{11}^{(0)} + m_{11}^{(2)} =  m_{11}^{*^{(2)}} - \partial_x m_{21}^{*^{(1)}} - \partial_y m_{12}^{*^{(1)}}.
+\end{equation}
+We can reformulate equations~\eqref{eq: auxiliaries 1 raw} through~\eqref{eq: auxiliaries 3 raw} with the help of the aliasing of moments together with~\eqref{eq: eq moments 20_1} through~\eqref{eq: eq moments 12_1} to get to
+\begin{alignat}{5}
+  \label{eq: auxiliaries 1}
+  m_{20}^{(2)} +&\, \partial_t c_s^2& m_{00}^{(0)} +&\, &\partial_x m_{10}^{(1)} +&\, c_s^2&\partial_y m_{01}^{(1)} &=  m_{20}^{*^{(2)}}&
+  \\
+  \label{eq: auxiliaries 2}
+  m_{02}^{(2)} +&\, \partial_t c_s^2& m_{00}^{(0)} +&\, c_s^2&\partial_x m_{10}^{(1)} +&\, &\partial_y m_{01}^{(1)} &=  m_{02}^{*^{(2)}}&
+  \\
+  \label{eq: auxiliaries 3}
+  m_{11}^{(2)} +&\, \partial_t &m_{11}^{(0)} +&\, c_s^2&\partial_x m_{01}^{(1)} +&\, c_s^2&\partial_y m_{10}^{(1)} &=  m_{11}^{*^{(2)}}&.
+\end{alignat}
