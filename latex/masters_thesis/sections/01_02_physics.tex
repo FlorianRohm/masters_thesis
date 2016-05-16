@@ -9,7 +9,7 @@ Unfortunately, the Boltzmann equation and also the discretized equation~\eqref{e
 The extraction of macroscopic values out of the available \glspl{pdf} will be treated in this section.
 
 Before introducing (macroscopic) velocity and density, we have to take a small detour to the field of probability theory and introduce moments.
-In analogy to bivariat probability distributions, we define the characteristic variables $m_{\alpha\beta}$, called moments, of a \gls{pdf} $f$ as
+In analogy to bivariat probability distributions, we define the characteristic variables $m_{\alpha\beta}$, called \textbf{moments}, of a \gls{pdf} $f$ as
 \begin{equation}
   \label{eq: moments continuous}
   m_{\alpha\beta}(\vec{x},t) \defined  \int v_x^\alpha v_y^\beta f(\vec{v},\vec{x},t) d\vec{v},\quad\forall\alpha,\beta\in\N,
@@ -26,7 +26,7 @@ For the sake of simplicity this dependence is going to be omitted every time whe
 \end{equation}
 This is also applied to all other values like density and velocity.
 
-Another set of characteristic variables are the centralized moments $c_{\alpha\beta}$ defined as
+Another set of characteristic variables are the centralized or central moments $c_{\alpha\beta}$ defined as
 \begin{equation}
   \label{eq: central moments continuous}
   c_{\alpha\beta} \defined \int {\left(v_x - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(v_y-\frac{m_{01}}{m_{00}}\right)}^\beta f(\vec{v})  d\vec{v}.
@@ -34,7 +34,7 @@ Another set of characteristic variables are the centralized moments $c_{\alpha\b
 
 Here, the assumption associated with~\eqref{eq: leave out x and y} of course also holds, making the centralized moments dependent on space and time.
 
-As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can calculate the macroscopic density $\rho$, the macroscopic velocity $\vec{u}=\begin{pmatrix}u_x\\u_y\end{pmatrix}$ and the pressure tensor $\tensor{P}=\begin{pmatrix}\tensor{P}_{xx}&\tensor{P}_{xy}\\ \tensor{P}_{yx}&\tensor{P}_{yy}\end{pmatrix}$ as
+As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can calculate the \textbf{macroscopic density} $\rho$, the \textbf{macroscopic velocity} $\vec{u}=\begin{pmatrix}u_x\\u_y\end{pmatrix}$ and the \textbf{pressure tensor} $\tensor{P}=\begin{pmatrix}\tensor{P}_{xx}&\tensor{P}_{xy}\\ \tensor{P}_{yx}&\tensor{P}_{yy}\end{pmatrix}$ as
 
 \begin{equation}
   \label{eq: physical quantities}
@@ -71,21 +71,29 @@ Thus, the integrals in~\eqref{eq: moments continuous} and~\eqref{eq: central mom
 \end{align}
 
 When looking at the derived quantities, we have to pay attention to another issue:
-In the continuous case, a local equilibrium is attained nearly instantaneously, c.f.~\cite[page 218]{smits2000physical}, and therefore the relations in~\eqref{eq: physical quantities} are only valid in the local equilibrium.
+In the continuous case, a local equilibrium is attained nearly instantaneously, c.f.~\cite[page 218]{smits2000physical}, and therefore the relations in~\eqref{eq: physical quantities} are a priori only valid in the local equilibrium.
 
 Back in the discrete case, we can no longer assume aforementioned local equilibrium.
 In fact, we already assume to be in a non equilibrium state, as we want the collision to shift our particle distributions a bit towards the local equilibrium.
 
 Looking at the quantities defined in~\eqref{eq: physical quantities}, we can directly define the velocity and density, as those should not be altered by the collision due to mass and momentum conservation laws and are thus always in local equilibrium.
-Thus, we can define
+Thus, we can identify
 \begin{align}
   \rho & = \sum_{i,j \in \{-1,0,1\}} f_{ij}^{eq} = m_{00}^{eq} = m_{00}
   \label{eq: density definition}\\
   u_x  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} ic f_{ij}^{eq} = \frac{m_{10}^{eq}}{m_{00}^{eq}} = \frac{m_{10}}{m_{00}}
   \label{eq: x velocity definition}\\
-  u_y  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} jc f_{ij}^{eq} = \frac{m_{01}^{eq}}{m_{00}^{eq}} = \frac{m_{01}}{m_{00}}.
+  u_y  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} jc f_{ij}^{eq} = \frac{m_{01}^{eq}}{m_{00}^{eq}} = \frac{m_{01}}{m_{00}},
   \label{eq: y velocity definition}
 \end{align}
+and write the central moments again as
+\begin{align}
+  c_{\alpha\beta} &= \sum_{i,j \in \{-1,0,1\}}
+  {\left(ci - u_x\right)}^\alpha
+  {\left(cj - u_y\right)}^\beta f_{ij}.
+  \label{eq: central moment definition velocities}
+\end{align}
+
 When looking at pressure, e.g.\ the momentum of the fluid particles normal to an imaginary wall, the discrete case looks quite different.
 \begin{figure}
 \centering

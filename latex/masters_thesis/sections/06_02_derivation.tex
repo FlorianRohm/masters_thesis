@@ -207,4 +207,48 @@ and afterwards the final equations~\eqref{eq: auxiliaries 9} and~\eqref{eq: auxi
   \\\nonumber &\,
   + \frac{1}{2}\partial_{xx} m_{10}^{(1)}
   + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}
+  \end{align}
+  \begin{align}
+    \nonumber
+    \equivalent\quad
+  \partial_t m_{10}^{(1)}
+  + \partial_x \frac{ m_{10}^{{(1)}^2} }{m_{00}^{(0)}}
+  + \partial_y \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
+  =&\,
+  F_x^{(3)}
+  - c_s^2 \partial_x  m_{00}^{(2)}
+  \\\nonumber &\,
+  + \partial_{xx} m_{10}^{(1)} \left(\frac{1}{2\omega_6}(1+c_s^2)
+  + \frac{1}{2\omega_5} (1 - c_s^2)\right)
+  \\\nonumber &\,
+  + \partial_{xy} m_{01}^{(1)} \left(\frac{1}{2\omega_6}(1+c_s^2)
+  + \frac{1}{2\omega_5} (c_s^2 - 1)\right)
+  \\\nonumber &\,
+  - \partial_{xx} m_{10}^{(1)}
+  - c_s^2\partial_{xy} m_{01}^{(1)}
+  \\\nonumber &\,
+  + \frac{c_s^2}{\omega_4}\partial_{xy} m_{01}^{(1)}
+  + \frac{c_s^2}{\omega_4}\partial_{yy} m_{10}^{(1)}
+  - c_s^2 \partial_{xy} m_{01}^{(1)}
+  - c_s^2 \partial_{yy} m_{10}^{(1)}
+  \\ &\,
+  + \frac{1}{2}\partial_{xx} m_{10}^{(1)}
+  + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}
+  .\label{eq: navier stokes skeleton 1}
 \end{align}
+This is good news so far.
+We can take the partial derivative
+\begin{align}
+  \label{eq: convective parts}
+  \partial_x \frac{ m_{10}^{{(1)}^2} }{m_{00}^{(0)}}
+  + \partial_y \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
+  =
+  \frac{ m_{10}^{{(1)}} }{m_{00}^{(0)}} \partial_x  m_{10}^{{(1)}}
+  +  m_{10}^{{(1)}} \partial_x \frac{ m_{10}^{{(1)}} }{m_{00}^{(0)}}
+  + \frac{ m_{10}^{(1)}}{m_{00}^{(0)}}\partial_y m_{01}^{(1)}
+  + m_{01}^{(1)}\partial_y \frac{ m_{10}^{(1)}}{m_{00}^{(0)}},
+\end{align}
+to see that those are just the convective terms of~\eqref{eq: navier stokes goal}.
+Additionally, the first line of equation~\eqref{eq: navier stokes skeleton 1} hosts the time derivative of the momentum density and the external force, which has to be normed by the density.
+Last but definitely not least, the pressure derivative is hidden in the density derivative $-c_s^2 \partial_x  m_{00}^{(2)}$ which is equal to the pressure at the local equilibrium.
+\todo[inline]{clarify why this is good}

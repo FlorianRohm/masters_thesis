@@ -46,10 +46,9 @@ for all $i,j\in \{-1, 0, 1\}$, where $f_{ij}^*$ are the post-collision distribut
 \end{equation}
 As the collision operator will be nonlinear in most cases, we can not decouple the equations and we still need all \glspl{pdf} as arguments.
 
-Now, we can finally introduce the most known keywords associated to LBM:\@ stream and collide.
+With the decomposition of the calculations in equation~\eqref{eq: lattice boltzmann equation} and~\eqref{eq: define post collision}, we can finally introduce the most known keywords associated to LBM:\@ \textbf{stream and collide}.
 
-The split equations allow us to calculate the post-collision distributions in equation~\eqref{eq: define post collision}.
-This is known as the collide step, illustrated in Figure~\ref{fig: examplary collision}.
+As the latter equation~\eqref{eq: define post collision} takes our pre-collision distributions, applies the collision operator to give us post-collision distributions, this is called the collide step, which is illustrated in Figure~\ref{fig: examplary collision}.
 
 \begin{figure}
 \centering

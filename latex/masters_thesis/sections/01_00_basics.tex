@@ -2,7 +2,7 @@
 After seeing where the Lattice Boltzmann Method originated, we now take a closer look at how the method is derived.
 
 As of today, the most intuitive way of deriving the \gls{lbm} is to start at the Boltzmann equation.
-It describes the evolution of the so-called \gls{pdf} $f(\vec{v},\vec{x},t)$, which gives the probability of finding a particle at spacial position $\vec{x}$ and time $t$ with velocity $\vec{v}$:
+It describes the evolution of the so-called \textbf{\gls{pdf}}\footnote{Important new vocabulary will be highlighted in bold font for easier recognition} $f(\vec{v},\vec{x},t)$, which gives the probability of finding a particle at spacial position $\vec{x}$ and time $t$ with velocity $\vec{v}$:
 \begin{equation}
   \label{eq: Boltzmann transport equation}
   \partial_t f(\vec{v},\vec{x},t) + \vec{v} \cdot \nabla_{\vec{x}} f(\vec{v},\vec{x},t) = \Omega\left(f(\vec{v},\vec{x},t)\right),
@@ -32,7 +32,6 @@ Additionally, by the definition of an equilibrium, the \glspl{pdf} in an equilib
 \end{equation}
 i.e.\ the collision of the particles has no effect on their distribution function.
 Those distributions are called equilibrium distributions and are unique for a given velocity.
-\todo[inline]{cite?}
 In the rest of this thesis, values derived from the equilibrium distributions will be denoted by a superscript $eq$.
 In this sense, the Boltzmann equation is a more general view of gas dynamics than Navier-Stokes.
 \begin{figure}

@@ -1,0 +1,106 @@
+% !TEX root = ../thesis.tex
+
+Now, we can finally write a collision for this method.
+We will do again a linear interpolation between our values and their equilibrium like in equation~\eqref{eq: post collision discrete}, leaving us with
+\begin{equation}
+  \kappa_{\alpha\beta}^* \defined \kappa_{\alpha\beta} + \omega_i \left( \kappa_{\alpha\beta}^{eq} - \kappa_{\alpha\beta} \right).
+\end{equation}
+This time though, we have no need to restrict ourselves to just one parameter, but chose one for each cumulant.
+Hence, using~\eqref{eq: equilibrium cumulants}, we get the post collision cumulants $\kappa_{\alpha\beta}^*$
+\begin{equation}
+  \label{eq: post equilibrium cumulants}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} + \omega_1 \left( \ln(\rho) - \kappa_{00} \right) \\
+    \kappa_{10}^{*} & = \kappa_{10} + \omega_2 \left( u_1 - \kappa_{10} \right) \\
+    \kappa_{01}^{*} & = \kappa_{01} + \omega_3 \left( u_2 - \kappa_{01} \right) \\
+    \kappa_{11}^{*} & = \kappa_{11} + \omega_4 \left( - \kappa_{11} \right) \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (\kappa_{20} - \kappa_{02}) + \omega_5 \left( - \kappa_{20} + \kappa_{02} \right) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & = (\kappa_{20} + \kappa_{02}) + \omega_6 \left( 2 c_s^2 - \kappa_{20} - \kappa_{02} \right) \\
+    \kappa_{21}^{*} & = \kappa_{21} + \omega_7 \left( - \kappa_{21} \right) \\
+    \kappa_{12}^{*} & = \kappa_{12} + \omega_8 \left( - \kappa_{12} \right) \\
+    \kappa_{22}^{*} & = \kappa_{22} + \omega_9 \left( - \kappa_{22} \right)
+  \end{aligned}
+\end{equation}
+which can be simplified to
+\begin{equation}
+  \label{eq: collision final before simplification}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_4)\kappa_{11} \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (1-\omega_5) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & = (1-\omega_6)(\kappa_{20} + \kappa_{02}) + \omega_6 \left( 2 c_s^2 \right) \\
+    \kappa_{21}^{*} & = (1-\omega_7)\kappa_{21} \\
+    \kappa_{12}^{*} & = (1-\omega_8)\kappa_{12} \\
+    \kappa_{22}^{*} & = (1-\omega_9)\kappa_{22},
+  \end{aligned}
+\end{equation}
+using equations~\eqref{eq: definition of kappa_00} to~\eqref{eq: definition of kappa_01}.
+As the cumulants $\kappa_{21}$ and $\kappa_{21}$ only vary in their direction, we want their relaxation to be the same.
+One should pause here for a second, and wonder, why we did not relax $\kappa_{20}$ and $\kappa_{02}$ separately and set their relaxation parameters equal.
+In fact, this is still the same effect as setting $\omega_5=\omega_6$.
+In the analysis, Section~\ref{sub: Deriving the equations}, we will however discover, that $\omega_4$ and $\omega_5$ should be equal and $\omega_6$ should be one.
+
+This yields
+\begin{equation}
+  \label{eq: collision equation system full}
+  \begin{aligned}
+    \kappa_{00}^{*} & = \kappa_{00} \\
+    \kappa_{10}^{*} & = \kappa_{10} \\
+    \kappa_{01}^{*} & = \kappa_{01} \\
+    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{20}^{*} - \kappa_{02}^{*}
+      & = (1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+    \kappa_{20}^{*} + \kappa_{02}^{*}
+      & = 2 c_s^2 \\
+    \kappa_{21}^{*} & = (1-\omega_2)\kappa_{21} \\
+    \kappa_{12}^{*} & = (1-\omega_2)\kappa_{12} \\
+    \kappa_{22}^{*} & = (1-\omega_3)\kappa_{22},
+  \end{aligned}
+\end{equation}
+where the $\omega_i$ are relabeled and not related to the ones used in~\eqref{eq: post equilibrium cumulants} and afterwards.
+The recovered post equilibrium values $\kappa_{20}^{*}$ and $\kappa_{02}^{*}$ can now be calculated
+\begin{equation}
+  \begin{pmatrix}
+    \kappa_{20}^{*} \\
+    \kappa_{02}^{*}
+  \end{pmatrix}
+  = \frac{1}{2}
+  \begin{pmatrix}
+    1 & 1 \\ -1 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    a\\
+    b
+  \end{pmatrix}
+\end{equation}
+where
+\begin{equation}
+ \begin{aligned}
+   a \defined \kappa_{20}^{*} - \kappa_{02}^{*}
+     & = (1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+   b \defined \kappa_{20}^{*} + \kappa_{02}^{*}
+     & = 2 c_s^2 .
+ \end{aligned}
+\end{equation}
+
+Multiplying equations~\eqref{eq: collision equation system full} with $m_{00}$ and introducing again the normalized cumulants,~\eqref{eq: definition normalized cumulants}, we get
+\begin{equation}
+  \label{eq: final collision all relaxations}
+  \begin{aligned}
+    K_{00}^{*} & = K_{00} \\
+    K_{10}^{*} & = K_{10} \\
+    K_{01}^{*} & = K_{01} \\
+    K_{11}^{*} & = (1-\omega_1)K_{11} \\
+    K_{20}^{*} - K_{02}^{*} & = (1-\omega_1) (K_{20} - K_{02}) \\
+    K_{20}^{*} + K_{02}^{*} & = 2 m_{00} c_s^2 \\
+    K_{21}^{*} & = (1-\omega_2)K_{21} \\
+    K_{12}^{*} & = (1-\omega_2)K_{12} \\
+    K_{22}^{*} & = (1-\omega_3)K_{22}.
+  \end{aligned}
+\end{equation}

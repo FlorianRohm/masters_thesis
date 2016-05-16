@@ -71,11 +71,15 @@ Using the characteristic length and timescales, $L$ and $\iota$, we adapt the wi
     \Delta t & = \iota\epsilon^2
   \end{aligned}
 \end{equation}
-and nondimensionalize equation~\eqref{eq: Taylor of moments} with
+and therefore
 \begin{equation}
   \label{eq: nondimensionalisation 2}
+  c = \frac{L}{\iota\epsilon}.
+\end{equation}
+Our spatial coordinates $x$ and $y$ together with the time coordinate $t$ will be nondimensionalized according to their characteristic length scales like
+\begin{equation}
+  \label{eq: nondimensionalisation 3}
   \begin{aligned}
-    c & = \frac{L}{\iota\epsilon} \\
     \{x, y\} & \rightarrow \{\frac{x}{L}, \frac{y}{L}\} \\
     t & \rightarrow \frac{t}{\iota}.
   \end{aligned}
@@ -89,7 +93,8 @@ Furthermore, the moments are asymptotically expanded in space according to the s
 \end{align}
 This procedure implicitly defines the coefficients of the series, $m_{\alpha\beta}^{(p)}$ and $m_{\alpha\beta}^{*^{(p)}}$.
 Those are still dependent of space and time, but as they are separated on their length scales, their spatial part is not allowed to depend on $\epsilon$ neither implicitly nor explicitly.
-Inserting~\eqref{eq: expansion of m},~\eqref{eq: expansion of m star} and~\eqref{eq: nondimensionalisation} into~\eqref{eq: Taylor of moments} yields
+
+Finally, we can insert~\eqref{eq: expansion of m},~\eqref{eq: expansion of m star} and~\eqref{eq: nondimensionalisation} through~\eqref{eq: nondimensionalisation 3} into~\eqref{eq: Taylor of moments}, yielding
 
 \begin{align}
   \phantom{\equivalent\qquad}
@@ -124,7 +129,7 @@ Inserting~\eqref{eq: expansion of m},~\eqref{eq: expansion of m star} and~\eqref
     \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n } m_{(\alpha + m)(\beta + n)}^{*^{(p')}},
   \end{aligned}
 \end{align}
-where in~\eqref{eq: final nondimensionalised expansion series}, the summation indices are changed to be unique for better recognition in the next chapter.
+where in~\eqref{eq: final nondimensionalised expansion series}, the summation indices are changed to be unique for better recognition in the next section.
 
 \subsubsection{Changing the coordinate system}
 \label{subs: Changing the coordinate system}

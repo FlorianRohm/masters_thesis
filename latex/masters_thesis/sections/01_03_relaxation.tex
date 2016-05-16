@@ -31,20 +31,24 @@ where the quantities are defined in Table~\ref{table: maxwell quantities}.
 \label{table: maxwell quantities}
 \end{table}
 
-We now define $f_{ij}^{eq}$ as a yet unspecified discretization of~\eqref{eq: maxwell distribution raw} and define the collision operator $\tilde{\Omega}$ of~\eqref{eq: lattice boltzmann equation} as
+One of the most popular Lattice-Boltzmann schemes, \gls{srt}, proceeds as following.
+The $f_{ij}^{eq}$ are defined due to a yet unspecified discretization of~\eqref{eq: maxwell distribution raw} and the collision operator $\tilde{\Omega}$ of~\eqref{eq: define post collision} reads
 \begin{equation}
   \tilde{\Omega}(f_{ij}) \defined \omega \left(f_{ij}^{eq} - f_{ij}\right),
 \end{equation}
 with an also unspecified `relaxation time' $\omega$.
+This also gave the method its prominent name, as it uses only one parameter $\omega$ to relax all the~\glspl{pdf}.
 Thus, equation~\eqref{eq: define post collision} reads now
 \begin{equation}
   \label{eq: post collision discrete}
   f_{ij}^* = f_{ij} + \omega \left(f_{ij}^{eq} - f_{ij}\right) = (1-\omega)f_{ij} + f_{ij}^{eq}.
 \end{equation}
-If we choose $\omega\in[0,1]$, this is exactly a linear interpolation, also called relaxation towards equilibrium.
+If we choose $\omega\in[0,1]$, this is exactly a linear interpolation, also called relaxation towards equilibrium, which is the modeled effect of the collision we motivated in the beginning.
+This also explains the alternative name BGK-LBM of the \gls{srt}, after the inventors of the continuum analogue technique for the Boltzmann equation.
 At this moment, though, we have no equation to fix $\omega$, but we will first deal with the problem of discretizing $f^{maxwell}$ into $f_{ij}^{eq}$.
 
-The most popular method of discretizing~\eqref{eq: maxwell distribution raw} is due to a Taylor series expansion, yielding\footnote{The microscopic velocity is again delegated to the index $ij$, whereas $\rho$ and $\vec{u}$ are now parameters. The factor $\frac{m}{k_B T}$ is constant and equal to the speed of sound $c_s$, more details in Section~\ref{sub: Equilibrium distribution for cumulants}.}
+The method of discretizing~\eqref{eq: maxwell distribution raw} we use for \gls{srt} is due to a Taylor series expansion, yielding\footnote{The microscopic velocity is again delegated to the index $ij$, whereas $\rho$ and $\vec{u}$ are now parameters.
+The factor $\frac{m}{k_B T}$ is constant and equal to the speed of sound $c_s$, more details in Section~\ref{sub: Equilibrium distribution for cumulants}.}
 \begin{equation}
   \label{eq: equilibrium particle distributions}
   f_{ij}^{eq}(\rho,\vec{u}) = W_{ij}\rho
@@ -58,7 +62,6 @@ The most popular method of discretizing~\eqref{eq: maxwell distribution raw} is 
 where $W_{ij}$ is a weighting factor depending on the chosen lattice, $c_s$ the speed of sound in the lattice and $\vec{c}_{ij}$ are the velocities defined in~\eqref{eq: definition of the velocities}.
 As we can see here, $f^{eq}$ nonlinearly depends on all $f_{ij}$ via the macroscopic velocity and pressure.
 
-This whole procedure yields the most simple, but most famous BGK-LBM, also called \gls{srt}, as it uses only one parameter $\omega$ to relax the~\glspl{pdf}.
 When analyzing this method,~\cite[Section 5.2.3]{wolf2000lattice}, we see, that the kinematic viscosity $\nu$ (in lattice units) is actually calculated by
 \begin{equation}
   \nu = \frac{1}{3}\left(\frac{1}{\omega} - \frac{1}{2}\right).
