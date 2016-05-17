@@ -1,7 +1,9 @@
 % !TEX root = ../thesis.tex
-Last but not least, we take a look at the collision and insert the findings of Section~\ref{sub: Expanding the normalized cumulants}.
-We start from the general case~\eqref{eq: collision final before simplification}, multiply with $m_{00}$ to get the normalized cumulants.
-At zeroth order, only $K_{20}$ and $K_{02}$ play any role, and the related equations give no insight, as they are at zeroth order
+Last but not least, we take a look at the collision we formulated using normalized cumulants, c.f.~\eqref{eq: collision final before simplification normalized},
+and insert the findings of Section~\ref{sub: Expanding the normalized cumulants}.
+
+At zeroth order, only $K_{20}$ and $K_{02}$ play any role, c.f.~\eqref{eq: expansions of cumulants zeroth order}.
+When inserting their expansion into the related collisions, we get
 \begin{equation}
   \begin{aligned}
     &&K_{20}^{*^{(0)}} - K_{02}^{*^{(0)}}
@@ -13,16 +15,18 @@ At zeroth order, only $K_{20}$ and $K_{02}$ play any role, and the related equat
 and
 \begin{equation}
   \begin{aligned}
-    &&K_{20}^{*} + K_{02}^{*}
-      & = (1-\omega_6)(K_{20} + K_{02}) + \omega_6 \left( 2 c_s^2 m_{00}^{(0)} \right) \\
+    &&K_{20}^{*^{(0)}} + K_{02}^{*^{(0)}}
+      & = (1-\omega_6)(K_{20}^{(0)} + K_{02}^{(0)}) + \omega_6 \left( 2 c_s^2 m_{00}^{(0)} \right) \\
     &\equivalent& c_s^2 m_{00}^{*^{(0)}} + c_s^2 m_{00}^{*^{(0)}}
       & = (1-\omega_6)(c_s^2 m_{00}^{*^{(0)}} + c_s^2 m_{00}^{*^{(0)}}) + \omega_6 \left( 2 c_s^2 m_{00}^{(0)} \right) \\
   \end{aligned}
 \end{equation}
-and thus not giving any new information.
+and thus not gain any new information.
+
 At first order, all non conserved cumulants are zero and also $m_{00}^{(1)}=0$, hence nothing new can be learned from~\eqref{eq: collision final before simplification} at this order.
+
 The most important part will be the collision of the second order terms.
-Here, we get
+Here, we insert~\eqref{eq: expansions of cumulants second order} into~\eqref{eq: collision final before simplification normalized} to get
 \begin{align}
   \label{eq: collide moments 11_2 raw}
   m_{11}^{*^{(2)}} - \frac{ m_{10}^{*^{(1)}}m_{01}^{*^{(1)}}}{m_{00}^{*^{(0)}}} =&\ (1-\omega_4)\left(m_{11}^{(2)} - \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}\right)

@@ -1,33 +1,38 @@
 % !TEX root = ../thesis.tex
-We can also define our equilibrium cumulants in terms of moments.
+
+To get more insight on the moments, we seek a representations for the moments in equilibrium.
+
 First of all, we start with combining~\eqref{eq: definition of kappa_00} with the first equation in~\eqref{eq: equilibrium cumulants}, which results in
-\begin{equation}
+\begin{alignat}{3}
+  \nonumber
+  &&\kappa_{00} &= \kappa_{00}^{eq} \\
+  \nonumber
+  &\equivalent&\ \ln(m_{00}) & {\ln(m_{00})}^{eq} \\
+  \nonumber
+  &\equivalent&\ m_{00} &= m_{00}^{eq} \\
   \label{eq: m 00 invariant}
-  \begin{aligned}
-    {\ln(m_{00})}^{eq} &= \ln(m_{00}) \\
-    \Leftrightarrow\quad m_{00}^{eq} &= m_{00} \\
-    \Leftrightarrow\quad m_{00}^{eq^{(p)}} &= m_{00}^{(p)} \quad\forall p\ge 0
-  \end{aligned}
-\end{equation}
-Starting from~\eqref{eq: equilibrium cumulants}, multiplying by $m_{00}$ and inserting our known values, we get
+  &\equivalent&\ m_{00}^{(p)} &= m_{00}^{eq^{(p)}} \quad\forall p\ge 0
+\end{alignat}
+as the logarithm is bijective from $\R_+$ to $\R$.
+Starting from~\eqref{eq: equilibrium cumulants} we multiply by $m_{00}$ to get normalized cumulants and insert their moment representations~\eqref{eq: K 10 from moments} through~\eqref{eq: K 22 from moments}, to get
 \begin{equation}
   \begin{aligned}
-    m_{10} = &\ m_{10}^{eq}
+    m_{10} = K_{10}^{(eq)} = &\ m_{10}^{eq}
     \\
-     m_{01} = &\ m_{01}^{eq}
+     m_{01} = K_{01}^{(eq)} = &\ m_{01}^{eq}
     \\
-    0 = &\ m_{11}^{eq} - \frac{m_{10}^{eq}m_{01}^{eq}}{m_{00}^{eq}}
+    0 = K_{11}^{(eq)} = &\ m_{11}^{eq} - \frac{m_{10}^{eq}m_{01}^{eq}}{m_{00}^{eq}}
     \\
-    c_s^2 m_{00} = &\ m_{20}^{eq} - \frac{m_{10}^{{eq}^2}}{m_{00}^{eq}}
+    c_s^2 m_{00} = K_{20}^{(eq)} = &\ m_{20}^{eq} - \frac{m_{10}^{{eq}^2}}{m_{00}^{eq}}
     \\
-    c_s^2 m_{00} = &\ m_{02}^{eq} - \frac{m_{01}^{{eq}^2}}{m_{00}^{eq}}
+    c_s^2 m_{00} = K_{02}^{(eq)} = &\ m_{02}^{eq} - \frac{m_{01}^{{eq}^2}}{m_{00}^{eq}}
     \\
-    0 = &\ m_{21}^{eq} - \frac{m_{20}^{eq}m_{01}^{eq}}{m_{00}^{eq}} - 2\frac{m_{10}^{eq}m_{11}^{eq}} {m_{00}^{eq}} + 2\frac{m_{10}^{{eq}^2} m_{01}^{eq}}{m_{00}^2}
+    0 = K_{21}^{(eq)} = &\ m_{21}^{eq} - \frac{m_{20}^{eq}m_{01}^{eq}}{m_{00}^{eq}} - 2\frac{m_{10}^{eq}m_{11}^{eq}} {m_{00}^{eq}} + 2\frac{m_{10}^{{eq}^2} m_{01}^{eq}}{m_{00}^2}
     \\
-    0 = &\ m_{12}^{eq} - \frac{m_{10}^{eq}m_{02}^{eq}}{m_{00}^{eq}}
+    0 = K_{12}^{(eq)} = &\ m_{12}^{eq} - \frac{m_{10}^{eq}m_{02}^{eq}}{m_{00}^{eq}}
     - 2\frac{m_{11}^{eq}m_{01}^{eq}}{m_{00}^{eq}} + 2\frac{m_{10}^{eq} m_{01}^{{eq}^2}}{m_{00}^2}
     \\
-    0 = &\ m_{22}^{eq}
+    0 = K_{22}^{(eq)} = &\ m_{22}^{eq}
     \\&\
     - 2 \frac{m_{10}^{eq}m_{12}^{eq}}{m_{00}^{eq}} - 2\frac{m_{21}^{eq}m_{01}^{eq}}{m_{00}^{eq}}
     - 2 \frac{m_{11}^{{eq}^2}}{m_{00}^{eq}} - \frac{m_{20}^{eq}m_{02}^{eq}}{m_{00}^{eq}}
