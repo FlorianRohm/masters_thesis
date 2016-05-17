@@ -1,42 +1,57 @@
 % !TEX root = ../thesis.tex
+The equations in~\eqref{eq: collision final before simplification} resemble the most general form we can have and we seek to simplify it and determine the used relaxation parameters.
+Thus, the asymptotic analysis in the next sections will base upon this equation.
+Consequently, we present the final version of the collision in this section, anticipating the findings yet to come.
+
+First of all, we turn our attention towards $\kappa_{21}$ and $\kappa_{21}$.
+As they only vary in their direction, we want their relaxation to be the same.
+In fact, neither $\omega_7$ nor $\omega_8$ nor $\omega_9$ play any role in our analysis up to second order and are safe to set equal to one according to this analysis.
+Higher order errors are neglected in this view.
+
 In the derivation of the Navier-Stokes equations in Section~\ref{sec: Momentum equations} and following, the only parameter which will be needed is $\omega_1$.
 Like in \gls{srt}, it will play the role of the viscosity, respectively Reynolds number.
-Thus, it's safe to set the other parameters to one according to our second order analysis.
 
-With the speed of sound for the D2Q9 calculated as $c_s^2=\frac{c^2}{3}$, c.f.~\cite[page 175]{wolf2000lattice}, we get
+One should pause here for a second, and wonder, why we did not relax $\kappa_{20}$ and $\kappa_{02}$ separately and set their relaxation parameters equal, too.
+In fact, we could still achieve this effect by setting $\omega_5=\omega_6$.
+
+However, we will discover in the analysis, Section~\ref{sub: Deriving the equations}, that all terms with $\omega_6$ cancel out and $\omega_4$ and $\omega_5$ should be equal.
+When setting $\omega_6=1$, we comply with the ideal gas law, c.f.~\ref{sub: Ideal gas law}.
+This yields
 \begin{equation}
-  \label{eq:collision equation system}
+  \label{eq: collision equation system full}
   \begin{aligned}
     \kappa_{00}^{*} & = \kappa_{00} \\
     \kappa_{10}^{*} & = \kappa_{10} \\
     \kappa_{01}^{*} & = \kappa_{01} \\
-    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
+    \kappa_{11}^{*} & = (1-\omega)\kappa_{11} \\
     \kappa_{20}^{*} - \kappa_{02}^{*}
-      & = (1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
+      & = (1-\omega) (\kappa_{20} - \kappa_{02}) \\
     \kappa_{20}^{*} + \kappa_{02}^{*}
-      & =  \frac{2c^2}{3} \\
+      & = 2 c_s^2 \\
     \kappa_{21}^{*} & = 0 \\
     \kappa_{12}^{*} & = 0 \\
-    \kappa_{22}^{*} & = 0
+    \kappa_{22}^{*} & = 0,
   \end{aligned}
 \end{equation}
-or equivalently
+Like in \gls{srt}, this remaining parameter will play the role of the viscosity, respectively Reynolds number.
+
+Multiplying equations~\eqref{eq: collision equation system full} with $m_{00}$ and introducing again the normalized cumulants,~\eqref{eq: definition normalized cumulants}, we get
 \begin{equation}
+  \label{eq: final collision all relaxations}
   \begin{aligned}
-    \kappa_{00}^{*} & = \kappa_{00} \\
-    \kappa_{10}^{*} & = \kappa_{10} \\
-    \kappa_{01}^{*} & = \kappa_{01} \\
-    \kappa_{11}^{*} & = (1-\omega_1)\kappa_{11} \\
-    \kappa_{20}^{*} & = \frac{c^2}{3} + \frac{1}{2}(1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
-    \kappa_{02}^{*} & = \frac{c^2}{3} - \frac{1}{2}(1-\omega_1) (\kappa_{20} - \kappa_{02}) \\
-    \kappa_{21}^{*} & = 0 \\
-    \kappa_{12}^{*} & = 0 \\
-    \kappa_{22}^{*} & = 0.
+    K_{00}^{*} & = K_{00} \\
+    K_{10}^{*} & = K_{10} \\
+    K_{01}^{*} & = K_{01} \\
+    K_{11}^{*} & = (1-\omega)K_{11} \\
+    K_{20}^{*} - K_{02}^{*} & = (1-\omega) (K_{20} - K_{02}) \\
+    K_{20}^{*} + K_{02}^{*} & = 2 m_{00} c_s^2 \\
+    K_{21}^{*} & = 0 \\
+    K_{12}^{*} & = 0 \\
+    K_{22}^{*} & = 0.
   \end{aligned}
 \end{equation}
 
-As we want to compute with the normalized cumulants,~\eqref{eq: definition normalized cumulants}, we need to multiply each line with $m_{00}$.
-Hence, the final collision reads
+Finally, we can calculate the speed of sound for the D2Q9 as $c_s^2=\frac{c^2}{3}$, c.f.~\cite[page 175]{wolf2000lattice} and solve the small system of equations to finally get
 \begin{equation}
   \label{eq: final collision one relaxation}
   \begin{aligned}
