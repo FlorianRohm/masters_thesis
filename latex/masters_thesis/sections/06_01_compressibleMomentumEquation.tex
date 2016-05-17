@@ -7,6 +7,8 @@ The convective form of the momentum equations reads
     \partial_t \vec{m} + \nabla \cdot (\vec{m}\vec{v}^T)
     &= - \nabla p + \nabla \cdot (\mu\mathbb{S}) + \rho \vec{f} \\
     \Leftrightarrow\partial_t \vec{m} + \vec{v}(\nabla \cdot \vec{m}) + (\vec{m} \cdot \nabla)\vec{v}
+    &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \mathbb{S}^T \nabla\mu + \rho \vec{f}\\
+    \Leftrightarrow \rho \left(\partial_t v +  (\vec{v} \cdot \nabla)\vec{v}\right)
     &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \mathbb{S}^T \nabla\mu + \rho \vec{f}
   \end{aligned}
 \end{equation}
@@ -23,6 +25,7 @@ is the Cauchy-stress and
   \end{pmatrix}
 \end{equation}
 with an abused notation of the divergence of a matrix and the Jacobian Matrix of $\vec{v}$ denoted as $D\vec{v}$.
+
 For our method, we need to insert the density, velocity, pressure and momentum density in terms of our moments.
 Only the $x$-direction is stated, the other one follows from symmetry:
 \begin{equation}
@@ -49,13 +52,20 @@ It should be noted, that the term $\nabla \mu$ will only be relevant, if the vis
 In ideal gases, $\mu$ is a variable of the temperature only.
 As our method only treats isothermal phenomena in this setting, we are save to assume $\mu$ to be constant.
 For a general treatment, of compressible flow, this has to be accounted for, as temperature is coupled to pressure and density, thus $\mu$ won't be constant.
-The resulting Navier Stokes equation reads now:
-\begin{equation}
+The resulting Navier Stokes equation reads now
+\begin{alignat}{3}
   \label{eq:compressible NS isotherm}
-  \partial_t \vec{m} + \vec{v}(\nabla \cdot \vec{m}) + (\vec{m} \cdot \nabla)\vec{v}
-    = - \nabla p + \mu \nabla \cdot \mathbb{S} + \rho \vec{f}.
-\end{equation}
-Again, we take just the $x$-direction and insert the corresponding moments to get
+  &&\partial_t \vec{m} + \vec{v}(\nabla \cdot \vec{m}) + (\vec{m} \cdot \nabla)\vec{v}
+    &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \rho \vec{f}\\
+  \nonumber
+  &\equivalent\ & \rho\partial_t \vec{v} + \vec{v}\partial_t \rho + \vec{v}(\nabla \cdot \vec{m}) + (\vec{m} \cdot \nabla)\vec{v}
+    &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \rho \vec{f}\\
+  \label{eq:compressible NS isotherm reduced}
+  &\equivalent& \rho\left(\partial_t \vec{v} + (\vec{v} \cdot \nabla)\vec{v}\right)
+    &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \rho \vec{f},
+\end{alignat}
+using~\eqref{eq: continuity equation}.
+Again, we take just the $x$-direction and insert the corresponding moments into~\eqref{eq:compressible NS isotherm} to get
 \begin{equation}
   \label{eq: navier stokes goal}
   \begin{aligned}

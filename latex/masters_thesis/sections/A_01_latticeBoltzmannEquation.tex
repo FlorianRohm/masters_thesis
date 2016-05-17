@@ -41,8 +41,8 @@ Now, we discretize the time derivative, using the implicit scheme on the remaini
   }_{\text{implicit}}
    = \underbrace{\Omega\left(f_{ij}(\vec{x},t)\right)}_{\text{explicit}}.
 \end{equation}
-For the next step, we have to see, that the term $\vec{c}_{ij} \cdot \nabla_{\vec{x}}$ actually gives us the directional derivative in the direction $\begin{pmatrix}i\\j\end{pmatrix}$, scaled with $\norm{\vec{c}_{ij}}$.
-Thus we can discretize~\eqref{eq: app_lbm_4} to
+For the next step, we have to see, that the term $\vec{c}_{ij} \cdot \nabla_{\vec{x}}$ actually gives us the directional derivative in the direction $\begin{pmatrix}i\\j\end{pmatrix}$, scaled with $\norm{\vec{c}_{ij}}= c\sqrt{i^2 + j^2}$.
+Thus we can discretize~\eqref{eq: app_lbm_4} for $i\neq 0$ or $j\neq 0$ to
 \begin{equation}
   \label{eq: app_lbm_5}
   \begin{aligned}
@@ -60,7 +60,7 @@ With the relation between the stepsizes,~\eqref{eq: relation between stepsizes},
     & + \frac{f_{ij}\left(x + ci\Delta t, y+ cj\Delta t, t+\Delta t\right) - f_{ij}(x,y, t+\Delta t)}{\Delta t}
     \\&
     = \Omega\left(f_{ij}(x,y,t)\right).
-  \end{aligned} 
+  \end{aligned}
 \end{equation}
 and thus
 \begin{equation}
@@ -70,4 +70,6 @@ and thus
     = \Delta t\ \Omega\left(f_{ij}(x,y,t)\right) + f_{ij}(x,y, t).
   \end{aligned}
 \end{equation}
+In the case $i=j=0$,~\eqref{eq: app_lbm_6} and consequently~\eqref{eq: app_lbm_7} follow directly from~\eqref{eq: app_lbm_4}.
+
 When inserting our modified collision, which we assume to be scaled with $\Delta t$, this is exactly equation~\eqref{eq: lattice boltzmann equation}.

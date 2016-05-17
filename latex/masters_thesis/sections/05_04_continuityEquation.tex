@@ -1,5 +1,11 @@
 % !TEX root = ../thesis.tex
 Our goal in this little section is the derivation of the continuity equation.
+The compressible continuity equation reads
+\begin{equation}
+  \label{eq: continuity equation}
+  \partial_t \rho + \nabla \vec{\rho \vec{v}} = 0,
+\end{equation}
+with the incompressible version just assuming that $\rho$ is a constant to get $\nabla\cdot\vec{v}=0$.
 
 Upon looking at the equations derived in Section~\ref{sub: Matching the coefficients}, we see that our first nontrivial equation is for $\epsilon^2$, namely~\eqref{eq: second order in epsilon}.
 Choosing $\alpha=\beta=0$ and using that the first order terms are collision invariant,~\eqref{eq: first order invariant}, we get due to the absence of sources and sinks~\eqref{eq: absence of sources},
@@ -24,6 +30,7 @@ This is the continuity equation even without the assumption of incompressibility
 With the findings of Section~\ref{subs: Changing the coordinate system},
 namely equations~\eqref{eq: kill even moments odd order} and~\eqref{eq: kill odd moments even order}, we also know, that
 \begin{equation}
+  \label{eq: conti second order}
   \partial_t \rho^{(1)} + \nabla \vec{m}^{(2)} = 0,
 \end{equation}
 and thus, the continuity equation is satisfied in at least the first two orders.
