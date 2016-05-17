@@ -96,61 +96,57 @@ Those are still dependent of space and time, but as they are separated on their 
 
 Finally, we can insert~\eqref{eq: expansion of m},~\eqref{eq: expansion of m star} and~\eqref{eq: nondimensionalisation} through~\eqref{eq: nondimensionalisation 3} into~\eqref{eq: Taylor of moments}, yielding
 
-\begin{align}
-  \phantom{\equivalent\qquad}
-  &\phantom{=}\text{\eqref{eq: Taylor of moments}}\\
-  &\begin{aligned}
+\begin{alignat}{3}
   \nonumber
-    \mathllap{\equivalent\qquad} & \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!}  \frac{\partial^\tau}{{\partial t}^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)} \\
+  &&\sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta} &=
+ \sum_{m,n = 0}^\infty \frac{{(- c\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} m^*_{(\alpha + m)(\beta + n)}\\
+  \nonumber
+  &\equivalent& \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!}  \frac{\partial^\tau}{{\partial t}^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}
     = &{}\sum_{m,n = 0}^\infty \frac{{(-c\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} \sum_{p=0}^{\infty} \epsilon^p m_{(\alpha + m)(\beta + n)}^{*^{(p)}}
-  \end{aligned}\\
+  \\
   %
-  &\begin{aligned}
     \label{eq: nondimensionalised expansion series}
-    \mathllap{\equivalent\qquad} &
-    \sum_{\tau = 0}^\infty \frac{{(\iota\epsilon^2)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau \iota^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)} \\
+  &\equivalent&
+    \sum_{\tau = 0}^\infty \frac{{(\iota\epsilon^2)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau \iota^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}
     = &{}\sum_{m,n = 0}^\infty \frac{{(-\frac{L}{\iota\epsilon}(\iota\epsilon^2))}^{m+n}} {m!n!}
     \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n L^{m+n}} \sum_{p=0}^{\infty} \epsilon^p m_{(\alpha + m)(\beta + n)}^{*^{(p)}}
-  \end{aligned} \\
+   \\
  %
-  &\begin{aligned}
   \nonumber
-    \mathllap{\equivalent\qquad} &
-    \sum_{\tau = 0}^\infty \frac{\epsilon^{2\tau} }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)} \\
+  &\equivalent&
+    \sum_{\tau = 0}^\infty \frac{\epsilon^{2\tau} }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}
     = &{}\sum_{m,n = 0}^\infty \frac{{(-\epsilon)}^{m+n}} {m!n!}
     \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n } \sum_{p=0}^{\infty} \epsilon^p m_{(\alpha + m)(\beta + n)}^{*^{(p)}}
-  \end{aligned} \\
+   \\
  %
-  &\begin{aligned}
     \label{eq: final nondimensionalised expansion series}
-    \mathllap{\equivalent\qquad} &
-    \sum_{\tau, p = 0}^\infty\epsilon^{2\tau + p} \frac{1} {\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta}^{(p)} \\
+  &\equivalent&
+    \sum_{\tau, p = 0}^\infty\epsilon^{2\tau + p} \frac{1} {\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta}^{(p)}
     = &{} \sum_{m,n,p' = 0}^\infty  \epsilon^{m+n+p'} \frac{{(-1)}^{m+n}} {m!n!}
     \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n } m_{(\alpha + m)(\beta + n)}^{*^{(p')}},
-  \end{aligned}
-\end{align}
-where in~\eqref{eq: final nondimensionalised expansion series}, the summation indices are changed to be unique for better recognition in the next section.
+\end{alignat}
+where in~\eqref{eq: final nondimensionalised expansion series}, the summation indices are changed to be unique for better recognition in Section~\ref{sub: Matching the coefficients}.
 
 \subsubsection{Changing the coordinate system}
 \label{subs: Changing the coordinate system}
 Our choice of coordinates to this point was arbitrary.
 Something interesting happens though, when we just mirror each axis.
-The Problem remains the same, just all involved velocities will change their sign, i.e.\ $c$ gets replaced with $-c$.
+The problem remains the same, just all involved velocities will change their sign, i.e.\ $c$ gets replaced with $-c$.
 Now, our moments $\tilde{m}$ in the new coordinate system are
 \begin{align}
   \tilde{m}_{\alpha\beta} &= {(-c)}^{\alpha + \beta}\sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
   ={(-1)}^{\alpha + \beta}{c}^{\alpha + \beta}\sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
   ={(-1)}^{\alpha + \beta}  m_{\alpha\beta}
 \end{align}
-But still represent the same value.
+but still represent the same value.
 To get the same expansion in the nondimensionalized, c.f.~\eqref{eq: nondimensionalisation}, case, our expansion parameter $\epsilon$ also needs to be negated.
 Thus
-\begin{align}
-    \tilde{m}_{\alpha\beta}
-    & = \sum_{p=0}^{\infty} {(-\epsilon)}^p \tilde{m}_{\alpha\beta}^{(p)}
+\begin{equation}
+     \sum_{p=0}^{\infty} {(-\epsilon)}^p \tilde{m}_{\alpha\beta}^{(p)}
+     = \tilde{m}_{\alpha\beta}
+     = {(-1)}^{\alpha + \beta}  m_{\alpha\beta}
      = {(-1)}^{\alpha + \beta} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}
-    = {(-1)}^{\alpha + \beta}  m_{\alpha\beta}
-\end{align}
+\end{equation}
 and as we corrected the error we made with the introduction of $-\epsilon$, the expanded moments $\tilde{m}_{\alpha\beta}^{(p)}$ and $m_{\alpha\beta}^{(p)}$ have to be equal and thus
 \begin{align}
   \label{eq: negativ expansion}

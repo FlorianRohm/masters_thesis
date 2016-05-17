@@ -10,38 +10,28 @@ We can reformulate~\eqref{eq: K 11 from moments} like
     \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
     & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
     \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
-        {\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}\\
-    \Leftrightarrow
-    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
-    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
-    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
-        {m_{00}^{(0)}}
-        \frac{1}{1 - \sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}}.
+        {\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}.
   \end{aligned}
 \end{equation}
-Here, we already prepared the denominator to be coped with a geometric series.
+We have to stop here and cope with the denominator first.
+In writing
+\begin{equation}
+  \frac{1}{\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}=
+  \frac{1}{m_{00}^{(0)}}
+  \frac{1}{1 - \sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}}.
+\end{equation}
+
+we prepared the denominator to be coped with a geometric series.
 This is valid as long as we assume $\epsilon$ to be `small enough' to ensure $\abs{\sum_{i=1}^\infty \epsilon^i \frac{ m_{00}^{(i)}}{ m_{00}^{(0)}} } < 1$.
 This is by no means a bold statement, as firstly the zeroth order of $m_{00}$ is left out and all other terms are divided by the constant portion of $m_{00}$.
 Secondly, our nondimensionalisation in~\eqref{eq: nondimensionalisation} states that $\epsilon = \frac{\Delta x}{L}$, where $L$ is a typical length in our project.
 As our typical length scales have to be some orders of magnitude larger than our cell spacing\footnote{Let's say we discretize a 2D wing with a given chord length, we have to take small cells in its vicinity just to represent the shape accurately.}, our prerequesite is even less of a problem.
+
 Thus, we get
 \begin{equation}
-  \label{eq: first expansion continue}
-  \begin{aligned}
-    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
-    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
-    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
-        {m_{00}^{(0)}}
-    \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j\\
-    \Leftrightarrow.
-    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
-    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
-    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
-    {m_{00}^{(0)}}
-    g(\epsilon),\\
-  \end{aligned}
+  \label{eq: definition of g}
+  g(\epsilon) \defined \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j = \frac{1}{1 - \sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}}.
 \end{equation}
-where we abbreviated the latter term with $g(\epsilon) \defined \sum_{j=0}^\infty {\left(\sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}\right)}^j$.
 Expanding this term and using the even and odd order properties of equation~\eqref{eq: kill even moments odd order} and following, we get
 \begin{equation}
   \label{eq: expand g}
@@ -57,13 +47,27 @@ Expanding this term and using the even and odd order properties of equation~\eqr
 % 1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)
 
 Now we finally analyze the cumulant $K_{11}$.
-For a better overview, we repeat the last equation from~\eqref{eq: first expansion continue}, already inserting equation~\eqref{eq: expand g},
+Restarting at equation~\eqref{eq: first expansion} and inserting equations~\eqref{eq: definition of g} and~\eqref{eq: expand g}, we get
+
 \begin{equation}
+  \begin{aligned}
+    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
+        {\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}} \\
+    \Leftrightarrow
+    \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
+    & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+    \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
+    {m_{00}^{(0)}}
+    g(\epsilon)\\
+    \Leftrightarrow
   \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
-   = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
+   & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
   \frac{\sum_{i,j=0}^\infty \epsilon^{i+j} m_{10}^{(i)}m_{01}^{(j)}}
       {m_{00}^{(0)}}
   \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right).
+\end{aligned}
 \end{equation}
 Collecting all zeroth order terms, we get using~\eqref{eq: zeroth order velocity zero}
 \begin{equation}
@@ -73,7 +77,7 @@ Analogously, for first order terms,
 \begin{equation}
   \begin{aligned}
     K_{11}^{(1)} & = m_{11}^{(1)} - \frac{m_{01}^{(1)}m_{10}^{(0)}+m_{01}^{(0)}m_{10}^{(1)}}{m_{00}^{(0)}}
-    +\frac{m_{01}^{(0)}m_{10}^{(0)}m_{00}^{(1)}}{m_{00}^{{(0)}^2}}  \\
+    \\
     &= m_{11}^{(1)} = 0
   \end{aligned}
 \end{equation}
