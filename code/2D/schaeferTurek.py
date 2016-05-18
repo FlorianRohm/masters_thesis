@@ -23,7 +23,7 @@
 from numpy import *
 from matplotlib import cm, pyplot
 from auxiliary.VTKWrapper import saveToVTK
-from auxiliary.collide import BGKCollide, cumulantCollide
+from auxiliary.collide import BGKCollide, cumulantCollide_min
 from auxiliary.stream import stream
 from auxiliary.LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
 from auxiliary.boundaryConditions import YuLeft
@@ -35,12 +35,13 @@ import os
 
 Re = 100
 size = 10
+collisionFunction = BGKCollide
 try:
-  opts, args = getopt.getopt(sys.argv[1:],"hr:s:",["re=","size="])
+  opts, args = getopt.getopt(sys.argv[1:],"hcr:s:",["re=","size="])
 except getopt.GetoptError:
   print 'test.py -i <inputfile> -o <outputfile>'
   sys.exit(2)
-  for opt, arg in opts:
+for opt, arg in opts:
     if opt == '-h':
         print 'test.py -r <reynolds number, default 100> -s <size of the sphere, divisible by 10, default 10>'
         sys.exit()
@@ -48,6 +49,11 @@ except getopt.GetoptError:
         Re = int(float(arg))
     elif opt in ("-s", "--size"):
         size = int(float(arg))
+    elif opt in ("-c", "--cumulant"):
+        collisionFunction = cumulantCollide_min
+        print "Using cumulant collision"
+    else:
+        print "Using srt collision"
 print 'Reynolds number is', Re
 print 'Size of sphere is', size
 factor = size/10
@@ -156,14 +162,13 @@ for time in range(maxIterations):
     u[:, 0, :] = vel[:, 0, :]
     rho[0, :] = 1./(1.-u[0, 0, :]) * (sumPopulations(fin[iCentV, 0, :])+2.*sumPopulations(fin[iLeft, 0, :]))
 
-    feq = equilibrium(rho, u)
+    feq[:,0:1,:] = equilibrium(rho[0:1,:], u[:,0:1,:])
 
     # complete the left wall treatement wrt Yu 2002
     fin[iRight, 0, :] = feq[iLeft, 0, :] + (feq[iRight, 0, :] - fin[iLeft, 0, :])
 
     # Collision step.
-    #fpost = BGKCollide(fin, feq, omega)
-    fpost[:,1:nx-1,1:ny-1] = cumulantCollide(fin[:,1:nx-1,1:ny-1], rho[1:nx-1,1:ny-1], u[:,1:nx-1,1:ny-1], omega)
+    fpost[:,1:nx-1,1:ny-1] = collisionFunction(fin[:,1:nx-1,1:ny-1], rho[1:nx-1,1:ny-1], u[:,1:nx-1,1:ny-1], omega )
 
     # Streaming step
     fin = stream(fpost)

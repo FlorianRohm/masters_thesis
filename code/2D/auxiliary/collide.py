@@ -1,7 +1,10 @@
 from numpy import *
 from transformations.transforms import *
+from LBMHelpers import equilibrium
 
-def BGKCollide(fin, feq, omega):
+def BGKCollide(fin, rho, u, omega):
+    feq = equilibrium(rho, u)
+
     return fin - omega * (fin - feq)
 
 def cumulantCollide(fin, rho, u, omega):
