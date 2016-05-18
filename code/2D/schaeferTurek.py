@@ -56,7 +56,7 @@ for opt, arg in opts:
         print "Using srt collision"
 print 'Reynolds number is', Re
 print 'Size of sphere is', size
-factor = size/10
+factor = size/10.
 
 
 ###### Plot settings ############################################################
@@ -65,18 +65,18 @@ plotEveryN    = 100         # draw every plotEveryN'th cycle
 skipFirstN    = 0       # do not process the first skipFirstN cycles
 savePlot      = False      # save velocity norm and x velocity plot
 liveUpdate    = True      # show the process of the simulation (slow)
-saveVTK       = False       # save the vtk files
-prefix        = 'cyl_Re{0}_size{1}'.format(Re, size)      # naming prefix for saved files
-outputFolder  = './out'    # folder to save the output to
+analysis      = True       # write out drag and lift
+prefix        = 'schaeferTurek_cumulant_Re{0}_size{1}'.format(Re, size)      # naming prefix for saved files
+outputFolder  = './out'    # folder to save the outputFile to
 workingFolder = os.getcwd()
 
 
 ###### Flow definition #########################################################
-maxIterations = 200000  # Total number of time iterations.
+maxIterations = 20000  # Total number of time iterations.
 
 # Number of Cells
-ny = 41*factor + 2 # for boundary
-nx = 220*factor + 2 # for boundary
+ny = int(round(41*factor)) + 2 # for boundary
+nx = int(round(220*factor)) + 2 # for boundary
 
 # Highest index in each direction
 nxl = nx-1
@@ -86,8 +86,8 @@ nyl = ny-1
 q  = 9
 
 # Coordinates of the cylinder.
-cx = 20*factor + 1 # +1 for boundary
-cy = 21*factor + 1
+cx = int(round(20*factor)) + 1 # +1 for boundary
+cy = int(round(21*factor)) + 1
 r = size/2
 
 # Velocity in lattice units.
@@ -100,21 +100,16 @@ omega = 1.0 / (3.*nulb+0.5)
 
 ###### Plot preparations ############################################################
 
-# quick and dirty way to create output directory
+# quick and dirty way to create outputFile directory
 if not os.path.isdir(outputFolder):
     try:
         os.makedirs(outputFolder)
     except OSError:
         pass
+os.chdir(outputFolder)
+outputFile = open(prefix, 'w')
 
-# Define the Grid for vtk output
-gridX = arange(0, nx, dtype='float64')
-gridY = arange(0, ny, dtype='float64')
-gridZ = arange(0, 1, dtype='float64')
-grid  = gridX, gridY, gridZ
-
-# Set velocity to 0 on z-axis
-velocityZ = zeros((nx, ny, 1))
+outputFile.write("timestep,drag,lift\n")
 
 ###### Setup ##################################################################
 
@@ -141,7 +136,6 @@ if ( liveUpdate | savePlot ):
     pyplot.ion()
     fig, ax = pyplot.subplots(1)
 
-os.chdir(outputFolder)
 
 ###### Main time loop ##########################################################
 for time in range(maxIterations):
@@ -174,7 +168,7 @@ for time in range(maxIterations):
     fin = stream(fpost)
 
     # Visualization
-    if ( (time % plotEveryN == 0) & (liveUpdate | saveVTK | savePlot) & (time > skipFirstN) ):
+    if ( (time % plotEveryN == 0) & (analysis | liveUpdate  | savePlot) & (time > skipFirstN) ):
         # Here, distributions are streamed into the obstacle -> compute drag and lift
         scaling = 2/(sumPopulations(fin)*uLBAverage*uLBAverage*size)
         scaledFin = fin.copy()
@@ -188,7 +182,9 @@ for time in range(maxIterations):
 
         if ( liveUpdate | savePlot ):
             ax.clear()
-            ax.imshow(sqrt(u[0]**2+u[1]**2).transpose(),  cmap=cm.afmhot, vmin=0., vmax=0.1)
+            velocityMag =sqrt(u[0]**2+u[1]**2)
+            velocityMag[obstacle] = NAN
+            ax.imshow(velocityMag.transpose(),  cmap=cm.afmhot, vmin=0., vmax=0.1)
             ax.set_title('velocity norm')
 
             textstr = '$\mathrm{drag}= %.4f$\n$\mathrm{lift}= %.4f$' % (dragCoeff, liftCoeff)
@@ -201,16 +197,11 @@ for time in range(maxIterations):
 
         if ( liveUpdate ):
             pyplot.draw()
-        if ( saveVTK ):
-            # convert velocity and density to 3d arrays
-            printVel = reshape(u, (2, nx, ny, 1))
-            printRho = reshape(rho, (nx, ny, 1))
 
-            velocity = (printVel[0, :, :, :], printVel[1, :, :, :], velocityZ)
-            saveNumber = str(time/plotEveryN).zfill(4)
-
-            saveToVTK(velocity, printRho, prefix, saveNumber, grid)
         if ( savePlot ):
             pyplot.savefig(prefix + "." + str(time/plotEveryN).zfill(4) + ".png")
+        if ( analysis ):
+            outputFile.write("{0},{1},{2}\n".format(time,dragCoeff,liftCoeff))
 
+outputFile.close()
 os.chdir(workingFolder)
