@@ -8,13 +8,14 @@ methods=('-b' '-c')
 
 for method in ${methods[@]}
 do
-  for size in ${sizes[@]}
+  for (( idx=${#sizes[@]}-1 ; idx>=0 ; idx-- ))
   do
-    while [ "$(jobs | wc -l)" -ge 7 ]
+    echo "${sizes[idx]}"
+    while [ "$(jobs | wc -l)" -ge 3 ]
     do
       sleep 5
     done
-    ./schaeferTurek.py -s $size -r 100 $method &
+    ./schaeferTurek.py -s ${sizes[idx]} -r 100 $method &
   done
 done
 while [ 1 ]
