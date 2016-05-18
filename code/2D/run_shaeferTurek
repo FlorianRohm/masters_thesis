@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -m # Enable Job Control
+
+sizes=("2" "3" "4" "5" "7" "10" "15" "20" "25" "30" "40" "50" "70" "100")
+
+methods=('-b' '-c')
+
+for method in ${methods[@]}
+do
+  for size in ${sizes[@]}
+  do
+    while [ "$(jobs | wc -l)" -ge 7 ]
+    do
+      sleep 5
+    done
+    ./schaeferTurek.py -s $size -r 100 $method &
+  done
+done
+while [ 1 ]
+do
+  fg &> /dev/null
+  [ $? == 1 ] && break
+  sleep 1
+done

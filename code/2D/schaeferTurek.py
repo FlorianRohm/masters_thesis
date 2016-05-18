@@ -35,48 +35,54 @@ import os
 
 Re = 100
 size = 10
+frequency = 1         # draw every frequency'th cycle
 collisionFunction = BGKCollide
+collStr = "srt"
+
 try:
-  opts, args = getopt.getopt(sys.argv[1:],"hcr:s:",["re=","size="])
+  opts, args = getopt.getopt(sys.argv[1:],"hcbr:s:f:",)
 except getopt.GetoptError:
-  print 'test.py -i <inputfile> -o <outputfile>'
-  sys.exit(2)
+    print "parse error"
+    print 'test.py -i <inputfile> -o <outputfile> -f <sampling frequency in diameters of sphere>'
+    sys.exit(2)
 for opt, arg in opts:
     if opt == '-h':
-        print 'test.py -r <reynolds number, default 100> -s <size of the sphere, divisible by 10, default 10>'
+        print 'test.py -i <inputfile> -o <outputfile> -f <sampling frequency>'
         sys.exit()
-    elif opt in ("-r" "--re"):
+    elif opt in ("-r"):
         Re = int(float(arg))
-    elif opt in ("-s", "--size"):
+    elif opt in ("-s"):
         size = int(float(arg))
-    elif opt in ("-c", "--cumulant"):
+    elif opt in ("-f"):
+        frequency = int(float(arg))
+    elif opt in ("-c"):
         collisionFunction = cumulantCollide_min
-        print "Using cumulant collision"
-    else:
-        print "Using srt collision"
-print 'Reynolds number is', Re
-print 'Size of sphere is', size
+        collStr = "cumulant"
+    elif opt in ("-b"):
+        collisionFunction = BGKCollide
+        collStr = "srt"
+
+plotEveryN = frequency*size*2
+print 'Begin of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
 factor = size/10.
 
 
 ###### Plot settings ############################################################
 
-plotEveryN    = 100         # draw every plotEveryN'th cycle
-skipFirstN    = 0       # do not process the first skipFirstN cycles
 savePlot      = False      # save velocity norm and x velocity plot
-liveUpdate    = True      # show the process of the simulation (slow)
+liveUpdate    = False      # show the process of the simulation (slow)
 analysis      = True       # write out drag and lift
-prefix        = 'schaeferTurek_cumulant_Re{0}_size{1}'.format(Re, size)      # naming prefix for saved files
+prefix        = 'schaeferTurek_{0}_Re{1}_size{2}'.format(collStr, Re, size)      # naming prefix for saved files
 outputFolder  = './out'    # folder to save the outputFile to
 workingFolder = os.getcwd()
 
-
 ###### Flow definition #########################################################
-maxIterations = 20000  # Total number of time iterations.
+maxIterations = 4000  # Total number of time iterations.
 
 # Number of Cells
 ny = int(round(41*factor)) + 2 # for boundary
 nx = int(round(220*factor)) + 2 # for boundary
+skipFirstN  = nx*3       # do not process the first skipFirstN cycles, 3 times nx for
 
 # Highest index in each direction
 nxl = nx-1
@@ -205,3 +211,4 @@ for time in range(maxIterations):
 
 outputFile.close()
 os.chdir(workingFolder)
+print 'End of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
