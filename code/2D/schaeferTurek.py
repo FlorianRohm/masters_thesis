@@ -62,7 +62,7 @@ for opt, arg in opts:
         collisionFunction = BGKCollide
         collStr = "srt"
 
-plotEveryN = frequency*size*2
+plotEveryN = frequency*size
 print 'Begin of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
 factor = size/10.
 
@@ -77,7 +77,7 @@ outputFolder  = './out'    # folder to save the outputFile to
 workingFolder = os.getcwd()
 
 ###### Flow definition #########################################################
-maxIterations = 4000  # Total number of time iterations.
+maxIterations = 20000  # Total number of time iterations.
 
 # Number of Cells
 ny = int(round(41*factor)) + 2 # for boundary
