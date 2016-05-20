@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./vortexMerge.py -s 100 -r 100 -c
