@@ -30,6 +30,7 @@ from auxiliary.boundaryConditions import YuLeft
 from auxiliary.obstacle import obstacleAttack, drag, lift
 import sys, getopt
 import os
+import datetime
 
 ###### Parsing ############################################################
 
@@ -64,6 +65,8 @@ for opt, arg in opts:
 
 plotEveryN = frequency*size
 print 'Begin of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
+startTime = datetime.datetime.now()
+
 factor = size/10.
 
 
@@ -77,7 +80,7 @@ outputFolder  = './out'    # folder to save the outputFile to
 workingFolder = os.getcwd()
 
 ###### Flow definition #########################################################
-maxIterations = 20000  # Total number of time iterations.
+maxIterations = size*4000  # Total number of time iterations.
 
 # Number of Cells
 ny = int(round(41*factor)) + 2 # for boundary
@@ -101,6 +104,8 @@ uLB  = 0.04
 uLBAverage = 2./3.*uLB # according to schaefer turek 2D-2
 nulb = uLBAverage*size/Re
 
+preComputeFactorForScaling = 2/(uLBAverage*uLBAverage)
+
 # Relaxation parameter
 omega = 1.0 / (3.*nulb+0.5)
 
@@ -122,6 +127,10 @@ outputFile.write("timestep,drag,lift\n")
 # cylindrical obstacle
 obstacle       = fromfunction(lambda    x, y: (x-cx)**2+(y-cy)**2 < r**2,  (nx, ny))
 obstacleBounds, dragBoundStencil, liftBoundStencil, completeBoundStencil = obstacleAttack(obstacle)
+nrOfDragBoundary = sum(obstacleBounds[1]) + sum(obstacleBounds[5]) + sum(obstacleBounds[8]) + \
+    sum(obstacleBounds[3]) + sum(obstacleBounds[6]) + sum(obstacleBounds[7])
+nrOfLiftBoundary = sum(obstacleBounds[2]) + sum(obstacleBounds[6]) + sum(obstacleBounds[5]) + \
+    sum(obstacleBounds[4]) + sum(obstacleBounds[7]) + sum(obstacleBounds[8])
 
 noSlipBoundary = fromfunction(lambda x, y: logical_or((y == 0), (y == ny)), (nx, ny))
 
@@ -176,15 +185,15 @@ for time in range(maxIterations):
     # Visualization
     if ( (time % plotEveryN == 0) & (analysis | liveUpdate  | savePlot) & (time > skipFirstN) ):
         # Here, distributions are streamed into the obstacle -> compute drag and lift
-        scaling = 2/(sumPopulations(fin)*uLBAverage*uLBAverage*size)
+        scaling = preComputeFactorForScaling/sumPopulations(fin)
         scaledFin = fin.copy()
         # just scale the populations which are used
         for i in range(9):
             scaledFin[i, completeBoundStencil] = scaledFin[i, completeBoundStencil]*scaling[completeBoundStencil]
 
 
-        dragCoeff = drag(scaledFin, obstacleBounds)
-        liftCoeff = lift(scaledFin, obstacleBounds)
+        dragCoeff = drag(scaledFin, obstacleBounds)/nrOfDragBoundary
+        liftCoeff = lift(scaledFin, obstacleBounds)/nrOfLiftBoundary
 
         if ( liveUpdate | savePlot ):
             ax.clear()
@@ -207,8 +216,13 @@ for time in range(maxIterations):
         if ( savePlot ):
             pyplot.savefig(prefix + "." + str(time/plotEveryN).zfill(4) + ".png")
         if ( analysis ):
-            outputFile.write("{0},{1},{2}\n".format(time,dragCoeff,liftCoeff))
-
+            outputFile.write("{0},{1},{2}\n".format(time/plotEveryN,dragCoeff,liftCoeff))
+endTime = datetime.datetime.now()
+deltaTime = endTime - startTime
+timeFile = open("{0}_time".format(prefix),"w")
+timeFile.write("{0}".format(deltaTime.total_seconds()));
+timeFile.write("\n");
+timeFile.close()
 outputFile.close()
 os.chdir(workingFolder)
-print 'End of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
+print 'End of calculation with {0} collision with Re={1} and size {2}.\n Elapsed time: {3}'.format(collStr,Re,size,deltaTime.total_seconds())
