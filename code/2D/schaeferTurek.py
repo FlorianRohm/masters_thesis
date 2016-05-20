@@ -23,8 +23,8 @@
 from numpy import *
 from matplotlib import cm, pyplot
 from auxiliary.VTKWrapper import saveToVTK
-from auxiliary.collide import BGKCollide, cumulantCollide_min
 from auxiliary.stream import stream
+from auxiliary.collide import BGKCollide, cumulantCollideAllInOne
 from auxiliary.LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
 from auxiliary.boundaryConditions import YuLeft
 from auxiliary.obstacle import obstacleAttack, drag, lift
@@ -56,7 +56,7 @@ for opt, arg in opts:
     elif opt in ("-f"):
         frequency = int(float(arg))
     elif opt in ("-c"):
-        collisionFunction = cumulantCollide_min
+        collisionFunction = cumulantCollideAllInOne
         collStr = "cumulant"
     elif opt in ("-b"):
         collisionFunction = BGKCollide
