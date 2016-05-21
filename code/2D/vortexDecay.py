@@ -68,8 +68,7 @@ for opt, arg in opts:
         collisionFunction = BGKCollide
         collStr = "srt"
 
-plotEveryN = frequency*size/4.
-plotEveryN = 1
+plotEveryN = size/(4.*frequency)
 print 'Begin of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
 factor = size/10.
 
@@ -77,9 +76,9 @@ factor = size/10.
 ###### Plot settings ############################################################
 
 skipFirstN  = 0       # initial conditions already quite interesting
-savePlot      = False      # save velocity norm and x velocity plot
-liveUpdate    = True      # show the process of the simulation (slow)
-saveVTK       = False       # write out drag and lift
+savePlot      = True      # save velocity norm and x velocity plot
+liveUpdate    = False      # show the process of the simulation (slow)
+saveVTK       = True       # write out drag and lift
 prefix        = 'vortexDecay_{0}_Re{1}_size{2}'.format(collStr, Re, size)      # naming prefix for saved files
 outputFolder  = './out'    # folder to save the outputFile to
 workingFolder = os.getcwd()
@@ -194,6 +193,5 @@ for time in range(maxIterations):
         if ( savePlot ):
             pyplot.savefig(prefix + "." + str(time/plotEveryN).zfill(4) + ".png")
 
-outputFile.close()
 os.chdir(workingFolder)
 print 'End of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
