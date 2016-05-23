@@ -20,17 +20,19 @@ Hence, we can directly read of the equilibrium cumulants, following~\eqref{eq: d
 \begin{equation}
   \label{eq: equilibrium cumulants}
   \begin{aligned}
-    \kappa_{00}^{eq} & = \ln(\rho) \\
-    \kappa_{10}^{eq} & = u_1 \\
-    \kappa_{01}^{eq} & = u_2 \\
+    \kappa_{00}^{eq} & = \ln(\rho) = \ln(m_{00}) \\
+    \kappa_{10}^{eq} & = u_1 = \frac{m_{10}}{m_{00}} \\
+    \kappa_{01}^{eq} & = u_2 = \frac{m_{01}}{m_{00}}\\
     \kappa_{11}^{eq} & = 0 \\
     \kappa_{20}^{eq} & = c_s^2  \\
     \kappa_{02}^{eq} & = c_s^2  \\
     \kappa_{21}^{eq} & = 0 \\
     \kappa_{12}^{eq} & = 0 \\
-    \kappa_{22}^{eq} & = 0.
+    \kappa_{22}^{eq} & = 0,
   \end{aligned}
 \end{equation}
+where we used the moment representation of the macroscopic variables~\eqref{eq: density definition} and following.
+
 Comparing~\eqref{eq: equilibrium cumulants} to~\eqref{eq: equilibrium particle distributions}, we can identify several advantages.
 First and foremost, the Maxwell distribution is fully incorporated and we don't introduce a truncation error\footnote{On closer analysis, this error is of order $O(u^2)$, c.f.~\cite[page 178]{wolf2000lattice}, and thus making the \gls{srt} only viable at low speeds}. Going further, we don't need to calculate any weighting $W_{ij}$ and as we incorporated the cell width $c$ in the calculation of the central moments and hence the cumulants, it is hidden from the collision calculation.
 
