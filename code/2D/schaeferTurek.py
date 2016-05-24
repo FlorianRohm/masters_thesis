@@ -40,14 +40,14 @@ collisionFunction = BGKCollide
 collStr = "srt"
 
 try:
-  opts, args = getopt.getopt(sys.argv[1:],"hcbr:s:f:",)
+  opts, args = getopt.getopt(sys.argv[1:],"hcr:s:f:",)
 except getopt.GetoptError:
     print "parse error"
-    print 'test.py -i <inputfile> -o <outputfile> -f <sampling frequency in diameters of sphere>'
+    print 'test.py -s <size of sphere> -r <reynolds number> -c <use cumulant collision> -f <sampling frequency in diameters of sphere>'
     sys.exit(2)
 for opt, arg in opts:
     if opt == '-h':
-        print 'test.py -i <inputfile> -o <outputfile> -f <sampling frequency>'
+        print 'test.py -s <size of sphere> -r <reynolds number> -c <use cumulant collision> -f <sampling frequency in diameters of sphere>'
         sys.exit()
     elif opt in ("-r"):
         Re = int(float(arg))
@@ -58,9 +58,6 @@ for opt, arg in opts:
     elif opt in ("-c"):
         collisionFunction = cumulantCollideAllInOne
         collStr = "cumulant"
-    elif opt in ("-b"):
-        collisionFunction = BGKCollide
-        collStr = "srt"
 
 plotEveryN = frequency*size
 print 'Begin of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
@@ -74,12 +71,12 @@ factor = size/10.
 savePlot      = False      # save velocity norm and x velocity plot
 liveUpdate    = False      # show the process of the simulation (slow)
 analysis      = True       # write out drag and lift
-prefix        = 'schaeferTurek_{0}_Re{1}_size{2}'.format(collStr, Re, size)      # naming prefix for saved files
-outputFolder  = './out'    # folder to save the outputFile to
+prefix        = '{0}_Re{1}_size{2}'.format(collStr, Re, size)      # naming prefix for saved files
+outputFolder  = './out/schaeferTurek'    # folder to save the outputFile to
 workingFolder = os.getcwd()
 
 ###### Flow definition #########################################################
-maxIterations = size*4000  # Total number of time iterations.
+maxIterations = size*3000  # Total number of time iterations.
 
 # Number of Cells
 ny = int(round(41*factor)) + 2 # for boundary
@@ -103,7 +100,7 @@ uLB  = 0.04
 uLBAverage = 2./3.*uLB # according to schaefer turek 2D-2
 nulb = uLBAverage*size/Re
 
-preComputeFactorForScaling = 2/(uLBAverage*uLBAverage)
+preComputeFactorForScaling = 2/(uLBAverage*uLBAverage*size)
 
 # Relaxation parameter
 omega = 1.0 / (3.*nulb+0.5)
@@ -184,15 +181,14 @@ for time in range(maxIterations):
     # Visualization
     if ( (time % plotEveryN == 0) & (analysis | liveUpdate  | savePlot) & (time > skipFirstN) ):
         # Here, distributions are streamed into the obstacle -> compute drag and lift
-        scaling = preComputeFactorForScaling/sumPopulations(fin)
+        scaling = preComputeFactorForScaling/sumPopulations(fin[:,completeBoundStencil])
         scaledFin = fin.copy()
         # just scale the populations which are used
         for i in range(9):
-            scaledFin[i, completeBoundStencil] = scaledFin[i, completeBoundStencil]*scaling[completeBoundStencil]
+            scaledFin[i, completeBoundStencil] = scaledFin[i, completeBoundStencil]*scaling
 
-
-        dragCoeff = drag(scaledFin, obstacleBounds)/nrOfDragBoundary
-        liftCoeff = lift(scaledFin, obstacleBounds)/nrOfLiftBoundary
+        dragCoeff = drag(scaledFin, obstacleBounds)
+        liftCoeff = lift(scaledFin, obstacleBounds)
 
         if ( liveUpdate | savePlot ):
             ax.clear()

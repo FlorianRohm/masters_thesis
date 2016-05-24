@@ -4,14 +4,13 @@ set -m # Enable Job Control
 
 sizes=("2" "3" "4" "5" "7" "10" "15" "20" "25" "30" "35" "40")
 
-methods=('-b' '-c')
+methods=('\ ' '-c')
 
-for method in ${methods[@]}
+for (( idx=${#sizes[@]}-1 ; idx>=0 ; idx-- ))
 do
-  for (( idx=${#sizes[@]}-1 ; idx>=0 ; idx-- ))
+  for method in ${methods[@]}
   do
-    echo "${sizes[idx]}"
-    while [ "$(jobs | wc -l)" -ge 3 ]
+    while [ "$(jobs | wc -l)" -ge 4 ]
     do
       sleep 5
     done
