@@ -73,8 +73,8 @@ workingFolder = os.getcwd()
 maxIterations = length*300  # Total number of time iterations.
 
 # Number of Cells
-ny = 20 + 2 # for boundary
-nx = length + 2 # for boundary
+ny = 20 # for boundary
+nx = length # for boundary
 
 # Highest index in each direction
 nxl = nx-1
@@ -110,9 +110,12 @@ noSlipBoundary = fromfunction(lambda x, y: logical_or((y == 0), (y == ny)), (nx,
 
 
 # velocity inlet for schaefer turek
-velIn = fromfunction(lambda d, x, y: (1-d)*4*uLB*y*(nyl-y)/(nyl**2),  (2, nx, ny-2))
+velIn = fromfunction(lambda d, x, y: (1-d)*4*uLB*(y-0.5)*(nyl-y-0.5)/(nyl**2),  (2, nx, ny))
+
 vel = zeros((2,nx,ny));
-vel[:,:,1:ny-1] = velIn
+vel[:,:,1:ny-1] = velIn[:,:,1:ny-1]
+
+#print vel[0,0,:]
 
 # initial particle distributions
 feq   = equilibrium(1.0, vel)
