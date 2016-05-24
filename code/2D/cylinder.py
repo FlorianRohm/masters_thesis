@@ -6,7 +6,7 @@
 # modify it under the terms of the GNU General Public License, either
 # version 3 of the License, or (at your option) any later version.
 #
-# Extended Comments and bugfixed by Florian Rohm, 2015
+# Rewrite, extension and bugfixes by Florian Rohm, 2015
 
 #
 # 2D flow around a cylinder
