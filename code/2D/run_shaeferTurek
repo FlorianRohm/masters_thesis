@@ -6,7 +6,7 @@ sizes=("2" "3" "4" "5" "7" "10" "15" "20" "25" "30" "35" "40")
 
 methods=('\ ' '-c')
 
-for (( idx=${#sizes[@]}-1 ; idx>=0 ; idx-- ))
+for size in ${sizes[@]}
 do
   for method in ${methods[@]}
   do
@@ -14,7 +14,7 @@ do
     do
       sleep 5
     done
-    ./schaeferTurek.py -s ${sizes[idx]} -r 100 $method &
+    ./schaeferTurek.py -s $size -r 100 $method &
   done
 done
 while [ 1 ]
