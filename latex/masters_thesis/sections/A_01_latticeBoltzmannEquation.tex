@@ -25,12 +25,12 @@ for the implicit one.
 To start deriving, we again state~\eqref{eq: Boltzmann transport equation} for easier oversight.
 \begin{equation}
   \label{eq: app_lbm_2}
-  \partial_t f(\vec{v},\vec{x},t) + \vec{v} \cdot \nabla_{\vec{x}} f(\vec{v},\vec{x},t) = \Omega\left(f(\vec{v},\vec{x},t)\right)
+  \frac{\partial}{\partial t} f(\vec{v},\vec{x},t) + \vec{v} \cdot \nabla_{\vec{x}} f(\vec{v},\vec{x},t) = \Omega\left(f(\vec{v},\vec{x},t)\right)
 \end{equation}
 First of all, we switch to the discrete velocity space and explicitly calculate the dot product, leaving us with
 \begin{equation}
   \label{eq: app_lbm_3}
-  \partial_t f_{ij}(\vec{x},t) + \vec{c}_{ij} \cdot \nabla_{\vec{x}} f_{ij}(\vec{x},t) = \Omega\left(f_{ij}(\vec{x},t)\right).
+  \frac{\partial}{\partial t} f_{ij}(\vec{x},t) + \vec{c}_{ij} \cdot \nabla_{\vec{x}} f_{ij}(\vec{x},t) = \Omega\left(f_{ij}(\vec{x},t)\right).
 \end{equation}
 Now, we discretize the time derivative, using the implicit scheme on the remaining summands on the left hand side and staying explicit on the right hand side.
 \begin{equation}
