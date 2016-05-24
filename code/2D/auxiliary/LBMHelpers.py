@@ -38,8 +38,17 @@ def equilibrium(rho, u):
     cu   = 3.0 * dot(c, u.transpose(1, 0, 2))
     usqr = 3./2.*(u[0, :, :]**2+u[1, :, :]**2)
     feq = zeros((q, nx, ny))
-    for i in range(q):
-        feq[i, :, :] = rho*t[i]*(1.+cu[i]+0.5*cu[i]**2-usqr)
+    rhot1 = t[1]*rho
+    rhot5 = t[5]*rho
+    feq[1, :, :] = rhot1*(1.+cu[1]+0.5*cu[1]**2-usqr)
+    feq[2, :, :] = rhot1*(1.+cu[2]+0.5*cu[2]**2-usqr)
+    feq[3, :, :] = rhot1*(1.+cu[3]+0.5*cu[3]**2-usqr)
+    feq[4, :, :] = rhot1*(1.+cu[4]+0.5*cu[4]**2-usqr)
+    feq[5, :, :] = rhot5*(1.+cu[5]+0.5*cu[5]**2-usqr)
+    feq[6, :, :] = rhot5*(1.+cu[6]+0.5*cu[6]**2-usqr)
+    feq[7, :, :] = rhot5*(1.+cu[7]+0.5*cu[7]**2-usqr)
+    feq[8, :, :] = rhot5*(1.+cu[8]+0.5*cu[8]**2-usqr)
+    feq[0, :, :] = rho*t[0]*(1.-usqr)
     return feq
 
 
