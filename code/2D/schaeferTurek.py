@@ -21,7 +21,6 @@
 
 from numpy import *
 from matplotlib import cm, pyplot
-from auxiliary.VTKWrapper import saveToVTK
 from auxiliary.stream import stream
 from auxiliary.collide import BGKCollide, cumulantCollideAllInOne
 from auxiliary.LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot

@@ -21,7 +21,6 @@
 
 from numpy import *
 from matplotlib import cm, pyplot
-from auxiliary.VTKWrapper import saveToVTK
 from auxiliary.boundary import cumulantBoundary
 from auxiliary.stream import stream
 from auxiliary.collide import BGKCollide, cumulantCollideAllInOne

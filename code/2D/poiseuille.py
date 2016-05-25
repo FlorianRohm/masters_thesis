@@ -104,7 +104,7 @@ if not os.path.isdir(outputFolder):
 os.chdir(outputFolder)
 if analysis:
     outputFileVelocity = open("{0}_velocity".format(prefix), 'w')
-    outputFileDensity = open("{0}_velocity".format(prefix), 'w')
+    outputFileDensity = open("{0}_density".format(prefix), 'w')
 
 ###### Setup ##################################################################
 
