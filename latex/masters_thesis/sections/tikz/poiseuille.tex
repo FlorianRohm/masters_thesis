@@ -1,0 +1,31 @@
+% !TEX root = ../../thesis.tex
+
+\begin{tikzpicture}
+\fill[pattern=north east lines] (0,0) rectangle (10,-0.2);
+\fill[pattern=north east lines] (0,3) rectangle (10,3.2);
+\draw (0,0) .. controls (3,1) and (3,2) .. (0,3);
+\draw (0,0) -- (10,0);
+\draw (0,3) -- (10,3);
+\draw (0,0) -- (0,3);
+
+\draw[->] (0,1.5) -- (2.25,1.5);
+\draw[->] (0,1) -- (2,1);
+\draw[->] (0,2) -- (2,2);
+\draw[->] (0,2.5) -- (1.22,2.5);
+\draw[->] (0,0.5) -- (1.22,0.5);
+
+\node (u) at (1.1,1.7) {$\vec{u}$};
+
+
+\draw[->] (-0.5,-0.7) -- (-0.5,4);
+\draw[->] (-0.5,-0.7) -- (10.5,-0.7);
+
+\node (y) at (-0.5,4.2) {$y$};
+\node (x) at (10.7,-0.7) {$x$};
+
+\draw[-] (-0.55,1.5) -- (-0.45,1.5);
+\draw[-] (0,-0.65) -- (0,-0.75);
+
+\node (nully) at (0,-0.95) {$0$};
+\node (nullx) at (-0.65,1.5) {$0$};
+\end{tikzpicture}
