@@ -114,9 +114,10 @@ if not os.path.isdir(outputFolder):
     except OSError:
         pass
 os.chdir(outputFolder)
-outputFile = open(prefix, 'w')
+if analysis:
+    outputFile = open(prefix, 'w')
 
-outputFile.write("timestep,drag,lift\n")
+    outputFile.write("timestep,drag,lift\n")
 
 ###### Setup ##################################################################
 
@@ -212,12 +213,14 @@ for time in range(maxIterations):
             pyplot.savefig(prefix + "." + str(time/plotEveryN).zfill(4) + ".png")
         if ( analysis ):
             outputFile.write("{0},{1},{2}\n".format(time/plotEveryN,dragCoeff,liftCoeff))
+
 endTime = datetime.datetime.now()
 deltaTime = endTime - startTime
-timeFile = open("{0}_time".format(prefix),"w")
-timeFile.write("{0}".format(deltaTime.total_seconds()));
-timeFile.write("\n");
-timeFile.close()
-outputFile.close()
+if analysis:
+    timeFile = open("{0}_time".format(prefix),"w")
+    timeFile.write("{0}".format(deltaTime.total_seconds()));
+    timeFile.write("\n");
+    timeFile.close()
+    outputFile.close()
 os.chdir(workingFolder)
 print 'End of calculation with {0} collision with Re={1} and size {2}.\n Elapsed time: {3}'.format(collStr,Re,size,deltaTime.total_seconds())
