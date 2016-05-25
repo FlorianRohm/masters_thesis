@@ -14,7 +14,7 @@ do
     do
       sleep 0.5
     done
-    ./poiseuille.py -l $length $method &
+    ./poiseuille_myboundary.py -l $length $method &
   done
 done
 while [ 1 ]

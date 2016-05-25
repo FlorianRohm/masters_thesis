@@ -102,7 +102,9 @@ if not os.path.isdir(outputFolder):
     except OSError:
         pass
 os.chdir(outputFolder)
-outputFile = open(prefix, 'w')
+if analysis:
+    outputFileVelocity = open("{0}_velocity".format(prefix), 'w')
+    outputFileDensity = open("{0}_velocity".format(prefix), 'w')
 
 ###### Setup ##################################################################
 
@@ -172,19 +174,25 @@ for time in range(maxIterations):
             pyplot.savefig(prefix + "." + str(time/plotEveryN).zfill(4) + ".png")
 
 # write the analysis
-middle = length/2 + 1
-velocityMag =sqrt(u[0]**2+u[1]**2)
-velAtMiddle = velocityMag[middle,:]
-
-for item in velAtMiddle:
-  outputFile.write("%s\n" % item)
-
 endTime = datetime.datetime.now()
 deltaTime = endTime - startTime
-timeFile = open("{0}_time".format(prefix),"w")
-timeFile.write("{0}".format(deltaTime.total_seconds()));
-timeFile.write("\n");
-timeFile.close()
-outputFile.close()
+if analysis:
+    middleX = length/2 + 1
+    middleY = 10
+    velocityMag =sqrt(u[0]**2+u[1]**2)
+
+    velAtMiddle = velocityMag[middleX,:]
+    densAtMiddle = rho[:, middleY]
+    for item in densAtMiddle:
+        outputFileDensity.write("%s\n" % item)
+    for item in velAtMiddle:
+        outputFileVelocity.write("%s\n" % item)
+
+    timeFile = open("{0}_time".format(prefix),"w")
+    timeFile.write("{0}".format(deltaTime.total_seconds()));
+    timeFile.write("\n");
+    timeFile.close()
+    outputFileDensity.close()
+    outputFileVelocity.close()
 os.chdir(workingFolder)
 print 'End of calculation with {0} collision with Re={1} and length {2}.\n Elapsed time: {3}'.format(collStr,Re,length,deltaTime.total_seconds())
