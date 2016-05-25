@@ -44,11 +44,11 @@ try:
   opts, args = getopt.getopt(sys.argv[1:],"hcbr:s:",)
 except getopt.GetoptError:
     print "parse error"
-    print 'test.py -i <inputfile> -o <outputfile> -f <sampling frequency in diameters of sphere>'
+        print 'test.py -s <size of grid> -r <reynolds number> -c <use cumulant collision> '
     sys.exit(2)
 for opt, arg in opts:
     if opt == '-h':
-        print 'test.py -i <inputfile> -o <outputfile> -f <sampling frequency>'
+        print 'test.py -s <size of grid> -r <reynolds number> -c <use cumulant collision> '
         sys.exit()
     elif opt in ("-r"):
         Re = int(float(arg))
@@ -57,9 +57,6 @@ for opt, arg in opts:
     elif opt in ("-c"):
         collisionFunction = cumulantCollideAllInOne
         collStr = "cumulant"
-    elif opt in ("-b"):
-        collisionFunction = BGKCollide
-        collStr = "srt"
 
 plotEveryN = 150
 print 'Begin of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
@@ -73,13 +70,12 @@ skipFirstN  = 0       # initial conditions already quite interesting
 savePlot      = False      # save velocity norm and x velocity plot
 liveUpdate    = True      # show the process of the simulation (slow)
 saveVTK       = False       # write out drag and lift
-prefix        = 'vortexMerge_{0}_Re{1}_size{2}'.format(collStr, Re, size)      # naming prefix for saved files
-outputFolder  = './out'    # folder to save the outputFile to
+prefix        = '{0}_Re{1}_size{2}'.format(collStr, Re, size)      # naming prefix for saved files
+outputFolder  = './out/vortexMerge'    # folder to save the outputFile to
 workingFolder = os.getcwd()
 
 ###### Flow definition #########################################################
 maxIterations = size*200  # Total number of time iterations.
-maxIterations = 1000
 
 # Number of Cells
 ny = size
@@ -93,9 +89,10 @@ nyl = ny-1
 q  = 9
 
 # Velocity in lattice units.
-uLB  = 0.04
-uLBAverage = 2./3.*uLB # according to schaefer turek 2D-2
-nulb = uLBAverage*size/Re
+uLB  = 0.01
+
+diameter = 10
+nulb = uLB*diameter/Re
 
 # Relaxation parameter
 omega = 1.0 / (3.*nulb+0.5)
@@ -122,19 +119,28 @@ velocityZ = zeros((nx, ny, 1))
 ###### Setup ##################################################################
 
 # velocity
-radius1 = 5.
-v1x = size/2
-v1y = size/2 - 2*radius1
-radius2 = 5.
-v2x = size/2
-v2y = size/2 +2*radius2
+c1x = size/2
+c1y = size/2 - diameter
+c2x = size/2
+c2y = size/2 + diameter
 
+
+# velocity
+print "Building vortices"
 vel = zeros((2, nx, ny))
 for x in range(nx):
     for y in range(ny):
-        vel[:,x,y] = vel[:,x,y] + rankinVortex(x-v1x, y-v1y, radius1) + rankinVortex(x-v2x, y-v2y, radius2)
+        for xoff in range(3):
+            xoff = xoff-1;
+            for yoff in range(3):
+                yoff = yoff-1;
+                vel[:,x,y] = vel[:,x,y] \
+                + rankinVortex(x-c1x + xoff*nx, y-c1y+ xoff*ny, diameter/2.) \
+                + rankinVortex(x-c2x + xoff*nx, y-c2y+ xoff*ny, diameter/2.) \
 
 vel = vel*uLB
+print "Building vortices complete"
+
 # initial particle distributions
 feq   = equilibrium(1.0, vel)
 fin   = feq.copy()

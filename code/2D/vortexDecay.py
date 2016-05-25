@@ -39,36 +39,30 @@ import os
 Re = 100
 size = 100
 nrOfPairs=5
-frequency = 1         # draw every frequency'th cycle
 collisionFunction = BGKCollide
 collStr = "srt"
 try:
-  opts, args = getopt.getopt(sys.argv[1:],"hcbr:s:f:n:",)
+  opts, args = getopt.getopt(sys.argv[1:],"hcbr:s:n:",)
 except getopt.GetoptError:
     print "parse error"
-    print 'test.py -i <inputfile> -o <outputfile> -f <sampling frequency in diameters of sphere>'
+    print 'test.py -s <size of vortices> -r <reynolds number> -n <number of vortex pairs in one row/column> -c <use cumulant collision> '
     sys.exit(2)
 for opt, arg in opts:
     if opt == '-h':
-        print 'test.py -i <inputfile> -o <outputfile> -f <sampling frequency>'
+        print 'test.py -s <size of vortices> -r <reynolds number> -n <number of vortex pairs in one row/column> -c <use cumulant collision> '
         sys.exit()
     elif opt in ("-r"):
         Re = int(float(arg))
     elif opt in ("-n"):
         nrOfPairs = int(float(arg))
-
     elif opt in ("-s"):
         size = int(float(arg))
-    elif opt in ("-f"):
-        frequency = int(float(arg))
     elif opt in ("-c"):
         collisionFunction = cumulantCollideAllInOne
         collStr = "cumulant"
-    elif opt in ("-b"):
-        collisionFunction = BGKCollide
-        collStr = "srt"
 
-plotEveryN = size/(4.*frequency)
+
+plotEveryN = size/4.
 print 'Begin of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
 factor = size/10.
 
@@ -79,8 +73,8 @@ skipFirstN  = 0       # initial conditions already quite interesting
 savePlot      = True      # save velocity norm and x velocity plot
 liveUpdate    = False      # show the process of the simulation (slow)
 saveVTK       = True       # write out drag and lift
-prefix        = 'vortexDecay_{0}_Re{1}_size{2}'.format(collStr, Re, size)      # naming prefix for saved files
-outputFolder  = './out'    # folder to save the outputFile to
+prefix        = '{0}_Re{1}_size{2}'.format(collStr, Re, size)      # naming prefix for saved files
+outputFolder  = './out/vortexDecay'    # folder to save the outputFile to
 workingFolder = os.getcwd()
 
 ###### Flow definition #########################################################
@@ -98,7 +92,6 @@ q  = 9
 
 # Velocity in lattice units.
 uLB  = 0.01
-uLBAverage = 2./3.*uLB # according to schaefer turek 2D-2
 
 # Relaxation parameter
 halfDiameterVortexCell = size/(4.*nrOfPairs)
