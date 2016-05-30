@@ -78,8 +78,8 @@ workingFolder = os.getcwd()
 maxIterations = size*3000  # Total number of time iterations.
 
 # Number of Cells
-ny = int(round(41*factor)) + 2 # for boundary
-nx = int(round(220*factor)) + 2 # for boundary
+ny = int(round(41*factor)) + 1 # for boundary
+nx = int(round(220*factor))
 skipFirstN  = nx*3       # do not process the first skipFirstN cycles, 3 times nx for
 
 # Highest index in each direction
@@ -90,16 +90,17 @@ nyl = ny-1
 q  = 9
 
 # Coordinates of the cylinder.
-cx = int(round(20*factor)) + 1 # +1 for boundary
-cy = int(round(21*factor)) + 1
-r = size/2
+cx = 20*factor
+cy = 21*factor + 0.5
+r = size/2.
 
 # Velocity in lattice units.
 uLB  = 0.04
 uLBAverage = 2./3.*uLB # according to schaefer turek 2D-2
-nulb = uLBAverage*size/Re
+nulb = uLBAverage*(size)/Re
 
-preComputeFactorForScaling = 2/(uLBAverage*uLBAverage*size)
+# 2 from the paper and two from the force evaluation (incoming plus outcoming directions!ter)
+preComputeFactorForScaling = 4./(uLBAverage*uLBAverage*(size))
 
 # Relaxation parameter
 omega = 1.0 / (3.*nulb+0.5)
@@ -123,21 +124,21 @@ if analysis:
 # cylindrical obstacle
 obstacle       = fromfunction(lambda    x, y: (x-cx)**2+(y-cy)**2 < r**2,  (nx, ny))
 obstacleBounds, dragBoundStencil, liftBoundStencil, completeBoundStencil = obstacleAttack(obstacle)
-nrOfDragBoundary = sum(obstacleBounds[1]) + sum(obstacleBounds[5]) + sum(obstacleBounds[8]) + \
-    sum(obstacleBounds[3]) + sum(obstacleBounds[6]) + sum(obstacleBounds[7])
-nrOfLiftBoundary = sum(obstacleBounds[2]) + sum(obstacleBounds[6]) + sum(obstacleBounds[5]) + \
-    sum(obstacleBounds[4]) + sum(obstacleBounds[7]) + sum(obstacleBounds[8])
 
-noSlipBoundary = fromfunction(lambda x, y: logical_or((y == 0), (y == ny)), (nx, ny))
 
+noSlipBoundary = fromfunction(lambda x, y: logical_or((y == 0), (y == nyl)), (nx, ny))
+
+solidDomain = logical_or(obstacle,noSlipBoundary)
+fluidDomain = invert(solidDomain)
 
 # velocity inlet for schaefer turek
-velIn = fromfunction(lambda d, x, y: (1-d)*4*uLB*y*(nyl-y)/(nyl**2),  (2, nx, ny-2))
+velIn = fromfunction(lambda d, x, y: (1-d)*4*uLB*(y-0.5)*(nyl-y-0.5)/(nyl**2),  (2, nx, ny-2))
 vel = zeros((2,nx,ny));
 vel[:,:,1:ny-1] = velIn
+vel[:, solidDomain] = 0
 
 # initial particle distributions
-feq   = equilibrium(1.0, vel)
+feq   = equilibrium(1.0, vel.reshape((2,nx*ny))).reshape((9,nx,ny))
 fin   = feq.copy()
 fpost = feq.copy()  # post collision distributions
 
@@ -150,12 +151,11 @@ if ( liveUpdate | savePlot ):
 
 ###### Main time loop ##########################################################
 for time in range(maxIterations):
-    # bounce back distributions at obstacle
-    for i in range(q):
-        fin[i, obstacle] = fin[noslip[i], obstacle]
-    # and walls
-    for i in range(q):
-        fin[i, noSlipBoundary] = fin[noslip[i], noSlipBoundary]
+    # bounce back distributions at solid domains
+    finc = fin[:, solidDomain].copy()
+    #   print finc.shape
+    for i in range(9):
+        fin[i, solidDomain] = finc[noslip[i], :]
 
     # Right Wall: Produce zero pressure gradient for the outflow
     fin[iLeft, -1, :] = fin[iLeft, -2, :]
@@ -167,13 +167,13 @@ for time in range(maxIterations):
     u[:, 0, :] = vel[:, 0, :]
     rho[0, :] = 1./(1.-u[0, 0, :]) * (sumPopulations(fin[iCentV, 0, :])+2.*sumPopulations(fin[iLeft, 0, :]))
 
-    feq[:,0:1,:] = equilibrium(rho[0:1,:], u[:,0:1,:])
+    feq[:,0,:] = equilibrium(rho[0,:], u[:,0,:])
 
     # complete the left wall treatement wrt Yu 2002
     fin[iRight, 0, :] = feq[iLeft, 0, :] + (feq[iRight, 0, :] - fin[iLeft, 0, :])
 
     # Collision step.
-    fpost[:,1:nx-1,1:ny-1] = collisionFunction(fin[:,1:nx-1,1:ny-1], rho[1:nx-1,1:ny-1], u[:,1:nx-1,1:ny-1], omega )
+    fpost[:,fluidDomain] = collisionFunction(fin[:,fluidDomain], rho[fluidDomain], u[:,fluidDomain], omega )
 
     # Streaming step
     fin = stream(fpost)
@@ -194,7 +194,7 @@ for time in range(maxIterations):
             ax.clear()
             velocityMag =sqrt(u[0]**2+u[1]**2)
             velocityMag[obstacle] = NAN
-            ax.imshow(velocityMag.transpose(),  cmap=cm.afmhot, vmin=0., vmax=0.1)
+            ax.imshow(velocityMag.transpose(),  cmap=cm.afmhot, vmin=0., vmax=0.06)
             ax.set_title('velocity norm')
 
             textstr = '$\mathrm{drag}= %.4f$\n$\mathrm{lift}= %.4f$' % (dragCoeff, liftCoeff)

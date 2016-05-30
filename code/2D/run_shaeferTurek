@@ -10,7 +10,7 @@ for size in ${sizes[@]}
 do
   for method in ${methods[@]}
   do
-    while [ "$(jobs | wc -l)" -ge 4 ]
+    while [ "$(jobs | wc -l)" -ge 7 ]
     do
       sleep 5
     done

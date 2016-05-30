@@ -33,7 +33,7 @@ import datetime
 
 ###### Parsing ############################################################
 
-Re = 100
+Re = 10
 length = 10
 collisionFunction = BGKCollide
 collStr = "srt"
@@ -70,7 +70,7 @@ outputFolder  = './out/poiseuille'    # folder to save the outputFile to
 workingFolder = os.getcwd()
 
 ###### Flow definition #########################################################
-maxIterations = length*300  # Total number of time iterations.
+maxIterations = length*3000  # Total number of time iterations.
 
 # Number of Cells
 ny = 20 # for boundary
@@ -84,7 +84,7 @@ nyl = ny-1
 q  = 9
 
 # Velocity in lattice units.
-uLB  = 0.04
+uLB  = 0.01
 uLBAverage = 2./3.*uLB # according to schaefer turek 2D-2
 nulb = uLBAverage*ny/Re
 
@@ -108,8 +108,9 @@ if analysis:
 
 ###### Setup ##################################################################
 
-noSlipBoundary = fromfunction(lambda x, y: logical_or((y == 0), (y == ny)), (nx, ny))
+solidDomain = fromfunction(lambda x, y: logical_or((y == 0), (y == nyl)), (nx, ny))
 
+fluidDomain = invert(solidDomain)
 
 # velocity inlet for schaefer turek
 velIn = fromfunction(lambda d, x, y: (1-d)*4*uLB*(y-0.5)*(nyl-y-0.5)/(nyl**2),  (2, nx, ny))
@@ -120,7 +121,7 @@ vel[:,:,1:ny-1] = velIn[:,:,1:ny-1]
 #print vel[0,0,:]
 
 # initial particle distributions
-feq   = equilibrium(1.0, vel)
+feq   = equilibrium(1.0, vel.reshape((2,nx*ny))).reshape((9,nx,ny))
 fin   = feq.copy()
 fpost = feq.copy()  # post collision distributions
 
@@ -134,8 +135,10 @@ if ( liveUpdate | savePlot ):
 ###### Main time loop ##########################################################
 for time in range(maxIterations):
     # bounce back distributions at walls
-    for i in range(q):
-        fin[i, noSlipBoundary] = fin[noslip[i], noSlipBoundary]
+    finc = fin[:, solidDomain].copy()
+    #   print finc.shape
+    for i in range(9)
+        fin[i, solidDomain] = finc[noslip[i], :]
 
     # Right Wall: Produce zero pressure gradient for the outflow
     fin[iLeft, -1, :] = fin[iLeft, -2, :]
@@ -147,16 +150,18 @@ for time in range(maxIterations):
     u[:, 0, :] = vel[:, 0, :]
     rho[0, :] = 1./(1.-u[0, 0, :]) * (sumPopulations(fin[iCentV, 0, :])+2.*sumPopulations(fin[iLeft, 0, :]))
 
-    feq[:,0:1,:] = equilibrium(rho[0:1,:], u[:,0:1,:])
+    feq[:,0,:] = equilibrium(rho[0,:], u[:,0,:])
 
     # complete the left wall treatement wrt Yu 2002
     fin[iRight, 0, :] = feq[iLeft, 0, :] + (feq[iRight, 0, :] - fin[iLeft, 0, :])
 
     # Collision step.
-    fpost[:,1:nx-1,1:ny-1] = collisionFunction(fin[:,1:nx-1,1:ny-1], rho[1:nx-1,1:ny-1], u[:,1:nx-1,1:ny-1], omega )
+    fpost[:,fluidDomain] = collisionFunction(fin[:,fluidDomain], rho[fluidDomain], u[:,fluidDomain], omega )
 
     # Streaming step
+    #wallF = fpost[:,wall].copy()
     fin = stream(fpost)
+    #fin[:,wall] = wallF
 
     # Visualization
     if ( (time % plotEveryN == 0) & (liveUpdate  | savePlot) & (time > skipFirstN) ):
