@@ -84,9 +84,8 @@ def centralMomentSRT(fin, feq, u, omega):
     return distributionsFromCentralMoments (u, c_00_p, c_10_p, c_01_p, c_11_p, c_20_p, c_02_p, c_21_p, c_12_p, c_22_p)
 
 def cumulantCollideAllInOne(fin, rho, u, omega):
-    ux = u[0, :, :]
-    uy = u[1, :, :]
-    (nx,ny) = ux.shape
+    ux = u[0, :]
+    uy = u[1, :]
 
     uyq = uy**2
     uxq = ux**2
