@@ -1,0 +1,56 @@
+% !TEX root = ../../thesis.tex
+
+
+\begin{tikzpicture}
+
+\draw[color=gray, style=dashed] (-0.5,2) -- (2,2);
+\draw[color=gray, style=dashed] (-0.5,2.5) -- (2,2.5);
+\draw[color=gray, style=dashed] (2,-0.5) -- (2,2);
+
+\fill[pattern=north east lines, pattern color=gray] (0,0) rectangle (10,-0.2);
+\fill[pattern=north east lines, pattern color=gray] (0,4.1) rectangle (10,4.3);
+\draw (0,0) .. controls (1,1.55) and (1,2.55) .. (0,4.1);
+\draw (0,0) -- (10,0);
+\draw (0,4.1) -- (10,4.1);
+\draw (0,0) -- (0,4.1);
+
+\draw[->] (0,4.1/2) -- (0.75,4.1/2);
+\draw[->] (0,2.73) -- (0.66,2.73);
+\draw[->] (0,1.36) -- (0.66,1.36);
+\draw[->] (0,3.4) -- (0.4,3.4);
+\draw[->] (0,0.68) -- (0.4,0.68);
+
+\node (u) at (0.3,2.3) {$\vec{u}$};
+
+
+\draw[->] (-0.5,-0.7) -- (-0.5,5);
+\draw[->] (-0.5,-0.7) -- (10.5,-0.7);
+
+\node (y) at (-0.5,5.2) {$y$};
+\node (x) at (10.7,-0.7) {$x$};
+
+
+\node (nullx) at (0,-0.95) {$0$};
+\draw[-] (-0.55,0) -- (-0.45,0);
+
+\node[anchor=east] (nully) at (-0.5,0) {$0$};
+\draw[-] (0,-0.65) -- (0,-0.75);
+
+\fill[pattern=north east lines, pattern color=gray, draw=black]  (2,2) circle (0.5);
+
+\node at (2,-0.95) {$0.2$};
+\draw[-] (2,-0.65) -- (2,-0.75);
+\node  at (10,-0.95) {$2.2$};
+\draw[-] (10,-0.65) -- (10,-0.75);
+
+\node[anchor=east]  at (-0.5,2) {$0.2$};
+\draw[-] (-0.55,2) -- (-0.45,2);
+
+\node[anchor=east]  at (-0.5,2.5) {$0.25$};
+\draw[-] (-0.55,2.5) -- (-0.45,2.5);
+
+\node[anchor=east]  at (-0.5,4.1) {$0.41$};
+\draw[-] (-0.55,4.1) -- (-0.45,4.1);
+\fill[ draw=black]  (2,2) circle (0.02);
+
+\end{tikzpicture}
