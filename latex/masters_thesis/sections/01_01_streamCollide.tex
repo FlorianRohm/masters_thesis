@@ -6,7 +6,7 @@ First of all, we restrict ourselves to a computational domain being composed of 
 Not too much attention should be granted to this value, as in most realizations, $c=1$ is chosen and this factor will vanish.
 Nevertheless, we will maintain $c$ as a variable through most of the calculations and explicitly state when it's set to one.
 
-The next step for the discretization is to restrict our velocity space to a finite set of velocities. As we will see in a bit, we want the cell spacing and the velocities to coincide, so we choose our microscopic velocities to be
+The next step for the discretization is to restrict our velocity space to a finite set of velocities. As we will see in a bit, we want the cell spacing and the velocities to coincide, so we choose our \textbf{microscopic velocities} to be
 \begin{equation}
   \label{eq: definition of the velocities}
   \vec{c}_{ij} \defined c\begin{pmatrix}i \\ j\end{pmatrix}, \quad\forall i,j\in \{-1, 0, 1\}.
@@ -15,7 +15,7 @@ Hence, our particle distribution function $f(\vec{v},\vec{x},t)$ can now be inte
 Being in two dimensions, we also split the vector $\vec{x}$ into its components $x$ and $y$, leaving us with $f_{ij}(x,y,t)$ for the velocity-discretized particle distributions.
 Further, we denote $\vec{f}$ as the vector of all $f_{ij}$.
 
-In LBM jargon, the choice of velocities is called the stencil, which is denoted by D$n$Q$m$, with $n$ being the dimension and $m$ the cardinality of the velocity set.
+In LBM jargon, the choice of velocities is called the \textbf{stencil}, which is denoted by D$n$Q$m$, with $n$ being the dimension and $m$ the cardinality of the velocity set.
 Consequently, we're working with a D2Q9 model, which is depicted in Figure~\ref{fig: D2Q9 stencil}.
 
 \begin{figure}
@@ -35,27 +35,26 @@ This will be further specified in Section~\ref{sub: Relaxation rates and their i
 Using the described techniques, equation~\eqref{eq: Boltzmann transport equation} can be transformed\footnote{The full derivation is in Appendix~\ref{appendix: Lattice Boltzmann Equation}.} to
 \begin{equation}
   \label{eq: lattice boltzmann equation}
-    f_{ij}(x + i \Delta x , y + j \Delta y,t + \Delta t)
+    f_{ij}^\circ(x + i \Delta x , y + j \Delta y,t + \Delta t)
     = f_{ij}^*(x, y, t)
 \end{equation}
-for all $i,j\in \{-1, 0, 1\}$, where $f_{ij}^*$ are the post-collision distributions\footnote{The $f_{ij}$ are accordingly labeled pre-collision distributions.
-} defined as
+for all $i,j\in \{-1, 0, 1\}$, where the  pre-collision distributions are labeled\footnote{The labeling $^\circ$ is introduced here to later separate between statements which are valid for all \glspl{pdf} which remain not labeled and those only valid pre-/post-collision or in the equilibrium.} $f_{ij}^\circ$ and the $f_{ij}^*$ are the post-collision distributions defined as
 \begin{equation}
   \label{eq: define post collision}
-  f_{ij}^*(x, y, t) \defined \tilde{\Omega}(\vec{f}(x,y,t)) + f_{ij}(x,y,t) \quad\forall i,j\in \{-1, 0, 1\}.
+  f_{ij}^*(x, y, t) \defined \tilde{\Omega}(\vec{f}^\circ(x,y,t)) + f_{ij}^\circ(x,y,t) \quad\forall i,j\in \{-1, 0, 1\}.
 \end{equation}
 As the collision operator will be nonlinear in most cases, we can not decouple the equations and we still need all \glspl{pdf} as arguments.
 
-With the decomposition of the calculations in equation~\eqref{eq: lattice boltzmann equation} and~\eqref{eq: define post collision}, we can finally introduce the most known keywords associated to LBM:\@ \textbf{stream and collide}.
+With the decomposition of the calculations in equation~\eqref{eq: lattice boltzmann equation} and~\eqref{eq: define post collision}, we can finally introduce the most known keywords associated to LBM, stream and collide.
 
-As the latter equation~\eqref{eq: define post collision} takes our pre-collision distributions, applies the collision operator to give us post-collision distributions, this is called the collide step, which is illustrated in Figure~\ref{fig: examplary collision}.
+As the latter equation~\eqref{eq: define post collision} takes our pre-collision distributions, applies the collision operator to give us post-collision distributions, this is called the \textbf{collide step}, which is illustrated in Figure~\ref{fig: examplary collision}.
 
 \begin{figure}
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
   \input{tikz/preCollide.tex}
-\caption{Exemplaric pre-collision \glspl{pdf} $f_{ij}$\linebreak}
+\caption{Exemplaric pre-collision \glspl{pdf} $f_{ij}^\circ$\linebreak}
 \label{fig: pre-collision example}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
@@ -71,7 +70,7 @@ Their value is shown as the arrow length, their associated speed is still contro
 \end{figure}
 
 Afterwards in~\eqref{eq: lattice boltzmann equation} we spread the distributions according to their velocities to form the new particle distributions for the timestep $t+\Delta t$.
-Unsurprisingly, this is called the streaming step, as it moves the particle distributions to new nodes.
+Unsurprisingly, this is called the \textbf{streaming step}, as it moves the particle distributions to new nodes.
 
 \begin{figure}
 \centering

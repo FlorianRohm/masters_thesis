@@ -1,11 +1,11 @@
 % !TEX root = ../thesis.tex
 After describing the general structure of the LBM, this section will cover another important question of \gls{cfd}:\@ What do we want to know at the end?
 
-The most basic thing one is interested in, is information about the flow field, i.e.\@ density $\rho$, velocity $\vec{u}$ and temperature $T$ in the domain, to analyze the flow patterns.
+The most basic thing one is interested in, is information about the flow field, i.e.\@ \textbf{density} $\rho$, \textbf{velocity}\footnote{In contrary to the microscopic velocities, denoted as $\vec{v}$ or $\vec{c}_{ij}$ in the discrete case, the averaged, macroscopic velocity will be denoted by $\vec{u}$.} $\vec{u}$ and \textbf{temperature} $T$ in the domain, to analyze the flow patterns.
 Those are all averaged quantities and thus called macroscopic values.
 
 When calculating with the Navier-Stokes equations, getting the macroscopic values is easy, as the equations are stated in exactly those.
-Unfortunately, the Boltzmann equation and also the discretized equation~\eqref{eq: lattice boltzmann equation} calculate the microscopic particle distributions.\glsadd{micVar}\glsadd{macVar}
+Unfortunately, the Boltzmann equation and also the discretized equation~\eqref{eq: lattice boltzmann equation} calculate the particle distributions, describing the microscopic behavior.\glsadd{micVar}\glsadd{macVar}
 The extraction of macroscopic values out of the available \glspl{pdf} will be treated in this section.
 
 Before introducing (macroscopic) velocity and density, we have to take a small detour to the field of probability theory and introduce moments.
@@ -26,7 +26,7 @@ For the sake of simplicity this dependence is going to be omitted every time whe
 \end{equation}
 This is also applied to all other values like density and velocity.
 
-Another set of characteristic variables are the centralized or central moments $c_{\alpha\beta}$ defined as
+Another set of characteristic variables are the centralized or \textbf{central moments} $c_{\alpha\beta}$ defined as
 \begin{equation}
   \label{eq: central moments continuous}
   c_{\alpha\beta} \defined \int {\left(v_x - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(v_y-\frac{m_{01}}{m_{00}}\right)}^\beta f(\vec{v})  d\vec{v}.
@@ -34,61 +34,73 @@ Another set of characteristic variables are the centralized or central moments $
 
 Here, the assumption associated with~\eqref{eq: leave out x and y} of course also holds, making the centralized moments dependent on space and time.
 
-As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can calculate the \textbf{macroscopic density} $\rho$, the \textbf{macroscopic velocity} $\vec{u}=\begin{pmatrix}u_x\\u_y\end{pmatrix}$ and the \textbf{pressure tensor} $\tensor{P}=\begin{pmatrix}\tensor{P}_{xx}&\tensor{P}_{xy}\\ \tensor{P}_{yx}&\tensor{P}_{yy}\end{pmatrix}$ as
+As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can calculate the density $\rho$, the velocity $\vec{u}=\begin{pmatrix}u_x\\u_y\end{pmatrix}$ and the
+\textbf{pressure tensor} $\tensor{P}=\begin{pmatrix}\tensor{P}_{xx}&\tensor{P}_{xy}\\ \tensor{P}_{yx}&\tensor{P}_{yy}\end{pmatrix}$ as
 
 \begin{equation}
-  \label{eq: physical quantities}
+  \label{eq: physical quantities continuous}
   \begin{aligned}
-    \rho & = \int f(\vec{v}) d\vec{v} = m_{00} \\
+    \rho & = \int f(\vec{v}) d\vec{v} \\
     u_x
-    & = \frac{1}{\rho}\int v_x f(\vec{v}) d\vec{v} = \frac{ m_{10} }{ m_{00} }\\
+    & = \frac{1}{\rho}\int v_x f(\vec{v}) d\vec{v} \\
     u_y
-    & = \frac{1}{\rho}\int v_y f(\vec{v}) d\vec{v} = \frac{ m_{01} }{ m_{00} }.\\
+    & = \frac{1}{\rho}\int v_y f(\vec{v}) d\vec{v}\\
     \tensor{P}_{xy}=\tensor{P}_{yx}
-    & = \int (v_x - u_x)(v_y - u_y) f(\vec{v}) d\vec{v}
-      = c_{11} \\
+    & = \int (v_x - u_x)(v_y - u_y) f(\vec{v}) d\vec{v} \\
     \tensor{P}_{xx}
-    & = \int {(v_x - u_x)}^2 f(\vec{v}) d\vec{v}
-      = c_{20} \\
+    & = \int {(v_x - u_x)}^2 f(\vec{v}) d\vec{v} \\
     \tensor{P}_{yy}
-    & = \int {(v_y - u_y)}^2 f(\vec{v}) d\vec{v}
-      = c_{02},
+    & = \int {(v_y - u_y)}^2 f(\vec{v}) d\vec{v},
   \end{aligned}
 \end{equation}
-where we identified the definitions of the moments and central moments in the second equation in each line.
-From the equations in~\eqref{eq: physical quantities}, we can also conclude, that centralized moments are just like normal moments, but seen from a frame of reference moving with the flow velocity $\vec{u}$.
+and thus with~\eqref{eq: moments continuous} and~\eqref{eq: central moments continuous} we get
+\begin{equation}
+  \label{eq: physical quantities continuous moments}
+\rho = m_{00}, \quad \vec{u}=\frac{1}{m_{00}}\begin{pmatrix}m_{10}\\m_{01}\end{pmatrix},\quad \tensor{P}=\begin{pmatrix}c_{20}&c_{11}\\ c_{11}&c_{02}\end{pmatrix}.
+\end{equation}
+From the relations in~\eqref{eq: physical quantities continuous moments}, we can also conclude, that centralized moments are just like normal moments, but seen from a frame of reference moving with the flow velocity $\vec{u}$.
 \glsadd{frame of reference}
 
-When switching to the discrete case, we exchange the continuous microscopic velocity $\vec{v}$ with our velocity set~\eqref{eq: definition of the velocities}.
+Upon switching to the discrete case, we exchange the continuous microscopic velocity $\vec{v}$ with our velocity set~\eqref{eq: definition of the velocities}.
 Thus, the integrals in~\eqref{eq: moments continuous} and~\eqref{eq: central moments continuous} will degenerate to sums, leaving us with
 \begin{align}
-  m_{\alpha\beta} &= c^{\alpha + \beta}\sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
+  m_{\alpha\beta} &= \mquad\sum_{i,j \in \{-1,0,1\}}\mquad {(ic)}^\alpha {(jc)}^\beta f_{ij}
   \label{eq: moment definition}\\
-  c_{\alpha\beta} &= \sum_{i,j \in \{-1,0,1\}}
+  c_{\alpha\beta} &= \mquad\sum_{i,j \in \{-1,0,1\}}
   {\left(ci - \frac{m_{10}}{m_{00}}\right)}^\alpha
   {\left(cj - \frac{m_{01}}{m_{00}}\right)}^\beta f_{ij}.
   \label{eq: central moment definition}
 \end{align}
 
 When looking at the derived quantities, we have to pay attention to another issue:
-In the continuous case, a local equilibrium is attained nearly instantaneously, c.f.~\cite[page 218]{smits2000physical}, and therefore the relations in~\eqref{eq: physical quantities} are a priori only valid in the local equilibrium.
+In the continuous case, a local equilibrium is attained nearly instantaneously, c.f.~\cite[page 218]{smits2000physical}.
+Therefore the relations in~\eqref{eq: physical quantities continuous} are a priori only valid in the local equilibrium.
 
 Back in the discrete case, we can no longer assume aforementioned local equilibrium.
 In fact, we already assume to be in a non equilibrium state, as we want the collision to shift our particle distributions a bit towards the local equilibrium.
-
-Looking at the quantities defined in~\eqref{eq: physical quantities}, we can directly define the velocity and density, as those should not be altered by the collision due to mass and momentum conservation laws and are thus always in local equilibrium.
-Thus, we can identify
+Consequently, we can state the macroscopic quantities in~\eqref{eq: physical quantities continuous} only in the equilibrium case, like
 \begin{align}
-  \rho & = \sum_{i,j \in \{-1,0,1\}} f_{ij}^{eq} = m_{00}^{eq} = m_{00}
+  \rho & = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad f_{ij}^{eq} = m_{00}^{eq}
+  \label{eq: density definition raw}\\
+  u_x  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}}\mquad ic f_{ij}^{eq} = \frac{m_{10}^{eq}}{m_{00}^{eq}}
+  \label{eq: x velocity definition raw}\\
+  u_y  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}}\mquad jc f_{ij}^{eq} = \frac{m_{01}^{eq}}{m_{00}^{eq}}.
+  \label{eq: y velocity definition raw}
+\end{align}
+
+Luckily, the density and macroscopic velocity should not be altered by the microscopic collisions, due to mass and momentum conservation laws\footnote{Not the ones of Navier-Stokes, but continuum mechanics, as we work with particle distributions.} and are thus always equal to the ones in the corresponding local equilibrium.
+Hence, we can identify
+\begin{align}
+  \rho & = m_{00}
   \label{eq: density definition}\\
-  u_x  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} ic f_{ij}^{eq} = \frac{m_{10}^{eq}}{m_{00}^{eq}} = \frac{m_{10}}{m_{00}}
+  u_x  & = \frac{m_{10}}{m_{00}}
   \label{eq: x velocity definition}\\
-  u_y  & = \frac{1}{\rho} \sum_{i,j \in \{-1,0,1\}} jc f_{ij}^{eq} = \frac{m_{01}^{eq}}{m_{00}^{eq}} = \frac{m_{01}}{m_{00}},
+  u_y  & = \frac{m_{01}}{m_{00}},
   \label{eq: y velocity definition}
 \end{align}
-and write the central moments again as
+with arbitrary\footnote{In the equilibrium, as well as pre- or post-collision.} moments and write the central moments again as
 \begin{align}
-  c_{\alpha\beta} &= \sum_{i,j \in \{-1,0,1\}}
+  c_{\alpha\beta} &= \mquad\sum_{i,j \in \{-1,0,1\}}\mquad
   {\left(ci - u_x\right)}^\alpha
   {\left(cj - u_y\right)}^\beta f_{ij}.
   \label{eq: central moment definition velocities}
@@ -107,15 +119,13 @@ This leaves us with
 \begin{equation}
   \begin{aligned}
     \tensor{P}_{xx}
-    & = \sum_{ij} {(ic - u_x)}^2 f_{ij}^{eq}
+    & = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad  {(ic - u_x)}^2 f_{ij}^{eq}
     \\ & =
-    \sum_{ij} i^2 c^2 f_{ij}^{eq} - 2 u_x \sum_{ij} ic f_{ij}^{eq} + u_x^2 \sum_{ij}f_{ij}^{eq}
-    \\ & =
-    m_{20}^{eq} - 2 \frac{m_{10}^{eq}}{m_{00}^{eq}} m_{10}^{eq} + \frac{m_{10}^{{eq}^2}}{m_{00}^{{eq}^2}} m_{00}^{eq}
-    \\ & = m_{20}^{eq} - \frac{m_{10}^2}{m_{00}}
+    \mquad\sum_{i,j \in \{-1,0,1\}}\mquad  i^2 c^2 f_{ij}^{eq} - 2 u_x \mquad \sum_{i,j \in \{-1,0,1\}}\mquad  ic f_{ij}^{eq} + u_x^2 \mquad\sum_{i,j \in \{-1,0,1\}} f_{ij}^{eq}\mquad
+    \\ & = m_{20}^{eq} - \frac{m_{10}^2}{m_{00}},
   \end{aligned}
 \end{equation}
-and thus the pressure\footnote{It can be shown, that the pressure is equal to one third the trace of the pressure tensor and that its diagonal elements are equal. The third entry $\tensor{P}_{zz}$ would be the pressure in $z$-direction, which has to be accounted for as 2D simulations are just 3D where we assume the flow to be invariant in one direction. As pressure is isotropic, the pressure is also extended in the last direction, even when the flow velocity is not. When defining this tensor, the $z$-components were left out to not provoke confusion.}\todo[inline]{refer to discussion section}
+using~\eqref{eq: density definition} through~\eqref{eq: y velocity definition} and thus the pressure\footnote{It can be shown, that the pressure is equal to one third the trace of the pressure tensor and that its diagonal elements are equal. The third entry $\tensor{P}_{zz}$ would be the pressure in $z$-direction, which has to be accounted for as 2D simulations are just 3D where we assume the flow to be invariant in one direction. As pressure is isotropic, the pressure is also extended in the last direction, even when the flow velocity is not. When defining this tensor, the $z$-components were left out to not provoke confusion.}\todo[inline]{refer to discussion section}
 \begin{equation}
   \label{eq: pressure}
   \begin{aligned}
@@ -128,25 +138,25 @@ If we wanted to include equations for energy and thus heat into our analysis, we
 But as we are working with the nine speed model D2Q9 as depicted in Figure~\ref{fig: D2Q9 stencil}, we can only host nine independent moments.
 This is easily seen with
 \begin{equation}
-  m_{30} = \sum_{i,j \in \{-1,0,1\}} i^3 c^3 f_{ij} = c^2\sum_{i,j \in \{-1,0,1\}} ic i^2 f_{ij} = c^2 \sum_{i,j \in \{-1,0,1\}} ic f_{ij} = c^2 m_{10},
+  m_{30} = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad i^3 c^3 f_{ij} = c^2\mquad\sum_{i,j \in \{-1,0,1\}}\mquad ic i^2 f_{ij} = c^2 \mquad\sum_{i,j \in \{-1,0,1\}}\mquad ic f_{ij} = c^2 m_{10},
 \end{equation}
 or in general
 \begin{equation}
   \label{eq:aliasing of moments 1}
   m_{\alpha\beta}
-  = \sum_{i,j \in \{-1,0,1\}} c^{\alpha+\beta} i^\alpha j^\beta f_{ij}
-  = \sum_{i,j \in \{-1,0,1\}} c^{\alpha+\beta}i^{(\alpha+2k)} j^\beta f_{ij}
+  = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad c^{\alpha+\beta} i^\alpha j^\beta f_{ij}
+  = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad c^{\alpha+\beta}i^{(\alpha+2k)} j^\beta f_{ij}
   = c^{-2k} m_{(\alpha+2k)\beta} \quad \forall k,\beta, \forall \alpha \neq 0
 \end{equation}
 and
 \begin{equation}
   \label{eq:aliasing of moments 2}
   m_{\alpha\beta}
-  = \sum_{i,j \in \{-1,0,1\}} c^{\alpha+\beta} i^\alpha j^\beta f_{ij}
-  = \sum_{i,j \in \{-1,0,1\}} c^{\alpha+\beta}i^\alpha j^{(\beta+2l)} f_{ij}
+  = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad c^{\alpha+\beta} i^\alpha j^\beta f_{ij}
+  = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad c^{\alpha+\beta} i^\alpha j^{(\beta+2l)} f_{ij}
   = c^{-2l}m_{\alpha(\beta+2l)} \quad \forall l, \alpha, \forall \beta \neq 0.
 \end{equation}
-The full list of moments in D2Q9 is displayed in Table~\ref{table:D2Q9 moments}, according to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}.
+The full list of independent moments together with the first dependent moments of the D2Q9 stencil according to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2} is displayed in Table~\ref{table:D2Q9 moments}.
 Another convention we introduce in this section is, that all sums over $i$ and/or $j$ shall range over the discrete velocity space, i.e.
 \begin{equation*}
   \sum_{i,j \in \{-1,0,1\}} \rightarrow \sum_{i,j}
@@ -168,11 +178,11 @@ Another convention we introduce in this section is, that all sums over $i$ and/o
     & $m_{21}$
     & $m_{12}$
     & $m_{22}$
-    & $c^{-1}m_{30}$
-    & $c^{-1}m_{03}$
-    & $c^{-1}m_{31}$
-    & $c^{-1}m_{13}$
-    & $c^{-1}m_{40}$
+    & $c^{-2}m_{30}$
+    & $c^{-2}m_{03}$
+    & $c^{-2}m_{31}$
+    & $c^{-2}m_{13}$
+    & $c^{-2}m_{40}$
     & \ldots \\
     &&&&&&&&
     & = $m_{10}$
