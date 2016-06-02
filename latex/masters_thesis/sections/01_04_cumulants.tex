@@ -1,13 +1,13 @@
 % !TEX root = ../thesis.tex
 
-This section will motivate the space of the yet to be defined cumulants as a suitable space for an easy collision.
+This section will motivate the space of the yet to be defined cumulants as a suitable space for a new collision model.
 
 In real life, when two events happen at the same frequency, we can infer that they are statistically dependent.
-For an example, let the first event $X$ be the trees casting their leaves, which happens once a year
-\footnote{We assume to be in central Europe and do not include climate change which could set us up for an all green year},
+For an example, let the first event $X$ be the trees casting their leaves, which happens once a year\footnote{We
+assume to be in central Europe and do not include climate change which could set us up for an all green year},
 and the second one $Y$ the lottery draw once a week.
-As those events are independent
-\footnote{As this is only an introduction, we spare the proof of lottery drawings being independent of falling leaves},
+As those events are independent\footnote{As
+this is only an introduction, we spare the proof of lottery drawings being independent of falling leaves},
 the probabilities factor $P(X\intersect Y) = P(X)P(Y)$.
 On the other side, let the event of Easter be $Z$ which also happens once a year.
 As Easter is not in autumn, we have $0 = P(X\intersect Z) \neq P(X)P(Z) > 0$.
@@ -16,6 +16,7 @@ Enough of holidays and nature, let's turn back to \gls{lbm}, where our fluid flo
 From the gedankenexperiment above, we know we want to separate independent events to control them individually.
 To achieve this, we have to turn back to the moments we defined in~\eqref{eq: moments continuous}.
 
+\todo[inline]{improve?}
 We can equivalently define moments of a random variable $X$ as the coefficients of the Taylor expansion of the moment generating function $M_X(t)$, c.f.~\cite{weissteinMGF}.
 It can be proven,~\cite{weissteinMGF}, that it satisfies
 \begin{equation}
@@ -35,9 +36,3 @@ The Taylor coefficients of $\ln(M_X(t))$ are called \textbf{cumulants} and $\ln(
 Consequently, we can infer, that cumulants are a natural choice to make when looking for observable quantities of our \glspl{pdf} we want to control.
 
 Next up, we will go into more detail on how to actually calculate cumulants and afterwards formulate a collision operator using them.
-
-%Moments: coefficients of taylor expansion of the moment generating function $M_X(t)$~\cite{weissteinMGF} for a random variable $X$.
-%Flipside: when we have two random variables $X$ and $Y$, we have $M_{X+Y}(t) = M_{X}(t)M_{Y}(t)$.
-%Problem: Taylor Series of a product not easy to compute, and if we do it, many moments of different orders interact.
-%Remedy: turn product into sum $\ln(M_{X+Y}(t)) = \ln(M_{X}(t)) + \ln(M_{Y}(t))$.
-%Taylor coefficients of $\ln(M_X(t))$ are called cumulants and $\ln(M_{X}(t))$ is called cumulant generating function.

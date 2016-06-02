@@ -4,9 +4,11 @@ After we worked through the whole table of transformations in this section, it's
 
 Before collision, we have our particle distribution functions $f_{ij}$.
 Through equations~\eqref{eq: density definition} to~\eqref{eq: y velocity definition} we get our macroscopic variables $\rho$ and $\vec{u}$ in this cell.
-As our collision will be mass and momentum preserving\footnote{ignoring gravity or other forces which can alter velocity in the collision}, it does not matter if those are computed pre-collision.
+As our collision will be mass and momentum preserving\footnote{Ignoring gravity or other forces which can alter velocity in the collision.}, it does not matter if those are computed pre-collision.
 Using the macroscopic variables, central moments are computed via~\eqref{eq:fast forward c i pipe beta matrix} and afterwards~\eqref{eq: fast forward c alpha beta matrix}.
-To get our normalized cumulants, which we will use right in the next chapter for the collision, not much has to be done, as seen in~\eqref{eq: all normalized cumulants from central moments}.
+Not much has to be done to get our normalized cumulants, as seen in~\eqref{eq: all normalized cumulants from central moments}.
+Those will be collided according to the procedure presented in the next section.
+
 After the collision, we calculate our post-collision central moments from~\eqref{eq: all central moments from normalized cumulants}
 and transform them back to \glspl{pdf} via~\eqref{eq: fast forward c alpha beta matrix} and~\eqref{eq:fast forward c i pipe beta matrix}.
 

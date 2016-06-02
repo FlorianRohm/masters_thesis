@@ -4,60 +4,66 @@ This section will lay the foundation of the analysis by expanding~\eqref{eq: lat
 First of all,~\eqref{eq: lattice boltzmann equation} is reformulated to
 \begin{equation}
   \label{eq: lattice boltzmann equation shifted}
-  f_{ij}(x, y, t + \Delta t) = f^*_{ij}(x - i \Delta x , y - j\Delta y, t), \quad\forall i,j\in \{-1, 0, 1\}
+  f_{ij}^{\circ}(x, y, t + \Delta t) = f^*_{ij}(x - i \Delta x , y - j\Delta y, t), \quad\forall i,j\in \{-1, 0, 1\}
 \end{equation}
 by shifting $x$ and $y$. Now, a Taylor expansion of~\eqref{eq: lattice boltzmann equation shifted} in both time and space gives
 \begin{equation*}
-  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(x, y, t) =
+  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}^{\circ}(x, y, t) =
   \sum_{m,n = 0}^\infty \frac{{(-i\Delta x)}^m{(-j\Delta y)}^n} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} f^*_{ij}(x, y, t)
 \end{equation*}
 which is equivalent to
 \begin{equation}
   \label{eq: Taylor LB1}
-  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}(x, y, t) =
+  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}^{\circ}(x, y, t) =
     \sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} {(ci)}^m {(cj)}^n f^*_{ij}(x, y, t),
 \end{equation}
 using~\eqref{eq: relation between stepsizes}.
 
 In formulating Equation~\eqref{eq: Taylor LB1}, we did not need to restrict ourselves to specific $f_{ij}$ and thus it has to hold for all of them. Notably also for all linear combinations
 \begin{equation*}
-  \sum_{k}\lambda_k f_{ij},
+  \sum_{i,j}\lambda_{ij} f_{ij},
 \end{equation*}
-especially for those, which yield the moments, $m_{\alpha\beta} $, of $f$ like
+especially for those, which yield the moments, $m_{\alpha\beta} $, of $f$ as
 \begin{equation}
-  \sum_{k}\lambda_k f_{ij} = \sum_{i,j}c^{\alpha + \beta}i^\alpha j^\beta f_{ij}=m_{\alpha\beta}.
+  \sum_{i,j}\lambda_{ij} f_{ij} = \sum_{i,j}c^{\alpha + \beta}i^\alpha j^\beta f_{ij}=m_{\alpha\beta}.
 \end{equation}
-Therefore, we rewrite the system of equations for the $f_{ij}$ to a system of equations for the $m_{\alpha\beta}$ in the manner of
+Therefore, we rewrite the system of equations for the $f_{ij}$ to a system of equations for the $m_{\alpha\beta}$ like
 \begin{align}
     \nonumber
-    & & \sum_{ij} \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} {(ci)}^\alpha {(cj)}^\beta f_{ij}
+    & & \sum_{ij} \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} {(ci)}^\alpha {(cj)}^\beta f_{ij}^{\circ}
     &=
     \sum_{ij}\sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} {(ci)}^m {(cj)}^n {(ci)}^\alpha {(cj)}^\beta f^*_{ij}
     \\ \nonumber &\equivalent &
-    \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{ij}{(ci)}^\alpha {(cj)}^\beta f_{ij}
+    \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{ij}{(ci)}^\alpha {(cj)}^\beta f_{ij}^{\circ}
     &=
     \sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n}\sum_{ij}{(ci)}^{(\alpha+m)} {(cj)}^{(\beta+n)} f^*_{ij}
     \\ \nonumber &\equivalent &
-     \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta} &=
+     \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta}^{\circ} &=
     \sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} m^*_{(\alpha + m)(\beta + n)}
      \\   &\equivalent &
-     \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \frac{m_{\alpha\beta}}{c^{\alpha + \beta}} &=
+     \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \frac{m_{\alpha\beta}^{\circ}}{c^{\alpha + \beta}} &=
     \sum_{m,n = 0}^\infty \frac{{(- c\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} \frac{m^*_{(\alpha + m)(\beta + n)}}{c^{\alpha + m + \beta + n}}.
 \end{align}
 To make our lives a bit easier, we will rescale the moments according to their order,
 \begin{equation}
   \label{eq: rescaling the moments}
-  \frac{m^*_{\alpha\beta}}{c^{\alpha + \beta}} \rightarrow m^*_{\alpha\beta}, \quad   \frac{m_{\alpha\beta}}{c^{\alpha + \beta}} \rightarrow m_{\alpha\beta},
+  \frac{m_{\alpha\beta}}{c^{\alpha + \beta}} \rightarrow m_{\alpha\beta},
 \end{equation}
 to finally get
 \begin{equation}
   \label{eq: Taylor of moments}
-  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta} =
+  \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta}^{\circ} =
  \sum_{m,n = 0}^\infty \frac{{(- c\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} m^*_{(\alpha + m)(\beta + n)}.
 \end{equation}
 This scaling is easily reverted by multiplying with same term again, but most of the time, we will calculate with $c=1$, so the effect of the scaling vanishes completely.
 Additionally, this will take out the $c$-term in the aliasing of the moments,~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}, making it a $1:1$ relationship.
-Finally, as the speed of sound squared is calculated as $\frac{dp}{d\rho}$, c.f.~\cite[page 175]{wolf2000lattice}, $c_s$ needs also to be rescaled to $\frac{1}{3}$, as the pressure is a second order (central) moment and gets rescaled with $c^{-2}$, according to~\eqref{eq: rescaling the moments}.
+
+Finally, as the speed of sound squared is calculated as $\frac{dp}{d\rho}$, c.f.~\cite[page 175]{wolf2000lattice}, $c_s$ needs also to be rescaled.
+As the pressure is a second order (central) moment it gets rescaled with $c^{-2}$, according to~\eqref{eq: rescaling the moments} whereas the density is the zeroth order moment which undergoes no scaling.
+Hence, we have
+\begin{equation}
+   c_s^2 = \frac{1}{3}
+\end{equation}
 
 \subsubsection{Nondimensionalization}
 \label{subs:Nondimensionalization}
@@ -87,41 +93,40 @@ Our spatial coordinates $x$ and $y$ together with the time coordinate $t$ will b
 Furthermore, the moments are asymptotically expanded in space according to the scale $\epsilon$
 \begin{align}
     \label{eq: expansion of m}
-    m_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)} \\
-    \label{eq: expansion of m star}
-    m^*_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{*^{(p)}}.
+    m_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{\circ^{(p)}}
 \end{align}
-This procedure implicitly defines the coefficients of the series, $m_{\alpha\beta}^{(p)}$ and $m_{\alpha\beta}^{*^{(p)}}$.
+This procedure implicitly defines the coefficients of the series, $m_{\alpha\beta}^{\circ^{(p)}}$.
 Those are still dependent of space and time, but as they are separated on their length scales, their spatial part is not allowed to depend on $\epsilon$ neither implicitly nor explicitly.
 
-Finally, we can insert~\eqref{eq: expansion of m},~\eqref{eq: expansion of m star} and~\eqref{eq: nondimensionalisation} through~\eqref{eq: nondimensionalisation 3} into~\eqref{eq: Taylor of moments}, yielding
+Finally, we can insert~\eqref{eq: expansion of m} and~\eqref{eq: nondimensionalisation}
+through~\eqref{eq: nondimensionalisation 3} into~\eqref{eq: Taylor of moments}, yielding
 
 \begin{alignat}{3}
   \nonumber
-  &&\sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta} &=
+  &&\sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta}^{\circ} &=
  \sum_{m,n = 0}^\infty \frac{{(- c\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} m^*_{(\alpha + m)(\beta + n)}\\
   \nonumber
-  &\equivalent& \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!}  \frac{\partial^\tau}{{\partial t}^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}
+  &\equivalent& \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!}  \frac{\partial^\tau}{{\partial t}^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{\circ^{(p)}}
     = &{}\sum_{m,n = 0}^\infty \frac{{(-c\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} \sum_{p=0}^{\infty} \epsilon^p m_{(\alpha + m)(\beta + n)}^{*^{(p)}}
   \\
   %
     \label{eq: nondimensionalised expansion series}
   &\equivalent&
-    \sum_{\tau = 0}^\infty \frac{{(\iota\epsilon^2)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau \iota^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}
+    \sum_{\tau = 0}^\infty \frac{{(\iota\epsilon^2)}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau \iota^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{\circ^{(p)}}
     = &{}\sum_{m,n = 0}^\infty \frac{{(-\frac{L}{\iota\epsilon}(\iota\epsilon^2))}^{m+n}} {m!n!}
     \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n L^{m+n}} \sum_{p=0}^{\infty} \epsilon^p m_{(\alpha + m)(\beta + n)}^{*^{(p)}}
    \\
  %
   \nonumber
   &\equivalent&
-    \sum_{\tau = 0}^\infty \frac{\epsilon^{2\tau} }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}
+    \sum_{\tau = 0}^\infty \frac{\epsilon^{2\tau} }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{\circ^{(p)}}
     = &{}\sum_{m,n = 0}^\infty \frac{{(-\epsilon)}^{m+n}} {m!n!}
     \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n } \sum_{p=0}^{\infty} \epsilon^p m_{(\alpha + m)(\beta + n)}^{*^{(p)}}
    \\
  %
     \label{eq: final nondimensionalised expansion series}
   &\equivalent&
-    \sum_{\tau, p = 0}^\infty\epsilon^{2\tau + p} \frac{1} {\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta}^{(p)}
+    \sum_{\tau, p = 0}^\infty\epsilon^{2\tau + p} \frac{1} {\tau!} \frac{\partial^\tau}{{\partial t}^\tau} m_{\alpha\beta}^{\circ^{(p)}}
     = &{} \sum_{m,n,p' = 0}^\infty  \epsilon^{m+n+p'} \frac{{(-1)}^{m+n}} {m!n!}
     \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n } m_{(\alpha + m)(\beta + n)}^{*^{(p')}},
 \end{alignat}
@@ -134,20 +139,19 @@ Something interesting happens though, when we just mirror each axis.
 The problem remains the same, just all involved velocities will change their sign, i.e.\ $c$ gets replaced with $-c$.
 Now, our moments $\tilde{m}$ in the new coordinate system are
 \begin{align}
-  \tilde{m}_{\alpha\beta} &= {(-c)}^{\alpha + \beta}\sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
-  ={(-1)}^{\alpha + \beta}{c}^{\alpha + \beta}\sum_{i,j \in \{-1,0,1\}} i^\alpha j^\beta f_{ij}
-  ={(-1)}^{\alpha + \beta}  m_{\alpha\beta}
+  \tilde{m}_{\alpha\beta} &= \sum_{i,j} {(-ci)}^\alpha {(-cj)}^\beta f_{ij}
+  ={(-1)}^{\alpha + \beta} \sum_{i,j} {(ci)}^\alpha {(cj)}^\beta f_{ij}
+  ={(-1)}^{\alpha + \beta} m_{\alpha\beta}
 \end{align}
 but still represent the same value.
-To get the same expansion in the nondimensionalized, c.f.~\eqref{eq: nondimensionalisation}, case, our expansion parameter $\epsilon$ also needs to be negated.
-Thus
+To get the same expansion in the nondimensionalized case, c.f.~\eqref{eq: nondimensionalisation}, our expansion parameter $\epsilon$ also needs to be negated and hence
 \begin{equation}
      \sum_{p=0}^{\infty} {(-\epsilon)}^p \tilde{m}_{\alpha\beta}^{(p)}
      = \tilde{m}_{\alpha\beta}
      = {(-1)}^{\alpha + \beta}  m_{\alpha\beta}
-     = {(-1)}^{\alpha + \beta} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}
+     = {(-1)}^{\alpha + \beta} \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}.
 \end{equation}
-and as we corrected the error we made with the introduction of $-\epsilon$, the expanded moments $\tilde{m}_{\alpha\beta}^{(p)}$ and $m_{\alpha\beta}^{(p)}$ have to be equal and thus
+As we corrected the error we made with the introduction of $-\epsilon$, the expanded moments $\tilde{m}_{\alpha\beta}^{(p)}$ and $m_{\alpha\beta}^{(p)}$ have to be equal and thus
 \begin{align}
   \label{eq: negativ expansion}
   \sum_{p=0}^{\infty} {(-\epsilon)}^p m_{\alpha\beta}^{(p)}
@@ -178,7 +182,6 @@ With exactly the same reasoning, the odd order moments like $m_{10}$ may only ha
     \forall p & = 2l, l\in\N.
   \end{aligned}
 \end{equation}
-As this those are derived from the symmetry of the problem alone, this also holds for the post-collision moments $m_{\alpha\beta}^*$ and equilibrium moments $m_{\alpha\beta}^{eq}$.
 The most prominent examples will be the density
 \begin{equation}
   \label{eq: first order pressure zero}

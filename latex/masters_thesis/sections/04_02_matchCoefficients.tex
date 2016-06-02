@@ -4,13 +4,10 @@ Therefore, we will take a closer look on the equations arising, by extracting ea
 
 To make our lives again easier, we introduce similar abbreviations like in~\eqref{eq: abbreviations for deriving cumulants from moments}, namely
 \begin{equation}
-  \partial_t \defined \frac{\partial}{\partial t}, \quad
   \partial_x \defined \frac{\partial}{\partial x}, \quad
-  \partial_y \defined \frac{\partial}{\partial y}, \quad
-  \partial_{xx} \defined \frac{\partial^2}{{\partial x}^2}, \quad
-  \partial_{yx} \defined \frac{\partial\partial}{\partial x\partial y}, \quad
-  \partial_{yy} \defined \frac{\partial^2}{{\partial x}^2}
+  \partial_{xy} \defined \frac{\partial\partial}{\partial x\partial y}
 \end{equation}
+and so on.
 
 \subsubsection{Zero'th order in \texorpdfstring{$\epsilon$}{epsilon}}
 \label{subs: Zeroth order in epsilon}
@@ -18,7 +15,7 @@ To make our lives again easier, we introduce similar abbreviations like in~\eqre
 To achieve $\epsilon^0$, we have to choose $\tau=p=p'=m=n=0$, yielding
 \begin{equation}
   \label{eq: zeroth order in epsilon}
-  m_{\alpha\beta}^{(0)} = m_{\alpha\beta}^{*^{(0)}}.
+  m_{\alpha\beta}^{\circ^{(0)}} = m_{\alpha\beta}^{*^{(0)}}.
 \end{equation}
 The important part is, what does this actually mean?
 When voiced, equation~\eqref{eq: zeroth order in epsilon} states, that all pre-collision zeroth order moments are equal to their post-collision counterparts.
@@ -26,8 +23,9 @@ This means, they have to be in equilibrium for the collision to have no effect o
 Thus,
 \begin{equation}
   \label{eq: zeroth order invariant}
-  m_{\alpha\beta}^{(0)} = m_{\alpha\beta}^{*^{(0)}} = m_{\alpha\beta}^{eq^{(0)}}.
+  m_{\alpha\beta}^{\circ^{(0)}} = m_{\alpha\beta}^{*^{(0)}} = m_{\alpha\beta}^{eq^{(0)}},
 \end{equation}
+and we can leave out the labels for the different status and write a generic $m_{\alpha\beta}^{(0)}$ wherever it occurs.
 
 One important thing to note is, that zeroth order terms may not depend on the expansion parameter $\epsilon$, which is arbitrary.
 Additionally, we demanded that the expanded moments do not depend on $\epsilon$.
@@ -44,12 +42,12 @@ Hence, we know
 \subsubsection{First order in \texorpdfstring{$\epsilon$}{epsilon}}
 \label{subs: First order in epsilon}
 
-For the first order terms, one has to choose $p=1$ and $\iota=0$ on the left side and one of $m$, $n$ and $p'$ equal to one, the other two equal to zero.
+For the first order terms, one has to choose $p=1$ and $\tau=0$ on the left side and one of $m$, $n$ and $p'$ equal to one, the other two equal to zero.
 Incorporating those three equations, we get
 \begin{equation}
   \label{eq: first order in epsilon}
   \begin{aligned}
-  m_{\alpha\beta}^{(1)}
+  m_{\alpha\beta}^{\circ^{(1)}}
   & = m_{\alpha\beta}^{*^{(1)}}
   - \partial_x m_{(\alpha+1)\beta}^{*^{(0)}} - \partial_y m_{\alpha(\beta+1)}^{*^{(0)}} \\
   & = m_{\alpha\beta}^{*^{(1)}},
@@ -59,8 +57,10 @@ using~\eqref{eq: derivative of zeroth order}.
 We see again the equivalence of pre- and post-collision moments in analogy to~\eqref{eq: zeroth order in epsilon} and thus with the same reasoning that led to equation~\eqref{eq: zeroth order invariant}
 \begin{equation}
   \label{eq: first order invariant}
-  m_{\alpha\beta}^{(1)} = m_{\alpha\beta}^{*^{(1)}} = m_{\alpha\beta}^{eq^{(1)}}.
+  m_{\alpha\beta}^{\circ^{(1)}} = m_{\alpha\beta}^{*^{(1)}} = m_{\alpha\beta}^{eq^{(1)}},
 \end{equation}
+and we can again leave out the label and write $m_{\alpha\beta}^{(1)}$.
+
 In contrast to the zeroth orders, the first orders don't need to be constant in space and we can not set their derivatives to zero.
 
 \subsubsection{Second order in \texorpdfstring{$\epsilon$}{epsilon}}
@@ -78,20 +78,24 @@ On the right hand side, we have six possibilities to finally get $\epsilon^2$, d
   \caption{All possibilities to achieve $\epsilon^2$ in equation~\eqref{eq: final nondimensionalised expansion series}}
 \label{table: second order epsilon}
 \end{table}
-Resulting in
+This results in
 \begin{equation}
   \label{eq: second order in epsilon}
   \begin{aligned}
-    \partial_t m_{\alpha\beta}^{(0)} + m_{\alpha\beta}^{(2)}
-    & =  m_{\alpha\beta}^{*^{(2)}} \\
-    &\quad - \partial_x m_{(\alpha+1)\beta}^{*^{(1)}} + \partial_{xx} m_{(\alpha+2)\beta}^{*^{(0)}}/2 \\
-    &\quad - \partial_y m_{\alpha(\beta+1)}^{*^{(1)}} + \partial_{yy} m_{\alpha(\beta+2)}^{*^{(0)}}/2 \\
-    &\quad + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*^{(0)}}\\
+    \partial_t m_{\alpha\beta}^{\circ^{(0)}} + m_{\alpha\beta}^{\circ^{(2)}}
+    & =  m_{\alpha\beta}^{*^{(2)}}
+     - \partial_x m_{(\alpha+1)\beta}^{*^{(1)}}
+     - \partial_y m_{\alpha(\beta+1)}^{*^{(1)}}
+     \\ &\quad
+     + \frac{1}{2}\partial_{xx} m_{(\alpha+2)\beta}^{*^{(0)}}
+     + \partial_{xy} m_{(\alpha+1)(\beta+1)}^{*^{(0)}}
+     + \frac{1}{2}\partial_{yy} m_{\alpha(\beta+2)}^{*^{(0)}}
+     \\
     & =  m_{\alpha\beta}^{*^{(2)}} - \partial_x m_{(\alpha+1)\beta}^{*^{(1)}} - \partial_y m_{\alpha(\beta+1)}^{*^{(1)}},
   \end{aligned}
 \end{equation}
 again using equation~\eqref{eq: derivative of zeroth order}.
-After~\eqref{eq: first order in epsilon} and~\eqref{eq: second order in epsilon}, this is the first equation to not result in collision invariants, but features different orders of moments and all partial derivatives.
+After~\eqref{eq: zeroth order in epsilon} and~\eqref{eq: first order in epsilon}, this is the first equation to not result in collision invariants, but features different orders of moments and all partial derivatives.
 This will later mark the first equation to examine for the Navier-Stokes derivation.
 
 \subsubsection{Third order in \texorpdfstring{$\epsilon$}{epsilon}}
@@ -113,7 +117,7 @@ Fortunately, some of them are zeroth order terms with derivatives and hence they
 \begin{equation}
   \label{eq: third order in epsilon}
   \begin{aligned}
-    \partial_t m_{\alpha\beta}^{(1)} + m_{\alpha\beta}^{(3)}
+    \partial_t m_{\alpha\beta}^{\circ^{(1)}} + m_{\alpha\beta}^{\circ^{(3)}}
     & =  m_{\alpha\beta}^{*(3)} \\
     &\quad - \partial_x m_{(\alpha+1)\beta}^{*^{(2)}} + \partial_{xx} m_{(\alpha+2)\beta}^{*^{(1)}}/2 - \partial_{xxx} m_{(\alpha+3)\beta}^{*^{(0)}}/6 \\
     &\quad - \partial_y m_{\alpha(\beta+1)}^{*^{(2)}} + \partial_{yy} m_{\alpha(\beta+2)}^{*^{(1)}}/2 - \partial_{yyy} m_{\alpha(\beta+3)}^{*^{(0)}}/6 \\

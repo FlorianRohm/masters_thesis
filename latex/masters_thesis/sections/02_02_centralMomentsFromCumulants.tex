@@ -1,17 +1,18 @@
 % !TEX root = ../thesis.tex
 We now could invert equations~\eqref{eq: K 00 from moments} to~\eqref{eq: K 22 from moments}, go over to the actual collision and call it a day.
 As the title of this section spoils, we won't do exactly that, but take a quick detour over central moments.
-Their calculation from our \glspl{pdf} can be done in an efficient way as shown in Section~\ref{sub: Fast central moment transformation},
+Their calculation from our \glspl{pdf} can be done in an efficient way as will be shown in Section~\ref{sub: Fast central moment transformation},
 so we don't loose hardly any performance on this step.
 On the other side, we will see in this chapter that the way from central moments to cumulants is much more smooth, cutting the computational costs of the transformation, especially in 3D.
 
 As described in~\eqref{eq: central moments continuous} and thereafter, central moments are just our normal moments, when we move our frame of reference with the flow velocity.
-Hence, we can alter~\eqref{eq:Definition of f xi} to represent the particle distributions relative to the macroscopic flow velocity $\vec{u}=\begin{pmatrix}u_1\\u_2\end{pmatrix}$\footnote{Depending on the use case we will index $\vec{u}$ with $x$ and $y$ or $1$ and $2$. Both indexing schemes mean the same, the first one is more intuitive for the physical picture, the other one is better suited for calculations.} like in equation~\eqref{eq:Definition of F} as
+Hence, we can alter~\eqref{eq:Definition of f xi} to represent the particle distributions relative to the macroscopic flow velocity $\vec{u}=\begin{pmatrix}u_1\\u_2\end{pmatrix}$\footnote{Depending on the use case we will index $\vec{u}$ with $x$ and $y$ or $1$ and $2$.
+Both indexing schemes mean the same, the first one is more intuitive for the physical picture, the other one is better suited for calculations.} as
 \begin{equation}
   \label{eq:Definition of f c xi}
   f^{central}(\vec{\xi}) \defined \sum_{i,j} f_{ij}\delta((ic - u_1) - \xi_1)\delta((jc - u_2) -\xi_2) .
 \end{equation}
-Thus we can write the moment generating function $F^{central}$ of this distribution as
+Like in~\eqref{eq:Definition of F}, we can write the moment generating function $F^{central}$ of this distribution as
 \begin{equation}
   \label{eq: Definition of centralized F}
   \begin{aligned}
@@ -20,7 +21,7 @@ Thus we can write the moment generating function $F^{central}$ of this distribut
     & =\sum_{i,j} f_{ij} e^{\Xi_1(ic - u_1)} e^{\Xi_2(jc - u_2)}.
   \end{aligned}
 \end{equation}
-Unsurprisingly, the Taylor expansion of $F^{central}$ yields, using equations~\eqref{eq: physical quantities} and the definition of central moments~\eqref{eq: central moment definition}
+Unsurprisingly, the Taylor expansion of $F^{central}$ yields, using equations~\eqref{eq: density definition} through~\eqref{eq: y velocity definition} and the definition of central moments~\eqref{eq: central moment definition}
 \begin{equation}
   \label{eq: taylor of Fc}
   \begin{aligned}
@@ -66,7 +67,7 @@ and therefore
     \partial_i L_j & = \partial_i\partial_j\ln(F)
   \end{aligned}
 \end{equation}
-and using equations~\eqref{eq: definition of kappa_10} and~\eqref{eq: physical quantities}
+and using equations~\eqref{eq: definition of kappa_10} and~\eqref{eq: x velocity definition}
 \begin{equation}
   \begin{aligned}
     L_1\bigr|_{\Xi_1=\Xi_2 = 0} & = \bigg(
@@ -95,7 +96,7 @@ From there on, we can express the first order central moments to get
     \mathllap{c_{01}} & = 0
   \end{aligned}\\
 \end{align*}
-which had to be consistent to the well known definition of central moments.
+which had to be consistent to the well known properties of central moments~\eqref{eq: low central moments}.
 In the case of higher order central moments, we recognize the definition of cumulants\footnote{The whole derivation is presented in Appendix~\ref{appendix: All cumulants from central moments}.} to get to
 \begin{equation}
   \label{eq: all central moments from cumulants}

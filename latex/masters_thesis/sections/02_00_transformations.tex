@@ -9,13 +9,13 @@ For this, we formulate our \glspl{pdf} $f_{ij}$ in a continuous way
   \label{eq:Definition of f xi}
   f(\vec{\xi}) \defined \sum_{i,j} f_{ij}\delta(ic - \xi_1)\delta(jc - \xi_2),
 \end{equation}
-using the Diraque delta distribution\footnote{For a quick overview, please refer to~\cite{weissteinDelta}} $\delta$, characterized by
+using the Diraque delta distribution\footnote{For a quick overview, please refer to~\cite{weissteinDelta}.} $\delta$, characterized by
 \begin{equation}
   \label{eq: diraque feature}
   \int f(x)\delta(x)dx = f(0).
 \end{equation}
 Albeit not a function in the classical sense, we will use $f(\vec{\xi})$ only within an integral expression so we don't get any ambiguity.
-To get the moment generating function from a density distribution, we have to introduce an integral transformation $\mathcal{L}$, similar to the Laplace transformation, c.f.~\cite{weissteinLaplace}, defined as
+To get the moment generating function from a density distribution, we have to introduce an integral transformation $\mathcal{L}$, c.f.~\cite{weissteinMGF}, similar to the two sided Laplace transformation\footnote{Found for example at~\cite{weissteinLaplace}.}, defined as
 \begin{equation}
   \label{eq: Definition of integral transformation}
   \mathcal{L}[g](\vec{\Xi}) \defined \int_{\R^n} g(\vec{\xi}) e^{\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi}.

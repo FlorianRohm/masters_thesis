@@ -1,5 +1,5 @@
 % !TEX root = ../thesis.tex
-In this little section, we want to show that the cumulant \gls{lbm} presented in this thesis fulfills the Navier-Stokes continuity equation to second order.
+In this small section, we want to show that the cumulant \gls{lbm} presented in this thesis fulfills the Navier-Stokes continuity equation to second order.
 
 The compressible continuity equation reads
 \begin{equation}
@@ -10,13 +10,14 @@ with the incompressible version just assuming that $\rho$ is a constant to get $
 
 Upon looking at the equations derived in Section~\ref{sub: Matching the coefficients}, we see that our first nontrivial equation is for $\epsilon^2$, namely~\eqref{eq: second order in epsilon}.
 
-Upon choosing $\alpha=\beta=0$ and using that the first order terms are collision invariant,~\eqref{eq: first order invariant}, equation~\eqref{eq: second order in epsilon} gets, due to the absence of sources and sinks~\eqref{eq: absence of sources},
+Upon choosing $\alpha=\beta=0$ and using that the zeroth and first order terms are collision invariant, c.f.~\eqref{eq: zeroth order invariant} and~\eqref{eq: first order invariant}, equation~\eqref{eq: second order in epsilon} gets, due to the absence of sources and sinks~\eqref{eq: absence of sources},
 \begin{align}
   \nonumber
-  \partial_t m_{00}^{(0)} + m_{00}^{(2)} & =  m_{00}^{*^{(2)}} - \partial_x m_{10}^{*^{(1)}} - \partial_y m_{01}^{*^{(1)}} \\
-  \equivalent \qquad \partial_t m_{00}^{(0)} & =  - \partial_x m_{10}^{*^{(1)}} - \partial_y m_{01}^{*^{(1)}} \nonumber
-  \\
-  & =  - \partial_x m_{10}^{(1)} - \partial_y m_{01}^{(1)}.
+  \partial_t m_{00}^{\circ^{(0)}} + m_{00}^{(2)} & =  m_{00}^{*^{(2)}} - \partial_x m_{10}^{*^{(1)}} - \partial_y m_{01}^{*^{(1)}}
+   \\\equivalent \qquad
+   \partial_t m_{00}^{(0)} & =  - \partial_x m_{10}^{*^{(1)}} - \partial_y m_{01}^{*^{(1)}} \nonumber
+   \\
+    & =  - \partial_x m_{10}^{(1)} - \partial_y m_{01}^{(1)}.
   \label{eq: continuity moments}
 \end{align}
 Introducing the \textbf{momentum density},
@@ -28,15 +29,22 @@ we can insert now the macroscopic values for the moments and get
   \partial_t \rho^{(0)} + \nabla \cdot \vec{m}^{(1)} =
   \partial_t \rho^{(0)} + \nabla \cdot (\rho^{(0)} \vec{u}^{(1)}) = 0.
 \end{equation}
-This is the continuity equation even without the assumption of incompressibility!
+This is the zeroth order of continuity equation even without the assumption of incompressibility!
+
 With the findings of Section~\ref{subs: Changing the coordinate system},
 namely equations~\eqref{eq: kill even moments odd order} and~\eqref{eq: kill odd moments even order}, we also know, that
 \begin{equation}
   \label{eq: conti second order}
-  \partial_t \rho^{(1)} + \nabla \cdot \vec{m}^{(2)} = 0,
+  \begin{aligned}
+    \partial_t m_{00}^{(1)} + \partial_x m_{10}^{(2)}+ \partial_y m_{01}^{(2)} &= 0
+    \\   \equivalent\qquad\qquad
+    \partial_t \rho^{(1)} + \nabla \cdot \vec{m}^{(2)} &= 0,
+  \end{aligned}
 \end{equation}
 and thus, the continuity equation is satisfied in at least the first two orders.
-Winged by this finding, we will also try to get the compressible version of the momentum equations in the following section.
+This is also no contradiction to the statements of Section~\eqref{sub: Absence of sources}, as we talked about the collision in one cell in that section, whereas here, we examine the whole method.
+
+Winged by this finding, we will also try to derive the compressible version of the momentum equations in the following section.
 
 Another important aspect worth mentioning are the derivatives of the continuity equation.
 On taking the $x$- respectively $y$- derivatives of~\eqref{eq: continuity moments}, the zeroth order term vanishes and we're left with

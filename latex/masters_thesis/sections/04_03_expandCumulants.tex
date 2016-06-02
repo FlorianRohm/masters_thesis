@@ -22,10 +22,10 @@ In writing
 \end{equation}
 
 we prepared the denominator to be written as a geometric series.
-This is valid as long as we assume $\epsilon$ to be `small enough' to ensure $\abs{\sum_{i=1}^\infty \epsilon^i \frac{ m_{00}^{(i)}}{ m_{00}^{(0)}} } < 1$, which is by no means a bold statement.
+This is valid as long as we assume $\epsilon$ to be `small enough' to ensure $\abs{\sum_{i=1}^\infty \epsilon^i \frac{ m_{00}^{(i)}}{ m_{00}^{(0)}} } < 1$, which is by no means a bold assumption.
 Firstly the zeroth order of $m_{00}$ is left out and all other terms are divided by the constant portion of $m_{00}$.
 Secondly, our nondimensionalisation in~\eqref{eq: nondimensionalisation} states that $\epsilon = \frac{\Delta x}{L}$, where $L$ is a typical length in our project.
-As our typical length scales have to be some orders of magnitude larger than our cell spacing\footnote{Let's say we discretize a 2D wing with a given chord length, we have to take small cells in its vicinity just to represent the shape accurately.}, our prerequesite is even less of a problem.
+As our typical length scales have to be some orders of magnitude larger than our cell spacing\footnote{Let's say we discretize a 2D wing with a given chord length, we have to take small cells in its vicinity just to represent the shape accurately.}, our assumption is trivially fulfilled in all real use cases.
 
 Thus, we get
 \begin{equation}
@@ -76,7 +76,7 @@ Collecting all zeroth order terms, we get using~\eqref{eq: zeroth order velocity
 Analogously, for first order terms,
 \begin{equation}
   \begin{aligned}
-    K_{11}^{(1)} & = m_{11}^{(1)} - \frac{m_{01}^{(1)}m_{10}^{(0)}+m_{01}^{(0)}m_{10}^{(1)}}{m_{00}^{(0)}}
+    K_{11}^{(1)} & = m_{11}^{(1)} - \frac{m_{01}^{(0)}m_{10}^{(1)}+m_{01}^{(1)}m_{10}^{(0)}}{m_{00}^{(0)}}
     \\
     &= m_{11}^{(1)} = 0
   \end{aligned}

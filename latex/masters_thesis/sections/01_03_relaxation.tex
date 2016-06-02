@@ -1,7 +1,10 @@
 % !TEX root = ../thesis.tex
 Up until now, we did not specify the collision part of~\eqref{eq: lattice boltzmann equation}.
 As stated in Section~\ref{sec: History of Lattice Boltzmann}, instead of calculating the collision, we can model the effect of multiple collisions, which is the shift towards a local equilibrium.
-Albeit not a physically sound reasoning, one can imagine a very big, frictionless billiard table.
+The different schemes distinguish themselves in the way they implement this shift.
+In this section, the basic idea is elaborated in more detail and the most common methods are briefly presented.
+\newlinedouble{}
+Albeit not a physically sound reasoning, one can imagine a very big, frictionless billiard table to illustrate said shift.
 Initially we roll all balls in the same direction but not perfectly parallel to the wall.
 In the first few moments, those balls will go along in the same direction and the system will have a preferred direction and velocity, namely the direction and velocity we initiated.
 After some time passed, the balls will have collided several times amongst themselves and the walls\footnote{The wall is only needed to make them collide amongst each other. For the result, the ball-ball collisions are the important ones, as they can change not only the direction but also the magnitude of their velocity. Alternatively one could also talk about the table being mirrored in every direction indefinitely which would have the same result, but that's a bit harder to imagine.} and they will have a plethora of different speeds and directions.
@@ -34,20 +37,20 @@ where the quantities are defined in Table~\ref{table: maxwell quantities}.
 One of the most popular Lattice-Boltzmann schemes, \gls{srt}, proceeds as following.
 The $f_{ij}^{eq}$ are defined due to a yet unspecified discretization of~\eqref{eq: maxwell distribution raw} and the collision operator $\tilde{\Omega}$ of~\eqref{eq: define post collision} reads
 \begin{equation}
-  \tilde{\Omega}(f_{ij}) \defined \omega \left(f_{ij}^{eq} - f_{ij}\right),
+  \tilde{\Omega}(f_{ij}) \defined \omega \left(f_{ij}^{eq} - f_{ij}^{\circ}\right),
 \end{equation}
 with an also unspecified `relaxation time' $\omega$.
 This also gave the method its prominent name, as it uses only one parameter $\omega$ to relax all the~\glspl{pdf}.
 Thus, equation~\eqref{eq: define post collision} reads now
 \begin{equation}
   \label{eq: post collision discrete}
-  f_{ij}^* = f_{ij} + \omega \left(f_{ij}^{eq} - f_{ij}\right) = (1-\omega)f_{ij} + f_{ij}^{eq}.
+  f_{ij}^* = f_{ij} + \omega \left(f_{ij}^{eq} - f_{ij}^{\circ}\right) = (1-\omega)f_{ij}^{\circ} + \omega f_{ij}^{eq}.
 \end{equation}
-If we choose $\omega\in[0,1]$, this is exactly a linear interpolation, also called relaxation towards equilibrium, which is the modeled effect of the collision we motivated in the beginning.
+If $\omega\in[0,1]$ is chosen, this is exactly a linear interpolation, also called relaxation towards equilibrium, which is the modeled effect of the collision we motivated in the beginning.
 This also explains the alternative name BGK-LBM of the \gls{srt}, after the inventors of the continuum analogue technique for the Boltzmann equation.
 At this moment, though, we have no equation to fix $\omega$, but we will first deal with the problem of discretizing $f^{maxwell}$ into $f_{ij}^{eq}$.
 
-The method of discretizing~\eqref{eq: maxwell distribution raw} we use for \gls{srt} is due to a Taylor series expansion, yielding\footnote{The microscopic velocity is again delegated to the index $ij$, whereas $\rho$ and $\vec{u}$ are now parameters.
+The method of discretizing~\eqref{eq: maxwell distribution raw} used for \gls{srt} is due to a Taylor series expansion, yielding\footnote{The microscopic velocity is again delegated to the index $ij$, whereas $\rho$ and $\vec{u}$ are now parameters.
 The factor $\frac{m}{k_B T}$ is constant and equal to the speed of sound $c_s$, more details in Section~\ref{sub: Equilibrium distribution for cumulants}.}
 \begin{equation}
   \label{eq: equilibrium particle distributions}
@@ -62,7 +65,7 @@ The factor $\frac{m}{k_B T}$ is constant and equal to the speed of sound $c_s$, 
 where $W_{ij}$ is a weighting factor depending on the chosen lattice, $c_s$ the speed of sound in the lattice and $\vec{c}_{ij}$ are the velocities defined in~\eqref{eq: definition of the velocities}.
 As we can see here, $f^{eq}$ nonlinearly depends on all $f_{ij}$ via the macroscopic velocity and pressure.
 
-When analyzing this method,~\cite[Section 5.2.3]{wolf2000lattice}, we see, that the kinematic viscosity $\nu$ (in lattice units) is actually calculated by
+When analyzing this method,~\cite[Section 5.2.3]{wolf2000lattice}, the kinematic viscosity $\nu$ (in lattice units) is actually calculated by
 \begin{equation}
   \nu = \frac{1}{3}\left(\frac{1}{\omega} - \frac{1}{2}\right).
 \end{equation}
@@ -135,4 +138,4 @@ Still, this does not nearly cover the regions we see in Table~\ref{table: reynol
 The source of these problems can be interpreted as the violation of \gls{galInv}, as deduced in~\cite{geier2006cascaded}. Consequently, the authors choose the space of central moments for the relaxation, as they are centered around the first moment, i.e.\ the velocity times density.
 This method is capable of simulating \gls{re} way above the ones, \gls{mrt} is capable of and is used in industrial grade \gls{lbm} solvers, like \href{http://www.xflowcfd.com/technology/view/cfd}{xFlow}.
 
-Nevertheless, we will introduce yet another set of characteristic variables in the next section and explain the physical reasoning behind choosing them.
+Regardlessly, we will introduce yet another set of characteristic variables in the next section and explain the physical reasoning behind choosing them.

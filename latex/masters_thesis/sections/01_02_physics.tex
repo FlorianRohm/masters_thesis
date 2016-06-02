@@ -31,7 +31,6 @@ Another set of characteristic variables are the centralized or \textbf{central m
   \label{eq: central moments continuous}
   c_{\alpha\beta} \defined \int {\left(v_x - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(v_y-\frac{m_{01}}{m_{00}}\right)}^\beta f(\vec{v})  d\vec{v}.
 \end{equation}
-
 Here, the assumption associated with~\eqref{eq: leave out x and y} of course also holds, making the centralized moments dependent on space and time.
 
 As deduced in~\cite[pages 23 ff.]{harris2004introduction}, we can calculate the density $\rho$, the velocity $\vec{u}=\begin{pmatrix}u_x\\u_y\end{pmatrix}$ and the
@@ -71,6 +70,11 @@ Thus, the integrals in~\eqref{eq: moments continuous} and~\eqref{eq: central mom
   {\left(cj - \frac{m_{01}}{m_{00}}\right)}^\beta f_{ij}.
   \label{eq: central moment definition}
 \end{align}
+Additionally, we can see a characteristic property of central moments, namely
+\begin{equation}
+  \label{eq: low central moments}
+  c_{00}=m_{00},\quad c_{10} = c_{01}=0.
+\end{equation}
 
 When looking at the derived quantities, we have to pay attention to another issue:
 In the continuous case, a local equilibrium is attained nearly instantaneously, c.f.~\cite[page 218]{smits2000physical}.
@@ -118,7 +122,7 @@ Hence we can assume the discrete analogon only when the distributions are equal 
 This leaves us with
 \begin{equation}
   \begin{aligned}
-    \tensor{P}_{xx}
+    \tensor{P}_{xx} = c_{20}^{eq}
     & = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad  {(ic - u_x)}^2 f_{ij}^{eq}
     \\ & =
     \mquad\sum_{i,j \in \{-1,0,1\}}\mquad  i^2 c^2 f_{ij}^{eq} - 2 u_x \mquad \sum_{i,j \in \{-1,0,1\}}\mquad  ic f_{ij}^{eq} + u_x^2 \mquad\sum_{i,j \in \{-1,0,1\}} f_{ij}^{eq}\mquad
@@ -129,8 +133,8 @@ using~\eqref{eq: density definition} through~\eqref{eq: y velocity definition} a
 \begin{equation}
   \label{eq: pressure}
   \begin{aligned}
-    p &= \tensor{P}_{xx} = m_{20}^{eq} - \frac{m_{10}^2}{m_{00}}\\
-     &= \tensor{P}_{yy} = m_{02}^{eq} - \frac{m_{01}^2}{m_{00}}.
+    p &= \tensor{P}_{xx} =c_{20}^{eq}= m_{20}^{eq} - \frac{m_{10}^2}{m_{00}}\\
+     &= \tensor{P}_{yy} =c_{02}^{eq} = m_{02}^{eq} - \frac{m_{01}^2}{m_{00}}.
   \end{aligned}
 \end{equation}
 
@@ -156,7 +160,8 @@ and
   = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad c^{\alpha+\beta} i^\alpha j^{(\beta+2l)} f_{ij}
   = c^{-2l}m_{\alpha(\beta+2l)} \quad \forall l, \alpha, \forall \beta \neq 0.
 \end{equation}
-The full list of independent moments together with the first dependent moments of the D2Q9 stencil according to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2} is displayed in Table~\ref{table:D2Q9 moments}.
+According to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}, the full list of independent moments together with the first dependent moments of the D2Q9 stencil is displayed in Table~\ref{table:D2Q9 moments}.
+
 Another convention we introduce in this section is, that all sums over $i$ and/or $j$ shall range over the discrete velocity space, i.e.
 \begin{equation*}
   \sum_{i,j \in \{-1,0,1\}} \rightarrow \sum_{i,j}
@@ -167,7 +172,7 @@ Another convention we introduce in this section is, that all sums over $i$ and/o
   \centering
   \begin{tabular}{r rr rrr rr r rrrrr r}
     \toprule
-    \multicolumn{9}{c}{independent moments} & \multicolumn{6}{c}{dependent moments}   \\
+    \multicolumn{9}{c}{independent moments} & \multicolumn{6}{c}{dependent moments with aliases}   \\
     \cmidrule(lr){1-9}\cmidrule(lr){10-15} \\
     $m_{00}$
     & $m_{10}$

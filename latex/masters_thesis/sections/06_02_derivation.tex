@@ -4,19 +4,19 @@ $\epsilon$ in~\eqref{eq: final nondimensionalised expansion series}, namely equa
 Taking $\alpha=1$ and $\beta=0$ we get
 \begin{equation}
   \begin{aligned}
-     \partial_t m_{10}^{(1)} & =
-    m_{10}^{*(3)} - m_{10}^{(3)} - \partial_x m_{20}^{*^{(2)}} \\
+     \partial_t m_{10}^{\circ^{(1)}} & =
+    m_{10}^{*(3)} - m_{10}^{\circ{(3)}} - \partial_x m_{20}^{*^{(2)}} \\
     &\quad - \partial_y m_{11}^{*^{(2)}} + \frac{1}{2}\partial_{xx} m_{30}^{*^{(1)}} + \frac{1}{2} \partial_{yy} m_{12}^{*^{(1)}} + \partial_{xy} m_{21}^{*^{(1)}}.
   \end{aligned}
 \end{equation}
 We see the term $\partial_t m_{10}^{(1)} $ which is the desired time derivative from the momentum equation and define
 \begin{equation}
-   F_x^{(3)}\defined m_{10}^{*(3)} - m_{10}^{(3)}
+   F_x^{(3)}\defined m_{10}^{*(3)} - m_{10}^{\circ{(3)}}
 \end{equation}
 which is the non-conserved term of the $x$-velocity, due to an external force.
 We can instantly simplify this equation by using the aliasing of moments\footnote{This is one of the few things which will go wrong, when going to a bigger stencil.
 In this case, we could expand $K_{30}^{eq}$ and seek to replace this term.
-In our case though, this is not needed.} for $m_{30}$, c.f.~\eqref{eq:aliasing of moments 1}, and the identities~\eqref{eq: eq moments 21_1}
+In our case though, this is not needed.} for $m_{30}$, c.f.~\eqref{eq:aliasing of moments 1}\footnote{Keep in mind, that we rescaled the moments making the aliasing a one to one relationship without the $c$.}, and the identities~\eqref{eq: eq moments 21_1}
 and~\eqref{eq: eq moments 12_1} together with~\eqref{eq: first order invariant} to get
 \begin{equation}
   \label{eq: start of momentum equation derivation}
@@ -29,59 +29,61 @@ This is already looking quite promising, but the green and red highlighted terms
 
 \subsubsection{Auxiliary equations}
 \label{subs:Auxiliary equations}
-To cope with those rouge terms, we take a look back at the second order in $\epsilon$ equation~\eqref{eq: second order in epsilon}.
+To cope with those rogue terms, we take a look back at the second order in $\epsilon$ equation~\eqref{eq: second order in epsilon}.
 We can extract three\footnote{We could insert $\alpha=1$, $\beta=0$ et vice versa, but this would lead to two equations where everything is zero due to equations~\eqref{eq: kill even moments odd order} and~\eqref{eq: kill odd moments even order}.
 Choosing $\alpha$ or $\beta$ higher than two just results in the known equations due to moment aliasing.} more equations out of it.
 Namely, we get for $\alpha=2$, $\beta=0$
 \begin{equation}
   \label{eq: auxiliaries 1 raw}
-  \partial_t m_{20}^{(0)} + m_{20}^{(2)} =  m_{20}^{*^{(2)}} - \partial_x m_{30}^{*^{(1)}} - \partial_y m_{21}^{*^{(1)}},
+  \partial_t m_{20}^{\circ^{(0)}} + m_{20}^{\circ^{(2)}} =  m_{20}^{*^{(2)}} - \partial_x m_{30}^{*^{(1)}} - \partial_y m_{21}^{*^{(1)}},
 \end{equation}
 for $\alpha=0$, $\beta=2$
 \begin{equation}
   \label{eq: auxiliaries 2 raw}
-  \partial_t m_{02}^{(0)} + m_{02}^{(2)} =  m_{02}^{*^{(2)}} - \partial_x m_{12}^{*^{(1)}} - \partial_y m_{03}^{*^{(1)}},
+  \partial_t m_{02}^{\circ^{(0)}} + m_{02}^{\circ^{(2)}} =  m_{02}^{*^{(2)}} - \partial_x m_{12}^{*^{(1)}} - \partial_y m_{03}^{*^{(1)}},
 \end{equation}
 and last but not least for $\alpha=1$, $\beta=1$
 \begin{equation}
   \label{eq: auxiliaries 3 raw}
-  \partial_t m_{11}^{(0)} + m_{11}^{(2)} =  m_{11}^{*^{(2)}} - \partial_x m_{21}^{*^{(1)}} - \partial_y m_{12}^{*^{(1)}}.
+  \partial_t m_{11}^{\circ^{(0)}} + m_{11}^{\circ^{(2)}} =  m_{11}^{*^{(2)}} - \partial_x m_{21}^{*^{(1)}} - \partial_y m_{12}^{*^{(1)}}.
 \end{equation}
 We can reformulate equations~\eqref{eq: auxiliaries 1 raw} through~\eqref{eq: auxiliaries 3 raw} with the same equations like in the last section, namely the aliasing of moments~\eqref{eq:aliasing of moments 1}
 and~\eqref{eq:aliasing of moments 2} together with~\eqref{eq: eq moments 21_1}
 through~\eqref{eq: eq moments 12_1}, always keeping~\eqref{eq: first order invariant} in mind, to finally get
 \begin{alignat}{5}
   \label{eq: auxiliaries 1}
-  m_{20}^{(2)} +&\, \partial_t c_s^2& m_{00}^{(0)} +&\, &\partial_x m_{10}^{(1)} +&\, c_s^2&\partial_y m_{01}^{(1)} &=  m_{20}^{*^{(2)}}&
+  m_{20}^{\circ^{(2)}} +&\, \partial_t c_s^2& m_{00}^{(0)} +&\, &\partial_x m_{10}^{(1)} +&\, c_s^2&\partial_y m_{01}^{(1)} &=  m_{20}^{*^{(2)}}&
   \\
   \label{eq: auxiliaries 2}
-  m_{02}^{(2)} +&\, \partial_t c_s^2& m_{00}^{(0)} +&\, c_s^2&\partial_x m_{10}^{(1)} +&\, &\partial_y m_{01}^{(1)} &=  m_{02}^{*^{(2)}}&
+  m_{02}^{\circ^{(2)}} +&\, \partial_t c_s^2& m_{00}^{(0)} +&\, c_s^2&\partial_x m_{10}^{(1)} +&\, &\partial_y m_{01}^{(1)} &=  m_{02}^{*^{(2)}}&
   \\
   \label{eq: auxiliaries 3}
-  m_{11}^{(2)} +&\, \partial_t &m_{11}^{(0)} +&\, c_s^2&\partial_x m_{01}^{(1)} +&\, c_s^2&\partial_y m_{10}^{(1)} &=  m_{11}^{*^{(2)}}&.
+  m_{11}^{\circ^{(2)}} +&\, \partial_t &m_{11}^{(0)} +&\, c_s^2&\partial_x m_{01}^{(1)} +&\, c_s^2&\partial_y m_{10}^{(1)} &=  m_{11}^{*^{(2)}}&.
 \end{alignat}
 Adding respectively subtracting equation~\eqref{eq: auxiliaries 2} from equation~\eqref{eq: auxiliaries 1} and inserting the collision of
 moments,~\eqref{eq: collide moments 20p02_2} and~\eqref{eq: collide moments 20m02_2} results in
 \begin{align}
-  \label{eq: auxiliaries 4}
-  &m_{20}^{(2)} + m_{02}^{(2)} + 2\partial_t c_s^2 m_{00}^{(0)} + (1+c_s^2)(\partial_x m_{10}^{(1)} + \partial_y m_{01}^{(1)})
+  \nonumber
+  &m_{20}^{\circ^{(2)}} + m_{02}^{\circ^{(2)}} + 2\partial_t c_s^2 m_{00}^{(0)} + (1+c_s^2)(\partial_x m_{10}^{(1)} + \partial_y m_{01}^{(1)})
   \\=\,&
-  (1-\omega_6)\left(  m_{20}^{(2)} + m_{02}^{(2)}\right)
+  \label{eq: auxiliaries 4}
+  (1-\omega_6)\left(  m_{20}^{\circ^{(2)}} + m_{02}^{\circ^{(2)}}\right)
   + \omega_6 \left( \frac{ m_{10}^{{(1)}^2} + m_{01}^{{(1)}^2}}{m_{00}^{(0)}}
   + 2 c_s^2 m_{00}^{(2)} \right)
 \end{align}
 respectively
 \begin{align}
-  \label{eq: auxiliaries 5}
-  &m_{20}^{(2)} - m_{02}^{(2)} + (1 - c_s^2)\partial_x m_{10}^{(1)} + (c_s^2 - 1)\partial_y m_{01}^{(1)}
+  \nonumber
+  &m_{20}^{\circ^{(2)}} - m_{02}^{\circ^{(2)}} + (1 - c_s^2)\partial_x m_{10}^{(1)} + (c_s^2 - 1)\partial_y m_{01}^{(1)}
   \\=\,&
-  (1-\omega_5) \left(m_{20}^{(2)}-m_{02}^{(2)}\right) + \omega_5 \frac{ m_{10}^{{(1)}^2} - m_{01}^{{(1)}^2}}{m_{00}^{(0)}}.
+  \label{eq: auxiliaries 5}
+  (1-\omega_5) \left(m_{20}^{\circ^{(2)}}-m_{02}^{\circ^{(2)}}\right) + \omega_5 \frac{ m_{10}^{{(1)}^2} - m_{01}^{{(1)}^2}}{m_{00}^{(0)}}.
 \end{align}
 
-Solving for $m_{20}^{(2)} + m_{02}^{(2)}$ and equally $m_{20}^{(2)} + m_{02}^{(2)}$ is now as easy as
+Solving for $m_{20}^{\circ^{(2)}} + m_{02}^{\circ^{(2)}}$ and equally $m_{20}^{\circ^{(2)}} + m_{02}^{\circ^{(2)}}$ is now as easy as
 \begin{align}
   \label{eq: auxiliaries 6}
-  m_{20}^{(2)} + m_{02}^{(2)}
+  m_{20}^{\circ^{(2)}} + m_{02}^{\circ^{(2)}}
   =
   2 c_s^2 m_{00}^{(2)}
   + \frac{ m_{10}^{{(1)}^2} + m_{01}^{{(1)}^2}}{m_{00}^{(0)}}
@@ -91,7 +93,7 @@ Solving for $m_{20}^{(2)} + m_{02}^{(2)}$ and equally $m_{20}^{(2)} + m_{02}^{(2
 respectively
 \begin{align}
   \label{eq: auxiliaries 7}
-  m_{20}^{(2)} - m_{02}^{(2)}
+  m_{20}^{\circ^{(2)}} - m_{02}^{\circ^{(2)}}
   =
    \frac{ m_{10}^{{(1)}^2} - m_{01}^{{(1)}^2}}{m_{00}^{(0)}}
    - \frac{1}{\omega_5} (1 - c_s^2)\partial_x m_{10}^{(1)}
@@ -101,21 +103,22 @@ respectively
 The same procedure is now applied to equation~\eqref{eq: auxiliaries 3} with the corresponding collision~\eqref{eq: collide moments 11_2} to get
 \begin{align}
   \label{eq: auxiliaries 8}
-  &m_{11}^{(2)} + \partial_t m_{11}^{(0)} + c_s^2\partial_x m_{01}^{(1)} + c_s^2\partial_y m_{10}^{(1)} =  (1-\omega_4)m_{11}^{(2)} + \omega_4 \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
+  &m_{11}^{\circ^{(2)}} + \partial_t m_{11}^{(0)} + c_s^2\partial_x m_{01}^{(1)} + c_s^2\partial_y m_{10}^{(1)} =  (1-\omega_4)m_{11}^{(2)} + \omega_4 \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
   \\
   \equivalent\quad
-  &m_{11}^{(2)}
+  &m_{11}^{\circ^{(2)}}
   =
   \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
-  - \partial_t m_{11}^{(0)}
+  - \frac{1}{\omega_4} \partial_t m_{11}^{(0)}
   - \frac{1}{\omega_4} c_s^2\partial_x m_{01}^{(1)}
   - \frac{1}{\omega_4} c_s^2\partial_y m_{10}^{(1)}
   .
 \end{align}
 As a last step before we actually insert anything, we bring those equations in the right form to directly insert them in equation~\eqref{eq: start of momentum equation derivation}.
+
 Therefore, we add equations~\eqref{eq: auxiliaries 6} and~\eqref{eq: auxiliaries 7} and take $-\frac{1}{2}\partial_x$ of the whole equation, resulting in
 \begin{align}
-  -\partial_x m_{20}^{(2)}
+  -\partial_x m_{20}^{\circ^{(2)}}
   =
   - \partial_x c_s^2 m_{00}^{(2)}
   &\,
@@ -127,6 +130,8 @@ Therefore, we add equations~\eqref{eq: auxiliaries 6} and~\eqref{eq: auxiliaries
   \nonumber
   \\&\,
   - \partial_x\frac{1}{2}\frac{ m_{10}^{{(1)}^2} - m_{01}^{{(1)}^2}}{m_{00}^{(0)}}
+  \nonumber
+  \\&\,
   + \partial_x\frac{1}{2\omega_5} (1 - c_s^2)\partial_x m_{10}^{(1)}
   + \partial_x\frac{1}{2\omega_5} (c_s^2 - 1)\partial_y m_{01}^{(1)}
   \nonumber
@@ -138,11 +143,21 @@ Therefore, we add equations~\eqref{eq: auxiliaries 6} and~\eqref{eq: auxiliaries
   + \partial_x\left(\frac{1}{2\omega_6}(1+c_s^2)(\partial_x m_{10}^{(1)} + \partial_y m_{01}^{(1)})\right)
   \nonumber
   \\&\,
-  + \partial_x\left(\frac{1}{2\omega_5} (1 - c_s^2)\partial_x m_{10}^{(1)}\right)
-  + \partial_x\left(\frac{1}{2\omega_5} (c_s^2 - 1)\partial_y m_{01}^{(1)}\right)
   \nonumber
-  \\
+  + \partial_x\left(\frac{1}{2\omega_5} (1 - c_s^2)\partial_x m_{10}^{(1)}\right)
+  + \partial_x\left(\frac{1}{2\omega_5} (c_s^2 - 1)\partial_y m_{01}^{(1)}\right),
+\end{align}
+where we used~\eqref{eq: derivative of zeroth order} to get rid of the time derivative.
+
+Up to this point, we did not need any assumptions on our relaxation parameters $\omega_i$.
+For further simplification, we will assume $\omega_5$, $\omega_6$ and $c_s^2$ to be constant in space.
+In our isothermal setting, this is just fine, as the the $\omega_i$ will be connected to the viscosity which is a function of temperature\footnote{Interestingly,
+upon looking at the compressible momentum equations~\eqref{eq: compressible NS}, the viscosity is also present in the first derivative, further hinting at an easy expansion to fully compressible flows.
+}; just as $c_s^2$.
+Hence, we get
+\begin{align}
   \label{eq: auxiliaries 9}
+  -\partial_x m_{20}^{\circ^{(2)}}
   =
   - c_s^2 \partial_x  m_{00}^{(2)}
   &\,
@@ -153,14 +168,11 @@ Therefore, we add equations~\eqref{eq: auxiliaries 6} and~\eqref{eq: auxiliaries
     + \partial_{xy} m_{01}^{(1)} \left(\frac{1}{2\omega_6}(1+c_s^2) + \frac{1}{2\omega_5} (c_s^2 - 1)\right),
   \end{aligned}
 \end{align}
-where we used~\eqref{eq: derivative of zeroth order} to get rid of the time derivative.
-One notable thing is, that we assumed the first time, that $\omega_5$, $\omega_6$ and $c_s^2$ are constant in space and hence can be put in front of the derivative.
-In our isothermal setting, this is just fine, as the $\omega$s will be connected to the viscosity which is a function of temperature; just as $c_s^2$.
 
 The same treatment is applied to~\eqref{eq: auxiliaries 8}, this time multiplied with $-\partial_y$, resulting in
 \begin{align}
   \label{eq: auxiliaries 10}
-  -\partial_y m_{11}^{(2)}
+  -\partial_y m_{11}^{\circ^{(2)}}
   =
   -\partial_y \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
   + \frac{c_s^2}{\omega_4}\partial_{xy} m_{01}^{(1)}
@@ -171,7 +183,7 @@ With this, the preliminary work is finally done and we can go over to actually d
 
 \subsubsection{Finalizing the derivation}
 \label{subs:Finalizing the derivation}
-First of all, we insert equations~\eqref{eq: auxiliaries 1} and~\eqref{eq: auxiliaries 1} into~\eqref{eq: start of momentum equation derivation}
+First of all, we insert equations~\eqref{eq: auxiliaries 1} and~\eqref{eq: auxiliaries 3} into~\eqref{eq: start of momentum equation derivation}
 and afterwards the final equations~\eqref{eq: auxiliaries 9} and~\eqref{eq: auxiliaries 10} to get
 \begin{align}
   \nonumber
@@ -183,11 +195,11 @@ and afterwards the final equations~\eqref{eq: auxiliaries 9} and~\eqref{eq: auxi
   + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}
   \\\nonumber =&\,
   F_x^{(3)}
-  - \partial_x m_{20}^{(2)}
+  - \partial_x m_{20}^{\circ^{(2)}}
   - \partial_{xx} m_{10}^{(1)}
   - c_s^2\partial_{xy} m_{01}^{(1)}
-  \\\nonumber =&\,
-  - \partial_y m_{11}^{(2)}
+  \\\nonumber &\,
+  - \partial_y m_{11}^{\circ^{(2)}}
   - c_s^2 \partial_{xy} m_{01}^{(1)}
   - c_s^2 \partial_{yy} m_{10}^{(1)}
   + \frac{1}{2}\partial_{xx} m_{10}^{(1)}
@@ -254,13 +266,14 @@ We can take the partial derivative
   + \frac{ m_{10}^{(1)}}{m_{00}^{(0)}}\partial_y m_{01}^{(1)}
   + m_{01}^{(1)}\partial_y \frac{ m_{10}^{(1)}}{m_{00}^{(0)}},
 \end{align}
-to see that those are just the convective terms of~\eqref{eq: navier stokes goal}.
+to see that those are just the second order convective terms of~\eqref{eq: navier stokes goal}.
 Additionally, the first line of equation~\eqref{eq: navier stokes skeleton 1} hosts the time derivative of the momentum density and the external force, which has to be normed by the density.
+
 Last but definitely not least, the pressure derivative is hidden in the density derivative $-c_s^2 \partial_x  m_{00}^{(2)}$ which is equal to the pressure at the local equilibrium.
 As the density is independent on the direction in both the equilibrium and non equilibrium case, we would like to set the pressure magnitude\footnote{Which is up to scaling $K_{20} + K_{02}$} also to the equilibrium.
-Turning to our second derivatives, we can cancel out the $\frac{1}{2\omega_6}(1+c_s^2)$ term with the help of equation~\eqref{eq: continuity derivative x} and hence we're safe to set $K_{20} + K_{02}$ to equilibrium via $\omega_6=1$.
 
-The remaining second order terms are with $c_s^2=\frac{1}{3}$
+Turning to our second derivatives, we can cancel out the $\frac{1}{2\omega_6}(1+c_s^2)$ term with the help of equation~\eqref{eq: continuity derivative x} and hence we're safe to set $K_{20} + K_{02}$ to equilibrium via $\omega_6=1$.
+The remaining terms with second order derivatives are with $c_s^2=\frac{1}{3}$
 \begin{align}
   \label{eq: diffusive start}
   &\partial_{xx} m_{10}^{(1)} \left(
@@ -331,7 +344,7 @@ The remaining second order terms are with $c_s^2=\frac{1}{3}$
   \right),
 \end{align}
 where we again used the identity~\eqref{eq: continuity derivative x}.
-When choosing now $\omega_4=\omega_5$, we get
+When choosing now $\omega_4=\omega_5$, we get, using the same identity
 \begin{align}
   \nonumber
   &\partial_{xx} m_{10}^{(1)} \frac{1}{3} \left(
@@ -387,8 +400,10 @@ Inserting this back in~\eqref{eq: navier stokes skeleton 1}, we get
 \label{eq: navier stokes derived}
 \end{align}
 which is the anticipated $x$-direction of the compressible momentum equations.
-The term $\frac{m_{00}^{(0)}}{3}\left(\frac{1}{\omega_4} - \frac{1}{2}\right)$ resembles the dynamic viscosity $\mu$ which is related to the kinematic viscosity $\nu$ like $\nu\rho=\mu$.
-Hence, our viscosity is
+
+Here, the dynamic viscosity $\mu$ in~\eqref{eq: navier stokes goal} is represented by $\frac{m_{00}^{(0)}}{3}\left(\frac{1}{\omega_4} - \frac{1}{2}\right)$.
+The dynamic viscosity $\mu$  is related to the kinematic viscosity $\nu$ like $\nu\rho=\mu$.
+Hence, our kinematic viscosity is
 \begin{equation}
   \nu = \frac{1}{3}\left(
       \frac{1}{\omega_4}

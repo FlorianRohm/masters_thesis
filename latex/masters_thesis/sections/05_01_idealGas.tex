@@ -1,6 +1,6 @@
 % !TEX root = ../thesis.tex
 Our first assumption is, that the ideal gas law shall hold, connecting pressure $p$ and density $\rho$.
-As our small stencil can not represent temperature, we can assume $p$ and $\rho$ are connected by a constant factor $\theta$.
+As our small stencil can not represent temperature, $p$ and $\rho$ should be connected by a constant factor $\theta$.
 In fact, we already computed this link in equation~\eqref{eq: equilibrium cumulants}, where we stated
 \begin{equation}
   \begin{aligned}
@@ -16,7 +16,7 @@ which we can multiply by $m_{00}^{eq} = m_{00}$ to get
     K_{02}^{eq} & = c_s^2 m_{00}.
   \end{aligned}
 \end{equation}
-Identifying the normalized cumulants with the central moments via equation~\eqref{eq: all normalized cumulants from central moments} and the pressure equal to the central moment $c_{20}^{eq}$ we get the desired statement
+Identifying the normalized cumulants with the central moments via equation~\eqref{eq: all normalized cumulants from central moments} and the pressure equal to the central moment $c_{20}^{eq}$ as stated in equation~\eqref{eq: pressure} we get the desired statement
 \begin{equation}
 \label{eq: pressure density connection quantities}
   p^{eq}  = c_s^2 \rho,
@@ -31,4 +31,4 @@ On a side note, we notice that $\theta$ is a function of the speed of sound $c_s
 \begin{equation}
   p=\rho RT = \rho \frac{c_s^2}{\gamma}.
 \end{equation}
-In contrary to the theory of gases, where $\gamma$ is strictly greater than one and a function of the temperature, our method calculates with $\gamma=1$.
+In contrary to the theory of gases, where $\gamma$ is strictly greater than one and a function of the temperature, our method calculates with $\gamma=1$, which has to be considered when modeling compressible fluids.
