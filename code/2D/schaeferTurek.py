@@ -117,7 +117,6 @@ os.chdir(outputFolder)
 if analysis:
     outputFile = open(prefix, 'w')
 
-    outputFile.write("timestep,drag,lift\n")
 
 ###### Setup ##################################################################
 
@@ -153,7 +152,6 @@ if ( liveUpdate | savePlot ):
 for time in range(maxIterations):
     # bounce back distributions at solid domains
     finc = fin[:, solidDomain].copy()
-    #   print finc.shape
     for i in range(9):
         fin[i, solidDomain] = finc[noslip[i], :]
 
@@ -217,7 +215,7 @@ endTime = datetime.datetime.now()
 deltaTime = endTime - startTime
 if analysis:
     timeFile = open("{0}_time".format(prefix),"w")
-    timeFile.write("{0}".format(deltaTime.total_seconds()));
+    timeFile.write("{0},{1}".format(deltaTime.total_seconds(), sum(fluidDomain)));
     timeFile.write("\n");
     timeFile.close()
     outputFile.close()
