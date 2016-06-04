@@ -136,8 +136,7 @@ if ( liveUpdate | savePlot ):
 for time in range(maxIterations):
     # bounce back distributions at walls
     finc = fin[:, solidDomain].copy()
-    #   print finc.shape
-    for i in range(9)
+    for i in range(9):
         fin[i, solidDomain] = finc[noslip[i], :]
 
     # Right Wall: Produce zero pressure gradient for the outflow
@@ -159,9 +158,7 @@ for time in range(maxIterations):
     fpost[:,fluidDomain] = collisionFunction(fin[:,fluidDomain], rho[fluidDomain], u[:,fluidDomain], omega )
 
     # Streaming step
-    #wallF = fpost[:,wall].copy()
     fin = stream(fpost)
-    #fin[:,wall] = wallF
 
     # Visualization
     if ( (time % plotEveryN == 0) & (liveUpdate  | savePlot) & (time > skipFirstN) ):
