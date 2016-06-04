@@ -1,9 +1,35 @@
 % !TEX root = ../thesis.tex
-The first problem will be a so called poiseuille flow.
+The first problem will be a so called Poiseuille flow, which is one of the simplest nontrivial cases in incompressible fluid dynamics.
 It's a stationary flow in a pipe, driven by a pressure gradient through it.
+Due to the wall friction, this leads to a parabolic flow, which we will use as inflow condition.
+
 \begin{figure}
-\centering
-\input{tikz/poiseuille.tex}
-\caption{Poiseuille flow}
+  \centering
+  \input{tikz/poiseuille.tex}
+  \caption{Poiseuille flow}
 \label{fig: poiseuille}
 \end{figure}
+
+Figure~\ref{fig: poiseuille} shows a schematic of the setup.
+The test now examines the influence of the length of the channel\footnote{To be exact, the following lengths were simulated:\par
+ $100,\ 95,\ 90,\ 85,\ 80,\ 75,\ 70,\ 65,\ 60,\ 55,\ 50,\ 45,\ 40,\ 35,\ 30,\ 25,\ 20,\ 15,\ 11,\ 9,\ 7,\ 5,\ 3$
+} on the velocity distribution.
+The height was always chose to be $20$ cells.
+
+As the \gls{lbm} is a mildly compressible scheme, the comparison with the incompressible, analytic results would not be very expressive.
+Indeed, if compared to the analytical result, the velocities were decreasing when choosing longer channels.
+Instead, the difference between the velocities in the middle of the channel length is taken and summed up over the channel height.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{../figures/poiseuille.pdf} % chktex 11
+  \caption{Difference between Cumulants and SRT in percent of the initial inflow velocity in a Poiseuille Flow plotted agains the channel length}
+\label{fig: poiseuille result}
+\end{figure}
+
+The result can be seen in Figure~\eqref{fig: poiseuille result}.
+Two things are remarkable here.
+First of all, the difference is below one percent of the inflow velocity which is a first sign, that this method is not completely off the track.
+
+Secondly, we can look at the nature of the difference.
+Here, we see that the cumulant method was generally a bit more slowed down than \gls{srt}, which indicates, that the cumulant method is a bit more compressible.

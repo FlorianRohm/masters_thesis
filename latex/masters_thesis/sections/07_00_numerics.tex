@@ -1,4 +1,14 @@
 % !TEX root = ../thesis.tex
 After the presentation and analysis of the cumulant \gls{lbm}, it's time to test whether this method delivers.
 
-We will have a look at three problems, increasingly complex and challenging. 
+We will have a look at three problems, increasingly complex and challenging.
+
+The code is written in python 2.7.6 and based on the sample codes on the homepage of the open source framework palabos.
+
+Another highly important topic in CFD and especially \gls{lbm} are boundaries.
+After the streaming, the~\glspl{pdf} which would originate outside the computational domain are unknown.
+At solid boundaries, the bounce back scheme\footnote{A nice overview can be found in~\cite{boundaries}} is most dominant, simply reflecting the unknown distributions.
+For the inlet, a velocity bounce back scheme by Yu 2002
+\todo[inline]{find paper, cite -.-}
+is chosen, the outflow is a simple extrapolation scheme for the unknown distributions.
+We forgo an analysis on the pros and cons of the boundaries, as this is besides the collision the second large subfield in \gls{lbm} where research is definitely not finished.
