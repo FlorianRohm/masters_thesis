@@ -12,7 +12,6 @@
 *.fdb_latexmk
 *.fls
 *.log
-*.pdf
 *.synctex.gz
 *.out
 *.toc
@@ -25,3 +24,8 @@
 *.ist
 *.gls
 *.glg
+
+# not ignore pdfs to be imported into the final thesis
+/latex/masters_thesis/sections/*.pdf
+/latex/masters_thesis/thesis.pdf
+/latex/recap_for_ns_derivation/*.pdf
