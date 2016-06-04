@@ -1,7 +1,76 @@
 % !TEX root = ../thesis.tex
+After we looked at the general feasibility of the cumulant LBM scheme, we now have a look at a standard benchmark in fluid dynamics, Schaefer-Turek,~\cite{schafer1996benchmark}.
+There, they collected computations for various flows around cylinders and rectangles in $2$ and $3$ spatial dimensions under varying conditions and on different grids.
+
 \begin{figure}
-\centering
-\input{tikz/schaeferTurek.tex}
-\caption{Schaefer-Turek benchmark}
+  \centering
+  \input{tikz/schaeferTurek.tex}
+  \caption{Setup for the Schaefer-Turek benchmark}
 \label{fig: schaeferTurek}
 \end{figure}
+
+Figure~\ref{fig: schaeferTurek} gives an overview of the problem we examine.
+We have a channel flow at a low Reynolds number of $100$, similar to the Poiseuille flow.
+This time however, there is a cylinder placed slightly off center and exposed to the parabolic inflow.
+The quantity of interest is the lift it experiences\footnote{Forces are calculated via a momentum exchange, which is independent of the collision we use and not elaborated further.}.
+
+Again, a grid study was done, this time controlling the radius of the sphere and scaling the computational domain accordingly.
+This brings one caveat however:
+As we scale our spatial coordinates, we also have to scale our timesteps, according to equation~\eqref{eq: relation between stepsizes}.
+Hence, for double the resolution in each of the spatial dimensions, we don't need $4$ times but $8$ times the computation time.
+Thus, any savings in spatial resolution will pay off greatly in the final computation times.
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/schaeferTurekLift_nrFluidVsDiff.pdf} % chktex 11
+  \caption{Difference between the lift force of a sphere in relation to the computational domain.}
+\label{fig: schaefer turek nrFluidVsDiff}
+\end{figure}
+
+Going over to the actual computation results, we find the situation depicted in Figure~\ref{fig: schaefer turek nrFluidVsDiff}.
+The x-Axis is chosen to depict the number of fluid cells instead of the radius of the sphere to allow the comparison to the study in~\cite{schafer1996benchmark}, where they also plotted against the degrees of freedom.
+The y-Axis is centered around $0.0110$, the value they got for their biggest resolution.
+At the lower end of the scales, the lift is quite unsteady, presumably caused by the still bad approximation of the cylinder.
+Afterwards, SRT stays a bit longer at the line marked by the benchmark, whereas the cumulants go faster in the direction of the wanted result.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/schaeferTurekLift_domainVsTime.pdf} % chktex 11
+  \caption{Relation between the size of the computational domain and the computation time for cumulants and SRT.}
+\label{fig: schaefer turek domain vs time}
+\end{subfigure}\hfill
+\begin{subfigure}{.48\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/schaeferTurekLift_performanceGap.pdf} % chktex 11
+  \caption{Percentage of raw additional time needed for cumulant collision versus SRT.}
+\label{fig: schaefer turek time percentage}
+\end{subfigure}
+\caption{Analysis of the difference in computation time. X-Axis is both times the number of fluid cells.}
+\label{fig: time analysis cumulant vs SRT}
+\end{figure}
+
+This is all well, but we don't know yet if we sacrifice a whole lot of performance and thus just compare apples with oranges.
+Figure~\ref{fig: time analysis cumulant vs SRT} wants to shed a bit of light onto this topic.
+The cumulant method is indeed a bit slower, around $10-15\%$, which is not all that bad.
+
+However, we have to treat this not just with a bit of caution, but a whole lot.
+The implementation of both methods was done conscientious to not introduce major pitfalls and slowdowns.
+It cannot be ruled out though, that one method allows for more low level optimizations than the other, tilting the result.
+However, a recent experimental implementation of the cumulants in the highly optimized \href{http://walberla.net/index.html}{waLBerla}\footnote{widely applicable Lattice Boltzmann from Erlangen} comparing it to the native SRT showed a drop in MLUPs\footnote{Mega-lattice-updates per second} of about $50\%$ which is honestly quite amazing for an unoptimized comparison.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{../figures/schaeferTurekLift_timeDifference.pdf} % chktex 11
+  \caption{Difference between the lift force of a sphere in relation to the computational time.}
+\label{fig: schaefer turek time difference}
+\end{figure}
+
+So, indeed it is feasible to compare the methods normalized with their runtimes, which was done in Figure~\ref{fig: schaefer turek time difference}.
+Also here, the cumulant method features an earlier convergence to the final result.
+\par
+
+We can conclude, that the cumulant LBM is feasible if not superior to SRT even at low Reynolds numbers.
+What's left is the analysis if cumulants also hold their promise if we crank it up.
