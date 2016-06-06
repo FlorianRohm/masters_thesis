@@ -25,14 +25,16 @@ from matplotlib import cm, pyplot
 from auxiliary.VTKWrapper import saveToVTK
 from auxiliary.collide import BGKCollide, cumulantCollideAllInOne
 from auxiliary.stream import stream
-from auxiliary.vortex import rankinVortex
+from auxiliary.vortex import buildVortexField
 from auxiliary.LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
 from auxiliary.boundaryConditions import YuLeft
 from auxiliary.obstacle import obstacleAttack, drag, lift
-from random import random, triangular, seed
-seed(1503)
+
+from numpy.fft import fft2
+from auxiliary.vorticity import vorticity
 import sys, getopt
 import os
+import datetime
 
 ###### Parsing ############################################################
 
@@ -64,21 +66,25 @@ for opt, arg in opts:
 
 plotEveryN = size/4.
 print 'Begin of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
+startTime = datetime.datetime.now()
+
 factor = size/10.
 
 
 ###### Plot settings ############################################################
 
 skipFirstN  = 0       # initial conditions already quite interesting
-savePlot      = True      # save velocity norm and x velocity plot
-liveUpdate    = False      # show the process of the simulation (slow)
-saveVTK       = True       # write out drag and lift
+savePlot      = False      # save velocity norm and x velocity plot
+liveUpdate    = True      # show the process of the simulation (slow)
+analysis      = True       # calculate and write enstrophy
+
+saveVTK       = False       # write out drag and lift
 prefix        = '{0}_Re{1}_size{2}'.format(collStr, Re, size)      # naming prefix for saved files
 outputFolder  = './out/vortexDecay'    # folder to save the outputFile to
 workingFolder = os.getcwd()
 
 ###### Flow definition #########################################################
-maxIterations = size*200  # Total number of time iterations.
+maxIterations = size*2000  # Total number of time iterations.
 # Number of Cells
 ny = size
 nx = size
@@ -95,7 +101,7 @@ uLB  = 0.01
 
 # Relaxation parameter
 halfDiameterVortexCell = size/(4.*nrOfPairs)
-nulb = uLBAverage*halfDiameterVortexCell/Re
+nulb = uLB*halfDiameterVortexCell/Re
 omega = 1.0 / (3.*nulb+0.5)
 
 ###### Plot preparations ############################################################
@@ -106,7 +112,6 @@ if not os.path.isdir(outputFolder):
         os.makedirs(outputFolder)
     except OSError:
         pass
-os.chdir(outputFolder)
 
 # Define the Grid for vtk output
 gridX = arange(0, nx, dtype='float64')
@@ -120,39 +125,39 @@ velocityZ = zeros((nx, ny, 1))
 ###### Setup ##################################################################
 
 # velocity
-print "Building vortices"
-vel = zeros((2, nx, ny))
-for i in range(nrOfPairs):
-    for j in range(nrOfPairs):
-        c1x = (i*4 + 1)* halfDiameterVortexCell*triangular(0.95,1.05)
-        c2x = (i*4 + 3)* halfDiameterVortexCell*triangular(0.95,1.05)
-        c1y = (j*4 + 1)* halfDiameterVortexCell*triangular(0.95,1.05)
-        c2y = (j*4 + 3)* halfDiameterVortexCell*triangular(0.95,1.05)
-        #print("x1: {0}, y1: {1}, x2: {2}, y2: {3}".format(c1x, c2x, c1y, c2y))
-        for x in range(nx):
-            for y in range(ny):
-                for xoff in range(3):
-                    xoff = xoff-1;
-                    for yoff in range(3):
-                        yoff = yoff-1;
-                        vel[:,x,y] = vel[:,x,y] \
-                        + rankinVortex(x-c1x + xoff*nx, y-c1y+ xoff*ny, halfDiameterVortexCell/2.) \
-                        + rankinVortex(x-c2x + xoff*nx, y-c2y+ xoff*ny, halfDiameterVortexCell/2.) \
-                        - rankinVortex(x-c2x + xoff*nx, y-c1y+ xoff*ny, halfDiameterVortexCell/2.) \
-                        - rankinVortex(x-c1x + xoff*nx, y-c2y+ xoff*ny, halfDiameterVortexCell/2.)
+velocityFileName = "l{0}_nr{1}_dia{2}.npy".format(nx,nrOfPairs,halfDiameterVortexCell)
+
+if os.path.isfile(velocityFileName):
+    print "Loading vortices"
+    vel = load(velocityFileName)
+    print "Loading vortices complete"
+else:
+    print "Building vortices"
+    vel = buildVortexField(nx,ny, nrOfPairs,halfDiameterVortexCell)
+    print "Building vortices complete"
+
+os.chdir(outputFolder)
 
 vel = vel*uLB
-print "Building vortices complete"
+
+avgVelX = mean(vel[0,:,:])
+avgVelY = mean(vel[1,:,:])
+
 # initial particle distributions
-feq   = equilibrium(1.0, vel)
+feq   = equilibrium(1.0, vel.reshape((2,nx*ny))).reshape((9,nx,ny))
 fin   = feq.copy()
 fpost = feq.copy()  # post collision distributions
+
+fluidDomain = full((nx,ny), True, dtype=bool)
 
 
 # interactive mode (execute code while showing figures)
 if ( liveUpdate | savePlot ):
     pyplot.ion()
     fig, ax = pyplot.subplots(1)
+
+if analysis:
+    outputFile = open(prefix, 'w')
 
 
 ###### Main time loop ##########################################################
@@ -161,16 +166,26 @@ for time in range(maxIterations):
     (rho, u) = getMacroValues(fin)
 
     # Collision step.
-    fpost = collisionFunction(fin, rho, u, omega )
+    fpost[:,fluidDomain] = collisionFunction(fin[:,fluidDomain], rho[fluidDomain], u[:,fluidDomain], omega )
 
     # Streaming step
     fin = stream(fpost)
 
     # Visualization
-    if ( (time % plotEveryN == 0) & (liveUpdate | saveVTK | savePlot) & (time > skipFirstN) ):
+    if ( (time % plotEveryN == 0) & (liveUpdate | saveVTK | savePlot | analysis) & (time > skipFirstN) ):
+        vort = vorticity(u);
+        meanEnstrophy = mean(vort**2)/2.
+        turbulentKineticEnergy = mean((u[0]-avgVelX)**2 + (u[1]-avgVelY)**2)/2.
+
+        if (analysis):
+            outputFile.write("{0},{1}\n".format(meanEnstrophy, turbulentKineticEnergy))
         if ( liveUpdate | savePlot ):
             ax.clear()
-            ax.imshow(sqrt(u[0]**2+u[1]**2).transpose(),  cmap=cm.afmhot, vmin=0., vmax=0.04)
+            vel2 = u[0]**2+u[1]**2
+            vel2 = vel2.transpose();
+            fftVel = abs(fft2(vel2))
+            vort = vorticity(u);
+            ax.imshow(vort,  cmap=cm.gray )
 
         if ( liveUpdate ):
             pyplot.draw()
@@ -186,5 +201,14 @@ for time in range(maxIterations):
         if ( savePlot ):
             pyplot.savefig(prefix + "." + str(time/plotEveryN).zfill(4) + ".png")
 
+endTime = datetime.datetime.now()
+deltaTime = endTime - startTime
+if analysis:
+    timeFile = open("{0}_time".format(prefix),"w")
+    timeFile.write("{0},{1}".format(deltaTime.total_seconds(), sum(fluidDomain)));
+    timeFile.write("\n");
+    timeFile.close()
+    outputFile.close()
+
 os.chdir(workingFolder)
-print 'End of calculation with {0} collision with Re={1} and size {2}'.format(collStr,Re,size)
+print 'End of calculation with {0} collision with Re={1} and size {2}.\n Elapsed time: {3}'.format(collStr,Re,size,deltaTime.total_seconds())
