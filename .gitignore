@@ -1,5 +1,6 @@
 # generated results of lbm code
 /**/out/
+*.npy
 
 # python notebook auxiliary files
 /**/.ipynb_checkpoints
