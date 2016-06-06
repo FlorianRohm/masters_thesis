@@ -24,7 +24,7 @@ from numpy import *
 from matplotlib import cm, pyplot
 from auxiliary.VTKWrapper import saveToVTK
 from auxiliary.stream import stream
-from auxiliary.collide import BGKCollide, cumulantCollide, cumulantCollide_min
+from auxiliary.collide import BGKCollide, cumulantCollide, cumulantCollideAllInOne
 from auxiliary.LBMHelpers import clamp, getMacroValues, sumPopulations, equilibrium, noslip, iLeft, iCentV, iRight, iTop, iCentH, iBot
 from auxiliary.ghiaResults import *
 from auxiliary.transformations.momentsFromDistributions import momentsFromDistributions
@@ -35,7 +35,7 @@ import os
 
 plotEveryN    = 100         # draw every plotEveryN'th cycle
 skipFirstN    = 0       # do not process the first skipFirstN cycles
-savePlot      = True      # save velocity norm and x velocity plot
+savePlot      = False      # save velocity norm and x velocity plot
 liveUpdate    = True     # show the process of the simulation (slow)
 saveVTK       = False       # save the vtk files
 prefix        = 'ldc_20k'      # naming prefix for saved files
@@ -45,11 +45,11 @@ workingFolder = os.getcwd()
 
 ###### Flow definition #########################################################
 maxIterations = 200000  # Total number of time iterations.
-Re            = 20000.0   # Reynolds number.re
+Re            = 200.0   # Reynolds number.re
 
 # Number of Cells
-nx = 200
-ny = 200
+nx = 100
+ny = 100
 
 # Highest index in each direction
 nxl = nx-1
@@ -100,7 +100,8 @@ leftWall    = fromfunction(lambda   x, y: x == 0,  (nx, ny))
 rightWall   = fromfunction(lambda   x, y: x == nxl,  (nx, ny))
 bottomWall  = fromfunction(lambda   x, y: y == nyl,  (nx, ny))
 
-wall    = logical_or(logical_or(leftWall, rightWall), bottomWall)
+solidDomain = logical_or(logical_or(leftWall, rightWall), bottomWall)
+fluidDomain = invert(solidDomain)
 
 # initial velocity profile
 #  < -
@@ -110,9 +111,9 @@ vel                = zeros((2, nx, ny))
 vel[0, :,  0 ]     =  uLB
 
 # initial particle distributions
-feq   = equilibrium(1.0, vel)
+feq   = equilibrium(1.0, vel.reshape((2,nx*ny))).reshape((9,nx,ny))
 fin   = feq.copy()
-fpost = feq.copy()
+fpost = feq.copy()  # post collision distributions
 
 # interactive mode (execute code while showing figures)
 if ( liveUpdate | savePlot ):
@@ -125,46 +126,37 @@ os.chdir(outputFolder)
 ###### Main time loop ##########################################################
 for time in range(maxIterations):
 
-    # Calculate macroscopic density and velocity
     (rho, u) = getMacroValues(fin)
-
-    feq = equilibrium(rho, u)
 
     # Collision step.
     #fpost = BGKCollide(fin, feq, omega)
-    fpost = cumulantCollide_min(fin, rho, u, omega)
+    fpost[:,fluidDomain] = cumulantCollideAllInOne(fin[:,fluidDomain], rho[fluidDomain], u[:,fluidDomain], omega )
 
     # Streaming step
-    fin[0, :, :] = fpost[0, :, :]
-
-    fin[1, 1:nxl,   :]     = fpost[1, 0:nxl-1,  :]
-    fin[2,   :,   0:nyl-1] = fpost[2,   :,    1:nyl]
-    fin[3, 0:nxl-1, :]     = fpost[3, 1:nxl,    :]
-    fin[4,   :,   1:nyl]   = fpost[4,   :,    0:nyl-1]
-
-    fin[5, 1:nxl,   0:nyl-1] = fpost[5, 0:nxl-1, 1:nyl]
-    fin[6, 0:nxl-1, 0:nyl-1] = fpost[6, 1:nxl,   1:nyl]
-    fin[7, 0:nxl-1, 1:nyl]   = fpost[7, 1:nxl,   0:nyl-1]
-    fin[8, 1:nxl,   1:nyl]   = fpost[8, 0:nxl-1, 0:nyl-1]
-
+    fin = stream(fpost)
 
     # Left wall: compute density from known populations
     u[:, :, 0] = vel[:, :, 0]
     rho[:, 0] = sumPopulations(fin[iCentV, 0, :])+2.*sumPopulations(fin[iTop, 0, :])
+    # Calculate macroscopic density and velocity
+
+    feq[:,:,0] = equilibrium(rho[:,0], u[:,:,0])
 
     # complete the left wall treatement wrt Yu 2002
     fin[iBot, 0, :] = - feq[iTop, 0, :] + (feq[iBot, 0, :] + fin[iTop, 0, :])
     # fin[iBot, 0, :] = fin[iTop, 0, :] + 6 * dot(c, u.transpose(1, 0, 2)) c[iBot][0] * rho*t[iBot]
 
-    # wall boundary handling
-    for i in range(q):
-        fin[i, wall] = fin[noslip[i], wall]
+    # bounce back distributions at walls
+    finc = fin[:, solidDomain].copy()
+    #   print finc.shape
+    for i in range(9):
+        fin[i, solidDomain] = finc[noslip[i], :]
 
     # Visualization
     if ( (time % plotEveryN == 0) & (liveUpdate | saveVTK | savePlot) & (time > skipFirstN) ):
         if ( liveUpdate | savePlot ):
             ax.clear()
-            ax.imshow(sqrt(u[0]**2+u[1]**2).transpose(),  cmap=cm.jet, vmin=0., vmax=0.05)
+            ax.imshow(sqrt(u[0]**2+u[1]**2).transpose(),  cmap=cm.jet, vmin=0., vmax=0.01)
             ax.set_title('velocity norm')
 
         if ( liveUpdate ):
