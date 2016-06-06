@@ -6,14 +6,14 @@ Due to the wall friction, this leads to a parabolic flow, which we will use as i
 \begin{figure}
   \centering
   \input{tikz/poiseuille.tex}
-  \caption{Poiseuille flow}
+  \caption{Setup for Poiseuille flow. Velocity is measured at $\frac{L}{2}$.}
 \label{fig: poiseuille}
 \end{figure}
 
 Figure~\ref{fig: poiseuille} shows a schematic of the setup.
 The test now examines the influence of the length of the channel\footnote{To be exact, the following lengths were simulated:\par
  $100,\ 95,\ 90,\ 85,\ 80,\ 75,\ 70,\ 65,\ 60,\ 55,\ 50,\ 45,\ 40,\ 35,\ 30,\ 25,\ 20,\ 15,\ 11,\ 9,\ 7,\ 5,\ 3$
-} on the velocity distribution.
+} on the velocity distribution in the middle column.
 The height was always chose to be $20$ cells.
 
 As the \gls{lbm} is a mildly compressible scheme, the comparison with the incompressible, analytic results would not be very expressive.
@@ -33,4 +33,5 @@ First of all, the difference is below one percent of the inflow velocity which i
 
 Secondly, we can look at the nature of the difference.
 Here, we see that the cumulant method was generally a bit more slowed down than \gls{srt}, which indicates, that the cumulant method is a bit more compressible.
-But as the difference is below one percent, let's move on to some more challenging tasks.
+
+But as the difference is well below one percent, we move on to some more challenging tasks.

@@ -1,1 +1,25 @@
 % !TEX root = ../thesis.tex
+
+For the final set of simulations, we have to introduce the Rankine-vortex.
+It is an idealized model of a vortex, mixing the definitions of a rigid body vortex
+with constant vorticity and a potential vortex which has infinite vorticity in its center and zero otherwise.
+
+\begin{figure}
+  \centering
+  \input{tikz/rankine.tex}
+  \caption{Cut through the middle of a Rankine vortex.
+  The inner part is a rigid body vortex with constant vorticity, whereas the outer part is a potential vortex which is vorticity free in this area.}
+\label{fig: rankine}
+\end{figure}
+
+Figure~\ref{fig: rankine} shows the $y$ component of the velocity when cutting through a Rankine vortex at $y=0$, the $x$ component is zero.
+A more thorough description of the Rankine vortex can be found in~\cite{giaiotti2006rankine}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{../figures/rankine_vortex.png}  % chktex 11
+  \caption{Setup for the vortex merge simulation on a $96^2$ grid. White is positive and black negative vorticity.}
+\label{fig: vortex merge setup}
+\end{figure}
+
+The most simple nontrivial setting is depicted in Figure~\ref{fig: vortex merge setup} and consists of two vortices next to each other with the same direction of rotation, in our case conterclockwise, i.e.\ with positive vorticity.
