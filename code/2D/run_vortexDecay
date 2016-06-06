@@ -1,0 +1,56 @@
+#!/bin/bash
+
+set -m # Enable Job Control
+
+sizes=("96")
+
+nrOfPairs=("5")
+
+reynolds=("100000" "10000" "7000" "5000" "2000" )
+
+methods=('\ ' '-c')
+
+
+for size in ${sizes[@]}
+do
+  for nrOfPair in ${nrOfPairs[@]}
+  do
+    while [ "$(jobs | wc -l)" -ge 8 ]
+    do
+      sleep 5
+    done
+    ./makeVortexfield.py -s $size -n $nrOfPair &
+  done
+done
+
+while [ 1 ]
+do
+  fg &> /dev/null
+  [ $? == 1 ] && break
+  sleep 1
+done
+
+
+for size in ${sizes[@]}
+do
+  for nrOfPair in ${nrOfPairs[@]}
+  do
+    for re in ${reynolds[@]}
+    do
+      for method in ${methods[@]}
+      do
+        while [ "$(jobs | wc -l)" -ge 6 ]
+        do
+          sleep 5
+        done
+        ./vortexDecay.py -s $size -r $re -n $nrOfPair $method &
+      done
+    done
+  done
+done
+while [ 1 ]
+do
+  fg &> /dev/null
+  [ $? == 1 ] && break
+  sleep 1
+done

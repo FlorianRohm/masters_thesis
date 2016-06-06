@@ -1,3 +1,32 @@
 #!/bin/bash
 
-./vortexMerge.py -s 100 -r 100 -c
+set -m # Enable Job Control
+
+#sizes=("256" "192" "128" "96")
+sizes=( "96")
+
+#reynolds=("100000" "10000" "5000" "2000" "1000")
+reynolds=("6400" "6300" "6200" "6100")
+
+methods=('\ ' '-c')
+
+for size in ${sizes[@]}
+do
+  for re in ${reynolds[@]}
+  do
+    for method in ${methods[@]}
+    do
+      while [ "$(jobs | wc -l)" -ge 6 ]
+      do
+        sleep 5
+      done
+      ./vortexMerge.py -s $size -r $re $method &
+    done
+  done
+done
+while [ 1 ]
+do
+  fg &> /dev/null
+  [ $? == 1 ] && break
+  sleep 1
+done
