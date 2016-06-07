@@ -5,10 +5,21 @@ It is an idealized model of a vortex, mixing the definitions of a rigid body vor
 with constant vorticity and a potential vortex which has infinite vorticity in its center and zero otherwise.
 
 \begin{figure}
+\centering
+\begin{subfigure}[b]{.5\textwidth}
   \centering
   \input{tikz/rankine.tex}
-  \caption{Cut through the middle of a Rankine vortex.
-  The inner part is a rigid body vortex with constant vorticity, whereas the outer part is a potential vortex which is vorticity free in this area.}
+  \caption{$y$-velocity}
+\label{fig: rankine}
+\end{subfigure}%
+\begin{subfigure}[b]{.5\textwidth}
+  \centering
+  \input{tikz/rankine_vorticity.tex}
+  \caption{Vorticity}
+\label{fig: rankine vorticity}
+\end{subfigure}
+\caption{Cut through the middle of a Rankine vortex.
+The inner part is a rigid body vortex with constant vorticity, whereas the outer part is a potential vortex which is vorticity free in this area.}
 \label{fig: rankine}
 \end{figure}
 
@@ -23,3 +34,50 @@ A more thorough description of the Rankine vortex can be found in~\cite{giaiotti
 \end{figure}
 
 The most simple nontrivial setting is depicted in Figure~\ref{fig: vortex merge setup} and consists of two vortices next to each other with the same direction of rotation, in our case conterclockwise, i.e.\ with positive vorticity.
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../figures/vortexMerge_enstrophy.pdf}  % chktex 11
+  \caption{Evolution of the enstrophy}
+\label{fig: rankine result}
+\end{subfigure}%
+
+\medskip
+\begin{subfigure}[b]{.5\textwidth}
+  \centering
+  \includegraphics[width=0.6\textwidth]{../figures/cumulant_Re6000_size96_1475.png}  % chktex 11
+  \caption{Simulation with cumulants at  $x=1475$}
+\label{fig: rankine cumulant}
+\end{subfigure}\begin{subfigure}[b]{.5\textwidth}
+  \centering
+  \includegraphics[width=0.6\textwidth]{../figures/srt_Re6000_size96_1181.png}  % chktex 11
+  \caption{Simulation with \gls{srt} at  $x=1181$}
+\label{fig: rankine srt}
+\end{subfigure}
+
+\caption{Simulation of the vortex merging at Reynolds number $6000$}
+\label{fig: rankine 6000}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../figures/vortexMerge_enstrophy6100.pdf}  % chktex 11
+  \caption{Evolution of the enstrophy at Reynolds number $6100$}
+\label{fig: rankine 6000}
+\end{subfigure}%
+
+\medskip
+\begin{subfigure}[b]{\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../figures/vortexMerge_enstrophy_cumulants.pdf}  % chktex 11
+  \caption{Evolution of the enstrophy at increasing Reynolds numbers with cumulant \gls{lbm}}
+\label{fig: rankine cumulant all}
+\end{subfigure}
+\caption{Further simulation results}
+\label{fig: rankine further}
+\end{figure}
