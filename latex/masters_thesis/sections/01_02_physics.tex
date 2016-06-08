@@ -57,7 +57,7 @@ and thus with~\eqref{eq: moments continuous} and~\eqref{eq: central moments cont
   \label{eq: physical quantities continuous moments}
 \rho = m_{00}, \quad \vec{u}=\frac{1}{m_{00}}\begin{pmatrix}m_{10}\\m_{01}\end{pmatrix},\quad \tensor{P}=\begin{pmatrix}c_{20}&c_{11}\\ c_{11}&c_{02}\end{pmatrix}.
 \end{equation}
-From the relations in~\eqref{eq: physical quantities continuous moments}, we can also conclude, that centralized moments are just like normal moments, but seen from a frame of reference moving with the flow velocity $\vec{u}$.
+From the relations in~\eqref{eq: physical quantities continuous moments}, we can also conclude, that centralized moments are indeed the normal moments when observed from a frame of reference moving with the flow velocity $\vec{u}$.
 \glsadd{frame of reference}
 
 Upon switching to the discrete case, we exchange the continuous microscopic velocity $\vec{v}$ with our velocity set~\eqref{eq: definition of the velocities}.
@@ -129,7 +129,9 @@ This leaves us with
     \\ & = m_{20}^{eq} - \frac{m_{10}^2}{m_{00}},
   \end{aligned}
 \end{equation}
-using~\eqref{eq: density definition} through~\eqref{eq: y velocity definition} and thus the pressure\footnote{It can be shown, that the pressure is equal to one third the trace of the pressure tensor and that its diagonal elements are equal. The third entry $\tensor{P}_{zz}$ would be the pressure in $z$-direction, which has to be accounted for as 2D simulations are just 3D where we assume the flow to be invariant in one direction. As pressure is isotropic, the pressure is also extended in the last direction, even when the flow velocity is not. When defining this tensor, the $z$-components were left out to not provoke confusion.}\todo[inline]{refer to discussion section}
+using~\eqref{eq: density definition} through~\eqref{eq: y velocity definition} and thus the pressure\footnote{It can be shown, that the pressure is equal to one third the trace of the pressure tensor and that its diagonal elements are equal.
+The third entry $\tensor{P}_{zz}$ would be the pressure in $z$-direction, which has to be accounted for when 2D simulations are regarded as 3D where we assume the flow to be invariant in one direction.
+As pressure is isotropic, the pressure is also extended in the last direction, even when the flow velocity is not. When defining this tensor, the $z$-components were left out to not provoke confusion.}
 \begin{equation}
   \label{eq: pressure}
   \begin{aligned}

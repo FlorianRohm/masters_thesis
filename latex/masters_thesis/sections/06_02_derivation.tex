@@ -31,7 +31,7 @@ This is already looking quite promising, but the green and red highlighted terms
 \label{subs:Auxiliary equations}
 To cope with those rogue terms, we take a look back at the second order in $\epsilon$ equation~\eqref{eq: second order in epsilon}.
 We can extract three\footnote{We could insert $\alpha=1$, $\beta=0$ et vice versa, but this would lead to two equations where everything is zero due to equations~\eqref{eq: kill even moments odd order} and~\eqref{eq: kill odd moments even order}.
-Choosing $\alpha$ or $\beta$ higher than two just results in the known equations due to moment aliasing.} more equations out of it.
+Choosing $\alpha$ or $\beta$ higher than two yields the previously stated equations due to moment aliasing.} more equations out of it.
 Namely, we get for $\alpha=2$, $\beta=0$
 \begin{equation}
   \label{eq: auxiliaries 1 raw}
@@ -153,7 +153,7 @@ Up to this point, we did not need any assumptions on our relaxation parameters $
 For further simplification, we will assume $\omega_5$, $\omega_6$ and $c_s^2$ to be constant in space.
 In our isothermal setting, this is just fine, as the the $\omega_i$ will be connected to the viscosity which is a function of temperature\footnote{Interestingly,
 upon looking at the compressible momentum equations~\eqref{eq: compressible NS}, the viscosity is also present in the first derivative, further hinting at an easy expansion to fully compressible flows.
-}; just as $c_s^2$.
+}; as is $c_s^2$.
 Hence, we get
 \begin{align}
   \label{eq: auxiliaries 9}
@@ -266,7 +266,7 @@ We can take the partial derivative
   + \frac{ m_{10}^{(1)}}{m_{00}^{(0)}}\partial_y m_{01}^{(1)}
   + m_{01}^{(1)}\partial_y \frac{ m_{10}^{(1)}}{m_{00}^{(0)}},
 \end{align}
-to see that those are just the second order convective terms of~\eqref{eq: navier stokes goal}.
+to see that those are precisely the second order convective terms of~\eqref{eq: navier stokes goal}.
 Additionally, the first line of equation~\eqref{eq: navier stokes skeleton 1} hosts the time derivative of the momentum density and the external force, which has to be normed by the density.
 
 Last but definitely not least, the pressure derivative is hidden in the density derivative $-c_s^2 \partial_x  m_{00}^{(2)}$ which is equal to the pressure at the local equilibrium.
