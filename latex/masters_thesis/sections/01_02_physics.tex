@@ -160,14 +160,16 @@ and
   m_{\alpha\beta}
   = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad c^{\alpha+\beta} i^\alpha j^\beta f_{ij}
   = \mquad\sum_{i,j \in \{-1,0,1\}}\mquad c^{\alpha+\beta} i^\alpha j^{(\beta+2l)} f_{ij}
-  = c^{-2l}m_{\alpha(\beta+2l)} \quad \forall l, \alpha, \forall \beta \neq 0.
+  = c^{-2l}m_{\alpha(\beta+2l)} \quad \forall l, \alpha, \forall \beta \neq 0,
 \end{equation}
+explicitly using the range of the sum.
 According to~\eqref{eq:aliasing of moments 1} and~\eqref{eq:aliasing of moments 2}, the full list of independent moments together with the first dependent moments of the D2Q9 stencil is displayed in Table~\ref{table:D2Q9 moments}.
 
-Another convention we introduce in this section is, that all sums over $i$ and/or $j$ shall range over the discrete velocity space, i.e.
+As most sums will be dedicated to the calculation of moments of any kind in this thesis, we will abbreviate
 \begin{equation*}
   \sum_{i,j \in \{-1,0,1\}} \rightarrow \sum_{i,j}
 \end{equation*}
+for all sums over $i$ and/or $j$, hence summing the complete discrete velocity space.
 
 \setlength{\tabcolsep}{4.4pt}
 \begin{table} [t]
