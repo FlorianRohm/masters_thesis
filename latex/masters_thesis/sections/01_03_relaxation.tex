@@ -76,32 +76,32 @@ On looking upon the nondimensionalized, incompressible Navier-Stokes equations,~
 Consequently we will talk about the Reynolds number being very high instead of the viscosities being low.
 Some typical values for \gls{re} are shown in Table~\ref{table: reynolds numbers}, stating the clear necessity of a numeric scheme that can handle a broad range of Reynolds numbers.
 \def\stackalignment{l}
-\setlength{\tabcolsep}{6pt}
+\setlength{\tabcolsep}{9pt}
 \begin{table}
   \centering
-  \begin{tabular}{l l lll l}
+  \begin{tabular}{l l rrr r}
     \toprule
     object & fluid & \multicolumn{4}{c}{values}    \\
     \cmidrule(lr){3-6}
-           &       & $L$ & $u_0$ & $\nu$        & $Re$ \\
+           &       & $L [m]$  & $u_0[\frac{km}{h}]$ & $\nu[ \frac{m^2}{s}]$        & $Re$ \\
    \cmidrule(lr){1-6}
    Car   &
    \stackunder{Air}{\tiny{(ground level, $20^{\circ}C$)}}
-   & $4m$
-   & $ 150 \frac{km}{h}$
-   & $1.478 \times 10^{-5} \frac{m^2}{s}$
+   & $4$
+   & $ 150 $
+   & $1.478 \times 10^{-5} $
    & $1.41 \times 10^{7}$ \\
    Plane &
    \stackunder{Air}{\tiny{($10 km$ altitude, $-49.9^{\circ}C$)}}
-   & $40m$
-   & $ 800 \frac{km}{h}$
-   & $3.526 \times 10^{-5} \frac{m^2}{s}$
+   & $40$
+   & $ 800 $
+   & $3.526 \times 10^{-5} $
    & $2.52 \times 10^{8}$ \\
    \stackunder{Seabed}{\tiny{(porous media)}}
    & \stackunder{Water}{\tiny{($5^{\circ}C$)}}
-   & $0.01m$
-   & $ 0.01 \frac{m}{s}$
-   & $1.519 \times 10^{-6} \frac{m^2}{s}$
+   & $0.01$
+   & $ 0.036 $
+   & $1.519 \times 10^{-6} $
    & $6.58 \times 10^{1}$\\
    \bottomrule
   \end{tabular}
