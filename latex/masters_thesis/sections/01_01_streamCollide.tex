@@ -28,7 +28,7 @@ Consequently, we're working with a D2Q9 model, which is depicted in Figure~\ref{
 The simplest way for discretizing the derivatives is to use a combination of implicit and explicit Euler terms, where we set the relation between the size of the timesteps $\Delta t$ and spacial stepsizes $\Delta x$ and $\Delta y$ to
 \begin{equation}
   \label{eq: relation between stepsizes}
-  \frac{\Delta x} {\Delta{t}} = \frac{\Delta y} {\Delta{t}} = c
+  \frac{\Delta x} {\Delta{t}} = \frac{\Delta y} {\Delta{t}} = c.
 \end{equation}
 As motivated in Section~\ref{sec: History of Lattice Boltzmann}, we will use another collision operator $\tilde{\Omega}$, modeling the effect of the collisions in one timestep, instead of the original $\Omega$.
 This will be further specified in Section~\ref{sub: Relaxation rates and their issues}.
