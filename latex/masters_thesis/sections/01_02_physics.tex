@@ -13,7 +13,7 @@ In analogy to bivariat probability distributions, we define the characteristic v
 \begin{equation}
   \label{eq: moments continuous}
   m_{\alpha\beta}(\vec{x},t) \defined  \int v_x^\alpha v_y^\beta f(\vec{v},\vec{x},t) d\vec{v},\quad\forall\alpha,\beta\in\N,
-\end{equation}
+\end{equation}\glsadd{n}
 where $v_x$ and $v_y$ are the components of the particle velocity $\vec{v}$.
 In contrary to probability distributions, the zeroth moment $m_{00}$ of $f$ is not one.
 The first moments $m_{10}$ and $m_{01}$ are still its mean values in the corresponding directions.
@@ -29,7 +29,7 @@ This is also applied to all other values like density and velocity.
 Another set of characteristic variables are the centralized or \textbf{central moments} $c_{\alpha\beta}$ defined as
 \begin{equation}
   \label{eq: central moments continuous}
-  c_{\alpha\beta} \defined \int {\left(v_x - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(v_y-\frac{m_{01}}{m_{00}}\right)}^\beta f(\vec{v})  d\vec{v}.
+  c_{\alpha\beta} \defined \int {\left(v_x - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(v_y-\frac{m_{01}}{m_{00}}\right)}^\beta f(\vec{v})  d\vec{v},\quad\forall\alpha,\beta\in\N.
 \end{equation}
 Here, the assumption associated with~\eqref{eq: leave out x and y} of course also holds, making the centralized moments dependent on space and time.
 
