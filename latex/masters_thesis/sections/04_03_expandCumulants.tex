@@ -22,10 +22,18 @@ In writing
 \end{equation}
 
 we prepared the denominator to be written as a geometric series.
-This is valid as long as we assume $\epsilon$ to be `small enough' to ensure $\abs{\sum_{i=1}^\infty \epsilon^i \frac{ m_{00}^{(i)}}{ m_{00}^{(0)}} } < 1$, which is by no means a bold assumption.
-Firstly the zeroth order of $m_{00}$ is left out and all other terms are divided by the constant portion of $m_{00}$.
-Secondly, our nondimensionalisation in~\eqref{eq: nondimensionalisation} states that $\epsilon = \frac{\Delta x}{L}$, where $L$ is a typical length in our project.
-As our typical length scales have to be some orders of magnitude larger than our cell spacing\footnote{Let's say we discretize a 2D wing with a given chord length, we have to take small cells in its vicinity just to represent the shape accurately.}, our assumption is trivially fulfilled in all real use cases.
+This is valid as long as we assume $\epsilon$ to be `small enough' to ensure\footnote{Originally, we would need the absolute value, but as we don't have negative densities we can leave it out.}
+\begin{align}
+  &\sum_{i=1}^\infty \epsilon^i \frac{ m_{00}^{(i)}}{ m_{00}^{(0)}}  < 1
+  \\
+  \equivalent& \sum_{i=1}^\infty \epsilon^i  m_{00}^{(i)} < m_{00}^{(0)}
+  \\
+  \equivalent& m_{00} < 2 m_{00}^{(0)},
+\end{align}
+which is by no means a bold assumption.
+We notice that the zeroth order of $m_{00}$ is left out and all other parts are summed up and divided by the constant portion of $m_{00}$.
+Hence, we need fluctuations in density up to two times the mean value to violate the assumption, which is definitely possible in medium to high compressible flows.
+As we do not incorporate temperature due to the small stencil, we are restricted to mildly compressible phenomena anyways and hence we don't get any problems with this assumptions.
 
 Thus, we get
 \begin{equation}

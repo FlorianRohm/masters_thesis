@@ -17,7 +17,7 @@ which is equivalent to
   \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} f_{ij}^{\circ}(x, y, t) =
     \sum_{m,n = 0}^\infty \frac{{(-\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} {(ci)}^m {(cj)}^n f^*_{ij}(x, y, t),
 \end{equation}
-using~\eqref{eq: relation between stepsizes}.
+using the relation between the spatial and temporal stepsizes~\eqref{eq: relation between stepsizes}.
 
 In formulating Equation~\eqref{eq: Taylor LB1}, we did not need to restrict ourselves to specific $f_{ij}$ and thus it has to hold for all of them. Notably also for all linear combinations
 \begin{equation*}
@@ -44,7 +44,7 @@ Therefore, we rewrite the system of equations for the $f_{ij}$ to a system of eq
      \sum_{\tau = 0}^\infty \frac{{\Delta t}^\tau }{\tau!} \frac{\partial^\tau}{{\partial t}^\tau} \frac{m_{\alpha\beta}^{\circ}}{c^{\alpha + \beta}} &=
     \sum_{m,n = 0}^\infty \frac{{(- c\Delta t)}^{m+n}} {m!n!} \frac{\partial^m \partial^n}{ {\partial x}^m{\partial y}^n} \frac{m^*_{(\alpha + m)(\beta + n)}}{c^{\alpha + m + \beta + n}}.
 \end{align}
-To make our lives a bit easier, we will rescale the moments according to their order,
+To make our lives a bit easier, we rescale the moments according to their order,
 \begin{equation}
   \label{eq: rescaling the moments}
   \frac{m_{\alpha\beta}}{c^{\alpha + \beta}} \rightarrow m_{\alpha\beta},
@@ -93,7 +93,7 @@ Our spatial coordinates $x$ and $y$ together with the time coordinate $t$ will b
 Furthermore, the moments are asymptotically expanded in space according to the scale $\epsilon$
 \begin{align}
     \label{eq: expansion of m}
-    m_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{\circ^{(p)}}.
+    m_{\alpha\beta} & = \sum_{p=0}^{\infty} \epsilon^p m_{\alpha\beta}^{(p)}.
 \end{align}
 This procedure implicitly defines the coefficients of the series, $m_{\alpha\beta}^{\circ^{(p)}}$.
 Those are still dependent of space and time, but as they are separated on their length scales, their spatial part is not allowed to depend on $\epsilon$ neither implicitly nor explicitly.
@@ -143,7 +143,8 @@ Now, our moments $\tilde{m}$ in the new coordinate system are
   ={(-1)}^{\alpha + \beta} \sum_{i,j} {(ci)}^\alpha {(cj)}^\beta f_{ij}
   ={(-1)}^{\alpha + \beta} m_{\alpha\beta}
 \end{align}
-but still represent the same value.
+but still represent the same physical entities.
+
 To get the same expansion in the nondimensionalized case, c.f.~\eqref{eq: nondimensionalisation}, our expansion parameter $\epsilon$ also needs to be negated and hence
 \begin{equation}
      \sum_{p=0}^{\infty} {(-\epsilon)}^p \tilde{m}_{\alpha\beta}^{(p)}

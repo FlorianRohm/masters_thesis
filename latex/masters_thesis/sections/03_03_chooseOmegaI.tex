@@ -1,10 +1,10 @@
 % !TEX root = ../thesis.tex
 The equations in~\eqref{eq: collision final before simplification} resemble the most general form we can have and we seek to simplify it and determine the used relaxation parameters.
 Thus, the asymptotic analysis in the next sections will base upon this equation.
-Consequently, we present the final version of the collision in this section, anticipating the findings yet to come.
+Consequently, we present the final version of the collision\footnote{Which is ready to implement and also used in the numerical tests.} in this section, anticipating the findings yet to come.
 
 First of all, we turn our attention towards $\kappa_{21}$ and $\kappa_{21}$.
-As they only vary in their direction, we want their relaxation to be the same.
+As they only vary in their direction, we want their relaxation rates $\omega_7$ and $\omega_8$ to be the same.
 
 In fact, neither $\omega_7$ nor $\omega_8$ nor $\omega_9$ will play any role in our analysis up to second order and are safe to set equal to one according to this analysis.
 Higher order errors are neglected in this view.
@@ -17,7 +17,8 @@ In fact, we could still achieve this effect by setting $\omega_5=\omega_6$.
 
 However, we will discover in the analysis, Section~\ref{sub: Deriving the equations}, that all terms with $\omega_6$ cancel out and $\omega_4$ and $\omega_5$ should be equal.
 When setting $\omega_6=1$, we comply with the ideal gas law, c.f.~\ref{sub: Ideal gas law} when looking at the mean of the pressures in x- and y-direction.
-This yields
+
+With all of this, we can simplify~\eqref{eq: collision final before simplification} to
 \begin{equation}
   \label{eq: collision equation system full}
   \begin{aligned}
@@ -31,7 +32,7 @@ This yields
       & = 2 c_s^2 \\
     \kappa_{21}^{*} & = 0 \\
     \kappa_{12}^{*} & = 0 \\
-    \kappa_{22}^{*} & = 0,
+    \kappa_{22}^{*} & = 0.
   \end{aligned}
 \end{equation}
 Like in \gls{srt}, this remaining parameter $\omega$ will play the role of the viscosity, respectively Reynolds number.

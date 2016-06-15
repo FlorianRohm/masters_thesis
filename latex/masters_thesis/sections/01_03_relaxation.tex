@@ -13,7 +13,7 @@ There's now no preferred direction and the distribution of speeds won't change a
 Changing back to the continuous view, this equilibrium is known as the Maxwellian Distribution, which reads in two dimensions, c.f.~\cite{succi2001lattice}:
 \begin{equation}
   \label{eq: maxwell distribution raw}
-  f_{m, \rho, \vec{u}, T}^{\text{maxwell}}(\vec{\xi}) = \rho \frac{m}{2\pi k_B T} \exp \left( - \frac{m\abs{\vec{\xi}-\vec{u}}^2}{2 k_B T}\right)
+  f_{m, \rho, \vec{u}, T}^{\text{maxwell}}(\vec{\xi}) = \rho \frac{m}{2\pi k_B T} \exp \left( - \frac{m\norm{\vec{\xi}-\vec{u}}^2}{2 k_B T}\right)
 \end{equation}
 where the quantities are defined in Table~\ref{table: maxwell quantities}.
 \begin{table} [h]
@@ -44,7 +44,7 @@ This also gave the method its prominent name, as it uses only one parameter $\om
 Thus, equation~\eqref{eq: define post collision} reads now
 \begin{equation}
   \label{eq: post collision discrete}
-  f_{ij}^* = f_{ij} + \omega \left(f_{ij}^{eq} - f_{ij}^{\circ}\right) = (1-\omega)f_{ij}^{\circ} + \omega f_{ij}^{eq}.
+  f_{ij}^* = f_{ij}^{\circ} + \omega \left(f_{ij}^{eq} - f_{ij}^{\circ}\right) = (1-\omega)f_{ij}^{\circ} + \omega f_{ij}^{eq}.
 \end{equation}
 If $\omega\in[0,1]$ is chosen, this is exactly a linear interpolation, also called relaxation towards equilibrium, which is the modeled effect of the collision we motivated in the beginning.
 This also explains the alternative name BGK-LBM of the \gls{srt}, after the inventors of the continuum analogue technique for the Boltzmann equation.
@@ -57,7 +57,7 @@ The factor $\frac{m}{k_B T}$ is constant and equal to the speed of sound $c_s$, 
   f_{ij}^{eq}(\rho,\vec{u}) = W_{ij}\rho
   \left[
     1
-    + 3\frac{\vec{c}_{ij} \cdot \vec{u}}{c_s^2}
+    + \frac{\vec{c}_{ij} \cdot \vec{u}}{c_s^2}
     + \frac{9}{2}\frac{{(\vec{c}_{ij} \cdot \vec{u})}^2}{c_s^4}
     - \frac{3}{2}\frac{\vec{u} \cdot \vec{u}}{c_s^2}
   \right],

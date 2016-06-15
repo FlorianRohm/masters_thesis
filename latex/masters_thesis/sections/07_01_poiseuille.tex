@@ -1,5 +1,5 @@
 % !TEX root = ../thesis.tex
-The first problem will be a so called Poiseuille flow, which is one of the simplest nontrivial cases in incompressible fluid dynamics.
+The first problem is a so called Poiseuille flow, which is one of the simplest nontrivial cases in incompressible fluid dynamics.
 It's a stationary flow in a pipe, driven by a pressure gradient through it.
 Due to the wall friction, this leads to a parabolic flow, which we will use as inflow condition.
 
@@ -11,13 +11,13 @@ Due to the wall friction, this leads to a parabolic flow, which we will use as i
 \end{figure}
 
 Figure~\ref{fig: poiseuille} shows a schematic of the setup.
-The test now examines the influence of the length of the channel\footnote{To be exact, the following lengths were simulated:\par
+The test examines the influence of the length of the channel\footnote{To be exact, the following lengths were simulated:\par
  $100,\ 95,\ 90,\ 85,\ 80,\ 75,\ 70,\ 65,\ 60,\ 55,\ 50,\ 45,\ 40,\ 35,\ 30,\ 25,\ 20,\ 15,\ 11,\ 9,\ 7,\ 5,\ 3$
 } on the velocity distribution in the middle column.
-The height was always chose to be $20$ cells.
+The height is always chose to be $20$ cells.
 
 As the \gls{lbm} is a mildly compressible scheme, the comparison with the incompressible, analytic results would not be very expressive.
-Indeed, if compared to the analytical result, the velocities were decreasing when choosing longer channels.
+Indeed, if compared to the analytical result, the velocities are decreasing when choosing longer channels.
 Instead, the difference between the velocities in the middle of the channel length is taken and summed up over the channel height.
 
 \begin{figure}

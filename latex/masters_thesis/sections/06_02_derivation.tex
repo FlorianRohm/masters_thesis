@@ -16,8 +16,7 @@ We see the term $\partial_t m_{10}^{(1)} $ which is the desired time derivative 
 which is the non-conserved term of the $x$-velocity, due to an external force.
 We can instantly simplify this equation by using the aliasing of moments\footnote{This is one of the few things which will go wrong, when going to a bigger stencil.
 In this case, we could expand $K_{30}^{eq}$ and seek to replace this term.
-In our case though, this is not needed.} for $m_{30}$, c.f.~\eqref{eq:aliasing of moments 1}\footnote{Keep in mind, that we rescaled the moments making the aliasing a one to one relationship without the $c$.}, and the identities~\eqref{eq: eq moments 21_1}
-and~\eqref{eq: eq moments 12_1} together with~\eqref{eq: first order invariant} to get
+In our case though, this is not needed.} for $m_{30}$, c.f.~\eqref{eq:aliasing of moments 1}\footnote{Keep in mind, that we rescaled the moments making the aliasing a one to one relationship without the $c$.}, and the identities~\eqref{eq: aliasing all} to get
 \begin{equation}
   \label{eq: start of momentum equation derivation}
   \begin{aligned}
@@ -47,9 +46,8 @@ and last but not least for $\alpha=1$, $\beta=1$
   \label{eq: auxiliaries 3 raw}
   \partial_t m_{11}^{\circ^{(0)}} + m_{11}^{\circ^{(2)}} =  m_{11}^{*^{(2)}} - \partial_x m_{21}^{*^{(1)}} - \partial_y m_{12}^{*^{(1)}}.
 \end{equation}
-We can reformulate equations~\eqref{eq: auxiliaries 1 raw} through~\eqref{eq: auxiliaries 3 raw} with the same equations like in the last section, namely the aliasing of moments~\eqref{eq:aliasing of moments 1}
-and~\eqref{eq:aliasing of moments 2} together with~\eqref{eq: eq moments 21_1}
-through~\eqref{eq: eq moments 12_1}, always keeping~\eqref{eq: first order invariant} in mind, to finally get
+We can reformulate equations~\eqref{eq: auxiliaries 1 raw} through~\eqref{eq: auxiliaries 3 raw} with the aliasing of moments~\eqref{eq:aliasing of moments 1}
+and~\eqref{eq:aliasing of moments 2} together with~\eqref{eq: aliasing all} to finally get
 \begin{alignat}{5}
   \label{eq: auxiliaries 1}
   m_{20}^{\circ^{(2)}} +&\, \partial_t c_s^2& m_{00}^{(0)} +&\, &\partial_x m_{10}^{(1)} +&\, c_s^2&\partial_y m_{01}^{(1)} &=  m_{20}^{*^{(2)}}&
@@ -269,7 +267,8 @@ We can take the partial derivative
 to see that those are precisely the second order convective terms of~\eqref{eq: navier stokes goal}.
 Additionally, the first line of equation~\eqref{eq: navier stokes skeleton 1} hosts the time derivative of the momentum density and the external force, which has to be normed by the density.
 
-Last but definitely not least, the pressure derivative is hidden in the density derivative $-c_s^2 \partial_x  m_{00}^{(2)}$ which is equal to the pressure at the local equilibrium.
+Last but definitely not least, the pressure derivative is hidden in the density derivative $-c_s^2 \partial_x  m_{00}^{(2)}$ as density is equal to the pressure at the local equilibrium up to the factor $c_s^2$.
+
 As the density is independent on the direction in both the equilibrium and non equilibrium case, we would like to set the pressure magnitude\footnote{Which is up to scaling $K_{20} + K_{02}$} also to the equilibrium.
 
 Turning to our second derivatives, we can cancel out the $\frac{1}{2\omega_6}(1+c_s^2)$ term with the help of equation~\eqref{eq: continuity derivative x} and hence we're safe to set $K_{20} + K_{02}$ to equilibrium via $\omega_6=1$.
@@ -344,12 +343,13 @@ The remaining terms with second order derivatives are with $c_s^2=\frac{1}{3}$
   \right),
 \end{align}
 where we again used the identity~\eqref{eq: continuity derivative x}.
+
 When choosing now $\omega_4=\omega_5$, we get, using the same identity
 \begin{align}
   \nonumber
   &\partial_{xx} m_{10}^{(1)} \frac{1}{3} \left(
     \frac{2}{\omega_5}
-    - \frac{1}{3\omega_4}
+    - \frac{1}{\omega_4}
     - \frac{1}{2}
   \right)
   + \partial_{yy} m_{10}^{(1)} \frac{1}{3}\left(
@@ -381,6 +381,7 @@ When choosing now $\omega_4=\omega_5$, we get, using the same identity
   + \partial_{yy} \frac{m_{10}^{(1)}}{m_{00}^{(0)}} + \frac{1}{3}\partial_{xy} \frac{m_{01}^{(1)}}{m_{00}^{(0)}}\right)
 \end{align}
 which is our desired diffusive term.
+
 Inserting this back in~\eqref{eq: navier stokes skeleton 1}, we get
 \begin{align}
   \nonumber
@@ -399,7 +400,7 @@ Inserting this back in~\eqref{eq: navier stokes skeleton 1}, we get
 + F_x^{(3)},
 \label{eq: navier stokes derived}
 \end{align}
-which is the anticipated $x$-direction of the compressible momentum equations.
+which is the first order of the anticipated $x$-direction of the compressible momentum equations.
 
 Here, the dynamic viscosity $\mu$ in~\eqref{eq: navier stokes goal} is represented by $\frac{m_{00}^{(0)}}{3}\left(\frac{1}{\omega_4} - \frac{1}{2}\right)$.
 The dynamic viscosity $\mu$  is related to the kinematic viscosity $\nu$ like $\nu\rho=\mu$.
@@ -412,7 +413,8 @@ Hence, our kinematic viscosity is
 \end{equation}
 just like in \gls{srt}.
 
-The next order of the equations is again trivially fulfilled as all terms are zero due to~\eqref{eq: kill even moments odd order} and~\eqref{eq: kill even moments odd order}, just like in equation~\eqref{eq: conti second order}, which makes the cumulant \gls{lbm} second order accurate.
+The next order of the equations is again trivially fulfilled as all terms are zero due to~\eqref{eq: kill even moments odd order} and~\eqref{eq: kill even moments odd order},
+just like in equation~\eqref{eq: conti second order}, which makes the cumulant \gls{lbm} second order accurate.
 
 One caveat dampens the mood however and should not be left unspoken.
 The main reason which makes compressible flows interesting is the link between pressure and temperature, the second of which cannot be represented in our lattice.
