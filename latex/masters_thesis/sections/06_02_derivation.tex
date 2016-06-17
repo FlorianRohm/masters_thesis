@@ -163,7 +163,7 @@ Hence, we get
   \begin{aligned}[t]
     &+ \partial_{xx} m_{10}^{(1)} \left(\frac{1}{2\omega_6}(1+c_s^2) + \frac{1}{2\omega_5} (1 - c_s^2)\right)
     \\&
-    + \partial_{xy} m_{01}^{(1)} \left(\frac{1}{2\omega_6}(1+c_s^2) + \frac{1}{2\omega_5} (c_s^2 - 1)\right),
+    + \partial_{xy} m_{01}^{(1)} \left(\frac{1}{2\omega_6}(1+c_s^2) + \frac{1}{2\omega_5} (c_s^2 - 1)\right).
   \end{aligned}
 \end{align}
 
@@ -253,6 +253,7 @@ and afterwards the final equations~\eqref{eq: auxiliaries 9} and~\eqref{eq: auxi
   .\label{eq: navier stokes skeleton 1}
 \end{align}
 This is good news so far.
+\todo{clarify pieces treated}
 We can take the partial derivative
 \begin{align}
   \label{eq: convective parts}
@@ -413,8 +414,9 @@ Hence, our kinematic viscosity is
 \end{equation}
 just like in \gls{srt}.
 
-The next order of the equations is again trivially fulfilled as all terms are zero due to~\eqref{eq: kill even moments odd order} and~\eqref{eq: kill even moments odd order},
+The next order of the equations is again trivially fulfilled as all terms are zero due to~\eqref{eq: kill even moments odd order} and~\eqref{eq: kill odd moments even order},
 just like in equation~\eqref{eq: conti second order}, which makes the cumulant \gls{lbm} second order accurate.
+\todo{something?}
 
 One caveat dampens the mood however and should not be left unspoken.
 The main reason which makes compressible flows interesting is the link between pressure and temperature, the second of which cannot be represented in our lattice.

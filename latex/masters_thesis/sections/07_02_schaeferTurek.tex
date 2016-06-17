@@ -30,21 +30,21 @@ Thus, any savings in spatial resolution will pay off greatly in the final comput
 
 Going over to the actual computation results, we find the situation depicted in Figure~\ref{fig: schaefer turek nrFluidVsDiff}.
 The x-Axis is chosen to depict the number of fluid cells, the y-Axis is centered around $0.0110$, the value  achieved in in the biggest resolution in~\cite{schafer1996benchmark}.
-At the lower end of the scales, the lift is quite unsteady, presumably caused by the still bad approximation of the cylinder.
-Going to the larger resolution, the cumulants are converging faster to the actual result.
+At low resolutions, the lift is quite unsteady, presumably caused by the still bad approximation of the cylinder.
+Going to the larger resolution, the Cumulants are converging faster to the benchmark result.
 
 \begin{figure}
 \centering
 \begin{subfigure}{.48\textwidth}
   \centering
   \includegraphics[width=\linewidth]{../figures/schaeferTurekLift_domainVsTime.pdf} % chktex 11
-  \caption{Relation between the size of the computational domain and the computation time for cumulants and SRT.}
+  \caption{Difference in computation time for Cumulants and SRT.}
 \label{fig: schaefer turek domain vs time}
 \end{subfigure}\hfill
 \begin{subfigure}{.48\textwidth}
   \centering
   \includegraphics[width=\linewidth]{../figures/schaeferTurekLift_performanceGap.pdf} % chktex 11
-  \caption{Percentage of raw additional time needed for cumulant collision versus SRT.}
+  \caption{Percentage of additional time needed for Cumulant versus SRT.}
 \label{fig: schaefer turek time percentage}
 \end{subfigure}
 \caption{Analysis of the difference in computation time. X-Axis is both times the number of fluid cells.}
