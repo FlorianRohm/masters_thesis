@@ -1,5 +1,5 @@
 % !TEX root = ../thesis.tex
-After looking at the general feasibility of the cumulant LBM scheme, we now turn our attention to a standard benchmark in fluid dynamics, Schaefer-Turek,~\cite{schafer1996benchmark}.
+After looking at the general feasibility of the Cumlants, we now turn our attention to a standard benchmark in fluid dynamics, Schaefer-Turek,~\cite{schafer1996benchmark}.
 There, the authors collected computations for various flows around cylinders and rectangles in $2$ and $3$ spatial dimensions under varying conditions and on different grids.
 
 \begin{figure}
@@ -29,9 +29,9 @@ Thus, any savings in spatial resolution will pay off greatly in the final comput
 \end{figure}
 
 Going over to the actual computation results, we find the situation depicted in Figure~\ref{fig: schaefer turek nrFluidVsDiff}.
-The x-Axis is chosen to depict the number of fluid cells, the y-Axis is centered around $0.0110$, the value  achieved in in the biggest resolution in~\cite{schafer1996benchmark}.
+The x-Axis is chosen to depict the number of fluid cells, the y-Axis is centered around $0.0110$, the value achieved with the biggest resolution in~\cite{schafer1996benchmark}.
 At low resolutions, the lift is quite unsteady, presumably caused by the still bad approximation of the cylinder.
-Going to the larger resolution, the Cumulants are converging faster to the benchmark result.
+Going to the larger resolution, the Cumulants are converging faster than \gls{srt} to the benchmark result.
 
 \begin{figure}
 \centering
@@ -55,10 +55,10 @@ This all sounds well, but we don't know yet if we sacrifice a whole lot of perfo
 Figure~\ref{fig: time analysis cumulant vs SRT} wants to shed a bit of light onto this topic, analyzing the different runtimes.
 We see that the cumulant method is indeed a bit slower, around $10-15\%$ to be more precise, which is not all that bad concerning how much transformation work has to be done.
 
-Nevertheless, we have to treat this not just with a bit of caution, but a whole lot.
+Nevertheless, we have to tr eat this not just with a bit of caution, but a whole lot.
 The implementation of both methods was done conscientious to not introduce major pitfalls and slowdowns.
 It cannot be ruled out though, that one method allows for more low level optimizations\footnote{Be it multithreading, vectorization or just algebraic restructuring.} than the other, tilting the result.
-However, a recent experimental implementation of the cumulants in the highly optimized \href{http://walberla.net/index.html}{waLBerla}\footnote{widely applicable Lattice Boltzmann from Erlangen} comparing it to the native SRT showed a drop in MLUPs\footnote{Mega-lattice-updates per second} of about $50\%$ which is honestly quite amazing for a comparison to an unoptimized code.
+However, a recent experimental implementation of the Cumulants in the highly optimized \href{http://walberla.net/index.html}{waLBerla}\footnote{widely applicable Lattice Boltzmann from Erlangen} showed a drop in MLUPs\footnote{Mega-lattice-updates per second} of about $50\%$ when compared to the native SRT, which is honestly quite amazing for a comparison to an unoptimized code.
 
 \begin{figure}
   \centering
@@ -67,7 +67,7 @@ However, a recent experimental implementation of the cumulants in the highly opt
 \label{fig: schaefer turek time difference}
 \end{figure}
 
-So, indeed it is reasonable to compare the methods normalized with their runtimes, which was done in Figure~\ref{fig: schaefer turek time difference}.
+So, indeed it is reasonable to compare the methods with their runtimes, which was done in Figure~\ref{fig: schaefer turek time difference}.
 Even here, the cumulant method features a much earlier convergence to the final result, despite the performance drop.
 
 

@@ -253,8 +253,9 @@ and afterwards the final equations~\eqref{eq: auxiliaries 9} and~\eqref{eq: auxi
   .\label{eq: navier stokes skeleton 1}
 \end{align}
 This is good news so far.
-\todo{clarify pieces treated}
-We can take the partial derivative
+
+To go further we will tackle the equation in separate parts.
+We start with the spatial derivatives on the left hand side and take the partial derivative
 \begin{align}
   \label{eq: convective parts}
   \partial_x \frac{ m_{10}^{{(1)}^2} }{m_{00}^{(0)}}
@@ -265,7 +266,7 @@ We can take the partial derivative
   + \frac{ m_{10}^{(1)}}{m_{00}^{(0)}}\partial_y m_{01}^{(1)}
   + m_{01}^{(1)}\partial_y \frac{ m_{10}^{(1)}}{m_{00}^{(0)}},
 \end{align}
-to see that those are precisely the second order convective terms of~\eqref{eq: navier stokes goal}.
+to see that those are precisely the second order convective   terms of~\eqref{eq: navier stokes goal}.
 Additionally, the first line of equation~\eqref{eq: navier stokes skeleton 1} hosts the time derivative of the momentum density and the external force, which has to be normed by the density.
 
 Last but definitely not least, the pressure derivative is hidden in the density derivative $-c_s^2 \partial_x  m_{00}^{(2)}$ as density is equal to the pressure at the local equilibrium up to the factor $c_s^2$.

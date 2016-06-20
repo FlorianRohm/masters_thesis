@@ -1,5 +1,5 @@
 % !TEX root = ../thesis.tex
-The first problem is a so called Poiseuille flow, which is one of the simplest nontrivial cases in incompressible fluid dynamics.
+The first problem examined is a so called Poiseuille flow, which is one of the simplest nontrivial cases in incompressible fluid dynamics.
 It's a stationary flow in a pipe, driven by a pressure gradient through it.
 Due to the wall friction, this leads to a parabolic flow, which we will use as inflow condition.
 
@@ -11,14 +11,14 @@ Due to the wall friction, this leads to a parabolic flow, which we will use as i
 \end{figure}
 
 Figure~\ref{fig: poiseuille} shows a schematic of the setup.
-The test examines the influence of the length of the channel\footnote{To be exact, the following lengths were simulated:\par
+The test examines the influence of the length of the channel\footnote{To be exact, the following lengths are simulated:\par
  $100,\ 95,\ 90,\ 85,\ 80,\ 75,\ 70,\ 65,\ 60,\ 55,\ 50,\ 45,\ 40,\ 35,\ 30,\ 25,\ 20,\ 15,\ 11,\ 9,\ 7,\ 5,\ 3$
 } on the velocity distribution in the middle column.
-The height is always chose to be $20$ cells.
+The height is always chosen to be $20$ cells.
 
-As the \gls{lbm} is a mildly compressible scheme, the comparison with the incompressible, analytic results would not be very expressive.
-Indeed, if compared to the analytical result, the velocities are decreasing when choosing longer channels.
-Instead, the difference between the velocities in the middle of the channel length is taken and summed up over the channel height.
+As the \gls{lbm} is a mildly compressible scheme, the comparison with the incompressible, analytic result would not be very expressive.
+Indeed, the velocities computed with either method are decreasing in comparison with the analytic result when choosing longer channels.
+Instead, the difference between the velocities of Cumlants and \gls{srt} in the middle of the channel length is taken and summed up over the channel height.
 
 \begin{figure}
   \centering
@@ -29,9 +29,10 @@ Instead, the difference between the velocities in the middle of the channel leng
 
 The result can be seen in Figure~\eqref{fig: poiseuille result}.
 Two things are remarkable here.
-First of all, the difference is below one percent of the inflow velocity which is a first sign, that this method is not completely off the track.
+First of all, the difference is below one percent of the inflow velocity which is a first sign, that the cummlant method is not completely off the track.
 
 Secondly, we can look at the nature of the difference.
-Here, we see that the velocity in the case of Cumulant was generally a bit more slowed down than \gls{srt}, which indicates, that the cumulant method treats the fluid a bit more compressible.
+Here, we see that the velocity in the case of Cumulants was generally a bit more slowed down than \gls{srt}, which indicates, that the cumulant method treats the fluid a bit more compressible.
 
-But as the difference is well below one percent, we move on to some more challenging tasks.
+We can conclude, that Cumulants give meaningful results in this case.
+To spot the different behavior of the two methods, we move on to some more challenging tasks.
