@@ -12,10 +12,12 @@ The convective form of the momentum equations reads
 \end{equation}
 where
 \begin{equation}
+  \label{eq: S}
   \mathbb{S} \defined \left({(D\vec{u})}^T + D\vec{u} - \frac{2}{3}\mathbb{I}\nabla\cdot\vec{u} \right)
 \end{equation}
 is the Cauchy-stress and the divergence of a matrix $M$ defined as
 \begin{equation}
+  \label{eq: divergence matrix}
   \nabla \cdot M \defined
   \begin{pmatrix}
     \partial_x M_{11} + \partial_y M_{21} \\
@@ -41,7 +43,7 @@ The resulting equations read now
     &= - \nabla p + \mu \nabla \cdot \mathbb{S} + \rho \vec{f},
 \end{alignat}
 using~\eqref{eq: continuity equation} to get equation~\eqref{eq:compressible NS isotherm reduced}, which will be used later.
-We take just the $x$-direction of~\eqref{eq:compressible NS isotherm} and insert the corresponding moments for the density $\rho$, velocity $\vec{u}$, pressure $p$ and momentum density $\vec{m}$ to get
+We take just the $x$-direction of~\eqref{eq:compressible NS isotherm} and insert the corresponding moments for the density $\rho$, velocity $\vec{u}$, pressure $p$ and momentum density $\vec{m}$ to get with~\eqref{eq: S} and~\eqref{eq: divergence matrix}
 \begin{equation}
   \label{eq: navier stokes goal}
   \begin{aligned}
@@ -58,4 +60,3 @@ We take just the $x$-direction of~\eqref{eq:compressible NS isotherm} and insert
             + \partial_{yy} \frac{m_{10}}{m_{00}} \right) + m_{00}f_x.
   \end{aligned}
 \end{equation}
-\todo[inline]{rechnung anhang?}
