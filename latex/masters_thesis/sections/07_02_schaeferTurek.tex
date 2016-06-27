@@ -12,7 +12,7 @@ There, the authors collected computations for various flows around cylinders and
 Figure~\ref{fig: schaeferTurek} gives an overview of the problem we examine.
 We have a channel flow at a low Reynolds number of $100$, similar to the Poiseuille flow.
 This time however, there is a cylinder placed slightly off the vertical center and exposed to the parabolic inflow.
-The quantity of interest is the lift it experiences\footnote{Forces are calculated via a momentum exchange, which is independent of the collision we use and thus not elaborated further.}.
+The quantity of interest is the lift said cylinder experiences\footnote{Forces are calculated via a momentum exchange, which is independent of the collision we use and thus not elaborated further.}.
 
 Again, a grid study is done, this time controlling the radius of the sphere and scaling the computational domain accordingly to preserve the ratios.
 This brings one caveat however:
@@ -55,7 +55,7 @@ This all sounds well, but we don't know yet if we sacrifice a whole lot of perfo
 Figure~\ref{fig: time analysis cumulant vs SRT} wants to shed a bit of light onto this topic, analyzing the different runtimes.
 We see that the cumulant method is indeed a bit slower, around $10-15\%$ to be more precise, which is not all that bad concerning how much transformation work has to be done.
 
-Nevertheless, we have to tr eat this not just with a bit of caution, but a whole lot.
+Nevertheless, we have to treat this not just with a bit of caution, but a whole lot.
 The implementation of both methods was done conscientious to not introduce major pitfalls and slowdowns.
 It cannot be ruled out though, that one method allows for more low level optimizations\footnote{Be it multithreading, vectorization or just algebraic restructuring.} than the other, tilting the result.
 However, a recent experimental implementation of the Cumulants in the highly optimized \href{http://walberla.net/index.html}{waLBerla}\footnote{widely applicable Lattice Boltzmann from Erlangen} showed a drop in MLUPs\footnote{Mega-lattice-updates per second} of about $50\%$ when compared to the native SRT, which is honestly quite amazing for a comparison to an unoptimized code.
