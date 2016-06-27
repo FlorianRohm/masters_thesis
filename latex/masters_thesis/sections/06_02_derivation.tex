@@ -21,10 +21,10 @@ In our case though, this is not needed.} for $m_{30}$, c.f.~\eqref{eq:aliasing o
   \label{eq: start of momentum equation derivation}
   \begin{aligned}
     \partial_t m_{10}^{(1)} & =
-    F_x^{(3)} - \partial_x \highlight{m_{20}^{*^{(2)}}} - \partial_y \highlight[green]{m_{11}^{*^{(2)}}} + \frac{1}{2}\partial_{xx} m_{10}^{(1)} + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}.
+    F_x^{(3)} - \partial_x \highlight{m_{20}^{*^{(2)}}} - \partial_y \highlight{m_{11}^{*^{(2)}}} + \frac{1}{2}\partial_{xx} m_{10}^{(1)} + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}.
   \end{aligned}
 \end{equation}
-This is already looking quite promising, but the green and red highlighted terms need some additional treatment.
+This is already looking quite promising, but the highlighted terms need some additional treatment.
 
 \subsubsection{Auxiliary equations}
 \label{subs:Auxiliary equations}
@@ -402,7 +402,7 @@ Inserting this back in~\eqref{eq: navier stokes skeleton 1}, we get
 + F_x^{(3)},
 \label{eq: navier stokes derived}
 \end{align}
-which is the first order of the anticipated $x$-direction of the compressible momentum equations.
+which is again the lowest possible order of the anticipated $x$-direction of the compressible momentum equations.
 
 Here, the dynamic viscosity $\mu$ in~\eqref{eq: navier stokes goal} is represented by $\frac{m_{00}^{(0)}}{3}\left(\frac{1}{\omega_4} - \frac{1}{2}\right)$.
 The dynamic viscosity $\mu$  is related to the kinematic viscosity $\nu$ like $\nu\rho=\mu$.
