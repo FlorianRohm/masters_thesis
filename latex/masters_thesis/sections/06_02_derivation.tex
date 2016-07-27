@@ -3,6 +3,7 @@ Following Section~\ref{sub: Deriving the continuity equation} we start with the 
 $\epsilon$ in~\eqref{eq: final nondimensionalised expansion series}, namely equation~\eqref{eq: third order in epsilon}.
 Taking $\alpha=1$ and $\beta=0$ we get
 \begin{equation}
+  \label{eq: derivation start}
   \begin{aligned}
      \partial_t m_{10}^{\circ^{(1)}} & =
     m_{10}^{*(3)} - m_{10}^{\circ{(3)}} - \partial_x m_{20}^{*^{(2)}} \\
@@ -11,19 +12,21 @@ Taking $\alpha=1$ and $\beta=0$ we get
 \end{equation}
 We see the term $\partial_t m_{10}^{(1)} $ which is the desired time derivative from the momentum equation and define
 \begin{equation}
+  \label{eq: definition f_x}
    F_x^{(3)}\defined m_{10}^{*(3)} - m_{10}^{\circ{(3)}}
 \end{equation}
 which is the non-conserved term of the $x$-velocity, due to an external force.
 We can instantly simplify this equation by using the aliasing of moments\footnote{This is one of the few things which will go wrong, when going to a bigger stencil.
 In this case, we could expand $K_{30}^{eq}$ and seek to replace this term.
-In our case though, this is not needed.} for $m_{30}$, c.f.~\eqref{eq:aliasing of moments 1}\footnote{Keep in mind, that we rescaled the moments making the aliasing a one to one relationship without the $c$.}, and the identities~\eqref{eq: aliasing all} to get
+In our case though, this is not needed.} for $m_{30}$, c.f.~\eqref{eq:aliasing of moments 1}\footnote{Keep in mind, that we rescaled the moments making the aliasing a one to one relationship without the $c$.}, the definition of $F_x$~\eqref{eq: definition f_x} and the identities~\eqref{eq: aliasing all} to get
 \begin{equation}
   \label{eq: start of momentum equation derivation}
   \begin{aligned}
     \partial_t m_{10}^{(1)} & =
-    F_x^{(3)} - \partial_x \highlight{m_{20}^{*^{(2)}}} - \partial_y \highlight{m_{11}^{*^{(2)}}} + \frac{1}{2}\partial_{xx} m_{10}^{(1)} + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}.
+    F_x^{(3)} - \partial_x \highlight{m_{20}^{*^{(2)}}} - \partial_y \highlight{m_{11}^{*^{(2)}}} + \frac{1}{2}\partial_{xx} m_{10}^{(1)} + \frac{c_s^2}{2} \partial_{yy} m_{10}^{(1)} + c_s^2\partial_{xy} m_{01}^{(1)}
   \end{aligned}
 \end{equation}
+from~\eqref{eq: derivation start}.
 This is already looking quite promising, but the highlighted terms need some additional treatment.
 
 \subsubsection{Auxiliary equations}
@@ -100,10 +103,11 @@ respectively
 
 The same procedure is now applied to equation~\eqref{eq: auxiliaries 3} with the corresponding collision~\eqref{eq: collide moments 11_2} to get
 \begin{align}
-  \label{eq: auxiliaries 8}
+  \nonumber
   &m_{11}^{\circ^{(2)}} + \partial_t m_{11}^{(0)} + c_s^2\partial_x m_{01}^{(1)} + c_s^2\partial_y m_{10}^{(1)} =  (1-\omega_4)m_{11}^{(2)} + \omega_4 \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
   \\
   \equivalent\quad
+  \label{eq: auxiliaries 8}
   &m_{11}^{\circ^{(2)}}
   =
   \frac{ m_{10}^{(1)}m_{01}^{(1)}}{m_{00}^{(0)}}
@@ -269,7 +273,7 @@ We start with the spatial derivatives on the left hand side and take the partial
 to see that those are precisely the second order convective   terms of~\eqref{eq: navier stokes goal}.
 Additionally, the first line of equation~\eqref{eq: navier stokes skeleton 1} hosts the time derivative of the momentum density and the external force, which has to be normed by the density.
 
-Last but definitely not least, the pressure derivative is hidden in the density derivative $-c_s^2 \partial_x  m_{00}^{(2)}$ as density is equal to the pressure at the local equilibrium up to the factor $c_s^2$.
+Last but definitely not least, the pressure derivative is hidden in the density derivative $-c_s^2 \partial_x  m_{00}^{(2)}$ as density is equal to the pressure at the local equilibrium up to the factor $c_s^2$, c.f.~\eqref{eq: pressure density connection quantities}.
 
 As the density is independent on the direction in both the equilibrium and non equilibrium case, we would like to set the pressure magnitude\footnote{Which is up to scaling $K_{20} + K_{02}$} also to the equilibrium.
 
@@ -384,7 +388,7 @@ When choosing now $\omega_4=\omega_5$, we get, using the same identity
 \end{align}
 which is our desired diffusive term.
 
-Inserting this back in~\eqref{eq: navier stokes skeleton 1}, we get
+Inserting all of this back in~\eqref{eq: navier stokes skeleton 1}, we get
 \begin{align}
   \nonumber
 & \partial_t m_{10}^{(1)}
@@ -407,12 +411,12 @@ which is again the lowest possible order of the anticipated $x$-direction of the
 Here, the dynamic viscosity $\mu$ in~\eqref{eq: navier stokes goal} is represented by $\frac{m_{00}^{(0)}}{3}\left(\frac{1}{\omega_4} - \frac{1}{2}\right)$.
 The dynamic viscosity $\mu$  is related to the kinematic viscosity $\nu$ like $\nu\rho=\mu$.
 Hence, our kinematic viscosity is
-\begin{equation}
+\begin{equation*}
   \nu = \frac{1}{3}\left(
       \frac{1}{\omega_4}
       - \frac{1}{2}
     \right),
-\end{equation}
+\end{equation*}
 just like in \gls{srt}.
 
 The next order of the equations is again trivially fulfilled as all terms are zero due to~\eqref{eq: kill even moments odd order} and~\eqref{eq: kill odd moments even order},

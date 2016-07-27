@@ -8,10 +8,9 @@ On the other side, we will see in this chapter that the way from central moments
 As described in~\eqref{eq: central moments continuous} and thereafter, central moments are equal to our normal moments, when we move our frame of reference with the flow velocity.
 Hence, we can alter~\eqref{eq:Definition of f xi} to represent the particle distributions relative to the macroscopic flow velocity $\vec{u}=\begin{pmatrix}u_1\\u_2\end{pmatrix}$\footnote{Depending on the use case we will index $\vec{u}$ with $x$ and $y$ or $1$ and $2$.
 Both indexing schemes mean the same, the first one is more intuitive for the physical picture, the other one is better suited for calculations.} as
-\begin{equation}
-  \label{eq:Definition of f c xi}
+\begin{equation*}
   f^{central}(\vec{\xi}) \defined \sum_{i,j} f_{ij}\delta((ic - u_1) - \xi_1)\delta((jc - u_2) -\xi_2) .
-\end{equation}
+\end{equation*}
 Like in~\eqref{eq:Definition of F}, we can write the moment generating function $F^{central}$ of this distribution as
 \begin{equation}
   \label{eq: Definition of centralized F}
@@ -22,8 +21,7 @@ Like in~\eqref{eq:Definition of F}, we can write the moment generating function 
   \end{aligned}
 \end{equation}
 Unsurprisingly, the Taylor expansion of $F^{central}$ yields, using equations~\eqref{eq: density definition} through~\eqref{eq: y velocity definition} and the definition of central moments~\eqref{eq: central moment definition}
-\begin{equation}
-  \label{eq: taylor of Fc}
+\begin{equation*}
   \begin{aligned}
     F^{central}(\Xi_1, \Xi_2) & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F^{central}(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \Bigg(
@@ -38,19 +36,18 @@ Unsurprisingly, the Taylor expansion of $F^{central}$ yields, using equations~\e
       \sum_{i,j} {\left(ic - \frac{m_{10}}{m_{00}}\right)}^\alpha {\left(jc - \frac{m_{01}}{m_{00}}\right)}^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} c_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta
   \end{aligned}
-\end{equation}
+\end{equation*}
 %
 and thus, the central moments can be represented by
-\begin{equation}
-  \label{eq: alternative representation of central moments}
+\begin{equation*}
   c_{\alpha\beta} = \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F^{central}(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0}.
-\end{equation}
+\end{equation*}
 
 Instead of starting at the definition of cumulants like in Section~\ref{sub: Cumulants from moments} and looking for central moments, it will be easier to do it the other way around.
 For this, Markus Muhr provided a trick in writing~\eqref{eq: Definition of centralized F} as
-\begin{equation}
+\begin{equation*}
   F^{central}(\Xi_1, \Xi_2) = \exp(\ln(F(\Xi_1,\Xi_2)) - \Xi_1 u_1 - \Xi_2 u_2),
-\end{equation}
+\end{equation*}
 which will simplify the following calculations.
 In addition to the abbreviations in~\eqref{eq: abbreviations for deriving cumulants from moments}, we define the following
 \begin{equation}
@@ -61,21 +58,21 @@ In addition to the abbreviations in~\eqref{eq: abbreviations for deriving cumula
   \end{aligned}
 \end{equation}
 and therefore
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     \partial_i E & = EL_i \\
     \partial_i L_j & = \partial_i\partial_j\ln(F)
   \end{aligned}
-\end{equation}
+\end{equation*}
 and using equations~\eqref{eq: definition of kappa_10} and~\eqref{eq: x velocity definition}
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     L_1\bigr|_{\Xi_1=\Xi_2 = 0} & = \bigg(
       \underbrace{ \partial_1\ln(F) \bigr|_{\Xi_1=\Xi_2 = 0}}_{ = \kappa_{10} = \frac{m_{10}}{m_{00}}}
       - \underbrace{u_1}_{ = \frac{m_{10}}{m_{00}}} \bigg) = 0 \\
     L_2\bigr|_{\Xi_1=\Xi_2 = 0} & = 0.
   \end{aligned}
-\end{equation}
+\end{equation*}
 From there on, we can express the first order central moments to get
 \begin{align*}
   \phantom{c_{00}}

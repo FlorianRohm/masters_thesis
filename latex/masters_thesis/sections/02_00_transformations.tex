@@ -16,10 +16,10 @@ using the Diraque delta distribution\footnote{For a quick overview, please refer
 \end{equation}
 Albeit not a function in the classical sense, we will use $f(\vec{\xi})$ only within an integral expression so we don't get any ambiguity.
 To get the moment generating function from a density distribution, we have to introduce an integral transformation $\mathcal{L}$, c.f.~\cite{weissteinMGF}, similar to the two sided Laplace transformation\footnote{Found for example at~\cite{weissteinLaplace}.}, defined as
-\begin{equation}
+\begin{equation*}
   \label{eq: Definition of integral transformation}
   \mathcal{L}[g](\vec{\Xi}) \defined \int_{\R^n} g(\vec{\xi}) e^{\vec{\Xi} \cdot \vec{\xi}}d\vec{\xi}.
-\end{equation}
+\end{equation*}
 
 With the help of this transformation, we get the moment generating function $F$ of our \glspl{pdf}
 \begin{equation}
@@ -33,7 +33,7 @@ With the help of this transformation, we get the moment generating function $F$ 
 \end{equation}
 using equation~\eqref{eq: diraque feature}.
 Using the Taylor expansion of $F$ and the original definition of moments,~\eqref{eq: moment definition}, we get
-\begin{equation}
+\begin{equation*}
   \label{eq: taylor of F}
   \begin{aligned}
     F(\Xi_1, \Xi_2) & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} \frac{\partial^\alpha\partial^\beta}{{(\partial \Xi_1)}^\alpha{(\partial \Xi_2)}^\beta} F(\Xi_1, \Xi_2)\Bigr|_{\Xi_1=\Xi_2 = 0} \Xi_1^\alpha \Xi_2^\beta \\
@@ -45,7 +45,7 @@ Using the Taylor expansion of $F$ and the original definition of moments,~\eqref
     \sum_{i,j} {(ic)}^\alpha {(jc)}^\beta f_{ij} \Xi_1^\alpha \Xi_2^\beta \\
     & = \sum_{\alpha,\beta} \frac{1}{\alpha!\beta!} m_{\alpha\beta} \Xi_1^\alpha \Xi_2^\beta
   \end{aligned}
-\end{equation}
+\end{equation*}
 and hence
 \begin{equation}
   \label{eq: alternative representation of moments}

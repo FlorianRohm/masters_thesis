@@ -18,12 +18,12 @@ in the inner region and a potential vortex\footnote{The vorticity of a potential
   \centering
   \input{tikz/rankine.tex}
   \caption{$y$-velocity}
-\label{fig: rankine}
+\label{fig: rankine velocity}
 \end{subfigure}%
 \begin{subfigure}[b]{.5\textwidth}
   \centering
   \input{tikz/rankine_vorticity.tex}
-  \caption{Vorticity}
+  \caption{vorticity}
 \label{fig: rankine vorticity}
 \end{subfigure}
 \caption{Cut through the middle of a Rankine vortex.
@@ -31,7 +31,7 @@ The inner part is a rigid body vortex with constant vorticity, whereas the outer
 \label{fig: rankine}
 \end{figure}
 
-Figure~\ref{fig: rankine} shows the $y$ component of the velocity when cutting through a Rankine vortex at $y=0$, the $x$ component is zero.
+Figure~\ref{fig: rankine} shows the $y$ component of the velocity and the vorticity when cutting through a Rankine vortex at $y=0$, the $x$ component is zero.
 A more thorough treatment can be found for example in~\cite{giaiotti2006rankine}.
 
 \begin{figure}
@@ -55,15 +55,15 @@ Secondly, the vortices will orbit each other and eventually merge, resulting in 
 
 Our goal is now to track the evolution of the vortices and measure when they merge.
 To achieve this, we will track the evolution of the enstrophy $\mathcal{E}$, defined as the mean square vorticity
-\begin{equation}
+\begin{equation*}
   \label{eq: enstrophy}
   \mathcal{E} \defined \frac{1}{2}\int_{\Omega} \omega^2 \text{dx}
-\end{equation}
+\end{equation*}
 where $\Omega$ is the computational domain and $\omega$ is the vorticity\footnote{Unfortunately, $\omega$ is the common notation for vorticity. Not to be confused with the relaxation parameters from the previous sections}, computed as
-\begin{equation}
+\begin{equation*}
   \label{eq: vorticity}
   \omega \defined \partial_x u_y - \partial_y u_x
-\end{equation}
+\end{equation*}
 in the two-dimensional setting.
 
 \subsubsection{Results}

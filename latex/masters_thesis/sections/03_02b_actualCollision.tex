@@ -5,13 +5,12 @@ We will do again a linear interpolation between our values and their equilibrium
 As we will leave out most of them anyway, they are named in order of appearance as $\omega_{i}$.
 When working with bigger stencils or in 3D though, the original notation will be more intuitive.}
 \footnote{Like in Section~\eqref{sub: Stream and Collide}, we distinguish strongly between pre-collision $^\circ$, post-collision $^*$ and equilibrium $^{eq}$.}
-\begin{equation}
+\begin{equation*}
   \kappa_{\alpha\beta}^* \defined \kappa_{\alpha\beta}^{\circ} + \omega_i \left( \kappa_{\alpha\beta}^{eq} - \kappa_{\alpha\beta}^{\circ} \right).
-\end{equation}
+\end{equation*}
 This time though, we have no need to restrict ourselves to just one parameter, but can chose one for each cumulant.
 Hence, using~\eqref{eq: equilibrium cumulants} and using not the native $\kappa_{20}$ and $\kappa_{02}$ but the linear combinations from~\eqref{eq: altered cumulants 20 and 02} we get the post collision cumulants $\kappa_{\alpha\beta}^*$
-\begin{equation}
-  \label{eq: post equilibrium cumulants}
+\begin{equation*}
   \begin{aligned}
     \kappa_{00}^{*} & = \kappa_{00}^{\circ}+ \omega_1 \left( \ln(\rho) - \kappa_{00}^{\circ}\right) \\
     \kappa_{10}^{*} & = \kappa_{10}^{\circ}+ \omega_2 \left( u_1 - \kappa_{10}^{\circ}\right) \\
@@ -25,7 +24,7 @@ Hence, using~\eqref{eq: equilibrium cumulants} and using not the native $\kappa_
     \kappa_{12}^{*} & = \kappa_{12}^{\circ}+ \omega_8 \left( - \kappa_{12}^{\circ}\right) \\
     \kappa_{22}^{*} & = \kappa_{22}^{\circ}+ \omega_9 \left( - \kappa_{22}^{\circ}\right)
   \end{aligned}
-\end{equation}
+\end{equation*}
 which can be simplified to
 \begin{equation}
   \label{eq: collision final before simplification}
@@ -61,7 +60,7 @@ using equations~\eqref{eq: definition of kappa_00} to~\eqref{eq: definition of k
   \end{aligned}
 \end{equation}
 The recovered post equilibrium values $\kappa_{20}^{*}$ and $\kappa_{02}^{*}$ can now be calculated
-\begin{equation}
+\begin{equation*}
   \begin{pmatrix}
     \kappa_{20}^{*} \\
     \kappa_{02}^{*}
@@ -74,14 +73,14 @@ The recovered post equilibrium values $\kappa_{20}^{*}$ and $\kappa_{02}^{*}$ ca
     a\\
     b
   \end{pmatrix}
-\end{equation}
+\end{equation*}
 where
-\begin{equation}
+\begin{equation*}
  \begin{aligned}
    a \defined \kappa_{20}^{*} - \kappa_{02}^{*}
      & = (1-\omega_5) (\kappa_{20}^{\circ}- \kappa_{02}^{\circ}) \\
    b \defined \kappa_{20}^{*} + \kappa_{02}^{*}
      & = (1-\omega_6)(\kappa_{20}^{\circ} + \kappa_{02}^{\circ}) + \omega_6 2 c_s^2,
  \end{aligned}
-\end{equation}
+\end{equation*}
 and analogously for the normalized form.

@@ -5,7 +5,7 @@ Not all of them will be used in the derivation of the Navier-Stokes equations, b
 \subsection{\texorpdfstring{$K_{20}$}{K 20} and \texorpdfstring{$K_{02}$}{K 02}}
 \label{sub: K 20}
 Going on to $K_{20}$, we start at equation~\eqref{eq: K 20 from moments} and get in the same fashion as for equations~\eqref{eq: first expansion} and following, using the expanded geometric series~\eqref{eq: expand g}
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     K_{20}  = &\ m_{20} - \frac{m_{10}^2}{m_{00}}\\
     \Leftrightarrow
@@ -15,30 +15,30 @@ Going on to $K_{20}$, we start at equation~\eqref{eq: K 20 from moments} and get
         {m_{00}^{(0)}}
     \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)
   \end{aligned}
-\end{equation}
+\end{equation*}
 As before, the zeroth and first order terms of the cumulant and corresponding moment coincide, where the latter one is again $0$. In formulas it reads
-\begin{equation}
+\begin{equation*}
   K_{20}^{(0)} = m_{20}^{(0)},
-\end{equation}
+\end{equation*}
 and
-\begin{equation}
+\begin{equation*}
   K_{20}^{(1)} = m_{20}^{(1)} = 0.
-\end{equation}
+\end{equation*}
 
 For the second order terms, we get
-\begin{equation}
+\begin{equation*}
   K_{20}^{(2)} = m_{20}^{(2)} - \frac{ m_{10}^{{(1)}^2}}{m_{00}^{(0)}},
-\end{equation}
+\end{equation*}
 and consequently by symmetry
-\begin{equation}
+\begin{equation*}
   K_{02}^{(2)} = m_{02}^{(2)} - \frac{ m_{01}^{{(1)}^2}}{m_{00}^{(0)}}.
-\end{equation}
+\end{equation*}
 
 \subsection{\texorpdfstring{$K_{21}$}{K 21} and \texorpdfstring{$K_{12}$}{K 12}}
 \label{sub: K 21}
 As before, we take the defining equation for the normalized cumulant, in this case~\eqref{eq: K 21 from moments}, and plug in all expansions with the denominator handled again with the auxiliary function $g$, c.f.~\eqref{eq: expand g}.
 
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     K_{21} = &\ m_{21} - \frac{m_{20}m_{01}}{m_{00}}
          - 2\frac{m_{10}m_{11}}{m_{00}} + 2\frac{m_{10}^2 m_{01}}{m_{00}^2}
@@ -59,27 +59,27 @@ As before, we take the defining equation for the normalized cumulant, in this ca
           \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)
         }^2
    \end{aligned}
-\end{equation}
+\end{equation*}
 Collecting the zeroth order terms, we find again the direct relation between cumulants and moments
-\begin{equation}
+\begin{equation*}
   K_{21}^{(0)} = m_{21}^{(0)} = 0.
-\end{equation}
+\end{equation*}
 
 In contrary to the aforementioned, the first order expansions differ:
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     K_{21}^{(1)} = &\ m_{21}^{(1)}
     - \frac{m_{20}^{(0)} m_{01}^{(1)}}{m_{00}^{(0)}}
     - 2\frac{m_{10}^{(1)} m_{11}^{(0)}}{m_{00}^{(0)}}
   \end{aligned}
-\end{equation}
+\end{equation*}
 
 Going over to the second orders, we get
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     K_{21}^{(2)} = &\ m_{21}^{(2)} = 0,
   \end{aligned}
-\end{equation}
+\end{equation*}
 as every combination we can choose either gets an even moment with odd order or the other way.
 
 \subsection{\texorpdfstring{$K_{22}$}{K 22}}
@@ -127,18 +127,18 @@ The procedure is now well known,~\eqref{eq: K 22 from moments} is expanded into 
    {\left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right)}^3
 \end{align*}
 This time, even the zeroth order moment differs from the cumulant,
-\begin{equation}
+\begin{equation*}
   K_{22}^{(0)}
   = m_{22}^{(0)} - \frac{ m_{20}^{(0)} m_{02}^{(0)} }{m_{00}^{(0)}} - 2\frac{ m_{11}^{{(0)}^2}  }{m_{00}^{(0)}}
- \end{equation}
+\end{equation*}
 and the first order results in
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     K_{22}^{(1)} = m_{22}^{(1)} =  0.
   \end{aligned}
-\end{equation}
+\end{equation*}
 Back over at the second order, we again get more terms
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     K_{22}^{(2)}
     = &\
@@ -157,7 +157,7 @@ Back over at the second order, we again get more terms
     + 2 \frac{ m_{01}^{{(1)}^2} m_{20}^{(0)} }{m_{00}^{{(0)}^2}}
     + 8 \frac{ m_{10}^{(1)}m_{01}^{(1)} m_{11}^{(0)} }{m_{00}^{{(0)}^2}}
   \end{aligned}
-\end{equation}
+\end{equation*}
 
 The complete list reads for now
 \begin{align}

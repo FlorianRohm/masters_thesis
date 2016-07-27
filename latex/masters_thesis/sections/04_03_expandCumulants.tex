@@ -15,21 +15,21 @@ We can reformulate~\eqref{eq: K 11 from moments} like
 \end{equation}
 We have to stop here and cope with the denominator first.
 In writing
-\begin{equation}
+\begin{equation*}
   \frac{1}{\sum_{i=0}^\infty \epsilon^i m_{00}^{(i)}}=
   \frac{1}{m_{00}^{(0)}}
   \frac{1}{1 - \sum_{i=1}^\infty \epsilon^i \frac{ - m_{00}^{(i)}}{ m_{00}^{(0)}}}.
-\end{equation}
+\end{equation*}
 
 we prepared the denominator to be written as a geometric series.
 This is valid as long as we assume $\epsilon$ to be `small enough' to ensure\footnote{Originally, we would need the absolute value, but as we don't have negative densities we can leave it out.}
-\begin{align}
+\begin{align*}
   &\sum_{i=1}^\infty \epsilon^i \frac{ m_{00}^{(i)}}{ m_{00}^{(0)}}  < 1
   \\
-  \equivalent& \sum_{i=1}^\infty \epsilon^i  m_{00}^{(i)} < m_{00}^{(0)}
+  \equivalent\quad& \sum_{i=1}^\infty \epsilon^i  m_{00}^{(i)} < m_{00}^{(0)}
   \\
-  \equivalent& m_{00} < 2 m_{00}^{(0)},
-\end{align}
+  \equivalent\quad& m_{00} < 2 m_{00}^{(0)},
+\end{align*}
 
 Hence, we need fluctuations in density up to two times the mean value to violate the assumption, which is definitely possible in medium to high compressible flows.
 As we do not incorporate temperature due to the small stencil, we are restricted to mildly compressible phenomena anyways and hence we don't get any problems with this assumptions.
@@ -56,7 +56,7 @@ Expanding this term and using the even and odd order properties of equation~\eqr
 Now we finally analyze the cumulant $K_{11}$.
 Restarting at equation~\eqref{eq: first expansion} and inserting equations~\eqref{eq: definition of g} and~\eqref{eq: expand g}, we get
 
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     \sum_{i=0}^\infty \epsilon^i K_{11}^{(i)}
     & = \sum_{i=0}^\infty \epsilon^i m_{11}^{(i)} -
@@ -75,19 +75,19 @@ Restarting at equation~\eqref{eq: first expansion} and inserting equations~\eqre
       {m_{00}^{(0)}}
   \left(1 - \epsilon^2 \frac{m_{00}^{(2)}}{m_{00}^{(0)}}  + O(\epsilon^3)\right).
 \end{aligned}
-\end{equation}
+\end{equation*}
 Collecting all zeroth order terms, we get using~\eqref{eq: zeroth order velocity zero}
-\begin{equation}
+\begin{equation*}
   K_{11}^{(0)} = m_{11}^{(0)} - \frac{m_{01}^{(0)}m_{10}^{(0)}}{m_{00}^{(0)}} =  m_{11}^{(0)}.
-\end{equation}
+\end{equation*}
 Analogously, for first order terms,
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     K_{11}^{(1)} & = m_{11}^{(1)} - \frac{m_{01}^{(0)}m_{10}^{(1)}+m_{01}^{(1)}m_{10}^{(0)}}{m_{00}^{(0)}}
     \\
     &= m_{11}^{(1)} = 0
   \end{aligned}
-\end{equation}
+\end{equation*}
 holds.
 Thus, the normalized cumulant $K_{11}$ is equal to the corresponding moment at order zero and one.
 

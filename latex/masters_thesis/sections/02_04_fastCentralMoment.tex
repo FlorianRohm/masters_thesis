@@ -6,14 +6,14 @@ The straight forward calculation will take $9$ summations for each central momen
 Keep in mind, that this has to be done in every cell and every timestep, so any savings we can get, will pay off greatly.
 
 Therefore, we split~\eqref{eq: central moment definition velocities} to get
-\begin{equation}
+\begin{equation*}
   \begin{aligned}
     c_{\alpha\beta}
     & = \sum_{ij} {\left(ic-u_1\right)}^\alpha {\left(jc-u_2\right)}^\beta f_{ij} \\
     & = \sum_{i} {\left(ic-u_1\right)}^\alpha \underbrace{\sum_{j} {\left(jc-u_2\right)}^\beta f_{ij}}_{\defines c_{i|\beta}} \\
     & = \sum_{i} {\left(ic-u_1\right)}^\alpha c_{i|\beta}.
   \end{aligned}
-\end{equation}
+\end{equation*}
 Thus, by first computing the $c_{i|\beta}$ for all $\beta$ and $i$ we need $27$ (three for the inner sum times nine for the count) summations, which gets doubled by the same amount of calculations for the $c_{\alpha\beta}$.
 This yields a total of $54$ calculations, with the original count being $81$.
 This is a reduction of one third; not bad for such a small calculation.
@@ -80,6 +80,7 @@ Of course, we also need to get the backward direction.
 Thanks to the preliminary work of writing the transformation as two matrix-vector transformations, this is as easy as inverting those matrices.
 In our case,~\eqref{eq: fast forward c alpha beta matrix} becomes\footnote{c.f.\ mathematica/backward\_transformation.nb}
 \begin{equation}
+  \label{eq:fast backward c i pipe beta matrix}
   \begin{pmatrix}
     c_{-1|\beta} \\
     c_{0|\beta} \\
@@ -106,6 +107,7 @@ In our case,~\eqref{eq: fast forward c alpha beta matrix} becomes\footnote{c.f.\
 \end{equation}
 and~\eqref{eq:fast forward c i pipe beta matrix} analogously
 \begin{equation}
+  \label{eq:fast backward f i pipe beta matrix}
   \begin{pmatrix}
     f_{i(-1)} \\
     f_{i0} \\
