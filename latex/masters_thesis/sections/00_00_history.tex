@@ -1,6 +1,6 @@
 %!TEX root = ../thesis.tex
 
-The \gls{lbm} is a vital part of todays \gls{cfd} landscape, despite being relatively new.
+The \gls{lbm} is a vital part of today's \gls{cfd} landscape, despite being relatively new.
 It's competing with Finite-Elements/Volumes/Differences methods even in the conservative field of commercial fluid dynamics software.
 But how did this meteoric rise happen?
 
@@ -40,4 +40,6 @@ The rise of \gls{lbm} was accompanied by the trend of supercomputers to scale no
 As motivated at the end of Section~\ref{sub: Stream and Collide}, \gls{lbm} is a near perfect scheme for parallel computing, which is one of the main factors for its popularity.
 
 From there on, schemes were invented which use two or more relaxation times and relax not the raw particle distributions, but statistical values derived from said distributions, e.g.\ moments or centralized moments.
-The last incarnation of this trend is the usage of cumulants in the collision, which was proposed by Geier et al.,~\cite{geier2015cumulant}, just last year and is analyzed in this thesis.
+
+The last incarnation of this trend is the usage of cumulants in the collision, which was proposed by Geier et al.,~\cite{geier2015cumulant}, just last year.
+In contrary to the three dimensional analysis conducted in the paper, this thesis will focus on the two dimensional counterpart and analyze it.
