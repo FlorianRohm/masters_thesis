@@ -1,9 +1,10 @@
 % !TEX root = ../../thesis.tex
 
 \begin{tikzpicture}
+  \definecolor{mathematicaBlue}{rgb}{0.368417, 0.506779, 0.709798}
   \begin{axis}[
-  axis x line=center,
-  axis y line=center,
+  axis x line=center, color=gray,
+  axis y line=center, color=gray,
   xtick={-1,...,1},
   ytick={0,1},
   xmin=-5.5,
@@ -12,18 +13,18 @@
   ymax=1.5,
   x post scale=1,
   y post scale=0.7,
-  xlabel=$x$,
-  ylabel=$vorticity$,
+  xlabel=$\mbox{\small{\textit{x}}}$,
+  ylabel=$\mbox{\small{\textit{vorticity}}}$,
   samples=200]
 
-  \addplot[blue,thick,domain=1:5] {0};
-  \addplot[blue,thick,domain=-5:-1] {0};
-  \addplot[blue,thick,domain=-1:1] {1};
-  \addplot[color=blue, thick,dashed] coordinates {
+  \addplot[color=mathematicaBlue,thick,domain=1:5] {0};
+  \addplot[color=mathematicaBlue,thick,domain=-5:-1] {0};
+  \addplot[color=mathematicaBlue,thick,domain=-1:1] {1};
+  \addplot[color=mathematicaBlue, thick,dashed] coordinates {
                     (1, 0)
                     (1,1)
                 };
-  \addplot[color=blue, thick,dashed] coordinates {
+  \addplot[color=mathematicaBlue, thick,dashed] coordinates {
                     (-1, 0)
                     (-1,1)
                 };
