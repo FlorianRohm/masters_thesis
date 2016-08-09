@@ -1,3 +1,13 @@
+#!/usr/bin/python
+# Copyright (C) 2013 FlowKit Ltd, Lausanne, Switzerland
+# E-mail contact: contact@flowkit.com
+#
+# This program is free software: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License, either
+# version 3 of the License, or (at your option) any later version.
+#
+# Rewrite, extension and bugfixes by Florian Rohm, 2015
+
 from numpy import *
 
 
