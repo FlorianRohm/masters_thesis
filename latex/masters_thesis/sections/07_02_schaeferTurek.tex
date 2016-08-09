@@ -21,7 +21,7 @@ Hence, for double the resolution in each of the spatial dimensions, we don't nee
 Thus, any savings in spatial resolution will pay off greatly in the final computation times.
 
 
-\begin{figure}
+\begin{figure}[h!]
   \centering
   \includegraphics[width=\linewidth]{../figures/schaeferTurekLift_nrFluidVsDiff.pdf} % chktex 11
   \caption{Difference between the lift force of a sphere in relation to the computational domain.}
@@ -57,7 +57,7 @@ We see that the cumulant method is indeed a bit slower, around $10-15\%$ to be m
 
 Nevertheless, we have to treat this not just with a bit of caution, but a whole lot.
 The implementation of both methods was done conscientious to not introduce major pitfalls and slowdowns.
-It cannot be ruled out though, that one method allows for more low level optimizations\footnote{Be it multithreading, vectorization or just algebraic restructuring.} than the other, tilting the result.
+It cannot be ruled out though, that one method allows for more low level optimizations\footnote{Be it multithreading, vectorization or algebraic restructuring.} than the other, tilting the result.
 However, a recent experimental implementation of the Cumulants in the highly optimized \href{http://walberla.net/index.html}{waLBerla}\footnote{widely applicable Lattice Boltzmann from Erlangen} showed a drop in MLUPs\footnote{Mega-lattice-updates per second} of about $50\%$ when compared to the native SRT, which is honestly quite amazing for a comparison to an unoptimized code.
 
 \begin{figure}
