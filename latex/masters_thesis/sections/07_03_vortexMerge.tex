@@ -12,7 +12,7 @@ It is an idealized model of a vortex, satisfying the Navier-Stokes equations, c.
 in the inner region and a potential vortex\footnote{The vorticity of a potential vortex is equal to the delta distribution $\delta$, c.f.~\eqref{eq: diraque feature}, the graph of the velocity is hyperbolic.} in the outer region.
 
 
-\begin{figure}
+\begin{figure}[h!]
 \centering
 \begin{subfigure}[b]{.5\textwidth}
   \centering
@@ -32,7 +32,7 @@ The inner part is a rigid body vortex with constant vorticity, whereas the outer
 \end{figure}
 
 Figure~\ref{fig: rankine} shows the $y$ component of the velocity and the vorticity when cutting through a Rankine vortex at $y=0$, the $x$ component is zero.
-A more thorough treatment can be found for example in~\cite{giaiotti2006rankine}.
+A more thorough treatment can be found in~\cite{giaiotti2006rankine} amongst others.
 
 \begin{figure}
   \centering
@@ -59,7 +59,7 @@ To achieve this, we will track the evolution of the enstrophy $\mathcal{E}$, def
   \label{eq: enstrophy}
   \mathcal{E} \defined \frac{1}{2}\int_{\Omega} \omega^2 \text{dx}
 \end{equation*}
-where $\Omega$ is the computational domain and $\omega$ is the vorticity\footnote{Unfortunately, $\omega$ is the common notation for vorticity. Not to be confused with the relaxation parameters from the previous sections}, computed as
+where $\Omega$ is the computational domain and $\omega$ is the vorticity\footnote{Unfortunately, $\omega$ is the common notation for vorticity. Not to be confused with the relaxation parameters from the previous sections.}, computed as
 \begin{equation*}
   \label{eq: vorticity}
   \omega \defined \partial_x u_y - \partial_y u_x

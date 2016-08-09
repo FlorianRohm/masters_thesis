@@ -1,10 +1,10 @@
 % !TEX root = ../thesis.tex
 After stating the advantages of using~\eqref{eq: Boltzmann transport equation} for our entry point to fluid simulation, we will develop a discrete scheme out of it in this section.
-This thesis will focus on the two-dimensional case, as it is already shown to work in 3D by Geier et al.\ in~\cite{geier2015cumulant} and the 2D case is easier to grasp for an introduction. Nevertheless, justification of this 2D model is controversial as discussed in Section~\ref{sec: Outlook}.
+This thesis will focus on the two-dimensional case, as it is already shown to work in 3D by Geier et al.\ in~\cite{geier2015cumulant} and the 2D case is easier to grasp for an introduction.
 
 First of all, we restrict ourselves to a computational domain being composed of square\footnote{There are researches for rectangular cells like~\cite{Bouzidi2001704}, but to the author's knowledge it's rarely used in any application.} cells with a constant width $c$.
 Not too much attention should be granted to this value, as in most realizations, $c=1$ is chosen and this factor will vanish.
-Nevertheless, we will maintain $c$ as a variable through most of the calculations and explicitly state when it's set to one.
+To remain as general as possible, we will maintain $c$ as a variable through most of the calculations and explicitly state when it's set to one.
 
 The next step for the discretization is to restrict our velocity space to a finite set of velocities. As we will see in a bit, we want the cell spacing and the velocities to coincide, so we choose our \textbf{microscopic velocities} to be
 \begin{equation}
